@@ -1,10 +1,11 @@
-import MapComponent from './MapComponent';
+// import MapComponent from './MapComponent';
+import Login from './pages/Login/Login';
 
 function App() {
   return (
     <div className="App">
-      <h1>Google Maps with Places API</h1>
-      <MapComponent />
+      <h1>로그인 페이지</h1>
+      <Login />
     </div>
   );
 }
