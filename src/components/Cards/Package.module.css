@@ -1,0 +1,21 @@
+.Package {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Package .thumnail_image {
+  width: 300px;
+  height: 200px;
+}
+
+.Package .thumnail_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Package h4 {
+  margin: 0.75rem 0;
+}

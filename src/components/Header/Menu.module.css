@@ -1,0 +1,8 @@
+.Menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.Menu .menu_item {
+  cursor: pointer;
+}
