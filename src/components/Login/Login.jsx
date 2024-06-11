@@ -1,8 +1,8 @@
 import styles from './Login.module.css';
-import Modal from '../../components/Modal/Modal';
-import Form from '../../components/Form/Form';
-import InputField from '../../components/Form/InputField';
-import SubmitButton from '../../components/Form/SubmitButton';
+import Modal from '../Modal/Modal';
+import Form from '../Form/Form';
+import InputField from '../Form/InputField';
+import SubmitButton from '../Form/SubmitButton';
 
 const Login = () => {
   return (

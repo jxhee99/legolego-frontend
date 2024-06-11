@@ -1,24 +1,38 @@
 import styles from './Header.module.css';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Logo from '../Logo/Logo';
+import Menu from './Menu';
+import Authentication from './Authentication';
+import Login from '../Login/Login';
+import Signup from '../Signup/Signup';
 
-const Header = ({ logo, Menu, authentication, isLoggedIn }) => {
+const Header = ({ isLoggedIn }) => {
+  const [clickedButton, setClickedButton] = useState(null);
+  const onClickButton = (e) => {
+    if (e.target.textContent === '로그인') {
+      setClickedButton('로그인');
+    } else {
+      setClickedButton('회원가입');
+    }
+  };
+
   return (
     <header className={styles.Header}>
-      <div className={styles.logo}>{logo}</div>
-      <div className={styles.Menu}>{Menu}</div>
+      <Logo />
+      <Menu />
       {!isLoggedIn ? (
-        <div className={styles.authentication}>{authentication}</div>
+        <Authentication onClick={onClickButton} />
       ) : (
         <button>마이페이지</button>
       )}
+      {clickedButton === '로그인' && <Login />}
+      {clickedButton === '회원가입' && <Signup />}
     </header>
   );
 };
 
 Header.propTypes = {
-  logo: PropTypes.element.isRequired,
-  Menu: PropTypes.element.isRequired,
-  authentication: PropTypes.element.isRequired,
   /** 로그인 여부 */
   isLoggedIn: PropTypes.bool.isRequired,
 };

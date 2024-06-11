@@ -1,10 +1,14 @@
 import styles from './Authentication.module.css';
 
-const Authentication = () => {
+const Authentication = ({ onClick }) => {
   return (
-    <ul className={styles.Authentication}>
-      <li className={styles.menu_item}>로그인</li>
-      <li className={styles.menu_item}>회원가입</li>
+    <ul className={styles.Authentication} onClick={onClick}>
+      <li className={styles.authentication_menu_item}>
+        <button>로그인</button>
+      </li>
+      <li className={styles.authentication_menu_item}>
+        <button>회원가입</button>
+      </li>
     </ul>
   );
 };

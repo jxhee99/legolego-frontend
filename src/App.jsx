@@ -1,13 +1,18 @@
-// import MapComponent from './MapComponent';
-import Login from './pages/Login/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ROUTE_ARR } from './Routes/route';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>로그인 페이지</h1>
-      <Login />
+      <Router>
+        <Routes>
+          {ROUTE_ARR.map((route, index) => (
+            <Route path={route.path} element={<route.element />} key={index} />
+          ))}
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;

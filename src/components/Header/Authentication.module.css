@@ -3,6 +3,7 @@
   gap: 1.5rem;
 }
 
-.Authentication .menu_item {
+.Authentication .authentication_menu_item {
+  display: inline-block;
   cursor: pointer;
 }

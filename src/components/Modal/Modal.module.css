@@ -17,10 +17,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 100%;
-  max-width: 550px;
-  max-height: 580px;
+  width: 70%; /* Adjusted width */
+  height: 90%; /* Adjusted height */
+  max-width: 550px; /* Adjusted max-width */
+  max-height: 1200px; /* Adjusted max-height */
   padding: 20px;
   background-color: #ffffff;
   border-radius: 12px;
