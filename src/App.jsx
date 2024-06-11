@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ROUTE_ARR } from './Routes/route';
 
-export default function App() {
+const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
@@ -13,4 +13,6 @@ export default function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
+
+export default App;

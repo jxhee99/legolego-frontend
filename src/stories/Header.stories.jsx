@@ -1,7 +1,4 @@
 import Header from '../components/Header/Header';
-import Logo from '../components/Logo/Logo';
-import Menu from '../components/Header/Menu';
-import Authentication from '../components/Header/Authentication';
 
 export default {
   title: 'Components/Header',
@@ -11,9 +8,7 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    logo: <Logo />,
-    Menu: <Menu />,
-    authentication: <Authentication />,
+    isLoggedIn: true,
   },
 };
 

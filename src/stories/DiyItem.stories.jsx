@@ -1,7 +1,7 @@
 import DiyItem from '../components/DiyItem/DiyItem';
 
 export default {
-  title: 'Components/DiyItem',
+  title: 'Diy/DiyItem',
   component: DiyItem,
   parameters: {
     layout: 'centered',

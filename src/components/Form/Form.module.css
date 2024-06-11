@@ -1,0 +1,13 @@
+.Form {
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.Form p {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-gray);
+  cursor: pointer;
+}

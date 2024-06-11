@@ -1,16 +1,16 @@
-import Package from '../components/Cards/Package';
+import PackageCard from '../pages/Home/PackageCard/PackageCard';
 import Avatar from '../components/Avatar/Avatar';
 
 export default {
-  title: 'Components/Package',
-  component: Package,
+  title: 'Home/PackageCard',
+  component: PackageCard,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
 };
 
-const Template = (args) => <Package {...args} />;
+const Template = (args) => <PackageCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

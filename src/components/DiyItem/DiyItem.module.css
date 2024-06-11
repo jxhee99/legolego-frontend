@@ -5,7 +5,7 @@
   border: 1px solid #bebebe;
 }
 
-.DiyItem .drag_handle {
+.DiyItem .diyItem_drag_handle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,36 +15,36 @@
   transition: background-color 0.3s ease;
 }
 
-.DiyItem .drag_handle:hover {
+.DiyItem .diyItem_drag_handle:hover {
   background-color: lightgrey;
 }
 
-.DiyItem .thumnail_image {
+.DiyItem .diyItem_thumnail_image {
   width: 230px;
 }
 
-.DiyItem .thumnail_image img {
+.DiyItem .diyItem_thumnail_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.DiyItem .description {
+.DiyItem .diyItem_description {
   width: 300px;
 }
 
-.DiyItem .description input {
+.DiyItem .diyItem_description input {
   display: block;
   width: 80%;
   margin: 0 auto;
   border: 1px solid #bebebe;
 }
 
-.DiyItem .description input:first-child {
+.DiyItem .diyItem_description input:first-child {
   height: 12%;
   margin: 0.75rem auto;
 }
 
-.DiyItem .description input:last-child {
+.DiyItem .diyItem_description input:last-child {
   height: 60%;
 }
