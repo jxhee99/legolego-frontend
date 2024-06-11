@@ -1,14 +1,16 @@
-import DiyItem from './components/DiyItem/DiyItem';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ROUTE_ARR } from './Routes/route';
 
 export default function App() {
   return (
-    <div className="root">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <DiyItem imageUrl="https://picsum.photos/seed/picsum/200/300" />
-        <DiyItem imageUrl="https://picsum.photos/seed/picsum/200/300" />
-        <DiyItem imageUrl="https://picsum.photos/seed/picsum/200/300" />
-        <DiyItem imageUrl="https://picsum.photos/seed/picsum/200/300" />
-      </div>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          {ROUTE_ARR.map((route, index) => (
+            <Route path={route.path} element={<route.element />} key={index} />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
