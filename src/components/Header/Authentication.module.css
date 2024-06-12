@@ -1,9 +1,8 @@
 .Authentication {
   display: flex;
-  gap: 1.5rem;
 }
 
-.Authentication .authentication_menu_item {
+.Authentication li button {
   display: inline-block;
-  cursor: pointer;
+  padding: 1rem 1.25rem;
 }

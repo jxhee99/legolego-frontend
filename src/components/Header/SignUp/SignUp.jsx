@@ -1,8 +1,8 @@
 import styles from './Signup.module.css';
-import Modal from '../Modal/Modal';
-import Form from '../Form/Form';
-import InputField from '../Form/InputField';
-import SubmitButton from '../Form/SubmitButton';
+import Modal from '../../Modal/Modal';
+import Form from '../../Form/Form';
+import InputField from '../../Form/InputField';
+import SubmitButton from '../../Form/SubmitButton';
 
 const inputFieldsData = [
   { key: 'field-1', type: 'text', text: '이름' },
@@ -19,18 +19,18 @@ const createInputFields = (fieldsData) => {
   ));
 };
 
-const Signup = () => {
+const SignUp = () => {
   return (
     <div className={styles.Signup}>
       <Modal title="회원가입">
         <Form
           fields={createInputFields(inputFieldsData)}
           submitButton={<SubmitButton text="회원가입" />}
-          findAccount="이미 회원이신가요? 로그인하기"
+          findAccount={<p>이미 회원이신가요? 로그인하기</p>}
         />
       </Modal>
     </div>
   );
 };
 
-export default Signup;
+export default SignUp;
