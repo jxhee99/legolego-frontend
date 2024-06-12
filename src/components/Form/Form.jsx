@@ -6,7 +6,7 @@ const Form = ({ fields, submitButton, findAccount }) => {
     <form className={styles.Form}>
       {fields}
       {submitButton}
-      <p>{findAccount}</p>
+      {findAccount}
     </form>
   );
 };
@@ -14,7 +14,7 @@ const Form = ({ fields, submitButton, findAccount }) => {
 Form.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.element).isRequired,
   submitButton: PropTypes.element.isRequired,
-  findAccount: PropTypes.string.isRequired,
+  findAccount: PropTypes.element.isRequired,
 };
 
 export default Form;

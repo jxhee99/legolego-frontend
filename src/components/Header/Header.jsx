@@ -1,19 +1,33 @@
+// Header.jsx
 import styles from './Header.module.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../Logo/Logo';
 import Menu from './Menu';
 import Authentication from './Authentication';
-import Login from '../Login/Login';
-import Signup from '../Signup/Signup';
+import LogIn from './LogIn/LogIn';
+import SignUp from './SignUp/SignUp';
 
 const Header = ({ isLoggedIn }) => {
-  const [clickedButton, setClickedButton] = useState(null);
+  const [toggleAuthentication, setToggleAuthentication] = useState({
+    logIn: false,
+    signUp: false,
+  });
+
   const onClickButton = (e) => {
-    if (e.target.textContent === '로그인') {
-      setClickedButton('로그인');
+    const { textContent } = e.target;
+    if (textContent === '로그인') {
+      setToggleAuthentication((prev) => ({
+        ...prev,
+        logIn: !prev.logIn,
+      }));
+    } else if (textContent === '회원가입') {
+      setToggleAuthentication((prev) => ({
+        ...prev,
+        signUp: !prev.signUp,
+      }));
     } else {
-      setClickedButton('회원가입');
+      throw new Error('동작이 정상적으로 수행되지 않았습니다.');
     }
   };
 
@@ -22,12 +36,14 @@ const Header = ({ isLoggedIn }) => {
       <Logo />
       <Menu />
       {!isLoggedIn ? (
-        <Authentication onClick={onClickButton} />
+        <>
+          <Authentication onClick={onClickButton} />
+        </>
       ) : (
         <button>마이페이지</button>
       )}
-      {clickedButton === '로그인' && <Login />}
-      {clickedButton === '회원가입' && <Signup />}
+      {toggleAuthentication.logIn && <LogIn />}
+      {toggleAuthentication.signUp && <SignUp />}
     </header>
   );
 };
