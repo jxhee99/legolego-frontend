@@ -1,0 +1,27 @@
+.PackageCard {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 300px;
+  margin: 16px;
+}
+
+.PackageCard .package_card_image img {
+  max-height: 280px;
+  display: block;
+}
+
+.PackageCard .package_card_image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.PackageCard .package_card_body {
+  padding: 0.75rem;
+}
+
+.PackageCard .package_card_body h3 {
+  margin-top: 0.5rem;
+}
