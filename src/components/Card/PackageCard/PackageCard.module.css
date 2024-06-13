@@ -7,12 +7,12 @@
   cursor: pointer;
 }
 
-.PackageCard .package_card_image img {
+.PackageCard .package_card_thumbnail img {
   max-height: 280px;
   display: block;
 }
 
-.PackageCard .package_card_image img {
+.PackageCard .package_card_thumbnail img {
   display: block;
   width: 100%;
   height: auto;

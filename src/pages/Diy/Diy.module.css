@@ -1,0 +1,5 @@
+.Diy .diy_cards {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+}

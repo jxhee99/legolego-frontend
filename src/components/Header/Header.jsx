@@ -1,9 +1,7 @@
 // Header.jsx
-import styles from './Header.module.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-// components
+import styles from './Header.module.css';
 import Logo from '../Logo/Logo';
 import Menu from './Menu';
 import Authentication from './Authentication';
@@ -16,40 +14,41 @@ const Header = ({ isLoggedIn }) => {
     signUp: false,
   });
 
-  const onClickButton = (e) => {
-    const { textContent } = e.target;
-    if (textContent === '로그인') {
-      setToggleAuthentication((prev) => ({
-        ...prev,
-        logIn: !prev.logIn,
-      }));
-    } else {
-      setToggleAuthentication((prev) => ({
-        ...prev,
-        signUp: !prev.signUp,
-      }));
-    }
+  const handleToggleAuthentication = (type) => {
+    setToggleAuthentication((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
+  };
+
+  const closeAuthentication = () => {
+    setToggleAuthentication({
+      logIn: false,
+      signUp: false,
+    });
   };
 
   return (
-    <header className={styles.Header}>
+    <header
+      className={`${styles.Header} ${toggleAuthentication.logIn || toggleAuthentication.signUp ? styles.AuthOpen : ''}`}
+    >
       <Logo />
       <Menu />
       {!isLoggedIn ? (
-        <>
-          <Authentication onClick={onClickButton} />
-        </>
+        <Authentication
+          onClickLogin={() => handleToggleAuthentication('logIn')}
+          onClickSignUp={() => handleToggleAuthentication('signUp')}
+        />
       ) : (
         <button>마이페이지</button>
       )}
-      {toggleAuthentication.logIn && <LogIn />}
-      {toggleAuthentication.signUp && <SignUp />}
+      {toggleAuthentication.logIn && <LogIn onClose={closeAuthentication} />}
+      {toggleAuthentication.signUp && <SignUp onClose={closeAuthentication} />}
     </header>
   );
 };
 
 Header.propTypes = {
-  /** 로그인 여부 */
   isLoggedIn: PropTypes.bool.isRequired,
 };
 

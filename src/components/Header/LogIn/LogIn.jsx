@@ -1,4 +1,3 @@
-import styles from './Login.module.css';
 import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
 import InputField from '../../Form/InputField';
@@ -6,7 +5,7 @@ import SubmitButton from '../../Form/SubmitButton';
 
 const LogIn = () => {
   return (
-    <div className={styles.LogIn}>
+    <>
       <Modal title="로그인">
         <Form
           fields={[
@@ -21,7 +20,7 @@ const LogIn = () => {
           }
         />
       </Modal>
-    </div>
+    </>
   );
 };
 

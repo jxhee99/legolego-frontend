@@ -1,6 +1,8 @@
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
+import PackageDetail from '../pages/PackageDetail/PackageDetail';
+import Diy from '../pages/Diy/Diy';
 
 export const ROUTE = {
   ABOUT: {
@@ -18,9 +20,20 @@ export const ROUTE = {
     link: '/package',
     element: Package,
   },
+  PACKAGE_DETAIL: {
+    path: '/package/:id',
+    link: '/package/:id',
+    element: PackageDetail,
+  },
   DIY: {
     path: '/diy',
-    link: 'diy',
+    link: '/diy',
+    element: Diy,
+  },
+  DIY_DETAIL: {
+    path: '/diy/:id',
+    link: '/diy/:id',
+    element: Diy,
   },
   REVIEW: {
     path: '/review',
