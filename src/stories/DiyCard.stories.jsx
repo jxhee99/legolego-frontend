@@ -1,8 +1,8 @@
-import DiyCard from '../pages/Home/DiyCard/DiyCard';
+import DiyCard from '../components/DiyItem/DiyItem';
 import Avatar from '../components/Avatar/Avatar';
 
 export default {
-  title: 'Home/DiyCard',
+  title: 'Card/DiyCard',
   component: DiyCard,
   tags: ['autodocs'],
   parameters: {

@@ -5,7 +5,7 @@ const DiyCard = ({ imageUrl, title, user }) => {
   return (
     <div className={styles.DiyCard}>
       <div className={styles.thumnail_image}>
-        <img src={imageUrl} alt="패키지 썸네일" />
+        <img src={imageUrl} alt="DIY패키지 썸네일" />
       </div>
       <h4>{title}</h4>
       {user}
