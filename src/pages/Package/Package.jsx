@@ -26,7 +26,7 @@ const partnerNames = [
 
 const mock = Array.from({ length: 7 }, (_, index) => ({
   index: index + 1,
-  imageUrl: 'https://picsum.photos/200/300',
+  imageUrl: 'https://picsum.photos/400/400',
   title: getRandomElement(titles),
   partnerName: getRandomElement(partnerNames),
 }));

@@ -1,5 +1,5 @@
 .Diy .diy_cards {
   display: grid;
-  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }

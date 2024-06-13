@@ -2,19 +2,19 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  max-width: 300px;
-  margin: 16px;
+  max-width: 400px;
   cursor: pointer;
 }
 
-.PackageCard .package_card_thumbnail img {
-  max-height: 280px;
-  display: block;
+.PackageCard .package_card_thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .PackageCard .package_card_thumbnail img {
-  display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: cover;
 }

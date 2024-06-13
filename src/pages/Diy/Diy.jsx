@@ -37,7 +37,7 @@ const userProfileImages = [
 
 const mock = Array.from({ length: 7 }, (_, index) => ({
   index: index + 1,
-  imageUrl: 'https://picsum.photos/200/300',
+  imageUrl: 'https://picsum.photos/500/300',
   title: getRandomElement(titles),
   partnerName: getRandomElement(partnerNames),
   userName: getRandomElement(userNames),
@@ -47,7 +47,7 @@ const mock = Array.from({ length: 7 }, (_, index) => ({
 const Diy = () => {
   return (
     <section className={`${styles.Diy} layout`}>
-      <h2>어떤 여행을 함께 해볼까요?</h2>
+      <h2>DIY 패키지를 응원해주세요!</h2>
       <div className={styles.diy_cards}>
         {mock.map((item) => (
           <DiyCard
