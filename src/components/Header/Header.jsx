@@ -2,6 +2,8 @@
 import styles from './Header.module.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+
+// components
 import Logo from '../Logo/Logo';
 import Menu from './Menu';
 import Authentication from './Authentication';

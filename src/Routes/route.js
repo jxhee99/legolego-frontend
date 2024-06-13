@@ -1,5 +1,6 @@
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
+import Package from '../pages/Package/Package';
 
 export const ROUTE = {
   ABOUT: {
@@ -15,7 +16,15 @@ export const ROUTE = {
   PACKAGE: {
     path: '/package',
     link: '/package',
-    element: Home,
+    element: Package,
+  },
+  DIY: {
+    path: '/diy',
+    link: 'diy',
+  },
+  REVIEW: {
+    path: '/review',
+    link: '/review',
   },
 };
 
