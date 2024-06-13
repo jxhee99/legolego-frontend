@@ -4,6 +4,7 @@
   overflow: hidden;
   max-width: 300px;
   margin: 16px;
+  cursor: pointer;
 }
 
 .PackageCard .package_card_image img {

@@ -59,3 +59,7 @@ button {
   border: 0;
   cursor: pointer;
 }
+
+.layout {
+  padding: 3.5rem 2rem 2rem;
+}
