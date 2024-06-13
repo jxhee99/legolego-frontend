@@ -1,3 +1,4 @@
+import styles from './SignUp.module.css';
 import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
 import InputField from '../../Form/InputField';
@@ -20,7 +21,7 @@ const createInputFields = (fieldsData) => {
 
 const SignUp = () => {
   return (
-    <div>
+    <div className={styles.SignUp}>
       <Modal title="회원가입">
         <Form
           fields={createInputFields(inputFieldsData)}

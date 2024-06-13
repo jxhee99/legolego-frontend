@@ -9,12 +9,12 @@ import {
 
 const containerStyle = {
   width: '100%',
-  height: '100vh',
+  height: '50vh',
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 37.5665,
+  lng: 126.978,
 };
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
@@ -50,11 +50,19 @@ function MyComponent() {
       const location = place.geometry.location;
       setMarkerPosition({ lat: location.lat(), lng: location.lng() });
       map.panTo(location);
+
+      const photoUrl =
+        place.photos && place.photos.length > 0
+          ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 400 })
+          : null;
+
       setSelectedPlace({
         name: place.name,
         address: place.formatted_address,
         position: { lat: location.lat(), lng: location.lng() },
+        photoUrl: photoUrl,
       });
+
       setInfoWindowVisible(true);
     }
   };
@@ -81,6 +89,13 @@ function MyComponent() {
           <div>
             <h3>{selectedPlace.name}</h3>
             <p>{selectedPlace.address}</p>
+            {selectedPlace.photoUrl && (
+              <img
+                src={selectedPlace.photoUrl}
+                alt={selectedPlace.name}
+                style={{ maxWidth: '100%', maxHeight: '150px' }}
+              />
+            )}
           </div>
         </InfoWindow>
       )}

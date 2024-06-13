@@ -1,16 +1,24 @@
+// Authentication.jsx
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Authentication.module.css';
 
-const Authentication = ({ onClick }) => {
+const Authentication = ({ onClickLogin, onClickSignUp }) => {
   return (
-    <ul className={styles.Authentication} onClick={onClick}>
+    <ul className={styles.Authentication}>
       <li>
-        <button>로그인</button>
+        <button onClick={onClickLogin}>로그인</button>
       </li>
       <li>
-        <button>회원가입</button>
+        <button onClick={onClickSignUp}>회원가입</button>
       </li>
     </ul>
   );
+};
+
+Authentication.propTypes = {
+  onClickLogin: PropTypes.func.isRequired,
+  onClickSignUp: PropTypes.func.isRequired,
 };
 
 export default Authentication;
