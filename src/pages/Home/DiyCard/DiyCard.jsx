@@ -1,9 +1,9 @@
-import styles from './PackageCard.module.css';
+import styles from './DiyCard.module.css';
 import PropTypes from 'prop-types';
 
-const PackageCard = ({ imageUrl, title, user }) => {
+const DiyCard = ({ imageUrl, title, user }) => {
   return (
-    <div className={styles.PackageCard}>
+    <div className={styles.DiyCard}>
       <div className={styles.thumnail_image}>
         <img src={imageUrl} alt="패키지 썸네일" />
       </div>
@@ -13,10 +13,10 @@ const PackageCard = ({ imageUrl, title, user }) => {
   );
 };
 
-PackageCard.propTypes = {
+DiyCard.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   user: PropTypes.element.isRequired,
 };
 
-export default PackageCard;
+export default DiyCard;

@@ -1,21 +1,21 @@
-.PackageCard {
+.DiyCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.PackageCard .thumnail_image {
+.DiyCard.thumnail_image {
   width: 300px;
   height: 200px;
 }
 
-.PackageCard .thumnail_image img {
+.DiyCard.thumnail_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.PackageCard h4 {
+.DiyCardh4 {
   margin: 0.75rem 0;
 }

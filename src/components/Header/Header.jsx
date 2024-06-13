@@ -21,13 +21,11 @@ const Header = ({ isLoggedIn }) => {
         ...prev,
         logIn: !prev.logIn,
       }));
-    } else if (textContent === '회원가입') {
+    } else {
       setToggleAuthentication((prev) => ({
         ...prev,
         signUp: !prev.signUp,
       }));
-    } else {
-      throw new Error('동작이 정상적으로 수행되지 않았습니다.');
     }
   };
 
