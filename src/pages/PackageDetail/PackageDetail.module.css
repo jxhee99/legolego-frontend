@@ -1,0 +1,59 @@
+/* PackageInformation */
+.PackageInformation {
+  display: flex;
+  justify-content: center;
+}
+
+.PackageInformation .package_information_left {
+  width: 400px;
+  height: 400px;
+}
+
+.PackageInformation .package_information_left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.PackageInformation .package_information_right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 2rem;
+}
+
+.PackageInformation .package_information_right button {
+  padding: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
+/* Progress Bar */
+.progress_bar {
+  width: 100%;
+  height: 12px;
+  background-color: #bebebe;
+}
+
+.progress_bar_inner {
+  width: 30%;
+  height: 12px;
+  background-color: #ff0000;
+}
+
+/* AirplainInformation */
+.AirplainInformation {
+  margin-top: 3rem;
+}
+
+.AirplainInformation .airplain_information_cards {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+
+/* Schedule */
+.Schedule {
+  margin-top: 3rem;
+}

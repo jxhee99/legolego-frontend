@@ -3,6 +3,7 @@ import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
 import PackageDetail from '../pages/PackageDetail/PackageDetail';
 import Diy from '../pages/Diy/Diy';
+import Review from '../pages/Review/Review';
 
 export const ROUTE = {
   ABOUT: {
@@ -38,6 +39,7 @@ export const ROUTE = {
   REVIEW: {
     path: '/review',
     link: '/review',
+    element: Review,
   },
 };
 

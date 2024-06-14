@@ -1,12 +1,14 @@
-// Header.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
+
+// components
 import Logo from '../Logo/Logo';
-import Menu from './Menu';
-import Authentication from './Authentication';
-import LogIn from './LogIn/LogIn';
-import SignUp from './SignUp/SignUp';
+import Menu from './Menu/Menu';
+import Authentication from './Authentication/Authentication';
+import LogIn from './Authentication/LogIn';
+import SignUp from './Authentication/SignUp';
 
 const Header = ({ isLoggedIn }) => {
   const [toggleAuthentication, setToggleAuthentication] = useState({
@@ -32,7 +34,9 @@ const Header = ({ isLoggedIn }) => {
     <header
       className={`${styles.Header} ${toggleAuthentication.logIn || toggleAuthentication.signUp ? styles.AuthOpen : ''}`}
     >
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <Menu />
       {!isLoggedIn ? (
         <Authentication

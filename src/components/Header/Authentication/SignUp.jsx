@@ -1,4 +1,4 @@
-import styles from './SignUp.module.css';
+import styles from '../Header.module.css';
 import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
 import InputField from '../../Form/InputField';

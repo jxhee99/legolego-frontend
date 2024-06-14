@@ -1,6 +1,6 @@
-import styles from './Menu.module.css';
+import styles from '../Header.module.css';
 import { Link } from 'react-router-dom';
-import { ROUTE } from '../../Routes/route';
+import { ROUTE } from '../../../Routes/route';
 
 const Menu = () => {
   return (

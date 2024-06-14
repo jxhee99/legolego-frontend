@@ -8,3 +8,28 @@
   background-color: var(--color-white);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Menu */
+.Menu {
+  display: flex;
+}
+
+.Menu .menu_item {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+}
+
+/* Authentication */
+.Authentication {
+  display: flex;
+}
+
+.Authentication li button {
+  display: inline-block;
+  padding: 1rem 1.25rem;
+}
+
+/* SignUp */
+.SignUp {
+  position: absolute;
+}
