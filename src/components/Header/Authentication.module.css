@@ -1,8 +1,0 @@
-.Authentication {
-  display: flex;
-}
-
-.Authentication li button {
-  display: inline-block;
-  padding: 1rem 1.25rem;
-}

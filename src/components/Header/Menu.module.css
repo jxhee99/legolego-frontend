@@ -1,8 +1,0 @@
-.Menu {
-  display: flex;
-}
-
-.Menu .menu_item {
-  cursor: pointer;
-  padding: 1rem 1.25rem;
-}
