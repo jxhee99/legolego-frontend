@@ -1,4 +1,4 @@
-import styles from './DiySection.module.css';
+import styles from '../Home.module.css';
 import DiyCard from '../../../components/Card/DiyCard/DiyCard';
 import Avatar from '../../../components/Avatar/Avatar';
 import { getRandomElement } from '../../../utils/random';
@@ -21,7 +21,7 @@ const DiySection = () => {
       <h2>방금 올라온 DIY 패키지</h2>
       <div className={styles.diy_section_cards}>
         <DiyCard
-          imageUrl="https://picsum.photos/300/200"
+          imageUrl="https://picsum.photos/500/300"
           title="문화재 위주로 다니는 여행"
           user={
             <Avatar

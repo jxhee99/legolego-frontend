@@ -1,4 +1,4 @@
-import styles from './IntroSection.module.css';
+import styles from '../Home.module.css';
 import CountrySelect from './CountrySelect';
 import Button from '@mui/material/Button';
 

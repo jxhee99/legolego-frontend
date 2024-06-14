@@ -1,5 +1,6 @@
+/* IntroSection */
 .IntroSection {
-  padding: 3.5rem 2rem 7rem 2rem;
+  padding: 3.5rem 3rem 7rem 3rem;
   background-color: lightgreen;
 }
 
@@ -16,4 +17,22 @@
 
 .IntroSection .intro_section_search button {
   height: 56px;
+}
+
+/* PackageSection */
+.PackageSection {
+  padding: 3.5rem 3rem 3rem;
+}
+
+.PackageSection .package_section_cards {
+  margin-top: 3rem;
+}
+
+/* DiySection */
+.DiySection {
+  padding: 3.5rem 3rem 3rem;
+}
+
+.DiySection .diy_section_cards {
+  margin-top: 3rem;
 }
