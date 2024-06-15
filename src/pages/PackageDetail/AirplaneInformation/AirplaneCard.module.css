@@ -1,4 +1,4 @@
-.AirplainCard {
+.AirplaneCard {
   position: relative;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   border-radius: 12px;
 }
 
-.AirplainCard .airplain_card_badge {
+.AirplaneCard .airplane_card_badge {
   position: absolute;
   top: 10px;
   left: 12px;
@@ -19,6 +19,6 @@
   border-radius: 4px;
 }
 
-.AirplainCard .airplain_card_body {
+.AirplaneCard .airplane_card_body {
   margin-top: 1rem;
 }

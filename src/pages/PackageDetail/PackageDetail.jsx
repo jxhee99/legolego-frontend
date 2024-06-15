@@ -1,13 +1,13 @@
 import styles from './PackageDetail.module.css';
 import PackageInformation from './PackageInformation/PackageInformation';
-import AirplainInfomation from './AirplainInformation/AirplainInformation';
-import Schedule from './Schedule/Schedule';
+import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
+import Schedule from './ScheduleInformation/ScheduleInformation';
 
 const PackageDetail = () => {
   return (
     <div className={`${styles.PackageDetail} layout`}>
       <PackageInformation />
-      <AirplainInfomation />
+      <AirplaneInfomation />
       <Schedule />
     </div>
   );

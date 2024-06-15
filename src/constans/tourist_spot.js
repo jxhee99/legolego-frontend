@@ -1,0 +1,1 @@
+const TOURIST_SPOT = [{}];

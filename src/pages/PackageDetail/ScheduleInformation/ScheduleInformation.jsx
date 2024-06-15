@@ -1,6 +1,6 @@
 import styles from '../PackageDetail.module.css';
 
-const Schedule = () => {
+const ScheduleInformation = () => {
   return (
     <section className={styles.Schedule}>
       <h3>여행 일정</h3>
@@ -9,4 +9,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default ScheduleInformation;
