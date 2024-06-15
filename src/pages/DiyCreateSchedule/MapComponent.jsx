@@ -1,3 +1,4 @@
+import styles from './DiyCreateSchedule.module.css';
 import { useState, useCallback, useRef, memo } from 'react';
 import {
   GoogleMap,
@@ -8,8 +9,8 @@ import {
 } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '100%',
-  height: '50vh',
+  width: '80%',
+  height: '60vh',
 };
 
 const center = {
@@ -79,6 +80,7 @@ function MyComponent() {
       zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}
+      className={styles.googlemap}
     >
       <MarkerF position={markerPosition} onClick={handleMarkerClick} />
       {infoWindowVisible && selectedPlace && (
@@ -99,24 +101,26 @@ function MyComponent() {
           </div>
         </InfoWindow>
       )}
-      <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-        <Autocomplete
-          onLoad={(autocomplete) => {
-            autocompleteRef.current = autocomplete;
-            autocompleteListener.current = autocomplete.addListener(
-              'place_changed',
-              onPlaceChanged
-            );
-          }}
-          onUnmount={() => {
-            if (autocompleteListener.current) {
-              autocompleteListener.current.remove();
-            }
-          }}
-        >
-          <input type="text" placeholder="Search location" />
-        </Autocomplete>
-      </div>
+
+      <Autocomplete
+        onLoad={(autocomplete) => {
+          autocompleteRef.current = autocomplete;
+          autocompleteListener.current = autocomplete.addListener(
+            'place_changed',
+            onPlaceChanged
+          );
+        }}
+        onUnmount={() => {
+          if (autocompleteListener.current) {
+            autocompleteListener.current.remove();
+          }
+        }}
+      >
+        <div className={styles.inputs}>
+          <input type="text" placeholder="관광지와 맛집을 검색하세요" />
+          <input type="button" value="일정추가" />
+        </div>
+      </Autocomplete>
     </GoogleMap>
   ) : (
     <></>

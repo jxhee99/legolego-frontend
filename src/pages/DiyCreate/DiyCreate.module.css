@@ -1,0 +1,19 @@
+.DiyCreate .diy_create_steps {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin: 3rem 0;
+}
+
+.DiyCreate .diy_create_steps li {
+  background-color: #bebebe;
+  border-radius: 12px;
+}
+
+.DiyCreate .diy_create_steps li a {
+  display: inline-block;
+  width: 100px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+}

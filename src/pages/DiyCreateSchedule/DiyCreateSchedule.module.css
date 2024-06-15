@@ -1,0 +1,33 @@
+.DiyCreateSchedule > :nth-child(2) {
+  margin: 2rem auto 0 auto;
+}
+
+.DiyCreateSchedule .googlemap {
+  position: relative;
+}
+
+.DiyCreateSchedule .inputs {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.DiyCreateSchedule .inputs input {
+  padding: 0.625rem;
+}
+
+.DiyCreateSchedule .inputs input:nth-child(1) {
+  width: 90%;
+}
+
+.DiyCreateSchedule .inputs input:nth-child(2) {
+  width: 10%;
+}
+
+/* DiyItem */
+.DiyCreateSchedule .schedules {
+  display: flex;
+  margin-top: 3rem;
+}

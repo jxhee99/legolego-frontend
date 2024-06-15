@@ -63,5 +63,7 @@ button {
 }
 
 .layout {
+  width: var(--size-max-width);
+  margin: 0 auto;
   padding: 3.5rem 3rem 3rem;
 }

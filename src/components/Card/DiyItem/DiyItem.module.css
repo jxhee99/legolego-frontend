@@ -1,0 +1,17 @@
+.DiyItem .diy_item_image {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.DiyItem .diy_item_image img {
+  width: 100%;
+  height: 100%;
+}
+
+.DiyItem h4 {
+  margin: 0.5rem 0;
+}
+
+.DiyItem input {
+  width: 100%;
+}

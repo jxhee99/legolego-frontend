@@ -1,0 +1,8 @@
+.DiyCreateAirplane {
+  display: flex;
+  justify-content: center;
+}
+
+.DiyCreateAirplane .airplane_serch_button {
+  background-color: #83e860;
+}
