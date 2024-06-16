@@ -1,5 +1,12 @@
+import VerticalTabs from './VerticalTabs/VerticalTabs';
+
 const DiyCreateTouristSpot = () => {
-  return <div></div>;
+  return (
+    <>
+      <hr />
+      <VerticalTabs />
+    </>
+  );
 };
 
 export default DiyCreateTouristSpot;
