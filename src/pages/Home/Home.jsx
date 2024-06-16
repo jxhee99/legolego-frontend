@@ -1,4 +1,3 @@
-// import styles from './Home.module.css';
 import DiySection from './DiySection/DiySection';
 import IntroSection from './IntroSection/IntroSection';
 import PackageSection from './PackageSection/PackageSection';

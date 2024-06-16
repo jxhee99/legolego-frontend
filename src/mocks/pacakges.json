@@ -1,0 +1,158 @@
+[
+  {
+    "packageNum": 4,
+    "packageName": "신나는 일본 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-13",
+    "modDate": "2024-06-14",
+    "packageLikedNum": 2,
+    "packageViewNum": 2,
+    "shortDescription": "일본 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 4,
+      "airlineName": "아시아나",
+      "startingPoint": "인천",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 4,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  },
+  {
+    "packageNum": 6,
+    "packageName": "신나는 태국 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-13",
+    "modDate": null,
+    "packageLikedNum": 2,
+    "packageViewNum": 0,
+    "shortDescription": "태국 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 6,
+      "airlineName": "Example Airline",
+      "startingPoint": "Seoul",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 6,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  },
+  {
+    "packageNum": 7,
+    "packageName": "신나는 한국 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-13",
+    "modDate": "2024-06-13",
+    "packageLikedNum": 0,
+    "packageViewNum": 1,
+    "shortDescription": "한국 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 7,
+      "airlineName": "아시아나",
+      "startingPoint": "Seoul",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 7,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  },
+  {
+    "packageNum": 8,
+    "packageName": "신나는 태국 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-14",
+    "modDate": null,
+    "packageLikedNum": 0,
+    "packageViewNum": 2,
+    "shortDescription": "태국 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 8,
+      "airlineName": "Example Airline",
+      "startingPoint": "Seoul",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 8,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  },
+  {
+    "packageNum": 9,
+    "packageName": "신나는 태국 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-14",
+    "modDate": null,
+    "packageLikedNum": 0,
+    "packageViewNum": 4,
+    "shortDescription": "태국 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 9,
+      "airlineName": "Example Airline",
+      "startingPoint": "Seoul",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 9,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  },
+  {
+    "packageNum": 10,
+    "packageName": "신나는 태국 여행",
+    "profileImg": "/img/google/city",
+    "regDate": "2024-06-14",
+    "modDate": null,
+    "packageLikedNum": 0,
+    "packageViewNum": 1,
+    "shortDescription": "태국 도시 여행 가실 분?",
+    "userNum": 1,
+    "airline": {
+      "airlineNum": 10,
+      "airlineName": "Example Airline",
+      "startingPoint": "Seoul",
+      "destination": "New York",
+      "startFlightNum": "EX1234",
+      "boardingDate": "2024-06-12T10:00:00",
+      "comeFlightNum": "EX5678",
+      "comingDate": "2024-06-15T10:00:00"
+    },
+    "route": {
+      "routeNum": 10,
+      "startDate": "2024-06-12",
+      "lastDate": "2024-06-20"
+    }
+  }
+]
