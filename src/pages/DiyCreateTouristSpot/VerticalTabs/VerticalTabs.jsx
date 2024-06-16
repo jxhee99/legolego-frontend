@@ -1,9 +1,12 @@
+import styles from './VerticalTabs.module.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { touristSpots } from '../../../constans/tourist_spot';
+
+const countries = Object.keys(touristSpots);
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -18,7 +21,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
@@ -31,22 +34,22 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-}
-
 export default function VerticalTabs() {
   const [value, setValue] = useState(0);
+  const [nestedValue, setNestedValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     setValue(newValue);
+    setNestedValue(0);
+  };
+
+  const handleNestedChange = (e, newValue) => {
+    setNestedValue(newValue);
   };
 
   return (
-    <div>
+    <div className={styles.VerticalTabs}>
+      {/* countries */}
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -55,31 +58,68 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        <Tab label="동남아/대만/서남아" {...a11yProps(0)} />
-        <Tab label="유럽/아프리카" {...a11yProps(1)} />
-        <Tab label="괌/사이판/호주/뉴질랜드" {...a11yProps(2)} />
-        <Tab label="미주/하와이/캐나다/중남미" {...a11yProps(3)} />
-        <Tab label="일본" {...a11yProps(4)} />
-        <Tab label="중국/홍콩/마카오/중앙아시아" {...a11yProps(5)} />
+        {countries.map((country, index) => (
+          <Tab key={index} label={country} {...a11yProps(index)} />
+        ))}
       </Tabs>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
+
+      {/* country */}
+      {countries.map((country, index) => (
+        <TabPanel
+          value={value}
+          index={index}
+          key={index}
+          className={styles.country}
+        >
+          {Object.keys(touristSpots[country]).length > 0 ? (
+            <div style={{ display: 'flex' }}>
+              {/* regions */}
+              <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={nestedValue}
+                onChange={handleNestedChange}
+                aria-label="Nested vertical tabs example"
+                sx={{ borderRight: 1, borderColor: 'divider' }}
+              >
+                {Object.keys(touristSpots[country]).map(
+                  (region, nestedIndex) => (
+                    <Tab
+                      key={nestedIndex}
+                      label={region}
+                      {...a11yProps(nestedIndex)}
+                    />
+                  )
+                )}
+              </Tabs>
+
+              {/* Panels */}
+              {Object.keys(touristSpots[country]).map((region, nestedIndex) => (
+                <TabPanel
+                  value={nestedValue}
+                  index={nestedIndex}
+                  key={nestedIndex}
+                >
+                  <ul className={styles.regions}>
+                    {touristSpots[country][region].map((spot, spotIndex) => (
+                      <li key={spotIndex}>{spot}</li>
+                    ))}
+                  </ul>
+                </TabPanel>
+              ))}
+            </div>
+          ) : (
+            ''
+          )}
+        </TabPanel>
+      ))}
     </div>
   );
+}
+
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
 }
