@@ -1,7 +1,13 @@
 import styles from './DiyCreate.module.css';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import TouristSpot from './TouristSpot/TouristSpot';
+import AirPlane from './Airplane/Airplane';
+import Schedule from './Schedule/Schedule';
 
 const DiyCreate = () => {
+  const [searchParams] = useSearchParams();
+  const step = searchParams.get('step');
+
   return (
     <div className={`${styles.DiyCreate} layout`}>
       <div>
@@ -18,7 +24,10 @@ const DiyCreate = () => {
           </li>
         </ol>
       </div>
-      <Outlet></Outlet>
+
+      {step === 'tourist-spot' && <TouristSpot />}
+      {step === 'airplane' && <AirPlane />}
+      {step === 'schedule' && <Schedule />}
     </div>
   );
 };

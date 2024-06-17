@@ -9,6 +9,7 @@ import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import Review from '../pages/Review/Review';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
+import DiyDetail from '../pages/DiyDetail/DiyDetail';
 
 export const ROUTE = {
   ABOUT: {
@@ -22,13 +23,13 @@ export const ROUTE = {
     element: Home,
   },
   PACKAGE: {
-    path: '/package',
-    link: '/package',
+    path: '/package-product',
+    link: '/package-product',
     element: Package,
   },
   PACKAGE_DETAIL: {
-    path: '/package/:id',
-    link: '/package/:id',
+    path: '/package-product/:id',
+    link: '/package-product/:id',
     element: PackageDetail,
   },
   DIY: {
@@ -39,12 +40,7 @@ export const ROUTE = {
   DIY_DETAIL: {
     path: '/diy/:id',
     link: '/diy/:id',
-    element: '',
-  },
-  DIY_CREATE: {
-    path: '/diy-create',
-    link: '/diy-create',
-    element: DiyCreate,
+    element: DiyDetail,
   },
   REVIEW: {
     path: '/review',
@@ -55,7 +51,7 @@ export const ROUTE = {
 
 export const ROUTE_ARR = Object.values(ROUTE);
 
-// DiyCreate Depth
+// DiyCreate Tabs
 export const ROUTE_DIY_CREATE = {
   DIY_CREATE_TOURIST_SPOT: {
     path: '/diy-create?step=tourist-spot',
@@ -76,7 +72,7 @@ export const ROUTE_DIY_CREATE = {
 
 export const ROUTE_DIY_CREATE_ARR = Object.values(ROUTE_DIY_CREATE);
 
-// MyPage Depth
+// MyPage Tabs
 export const ROUTE_MY_PAGE = {
   PROFILE_SETTING: {
     path: '/mypage?tab=profile-setting',
