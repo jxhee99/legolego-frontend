@@ -1,4 +1,4 @@
-import styles from './DiyCreateAirplane.module.css';
+import styles from './Airplane.module.css';
 import ControllableStates from './ControllableStates/ControllableStates';
 
 const DiyCreateAirplane = ({ children }) => {

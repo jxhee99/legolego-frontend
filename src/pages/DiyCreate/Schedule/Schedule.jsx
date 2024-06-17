@@ -1,6 +1,6 @@
-import styles from './DiyCreateSchedule.module.css';
-import MapComponent from '../DiyCreateSchedule/MapComponent';
-import DiyItem from '../../components/Card/DiyItem/DiyItem';
+import styles from '../../DiyCreate/DiyCreate.module.css';
+import MapComponent from '../Schedule/MapComponent';
+import DiyItem from '../../../components/Card/DiyItem/DiyItem';
 
 const DiyCreateSchedule = () => {
   return (
