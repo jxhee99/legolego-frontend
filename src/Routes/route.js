@@ -8,8 +8,14 @@ import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import Review from '../pages/Review/Review';
+
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
+
+import Admin from '../pages/Admin/Admin';
+import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
+import AdminListLikesOver from '../pages/Admin/AdminList/AdminListLikesOver';
+
 
 export const ROUTE = {
   ABOUT: {
@@ -97,3 +103,28 @@ export const ROUTE_MY_PAGE = {
 };
 
 export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);
+
+//admin pages
+export const ROUTE_ADMIN = {
+  ADMIN: {
+    path: '/admin',
+    link: '/admin',
+    element: Admin,
+  },
+}
+
+export const ROUTE_ADMIN_LISTS = {
+
+  ADMIN_LISTS_DIY: {
+    path: '/admin/lists/diy-packages',
+    link: '/admin/lists/diy-packages',
+    element: AdminListDiy,
+  },
+  ADMIN_LISTS_LIKESOVER: {
+    path: '/admin/lists/likes-over',
+    link: '/admin/lists/likes-over',
+    element: AdminListLikesOver,
+  },
+}
+export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
+

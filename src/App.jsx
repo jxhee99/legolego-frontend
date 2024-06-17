@@ -3,10 +3,12 @@ import {
   ROUTE_ARR,
   ROUTE_DIY_CREATE_ARR,
   ROUTE_MY_PAGE_ARR,
+  ROUTE_ADMIN_ARR,
 } from './Routes/route';
 import Layout from './components/Layout/Layout';
 import DiyCreate from './pages/DiyCreate/DiyCreate';
 import Mypage from './pages/Mypage/Mypage';
+import Admin from './pages/Admin/Admin';
 
 const App = () => {
   return (
@@ -38,6 +40,15 @@ const App = () => {
               />
             ))}
           </Route>
+        </Route>
+        <Route path="/admin" element={<Admin />}>
+          {ROUTE_ADMIN_ARR.map((route) => (
+            <Route
+              path={route.path}
+              element={<route.element />}
+              key={route.path}
+            />
+          ))}
         </Route>
       </Routes>
     </BrowserRouter>
