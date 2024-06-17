@@ -9,7 +9,7 @@ const DiyCreateAirplane = ({ children }) => {
         <ControllableStates labelName="도착지" />
         <input type="date" />
         <input type="date" />
-        <button className={styles.airplane_serch_button}>검색</button>
+        <button className={styles.button}>검색</button>
       </div>
       {children}
     </>

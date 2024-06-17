@@ -9,7 +9,7 @@
   border-radius: 12px;
 }
 
-.AirplaneCard .airplane_card_badge {
+.AirplaneCard .badge {
   position: absolute;
   top: 10px;
   left: 12px;
@@ -19,6 +19,6 @@
   border-radius: 4px;
 }
 
-.AirplaneCard .airplane_card_body {
+.AirplaneCard .body {
   margin-top: 1rem;
 }

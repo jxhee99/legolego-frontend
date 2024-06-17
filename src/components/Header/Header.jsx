@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 
@@ -15,6 +15,7 @@ const Header = ({ isLoggedIn }) => {
     logIn: false,
     signUp: false,
   });
+  const navigate = useNavigate();
 
   const handleToggleAuthentication = (type) => {
     setToggleAuthentication((prev) => ({
@@ -28,6 +29,10 @@ const Header = ({ isLoggedIn }) => {
       logIn: false,
       signUp: false,
     });
+  };
+
+  const moveToMypage = () => {
+    navigate('/mypage?tab=profile-setting');
   };
 
   return (
@@ -44,7 +49,7 @@ const Header = ({ isLoggedIn }) => {
           onClickSignUp={() => handleToggleAuthentication('signUp')}
         />
       ) : (
-        <button>마이페이지</button>
+        <button onClick={moveToMypage}>마이페이지</button>
       )}
       {toggleAuthentication.logIn && <LogIn onClose={closeAuthentication} />}
       {toggleAuthentication.signUp && <SignUp onClose={closeAuthentication} />}
