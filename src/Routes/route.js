@@ -8,7 +8,7 @@ import DiyCreateTouristSpot from '../pages/DiyCreateTouristSpot/DiyCreateTourist
 import DiyCreateAirplane from '../pages/DiyCreateAirplane/DiyCreateAirplane';
 import DiyCreateSchedule from '../pages/DiyCreateSchedule/DiyCreateSchedule';
 import Review from '../pages/Review/Review';
-import MypageProfileSetting from '../pages/MypageProfileSetting/MypageProfileSetting';
+import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 
 export const ROUTE = {
   ABOUT: {
@@ -79,23 +79,23 @@ export const ROUTE_DIY_CREATE_ARR = Object.values(ROUTE_DIY_CREATE);
 // MyPage Depth
 export const ROUTE_MY_PAGE = {
   PROFILE_SETTING: {
-    path: '/mypage/profile-setting',
-    link: '/mypage/profile-setting',
-    element: MypageProfileSetting,
+    path: '/mypage?tab=profile-setting',
+    link: '/mypage?tab=profile-setting',
+    element: ProfileSetting,
   },
   // ORDER_SUMMARY: {
-  //   path: '/mypage/order-summary',
-  //   link: '/mypage/order-summary',
+  //   path: '/mypage?tab=order-summary',
+  //   link: '/mypage?tab=order-summary',
   //   element: '',
   // },
   // MY_DIY_PACKAGE: {
-  //   path: '/mypage/my-diy-package',
-  //   link: '/mypage/my-diy-package',
+  //   path: '/mypage?tab=my-diy-package',
+  //   link: '/mypage?tab=my-diy-package',
   //   element: '',
   // },
   // SAVED_PACKAGES: {
-  //   path: '/mypage/saved-packages',
-  //   link: '/mypage/saved-packages',
+  //   path: '/mypage?tab=saved-packages',
+  //   link: '/mypage?tab=saved-packages',
   //   element: '',
   // },
 };

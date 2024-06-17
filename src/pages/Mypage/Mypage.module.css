@@ -1,3 +1,14 @@
 .Mypage {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-basis: 30%;
+  gap: 3rem;
+  padding: 2rem 1.75rem;
+}
+
+.mypage_wrapper {
+  flex-basis: 70%;
+  padding: 4.5rem 3rem;
+  border: 1px solid #95c5f2;
+  padding: 2rem;
 }

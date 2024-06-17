@@ -1,0 +1,40 @@
+.ProfileSetting .wrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+/* ProfileImage */
+.ProfileImage div {
+  width: 200px;
+  height: auto;
+}
+
+.ProfileImage div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ProfileImage button {
+  display: block;
+  color: var(--color-gray);
+  text-align: right;
+}
+
+/* ProfileInformation */
+.ProfileInformation {
+  width: 80%;
+}
+
+.ProfileInformation div {
+  margin-bottom: 1rem;
+}
+
+.ProfileInformation input {
+  padding: 0.5rem;
+}
+
+.ProfileInformation button {
+  padding: 0;
+}

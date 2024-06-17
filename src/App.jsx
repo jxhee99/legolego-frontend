@@ -29,7 +29,7 @@ const App = () => {
               />
             ))}
           </Route>
-          <Route element={<Mypage />}>
+          <Route path="/mypage" element={<Mypage />}>
             {ROUTE_MY_PAGE_ARR.map((route) => (
               <Route
                 path={route.path}

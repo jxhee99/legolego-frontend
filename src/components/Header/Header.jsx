@@ -32,7 +32,7 @@ const Header = ({ isLoggedIn }) => {
   };
 
   const moveToMypage = () => {
-    navigate('/mypage/profile-setting');
+    navigate('/mypage?tab=profile-setting');
   };
 
   return (
