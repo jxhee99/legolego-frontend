@@ -8,6 +8,7 @@ import DiyCreateTouristSpot from '../pages/DiyCreateTouristSpot/DiyCreateTourist
 import DiyCreateAirplane from '../pages/DiyCreateAirplane/DiyCreateAirplane';
 import DiyCreateSchedule from '../pages/DiyCreateSchedule/DiyCreateSchedule';
 import Review from '../pages/Review/Review';
+import MypageProfileSetting from '../pages/MypageProfileSetting/MypageProfileSetting';
 
 export const ROUTE = {
   ABOUT: {
@@ -38,7 +39,7 @@ export const ROUTE = {
   DIY_DETAIL: {
     path: '/diy/:id',
     link: '/diy/:id',
-    element: Diy,
+    element: '',
   },
   DIY_CREATE: {
     path: '/diy-create',
@@ -54,6 +55,7 @@ export const ROUTE = {
 
 export const ROUTE_ARR = Object.values(ROUTE);
 
+// DiyCreate Depth
 export const ROUTE_DIY_CREATE = {
   DIY_CREATE_TOURIST_SPOT: {
     path: '/diy-create/tourist-spot',
@@ -73,3 +75,29 @@ export const ROUTE_DIY_CREATE = {
 };
 
 export const ROUTE_DIY_CREATE_ARR = Object.values(ROUTE_DIY_CREATE);
+
+// MyPage Depth
+export const ROUTE_MY_PAGE = {
+  PROFILE_SETTING: {
+    path: '/mypage/profile-setting',
+    link: '/mypage/profile-setting',
+    element: MypageProfileSetting,
+  },
+  // ORDER_SUMMARY: {
+  //   path: '/mypage/order-summary',
+  //   link: '/mypage/order-summary',
+  //   element: '',
+  // },
+  // MY_DIY_PACKAGE: {
+  //   path: '/mypage/my-diy-package',
+  //   link: '/mypage/my-diy-package',
+  //   element: '',
+  // },
+  // SAVED_PACKAGES: {
+  //   path: '/mypage/saved-packages',
+  //   link: '/mypage/saved-packages',
+  //   element: '',
+  // },
+};
+
+export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);

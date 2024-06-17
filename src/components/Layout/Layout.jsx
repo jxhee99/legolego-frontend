@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 const Layout = () => {
   return (
     <>
-      <Header isLoggedIn={false} />
+      <Header isLoggedIn={true} />
       <Outlet />
     </>
   );
