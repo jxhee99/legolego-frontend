@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { touristSpots } from '../../../constans/tourist_spot';
+import { touristSpots } from '../../../../constans/tourist_spot';
 
 const countries = Object.keys(touristSpots);
 

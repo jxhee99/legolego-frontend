@@ -1,4 +1,4 @@
-import styles from './DiyCreateSchedule.module.css';
+import styles from './Schedule.module.css';
 import { useState, useCallback, useRef, memo } from 'react';
 import {
   GoogleMap,

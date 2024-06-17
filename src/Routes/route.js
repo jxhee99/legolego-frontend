@@ -4,9 +4,9 @@ import Package from '../pages/Package/Package';
 import PackageDetail from '../pages/PackageDetail/PackageDetail';
 import Diy from '../pages/Diy/Diy';
 import DiyCreate from '../pages/DiyCreate/DiyCreate';
-import DiyCreateTouristSpot from '../pages/DiyCreateTouristSpot/DiyCreateTouristSpot';
-import DiyCreateAirplane from '../pages/DiyCreateAirplane/DiyCreateAirplane';
-import DiyCreateSchedule from '../pages/DiyCreateSchedule/DiyCreateSchedule';
+import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
+import Airplane from '../pages/DiyCreate/Airplane/Airplane';
+import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import Review from '../pages/Review/Review';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 
@@ -58,19 +58,19 @@ export const ROUTE_ARR = Object.values(ROUTE);
 // DiyCreate Depth
 export const ROUTE_DIY_CREATE = {
   DIY_CREATE_TOURIST_SPOT: {
-    path: '/diy-create/tourist-spot',
-    link: '/diy-create/tourist-spot',
-    element: DiyCreateTouristSpot,
+    path: '/diy-create?step=tourist-spot',
+    link: '/diy-create?step=tourist-spot',
+    element: TouristSpot,
   },
   DIY_CREATE_AIRPLANE: {
-    path: '/diy-create/airplane',
-    link: '/diy-create/airplane',
-    element: DiyCreateAirplane,
+    path: '/diy-create?step=airplane',
+    link: '/diy-create?step=airplane',
+    element: Airplane,
   },
   DIY_CREATE_SCHEDULE: {
-    path: '/diy-create/schedule',
-    link: '/diy-create/schedule',
-    element: DiyCreateSchedule,
+    path: '/diy-create?step=schedule',
+    link: '/diy-create?step=schedule',
+    element: Schedule,
   },
 };
 
