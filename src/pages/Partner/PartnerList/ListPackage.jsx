@@ -1,30 +1,23 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './AdminListLikesOver.module.css';
+import useFetchData from '../PartnerHooks/useFetchData';
+import styles from './ListPackage.module.css';
+import Modal from '../PartnerComponents/Modal';
+import ModalForm from '../PartnerComponents/ModalForm';
 
-import Modal from '../AdminComponents/Modal';
-import ModalForm from '../AdminComponents/ModalForm';
-
-//백엔드 api 요청관련 함수
-import useHandlers from '../AdminHooks/useHandlers';
-import useFetchData from '../AdminHooks/useFetchData';
-
-const AdminListLikesOver = () => {
+const ListPackage = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
 
   const [formData, setFormData] = useState({
-    productName: '',
-    recruitment: '',
-    recruitmentPeriod: '',
+    price: '',
+    necessaryPeople: '',
+    specialBenefits: '',
   });
 
-  //가격보기는 다른 파일로 분리
-  const { handleViewPrice } = useHandlers();
-
   //get요청
-  const endpoint = '/admin/liked-packages';
+  const endpoint = '/partner/approved_packages/{partner_num}';
   const { data, loading } = useFetchData(endpoint);
 
   if (loading) {
@@ -42,9 +35,9 @@ const AdminListLikesOver = () => {
     setSelectedItem(null); // 선택된 아이템 초기화
     setFormData({
       // 폼 데이터 초기화
-      productName: '',
-      recruitment: '',
-      recruitmentPeriod: '',
+      price: '',
+      necessaryPeople: '',
+      specialBenefits: '',
     });
     setModalOpen(false); // 모달 닫기
   };
@@ -61,9 +54,7 @@ const AdminListLikesOver = () => {
     e.preventDefault();
     try {
       //await axios.post(`/admin/liked-packages/{selectedItem.packageNum}`, formData);
-      console.log('등록할 상품명:', formData.productName);
-      console.log('등록할 모집인원:', formData.recruitment);
-      console.log('등록할 모집기간:', formData.recruitmentPeriod);
+      console.log('등록할 가격제안:', formData);
       closeModal();
     } catch (err) {
       console.error('상품 등록 중 오류:', err);
@@ -79,9 +70,7 @@ const AdminListLikesOver = () => {
             <th>패키지 번호</th>
             <th>Name</th>
             <th>작성자</th>
-            <th>partner</th>
-            <th>가격보기</th>
-            <th>상품등록</th>
+            <th>가격등록</th>
           </tr>
         </thead>
         <tbody>
@@ -92,26 +81,14 @@ const AdminListLikesOver = () => {
                 <Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link>
               </td>
               <td>{item.user}</td>
-              <td>{item.partner}</td>
               <td>
-                {item.partner ? (
-                  <button onClick={() => handleViewPrice(item)}>보기</button>
-                ) : (
-                  <span></span>
-                )}
-              </td>
-              <td>
-                {item.priceSelected ? (
-                  <button onClick={() => openModal(item)}>등록</button>
-                ) : (
-                  <span></span>
-                )}
+                <button onClick={() => openModal(item)}>등록</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Modal isVisible={modalOpen} closeModal={closeModal} title="상품 등록">
+      <Modal isVisible={modalOpen} closeModal={closeModal} title="가격 등록">
         {selectedItem && (
           <div>
             <p>선택된 패키지 번호: {selectedItem.packageNum}</p>
@@ -127,4 +104,4 @@ const AdminListLikesOver = () => {
   );
 };
 
-export default AdminListLikesOver;
+export default ListPackage;

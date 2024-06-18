@@ -1,0 +1,35 @@
+[
+  {
+    "listNum": 1,
+    "packageNum": 1,
+    "user": "김두루미",
+    "packageName": "젊은이 몽골 여행",
+    "packageLikedNum": "25 이상",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true,
+    "isSelected": false
+  },
+  {
+    "listNum": 2,
+    "packageNum": 3,
+    "user": "김거북이",
+    "packageName": "온가족이 즐기는 보라카이 휴양 여행",
+    "packageLikedNum": "25 이상",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true,
+    "isSelected": false
+  },
+  {
+    "listNum": 3,
+    "packageNum": 4,
+    "user": "김곰",
+    "packageName": "일본 온천 여행",
+    "packageLikedNum": "25 이상",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true,
+    "isSelected": true
+  }
+]
