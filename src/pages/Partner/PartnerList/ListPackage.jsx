@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchData from '../PartnerHooks/useFetchData';
-import styles from './ListPackage.module.css';
+import ListTable from '../../../components/List/ListTable';
 import Modal from '../PartnerComponents/Modal';
 import ModalForm from '../PartnerComponents/ModalForm';
 
@@ -62,9 +62,8 @@ const ListPackage = () => {
   };
 
   return (
-    <div>
-      <div>응원달성목록</div>
-      <table border="1">
+    <>
+      <ListTable title={'Diy목록'}>
         <thead>
           <tr>
             <th>패키지 번호</th>
@@ -87,7 +86,7 @@ const ListPackage = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </ListTable>
       <Modal isVisible={modalOpen} closeModal={closeModal} title="가격 등록">
         {selectedItem && (
           <div>
@@ -100,7 +99,7 @@ const ListPackage = () => {
           </div>
         )}
       </Modal>
-    </div>
+    </>
   );
 };
 

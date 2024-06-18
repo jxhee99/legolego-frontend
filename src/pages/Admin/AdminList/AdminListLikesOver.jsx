@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './AdminListLikesOver.module.css';
+
+import ListTable from '../../../components/List/ListTable';
 
 import Modal from '../AdminComponents/Modal';
 import ModalForm from '../AdminComponents/ModalForm';
@@ -71,9 +72,8 @@ const AdminListLikesOver = () => {
   };
 
   return (
-    <div>
-      <div>응원달성목록</div>
-      <table border="1">
+    <>
+      <ListTable title={'응원달성목록'}>
         <thead>
           <tr>
             <th>패키지 번호</th>
@@ -110,7 +110,7 @@ const AdminListLikesOver = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </ListTable>
       <Modal isVisible={modalOpen} closeModal={closeModal} title="상품 등록">
         {selectedItem && (
           <div>
@@ -123,7 +123,7 @@ const AdminListLikesOver = () => {
           </div>
         )}
       </Modal>
-    </div>
+    </>
   );
 };
 

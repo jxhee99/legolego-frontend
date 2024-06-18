@@ -1,35 +1,5 @@
 [
   {
-    "listNum": 1,
-    "packageNum": 1,
-    "user": "김철수",
-    "packageName": "신나는 태국여행",
-    "packageLikedNum": "25 이상",
-    "regDate": "작성일자",
-    "modDate": "수정일자",
-    "packageApproval": false
-  },
-  {
-    "listNum": 2,
-    "packageNum": 2,
-    "user": "김영희",
-    "packageName": "신나는 일본여행",
-    "packageLikedNum": "25 이상",
-    "regDate": "작성일자",
-    "modDate": "수정일자",
-    "packageApproval": true
-  },
-  {
-    "listNum": 4,
-    "packageNum": 4,
-    "user": "김정숙",
-    "packageName": "신나는 중국여행",
-    "packageLikedNum": "25 이상",
-    "regDate": "작성일자",
-    "modDate": "수정일자",
-    "packageApproval": false
-  },
-  {
     "listNum": 5,
     "packageNum": 5,
     "user": "김정숙",

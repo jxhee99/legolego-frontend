@@ -1,0 +1,48 @@
+.list_box {
+  width: 100%;
+  padding: 2rem;
+}
+
+table {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: center;
+  border-collapse: collapse;
+  border: none;
+  /* 테이블의 바깥쪽 테두리 제거 */
+}
+
+tr {
+  border: none;
+  /* tr에 대한 기본 테두리 설정 제거 */
+}
+
+td,
+th {
+  border: 1px solid #E0E0E0;
+  /* 셀에 대한 테두리 설정 */
+  height: 40px;
+}
+
+/* 각 셀에서 테이블 가장자리 테두리 제거 */
+table td,
+table th {
+  border-left: none;
+  border-right: none;
+}
+
+table tr:first-child td,
+table tr:first-child th {
+  border-top: none;
+}
+
+table tr:last-child td,
+table tr:last-child th {
+  border-bottom: none;
+}
+
+/* 넓이 설정 */
+
+th:not(:nth-child(2)) {
+  width: 10%;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './LikedList.module.css';
+import ListTable from '../../../../components/List/ListTable';
 
 //백엔드 api 요청관련 함수
 import useHandlers from '../OverLikedHooks/useHandlers';
@@ -31,9 +31,8 @@ const LikedList = () => {
   }, {});
 
   return (
-    <div>
-      <div>응원달성목록</div>
-      <table border="1">
+    <>
+      <ListTable title={'응원달성목록'}>
         <thead>
           <tr>
             <th>패키지 번호</th>
@@ -70,8 +69,8 @@ const LikedList = () => {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </ListTable>
+    </>
   );
 };
 
