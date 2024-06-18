@@ -1,0 +1,69 @@
+[
+  {
+    "listNum": 5,
+    "packageNum": 5,
+    "user": "김정숙",
+    "packageName": "신나는 오사카여행",
+    "packageLikedNum": "25 이상",
+    "partner": "A여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true
+  },
+  {
+    "listNum": 6,
+    "packageNum": 5,
+    "user": "김정숙",
+    "packageName": "신나는 오사카여행",
+    "packageLikedNum": "25 이상",
+    "partner": "B여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true
+  },
+  {
+    "listNum": 7,
+    "packageNum": 5,
+    "user": "김박수",
+    "packageName": "신나는 오사카여행",
+    "packageLikedNum": "25 이상",
+    "partner": "C여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true
+  },
+  {
+    "listNum": 8,
+    "packageNum": 5,
+    "user": "김박수",
+    "packageName": "신나는 오사카여행",
+    "packageLikedNum": "25 이상",
+    "partner": "D여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true
+  },
+  {
+    "listNum": 9,
+    "packageNum": 6,
+    "user": "김박수",
+    "packageName": "신나는 태국여행",
+    "packageLikedNum": "25 이상",
+    "partner": "C여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true
+  },
+  {
+    "listNum": 10,
+    "packageNum": 6,
+    "user": "김박수",
+    "packageName": "신나는 태국여행",
+    "packageLikedNum": "25 이상",
+    "partner": "D여행사",
+    "regDate": "작성일자",
+    "modDate": "수정일자",
+    "packageApproval": true,
+    "isSelected": true
+  }
+]

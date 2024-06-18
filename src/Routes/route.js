@@ -11,6 +11,8 @@ import Review from '../pages/Review/Review';
 
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
+//마이페이지
+import OverLiked from "../pages/Mypage/OverLikedPackage/OverLiked";
 //관리자
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
@@ -87,6 +89,12 @@ export const ROUTE_MY_PAGE = {
     path: '/mypage?tab=profile-setting',
     link: '/mypage?tab=profile-setting',
     element: ProfileSetting,
+  },
+
+  OVER_LIKED_PACKAGES: {
+    path: '/mypage?tab=my-likedOver-packages',
+    link: '/mypage?tab=my-likedOver-packages',
+    element: OverLiked,
   },
   // ORDER_SUMMARY: {
   //   path: '/mypage?tab=order-summary',
