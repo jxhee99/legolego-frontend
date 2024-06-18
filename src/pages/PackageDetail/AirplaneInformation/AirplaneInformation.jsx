@@ -1,5 +1,5 @@
 import styles from '../PackageDetail.module.css';
-import AirplaneCard from './AirplaneCard';
+import AirplaneCard from '../../../components/Card/AirplaneCard/AirplaneCard';
 
 const AirplaneInformation = () => {
   return (

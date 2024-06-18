@@ -1,0 +1,29 @@
+.DiyDetail {
+  max-width: var(--size-max-width);
+  margin: 0 auto;
+  padding: 4rem 3rem;
+}
+
+/* Description */
+.DiyDetail .diy_thumbnail {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.DiyDetail .diy_thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.DiyDetail .cheering {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiyDetail .cheering button {
+  padding: 1rem 7rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
