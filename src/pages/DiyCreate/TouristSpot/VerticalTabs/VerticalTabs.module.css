@@ -1,20 +1,13 @@
 .VerticalTabs {
   display: flex;
-  justify-content: center;
   margin-top: 3rem;
-}
-
-.VerticalTabs .country {
-  display: grid;
 }
 
 .VerticalTabs .country > div {
   padding: 0;
 }
 
-.VerticalTabs .regions {
-  display: grid;
-  grid-template-columns: 100px 100px;
-  padding: 0;
+.VerticalTabs .regions li {
+  margin-bottom: 1rem;
   cursor: pointer;
 }

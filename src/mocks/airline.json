@@ -1,0 +1,90 @@
+{
+  "startData": [
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "이스타항공",
+      "internationalNum": "ZE606",
+      "airport": "인천",
+      "internationalTime": "1335"
+    },
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "이스타항공",
+      "internationalNum": "ZE602",
+      "airport": "인천",
+      "internationalTime": "1435"
+    },
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "대한항공",
+      "internationalNum": "KE704",
+      "airport": "인천",
+      "internationalTime": "1630"
+    },
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "티웨이항공",
+      "internationalNum": "TW214",
+      "airport": "인천",
+      "internationalTime": "1750"
+    },
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "아시아나항공",
+      "internationalNum": "OZ103",
+      "airport": "인천",
+      "internationalTime": "1835"
+    },
+    {
+      "city": "도쿄/나리타",
+      "airlineKorean": "진에어",
+      "internationalNum": "LJ208",
+      "airport": "인천",
+      "internationalTime": "1940"
+    }
+  ],
+  "returnData": [
+    {
+      "city": "인천",
+      "airlineKorean": "이스타항공",
+      "internationalNum": "ZE605",
+      "airport": "도쿄/나리타",
+      "internationalTime": "0950"
+    },
+    {
+      "city": "인천",
+      "airlineKorean": "이스타항공",
+      "internationalNum": "ZE601",
+      "airport": "도쿄/나리타",
+      "internationalTime": "1030"
+    },
+    {
+      "city": "인천",
+      "airlineKorean": "대한항공",
+      "internationalNum": "KE703",
+      "airport": "도쿄/나리타",
+      "internationalTime": "1240"
+    },
+    {
+      "city": "인천",
+      "airlineKorean": "티웨이항공",
+      "internationalNum": "TW213",
+      "airport": "도쿄/나리타",
+      "internationalTime": "1250"
+    },
+    {
+      "city": "인천",
+      "airlineKorean": "아시아나항공",
+      "internationalNum": "OZ104",
+      "airport": "도쿄/나리타",
+      "internationalTime": "1440"
+    },
+    {
+      "city": "인천",
+      "airlineKorean": "진에어",
+      "internationalNum": "LJ207",
+      "airport": "도쿄/나리타",
+      "internationalTime": "1610"
+    }
+  ]
+}

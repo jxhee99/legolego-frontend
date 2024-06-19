@@ -20,7 +20,7 @@ const center = {
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-function MyComponent() {
+function MapComponent() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
@@ -50,7 +50,10 @@ function MyComponent() {
     if (place.geometry) {
       const location = place.geometry.location;
       setMarkerPosition({ lat: location.lat(), lng: location.lng() });
-      map.panTo(location);
+
+      if (map) {
+        map.panTo(location);
+      }
 
       const photoUrl =
         place.photos && place.photos.length > 0
@@ -73,58 +76,60 @@ function MyComponent() {
   };
 
   return isLoaded ? (
-    <GoogleMap
-      options={{ disableDefaultUI: true }}
-      mapContainerStyle={containerStyle}
-      center={markerPosition}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-      className={styles.googlemap}
-    >
-      <MarkerF position={markerPosition} onClick={handleMarkerClick} />
-      {infoWindowVisible && selectedPlace && (
-        <InfoWindow
-          position={selectedPlace.position}
-          onCloseClick={() => setInfoWindowVisible(false)}
-        >
-          <div>
-            <h3>{selectedPlace.name}</h3>
-            <p>{selectedPlace.address}</p>
-            {selectedPlace.photoUrl && (
-              <img
-                src={selectedPlace.photoUrl}
-                alt={selectedPlace.name}
-                style={{ maxWidth: '100%', maxHeight: '150px' }}
-              />
-            )}
-          </div>
-        </InfoWindow>
-      )}
-
-      <Autocomplete
-        onLoad={(autocomplete) => {
-          autocompleteRef.current = autocomplete;
-          autocompleteListener.current = autocomplete.addListener(
-            'place_changed',
-            onPlaceChanged
-          );
-        }}
-        onUnmount={() => {
-          if (autocompleteListener.current) {
-            autocompleteListener.current.remove();
-          }
-        }}
+    <>
+      <GoogleMap
+        options={{ disableDefaultUI: true }}
+        mapContainerStyle={containerStyle}
+        center={markerPosition}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        className={styles.googlemap}
       >
-        <div className={styles.inputs}>
-          <input type="text" placeholder="관광지와 맛집을 검색하세요" />
-          <input type="button" value="일정추가" />
-        </div>
-      </Autocomplete>
-    </GoogleMap>
+        <MarkerF position={markerPosition} onClick={handleMarkerClick} />
+        {infoWindowVisible && selectedPlace && (
+          <InfoWindow
+            position={selectedPlace.position}
+            onCloseClick={() => setInfoWindowVisible(false)}
+          >
+            <div>
+              <h3>{selectedPlace.name}</h3>
+              <p>{selectedPlace.address}</p>
+              {selectedPlace.photoUrl && (
+                <img
+                  src={selectedPlace.photoUrl}
+                  alt={selectedPlace.name}
+                  style={{ maxWidth: '100%', maxHeight: '150px' }}
+                />
+              )}
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+      <div className={styles.map_search}>
+        <Autocomplete
+          className={styles.search_bar}
+          onLoad={(autocomplete) => {
+            autocompleteRef.current = autocomplete;
+            autocompleteListener.current = autocomplete.addListener(
+              'place_changed',
+              onPlaceChanged
+            );
+          }}
+          onUnmount={() => {
+            if (autocompleteListener.current) {
+              autocompleteListener.current.remove();
+            }
+          }}
+        >
+          <input type="search" />
+        </Autocomplete>
+        <button>일정추가</button>
+      </div>
+    </>
   ) : (
     <></>
   );
 }
 
-export default memo(MyComponent);
+export default memo(MapComponent);

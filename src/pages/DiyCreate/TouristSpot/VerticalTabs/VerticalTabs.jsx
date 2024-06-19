@@ -1,10 +1,12 @@
 import styles from './VerticalTabs.module.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { touristSpots } from '../../../../constans/tourist_spot';
+import { updateAirline } from '../../../../_slices/diySlice';
 
 const countries = Object.keys(touristSpots);
 
@@ -37,6 +39,7 @@ TabPanel.propTypes = {
 export default function VerticalTabs() {
   const [value, setValue] = useState(0);
   const [nestedValue, setNestedValue] = useState(0);
+  const dispatch = useDispatch();
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -45,6 +48,13 @@ export default function VerticalTabs() {
 
   const handleNestedChange = (e, newValue) => {
     setNestedValue(newValue);
+  };
+
+  const handleUpdateStartingPoint = (e) => {
+    const newStartingPoint = e.target.textContent;
+    if (e.target.tagName === 'LI') {
+      dispatch(updateAirline({ startingPoint: newStartingPoint }));
+    }
   };
 
   return (
@@ -73,7 +83,6 @@ export default function VerticalTabs() {
         >
           {Object.keys(touristSpots[country]).length > 0 ? (
             <div style={{ display: 'flex' }}>
-              {/* regions */}
               <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -93,14 +102,17 @@ export default function VerticalTabs() {
                 )}
               </Tabs>
 
-              {/* Panels */}
+              {/* regions */}
               {Object.keys(touristSpots[country]).map((region, nestedIndex) => (
                 <TabPanel
                   value={nestedValue}
                   index={nestedIndex}
                   key={nestedIndex}
                 >
-                  <ul className={styles.regions}>
+                  <ul
+                    className={styles.regions}
+                    onClick={handleUpdateStartingPoint}
+                  >
                     {touristSpots[country][region].map((spot, spotIndex) => (
                       <li key={spotIndex}>{spot}</li>
                     ))}
