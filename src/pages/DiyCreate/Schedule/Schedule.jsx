@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
 import { useSelector } from 'react-redux';
 import { selectDetailCourses } from '../../../_slices/diySlice';
@@ -9,6 +9,10 @@ const Schedule = () => {
   const [modalVisibilities, setModalVisibilities] = useState(
     new Array(detailCourses.length).fill(false)
   );
+
+  useEffect(() => {
+    console.log('Initial detailCourses state:', detailCourses);
+  }, []);
 
   const handleAddPlace = (detailIndex) => {
     const updatedVisibilities = [...modalVisibilities];
@@ -46,7 +50,7 @@ const Schedule = () => {
           key={`modal-${index}`}
           isVisible={modalVisibilities[index]}
           closeModal={() => closeModal(index)}
-          detail={detail}
+          detail={{ ...detail, index: index }}
         />
       ))}
     </div>

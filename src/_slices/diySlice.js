@@ -18,7 +18,7 @@ const initialState = {
   detailCourses: [
     {
       dayNum: '2024-06-12',
-      courses: [],
+      courses: ['코스1'],
       fileUrl: '',
     },
     {
@@ -42,7 +42,8 @@ const diySlice = createSlice({
       state.route = { ...state.route, ...action.payload };
     },
     updateDetailCourses(state, action) {
-      state.detailCourses = action.payload;
+      const { index, updatedCourses } = action.payload;
+      state.detailCourses[index].courses = updatedCourses;
     },
     updatePackageForm(state, action) {
       state.packageForm = { ...state.packageForm, ...action.payload };

@@ -1,4 +1,4 @@
-import styles from './Schedule.module.css';
+import styles from '../Schedule.module.css';
 import { useState, useCallback, useRef, memo } from 'react';
 import {
   GoogleMap,
@@ -7,10 +7,12 @@ import {
   InfoWindow,
   Autocomplete,
 } from '@react-google-maps/api';
+import { useDispatch } from 'react-redux';
+import { updateDetailCourses } from '../../../../_slices/diySlice';
 
 const containerStyle = {
-  width: '80%',
-  height: '60vh',
+  width: '100%',
+  height: '50vh',
 };
 
 const center = {
@@ -20,7 +22,7 @@ const center = {
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-function MapComponent() {
+function MapComponent({ detail }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
@@ -44,6 +46,7 @@ function MapComponent() {
 
   const autocompleteRef = useRef();
   const autocompleteListener = useRef();
+  const dispatch = useDispatch();
 
   const onPlaceChanged = () => {
     const place = autocompleteRef.current.getPlace();
@@ -73,6 +76,20 @@ function MapComponent() {
 
   const handleMarkerClick = () => {
     setInfoWindowVisible(!infoWindowVisible);
+  };
+
+  const handleUpdateCourses = () => {
+    if (selectedPlace) {
+      const updatedCourses = [...detail.courses, selectedPlace.name]; // Assuming you're adding the place name to the courses array
+
+      dispatch(
+        updateDetailCourses({
+          index: detail.index, // Assuming detail has an index property
+          updatedCourses: updatedCourses,
+          fileUrl: selectedPlace.photoUrl,
+        })
+      );
+    }
   };
 
   return isLoaded ? (
@@ -124,7 +141,7 @@ function MapComponent() {
         >
           <input type="search" />
         </Autocomplete>
-        <button>일정추가</button>
+        <button onClick={handleUpdateCourses}>일정추가</button>
       </div>
     </>
   ) : (

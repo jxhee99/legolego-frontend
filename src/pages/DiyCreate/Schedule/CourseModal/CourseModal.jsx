@@ -1,5 +1,5 @@
 import styles from './CourseModal.module.css';
-import MapComponent from '../MapComponent';
+import MapComponent from './MapComponent';
 
 const CourseModal = ({ isVisible, closeModal, detail }) => {
   if (!isVisible) return null;
@@ -10,8 +10,8 @@ const CourseModal = ({ isVisible, closeModal, detail }) => {
         <button className={styles.modal_close_button} onClick={closeModal}>
           x
         </button>
-        <h5>{`일정 추가 - ${detail.dayNum}`}</h5>
-        <MapComponent />
+        <h5>{`${detail.dayNum} - 장소추가`}</h5>
+        <MapComponent detail={detail} />
       </div>
     </div>
   );
