@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   airline: {
@@ -15,18 +15,7 @@ const initialState = {
     startDate: '',
     lastDate: '',
   },
-  detailCourses: [
-    {
-      dayNum: '2024-06-12',
-      courses: ['코스1'],
-      fileUrl: '',
-    },
-    {
-      dayNum: '2024-06-13',
-      courses: [],
-      fileUrl: '',
-    },
-  ],
+  detailCourses: [],
   packageForm: {},
   userNum: 0,
 };

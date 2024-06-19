@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import VerticalTabs from './VerticalTabs/VerticalTabs';
+import AirportTabs from './AirportTabs';
 
 const DiyCreateTouristSpot = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const DiyCreateTouristSpot = () => {
   return (
     <>
       <hr />
-      <VerticalTabs />
+      <AirportTabs />
       <button onClick={onClickButton}>항공편 선택하기</button>
     </>
   );

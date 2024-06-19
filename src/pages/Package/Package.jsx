@@ -19,8 +19,6 @@ const Package = () => {
       .then((data) => setPackageData(data));
   }, []);
 
-  console.log(packageData);
-
   return (
     <section className={`${styles.Package} layout`}>
       <h2>어떤 여행을 함께 해볼까요?</h2>
