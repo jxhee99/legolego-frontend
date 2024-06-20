@@ -1,14 +1,18 @@
 import styles from './Airplane.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ControllableStates from './ControllableStates/ControllableStates';
+import axios from 'axios';
 import {
   selectAirline,
   updateAirline,
   updateRoute,
 } from '../../../_slices/diySlice';
 import { formatDate } from '../../../utils/util';
-import axios from 'axios';
+
+// components
+import StartCard from '../StartCard/StartCard';
+import ReturnCard from '../ReturnCard/ReturnCard';
+import ControllableStates from './ControllableStates/ControllableStates';
 
 function extractCode(inputString) {
   return inputString.split(', ')[0];
@@ -28,8 +32,6 @@ const Airplane = () => {
   const [flightData, setFlightData] = useState(null);
   const dispatch = useDispatch();
 
-  const airline = useSelector(selectAirline);
-
   const fetchAirline = async () => {
     try {
       const response = await axios.get(
@@ -45,6 +47,22 @@ const Airplane = () => {
   const handleInputValues = (e) => {
     e.preventDefault();
     fetchAirline();
+  };
+
+  const onClick = (flightInfo) => {
+    console.log('클릭한 비행 정보:', flightInfo);
+    dispatch(
+      updateAirline({
+        startAirlineName: '',
+        startingPoint: '',
+        destination: '',
+        startFlightNum: '',
+        boardingDate: '',
+        comeAirlineName: '',
+        comeFlightNum: '',
+        comingDate: '',
+      })
+    );
   };
 
   return (
@@ -68,14 +86,28 @@ const Airplane = () => {
       </form>
 
       <div className={styles.airplane_information}>
-        {flightData ? (
-          <div>
-            <h2>항공편 정보:</h2>
-            <pre>{JSON.stringify(flightData, null, 2)}</pre>
-          </div>
-        ) : (
-          <div>항공편 정보를 입력하고 검색을 눌러주세요.</div>
-        )}
+        <div>
+          <h3>출발지</h3>
+          {flightData &&
+            flightData.startData &&
+            flightData.startData.length > 0 &&
+            flightData.startData.map((flight, index) => (
+              <StartCard key={`start-${index}`} {...flight} onClick={onClick} />
+            ))}
+        </div>
+        <div>
+          <h3>도착지</h3>
+          {flightData &&
+            flightData.startData &&
+            flightData.startData.length > 0 &&
+            flightData.startData.map((flight, index) => (
+              <ReturnCard
+                key={`start-${index}`}
+                {...flight}
+                onClick={onClick}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
