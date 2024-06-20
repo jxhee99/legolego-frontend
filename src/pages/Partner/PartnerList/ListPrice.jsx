@@ -3,17 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFetchData from '../../../hooks/useFetchListData';
 import ListTable from '../../../components/List/ListTable';
-import Modal from '../PartnerComponents/Modal';
+import ListModal from '../../../components/List/ListModal';
 
 const ListPrice = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
-
-  const [formData, setFormData] = useState({
-    productName: '',
-    recruitment: '',
-    recruitmentPeriod: '',
-  });
 
   //get요청
   const endpoint = '/api/diylists/partner/3';
@@ -32,12 +26,6 @@ const ListPrice = () => {
   // 모달 닫기
   const closeModal = () => {
     setSelectedItem(null); // 선택된 아이템 초기화
-    setFormData({
-      // 폼 데이터 초기화
-      productName: '',
-      recruitment: '',
-      recruitmentPeriod: '',
-    });
     setModalOpen(false); // 모달 닫기
   };
 
@@ -87,7 +75,11 @@ const ListPrice = () => {
           ))}
         </tbody>
       </ListTable>
-      <Modal isVisible={modalOpen} closeModal={closeModal} title="제안한 가격">
+      <ListModal
+        isVisible={modalOpen}
+        closeModal={closeModal}
+        title="제안한 가격"
+      >
         {selectedItem && (
           <div>
             <p>선택된 패키지 번호: {selectedItem.diyPackage.packageNum}</p>
@@ -96,7 +88,7 @@ const ListPrice = () => {
             <p>스페셜혜택:{selectedItem.specialBenefits}</p>
           </div>
         )}
-      </Modal>
+      </ListModal>
     </>
   );
 };

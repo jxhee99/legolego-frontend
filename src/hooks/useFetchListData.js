@@ -26,7 +26,7 @@ const useFetchData = (endpoint) => {
     fetchData(endpoint);
   }, [endpoint]);
 
-  return { data, loading, refetch: fetchData };
+  return { data, loading, refetch: () => fetchData(endpoint) };
 };
 
 export default useFetchData;

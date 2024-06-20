@@ -103,8 +103,8 @@ const AdminListDiyPrice = () => {
               <td>{item.specialBenefits}</td>
               <td>
                 {item.isSelected === null && <span>대기중</span>}
-                {item.isSelected === true && <span>선택</span>}
-                {item.isSelected === false && <span>미선택</span>}
+                {item.isSelected === true && <span>수락</span>}
+                {item.isSelected === false && <span>거절</span>}
               </td>
               <td>
                 {item.isSelected === true && item.isRegistered === false && (

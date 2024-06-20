@@ -44,7 +44,7 @@ const PriceList = () => {
       if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('승인');
-        refetch(); // 데이터 다시 가져오기
+        refetch();
       } else {
         console.error('승인 실패:', response.status);
       }
@@ -89,8 +89,8 @@ const PriceList = () => {
                     <button>받기</button>
                   </span>
                 )}
-                {item.isSelected === true && <span>선택됨</span>}
-                {item.isSelected === false && <span>미선택</span>}
+                {item.isSelected === true && <span>수락</span>}
+                {item.isSelected === false && <span>거절</span>}
               </td>
               <td>
                 {item.isRegistered ? (

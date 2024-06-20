@@ -1,24 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useFetchData from '../PartnerHooks/useFetchData';
+import axios from 'axios';
+import useFetchData from '../../../hooks/useFetchListData';
 import ListTable from '../../../components/List/ListTable';
-import Modal from '../PartnerComponents/Modal';
-import ModalForm from '../PartnerComponents/ModalForm';
+import ListModal from '../../../components/List/ListModal';
 
 const ListPackage = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const [formData, setFormData] = useState({
-    price: '',
-    necessaryPeople: '',
-    specialBenefits: '',
-  });
+  const [price, setPrice] = useState('');
+  const [necessaryPeople, setNecessaryPeople] = useState('');
+  const [specialBenefits, setSpecialBenefits] = useState('');
 
-  //get요청
   const endpoint = '/api/partner/over-liked-packages/3';
-  const { data, loading } = useFetchData(endpoint);
+  //get요청
+  const { data, loading, refetch } = useFetchData(endpoint);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -33,29 +31,44 @@ const ListPackage = () => {
   // 모달 닫기
   const closeModal = () => {
     setSelectedItem(null); // 선택된 아이템 초기화
-    setFormData({
-      // 폼 데이터 초기화
-      price: '',
-      necessaryPeople: '',
-      specialBenefits: '',
-    });
+    setNecessaryPeople('');
+    setPrice('');
+    setSpecialBenefits('');
     setModalOpen(false); // 모달 닫기
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleInputChange = (setValue) => (e) => {
+    const value = e.target.value;
+    setValue(value);
+    console.log(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = {
+      packageNum: selectedItem.diyPackage.packageNum,
+      price: price,
+      necessaryPeople: necessaryPeople,
+      specialBenefits: specialBenefits,
+    };
+
     try {
-      //await axios.post(`/admin/liked-packages/{selectedItem.packageNum}`, formData);
+      const response = await axios.post(
+        `/api/partner/over-liked-packages/3/offer`,
+        formData, // JSON 형식의 데이터
+        {
+          headers: {
+            'Content-Type': 'application/json', // JSON 형식으로 보냄을 명시
+          },
+        }
+      );
       console.log('등록할 가격제안:', formData);
-      closeModal();
+      if (response.status === 201) {
+        // 요청이 성공한 경우
+        closeModal();
+        refetch();
+      }
     } catch (err) {
       console.error('상품 등록 중 오류:', err);
     }
@@ -89,18 +102,47 @@ const ListPackage = () => {
           ))}
         </tbody>
       </ListTable>
-      <Modal isVisible={modalOpen} closeModal={closeModal} title="가격 등록">
+      <ListModal
+        isVisible={modalOpen}
+        closeModal={closeModal}
+        title="가격 등록"
+      >
         {selectedItem && (
           <div>
-            <p>선택된 패키지 번호: {selectedItem.packageNum}</p>
-            <ModalForm
-              formData={formData}
-              handleInputChange={handleInputChange}
-              handleSubmit={handleSubmit}
-            />
+            <p>선택된 패키지 번호: {selectedItem.diyPackage.packageNum}</p>
+            <form onSubmit={handleSubmit}>
+              <label>가격:</label>
+              <input
+                type="text"
+                name="price"
+                value={price}
+                onChange={handleInputChange(setPrice)}
+                required
+              />
+              <br />
+              <label>모집인원:</label>
+              <input
+                type="text"
+                name="necessaryPeople"
+                value={necessaryPeople}
+                onChange={handleInputChange(setNecessaryPeople)}
+                required
+              />
+              <br />
+              <label>특별혜택:</label>
+              <input
+                type="text"
+                name="specialBenefits"
+                value={specialBenefits}
+                onChange={handleInputChange(setSpecialBenefits)}
+                required
+              />
+              <br />
+              <button type="submit">등록</button>
+            </form>
           </div>
         )}
-      </Modal>
+      </ListModal>
     </>
   );
 };
