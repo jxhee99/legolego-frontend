@@ -2,45 +2,49 @@
   width: 100%;
 }
 
-table {
+.list_box table {
   width: 100%;
   text-align: center;
-  border-collapse: collapse;
+  line-height: 48px;
+  border-collapse: separate;
+  border-spacing: 16px 0;
   border: none;
-  /* 테이블의 바깥쪽 테두리 제거 */
 }
 
-tr {
-  border: none;
-  /* tr에 대한 기본 테두리 설정 제거 */
-}
-
-td,
-th {
+.list_box td,
+.list_box th {
   border: 1px solid #E0E0E0;
-  /* 셀에 대한 테두리 설정 */
-  height: 40px;
+  height: 48px;
 }
 
-/* 각 셀에서 테이블 가장자리 테두리 제거 */
-table td,
-table th {
+.list_box table td,
+.list_box table th {
   border-left: none;
   border-right: none;
-}
-
-table tr:first-child td,
-table tr:first-child th {
-  border-top: none;
-}
-
-table tr:last-child td,
-table tr:last-child th {
   border-bottom: none;
 }
 
-/* 넓이 설정 */
+.list_box table tr:first-child th {
+  border-top: none;
+}
 
-th:not(:nth-child(2)) {
+.list_box table tr:last-child td,
+.list_box table tr:last-child th {
+  border-bottom: none;
+}
+
+.list_box th:not(:nth-child(2)) {
   width: 10%;
+}
+
+.list_box th:nth-child(2),
+.list_box td:nth-child(2) {
+  text-align: left;
+}
+
+.list_box button{
+  width: 60px;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
 }

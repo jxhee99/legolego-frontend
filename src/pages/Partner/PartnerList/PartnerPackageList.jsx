@@ -2,11 +2,15 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import styles from '../../../components/List/List.module.css';
+
 import useFetchData from '../../../hooks/useFetchListData';
+
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/ListModal';
 
-const ListPackage = () => {
+const PartnerPackageList = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -75,14 +79,16 @@ const ListPackage = () => {
   };
 
   return (
-    <>
+    <div className={styles.box}>
+      <h2>Diy 목록</h2>
       <ListTable>
         <thead>
           <tr>
             <th>패키지 번호</th>
             <th>Name</th>
             <th>작성자</th>
-            <th>가격등록</th>
+            <th>응원 수</th>
+            <th>가격 등록</th>
           </tr>
         </thead>
         <tbody>
@@ -95,6 +101,7 @@ const ListPackage = () => {
                 </Link>
               </td>
               <td>{item.diyPackage.user.userNickname}</td>
+              <td>{item.diyPackage.packageLikedNum}</td>
               <td>
                 <button onClick={() => openModal(item)}>등록</button>
               </td>
@@ -108,10 +115,10 @@ const ListPackage = () => {
         title="가격 등록"
       >
         {selectedItem && (
-          <div>
-            <p>선택된 패키지 번호: {selectedItem.diyPackage.packageNum}</p>
+          <div className={styles.modal_form}>
+            <p>{selectedItem.diyPackage.packageName}</p>
             <form onSubmit={handleSubmit}>
-              <label>가격:</label>
+              <label>제안 가격:</label>
               <input
                 type="text"
                 name="price"
@@ -119,8 +126,8 @@ const ListPackage = () => {
                 onChange={handleInputChange(setPrice)}
                 required
               />
-              <br />
-              <label>모집인원:</label>
+              <br></br>
+              <label>모집 인원:</label>
               <input
                 type="text"
                 name="necessaryPeople"
@@ -128,8 +135,8 @@ const ListPackage = () => {
                 onChange={handleInputChange(setNecessaryPeople)}
                 required
               />
-              <br />
-              <label>특별혜택:</label>
+              <br></br>
+              <label>특별 혜택:</label>
               <input
                 type="text"
                 name="specialBenefits"
@@ -137,14 +144,16 @@ const ListPackage = () => {
                 onChange={handleInputChange(setSpecialBenefits)}
                 required
               />
-              <br />
-              <button type="submit">등록</button>
+              <br></br>
+              <div className={styles.button_box}>
+                <button type="submit">등록하기</button>
+              </div>
             </form>
           </div>
         )}
       </ListModal>
-    </>
+    </div>
   );
 };
 
-export default ListPackage;
+export default PartnerPackageList;

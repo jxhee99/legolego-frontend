@@ -12,15 +12,15 @@ import Review from '../pages/Review/Review';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
 //마이페이지
-import DiyPrice from "../pages/Mypage/DiyPriceList/DiyPrice";
+import DiyPriceList from "../pages/Mypage/DiyPriceList/DiyPriceList";
 //관리자
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
-import ListPackage from '../pages/Partner/PartnerList/ListPackage'
-import ListPrice from '../pages/Partner/PartnerList/ListPrice';
+import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList'
+import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
 
 export const ROUTE = {
   ABOUT: {
@@ -94,7 +94,7 @@ export const ROUTE_MY_PAGE = {
   DIY_PRICES: {
     path: '/mypage?tab=my-diy-prices',
     link: '/mypage?tab=my-diy-prices',
-    element: DiyPrice,
+    element: DiyPriceList,
   },
   // ORDER_SUMMARY: {
   //   path: '/mypage?tab=order-summary',
@@ -154,12 +154,12 @@ export const ROUTE_PARTNER_LISTS = {
   PARTNER_LISTS_PACKAGES: {
     path: '/partner/lists/packages',
     link: '/partenr/lists/packages',
-    element: ListPackage,
+    element: PartnerPackageList,
   },
   PARTNER_LISTS_PRICES: {
     path: '/partner/lists/prices',
     link: '/partner/lists/prices',
-    element: ListPrice,
+    element: PartnerPriceList,
   }
 }
 

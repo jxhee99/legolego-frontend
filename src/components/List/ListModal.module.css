@@ -49,11 +49,7 @@
   height: 100%;
 }
 
-.Modal .modal_title h1 {
-  margin: 0;
-}
-
-.Modal .modal_title h5 {
-  margin: 0.5rem 0;
+.Modal .modal_title h3 {
+  margin-top: 3rem;
   text-align: center;
 }

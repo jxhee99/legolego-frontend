@@ -1,7 +1,7 @@
 import styles from './Mypage.module.css';
 import { useSearchParams } from 'react-router-dom';
 import ProfileSetting from './ProfileSetting/ProfileSetting';
-import DiyPrice from './DiyPriceList/DiyPrice';
+import DiyPriceList from './DiyPriceList/DiyPriceList';
 import Sidebar from './Sidebar/Sidebar';
 
 const Mypage = () => {
@@ -13,7 +13,7 @@ const Mypage = () => {
       <Sidebar />
       <div className={styles.mypage_wrapper}>
         {tab === 'profile-setting' && <ProfileSetting />}
-        {tab === 'my-diy-prices' && <DiyPrice />}
+        {tab === 'my-diy-prices' && <DiyPriceList />}
       </div>
     </div>
   );

@@ -1,22 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-
-//컴포넌트
+import useFetchData from '../../../hooks/useFetchListData';
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/ListModal';
 
-//api 요청
-import useFetchData from '../../../hooks/useFetchListData';
+import styles from '../../../components/List/List.module.css';
 
-const PriceList = () => {
+const PartnerPriceList = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
 
   //get요청
-  const endpoint = '/api/diylists/user/1';
-  const { data, loading, refetch } = useFetchData(endpoint);
+  const endpoint = '/api/diylists/partner/3';
+  const { data, loading } = useFetchData(endpoint);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -34,37 +31,19 @@ const PriceList = () => {
     setModalOpen(false); // 모달 닫기
   };
 
-  //승인요청
-  const handleApprove = async (item) => {
-    try {
-      const response = await axios.post(
-        `/api/diylists/user/1/accept?list_num=${item.listNum}&package_num=${item.diyPackage.packageNum}`
-      );
-
-      if (response.status === 200) {
-        // 요청이 성공한 경우
-        console.log('승인');
-        refetch();
-      } else {
-        console.error('승인 실패:', response.status);
-      }
-    } catch (error) {
-      console.error('에러 발생:', error);
-    }
-  };
-
   return (
-    <>
+    <div className={styles.box}>
+      <h2>가격 제안 목록</h2>
       <ListTable>
         <thead>
           <tr>
             <th>패키지 번호</th>
             <th>Name</th>
-            <th>partner</th>
+            <th>작성자</th>
             <th>가격</th>
             <th>상세</th>
-            <th>제안받기</th>
-            <th>승인여부</th>
+            <th>채택여부</th>
+            <th>상품등록</th>
           </tr>
         </thead>
         <tbody>
@@ -76,30 +55,26 @@ const PriceList = () => {
                   {item.diyPackage.packageName}
                 </Link>
               </td>
-              <td>{item.partner.companyName}</td>
-              <td>
-                <button>{item.price}</button>
-              </td>
+              <td>{item.diyPackage.user.userNickname}</td>
+              <td>{item.price}</td>
               <td onClick={() => openModal(item)}>
                 <button>보기</button>
               </td>
               <td>
-                {item.isSelected === null && (
-                  <span onClick={() => handleApprove(item)}>
-                    <button>받기</button>
-                  </span>
-                )}
+                {item.isSelected === null && <span>대기중</span>}
                 {item.isSelected === true && <span>수락</span>}
                 {item.isSelected === false && <span>거절</span>}
               </td>
               <td>
-                {item.isRegistered ? (
+                {item.isRegistered && (
                   <Link to={`/package-product/${item.productNum}`}>
                     보러가기
                   </Link>
-                ) : (
-                  <span></span>
                 )}
+                {item.isSelected === true && item.isRegistered === false && (
+                  <span>대기중</span>
+                )}
+                {item.isSelected === false && <span></span>}
               </td>
             </tr>
           ))}
@@ -108,19 +83,31 @@ const PriceList = () => {
       <ListModal
         isVisible={modalOpen}
         closeModal={closeModal}
-        title="가격 상세"
+        title="제안 상세"
       >
         {selectedItem && (
-          <div>
-            <p>여행사: {selectedItem.partner.companyName}</p>
-            <p>가격: {selectedItem.price}</p>
-            <p>모집 인원: {selectedItem.necessaryPeople}</p>
-            <p>특별 혜택: {selectedItem.specialBenefits}</p>
+          <div className={styles.modal_text_box}>
+            <div className={styles.detail}>
+              <span>패키지:</span>
+              <p>{selectedItem.diyPackage.packageName}</p>
+            </div>
+            <div className={styles.detail}>
+              <span>가격:</span>
+              <p>{selectedItem.price}</p>
+            </div>
+            <div className={styles.detail}>
+              <span>모집인원:</span>
+              <p>{selectedItem.necessaryPeople}</p>
+            </div>
+            <div className={styles.detail}>
+              <span>스페셜혜택:</span>
+              <p>{selectedItem.specialBenefits}</p>
+            </div>
           </div>
         )}
       </ListModal>
-    </>
+    </div>
   );
 };
 
-export default PriceList;
+export default PartnerPriceList;

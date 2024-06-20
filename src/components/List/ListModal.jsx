@@ -12,7 +12,7 @@ const ListModal = ({ isVisible, closeModal, title, children }) => {
           x
         </button>
         <div className={styles.modal_title}>
-          <h5>{title}</h5>
+          <h3>{title}</h3>
         </div>
         {children}
       </div>
