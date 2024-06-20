@@ -9,7 +9,13 @@ const ReturnCard = ({
   onClick,
 }) => {
   const handleClick = () => {
-    onClick({ airlineKorean, internationalNum, city, internationalTime });
+    onClick({
+      type: 'return',
+      airlineKorean,
+      internationalNum,
+      city,
+      internationalTime,
+    });
   };
 
   return (

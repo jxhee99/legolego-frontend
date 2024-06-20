@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './StartCard.module.css';
 
-const ReturnCard = ({
+const StartCard = ({
   airlineKorean,
   internationalNum,
   city,
@@ -9,7 +9,13 @@ const ReturnCard = ({
   onClick,
 }) => {
   const handleClick = () => {
-    onClick({ airlineKorean, internationalNum, city, internationalTime });
+    onClick({
+      type: 'start',
+      airlineKorean,
+      internationalNum,
+      city,
+      internationalTime,
+    });
   };
 
   return (
@@ -24,4 +30,4 @@ const ReturnCard = ({
   );
 };
 
-export default ReturnCard;
+export default StartCard;
