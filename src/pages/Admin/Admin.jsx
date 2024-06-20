@@ -12,7 +12,7 @@ const Admin = () => {
         <Link to="/admin/lists/diy-packages">Diy 목록</Link>
       </li>
       <li>
-        <Link to="/admin/lists/likes-over">응원 달성 Diy 목록</Link>
+        <Link to="/admin/lists/diy-prices">응원 달성 Diy 목록</Link>
       </li>
       <li>
         <Link to="/admin/lists/products">상품 목록</Link>

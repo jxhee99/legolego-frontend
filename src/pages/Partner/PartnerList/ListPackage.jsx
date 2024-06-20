@@ -17,7 +17,7 @@ const ListPackage = () => {
   });
 
   //get요청
-  const endpoint = '/partner/approved_packages/{partner_num}';
+  const endpoint = '/api/partner/over-liked-packages/3';
   const { data, loading } = useFetchData(endpoint);
 
   if (loading) {
@@ -63,7 +63,7 @@ const ListPackage = () => {
 
   return (
     <>
-      <ListTable title={'Diy목록'}>
+      <ListTable>
         <thead>
           <tr>
             <th>패키지 번호</th>
@@ -74,12 +74,14 @@ const ListPackage = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.listNum}>
-              <td>{item.packageNum}</td>
+            <tr key={item.overLikedListNum}>
+              <td>{item.diyPackage.packageNum}</td>
               <td>
-                <Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link>
+                <Link to={`/diy/${item.diyPackage.packageNum}`}>
+                  {item.diyPackage.packageName}
+                </Link>
               </td>
-              <td>{item.user}</td>
+              <td>{item.diyPackage.user.userNickname}</td>
               <td>
                 <button onClick={() => openModal(item)}>등록</button>
               </td>

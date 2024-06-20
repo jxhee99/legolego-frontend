@@ -9,10 +9,14 @@ const useFetchData = (endpoint) => {
 
   const fetchData = async (endpoint) => {
     try {
-      const response = await axios.get(endpoint);
-      //setData(response.data);
-      setData(packageList);
-      setData2(packageListPrice);
+      console.log('Sending request to:', endpoint);  // 요청 URL을 콘솔에 출력
+      const response = await axios.get(endpoint, {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      setData(response.data);
+      console.log('Fetched data:', response.data);  // 응답 데이터를 콘솔에 출력
     } catch (err) {
       console.error('데이터 받아오는 중 오류:', err);
     } finally {

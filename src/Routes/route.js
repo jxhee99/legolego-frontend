@@ -12,11 +12,11 @@ import Review from '../pages/Review/Review';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
 //마이페이지
-import OverLiked from "../pages/Mypage/OverLikedPackage/OverLiked";
+import DiyPrice from "../pages/Mypage/DiyPriceList/DiyPrice";
 //관리자
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
-import AdminListLikesOver from '../pages/Admin/AdminList/AdminListLikesOver';
+import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
 import ListPackage from '../pages/Partner/PartnerList/ListPackage'
@@ -91,10 +91,10 @@ export const ROUTE_MY_PAGE = {
     element: ProfileSetting,
   },
 
-  OVER_LIKED_PACKAGES: {
-    path: '/mypage?tab=my-likedOver-packages',
-    link: '/mypage?tab=my-likedOver-packages',
-    element: OverLiked,
+  DIY_PRICES: {
+    path: '/mypage?tab=my-diy-prices',
+    link: '/mypage?tab=my-diy-prices',
+    element: DiyPrice,
   },
   // ORDER_SUMMARY: {
   //   path: '/mypage?tab=order-summary',
@@ -132,9 +132,9 @@ export const ROUTE_ADMIN_LISTS = {
     element: AdminListDiy,
   },
   ADMIN_LISTS_LIKESOVER: {
-    path: '/admin/lists/likes-over',
-    link: '/admin/lists/likes-over',
-    element: AdminListLikesOver,
+    path: '/admin/lists/diy-prices',
+    link: '/admin/lists/diy-prices',
+    element: AdminListDiyPrice,
   },
 }
 

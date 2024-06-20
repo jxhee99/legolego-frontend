@@ -1,8 +1,8 @@
 import React from 'react';
-import LikedList from './OverLikedList/LikedList';
+import PriceList from './PriceList';
 
 const OverLiked = () => {
-  return <LikedList />;
+  return <PriceList />;
 };
 
 export default OverLiked;

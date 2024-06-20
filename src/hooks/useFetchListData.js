@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import packageList from '../packageList.json';
 
 const useFetchData = (endpoint) => {
   const [data, setData] = useState(null);
@@ -8,9 +7,14 @@ const useFetchData = (endpoint) => {
 
   const fetchData = async (endpoint) => {
     try {
-      const response = await axios.get(endpoint);
-      //setData(response.data);
-      setData(packageList);
+      console.log('Sending request to:', endpoint);  // 요청 URL을 콘솔에 출력
+      const response = await axios.get(endpoint, {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      setData(response.data);
+      console.log('Fetched data:', response.data);  // 응답 데이터를 콘솔에 출력
     } catch (err) {
       console.error('데이터 받아오는 중 오류:', err);
     } finally {
@@ -22,7 +26,7 @@ const useFetchData = (endpoint) => {
     fetchData(endpoint);
   }, [endpoint]);
 
-  return { data, loading };
+  return { data, loading, refetch: fetchData };
 };
 
 export default useFetchData;
