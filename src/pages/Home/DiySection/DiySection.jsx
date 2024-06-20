@@ -1,7 +1,7 @@
 import styles from '../Home.module.css';
 import DiyCard from '../../../components/Card/DiyCard/DiyCard';
 import Avatar from '../../../components/Avatar/Avatar';
-import { getRandomElement } from '../../../utils/random';
+import { getRandomElement } from '../../../utils/util';
 
 const userProfileImages = [
   'https://randomuser.me/api/portraits/women/1.jpg',

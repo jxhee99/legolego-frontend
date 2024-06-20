@@ -1,0 +1,64 @@
+.airport_tab_menu {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px; /* Adjust as per your layout */
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab_menu {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tab {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tab.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.tab:hover {
+  background-color: #ddd;
+}
+
+.tab_content {
+  margin-top: 20px;
+}
+
+.countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.countries .tab {
+  background-color: #e0e0e0;
+}
+
+.countries .tab.active {
+  background-color: #2980b9;
+}
+
+.airports {
+  list-style: none;
+  padding: 0;
+}
+
+.airports li {
+  margin-bottom: 5px;
+}
