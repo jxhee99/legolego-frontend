@@ -67,9 +67,7 @@ const PartnerPriceList = () => {
               </td>
               <td>
                 {item.isRegistered && (
-                  <Link to={`/package-product/${item.productNum}`}>
-                    보러가기
-                  </Link>
+                  <Link to={`/package-product/${item.productNum}`}>완료</Link>
                 )}
                 {item.isSelected === true && item.isRegistered === false && (
                   <span>대기중</span>
