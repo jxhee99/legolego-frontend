@@ -7,7 +7,7 @@ import {
   Autocomplete,
 } from '@react-google-maps/api';
 import { useDispatch } from 'react-redux';
-import styles from '../Schedule.module.css';
+import styles from './CourseModal.module.css';
 import { addCourse } from '../../../../_slices/diySlice';
 
 const containerStyle = {
@@ -80,16 +80,12 @@ function MapComponent({ detail, closeModal }) {
   };
 
   const handleUpdateCourses = () => {
-    // Construct the course object
     const course = {
       dayNum: detail.dayNum,
-      place: selectedPlace, // assuming selectedPlace contains the place details
-      fileUrl: '', // you can modify this if needed
+      place: selectedPlace,
+      fileUrl: '',
     };
-
-    // Dispatch action to add course to detailCourses
     dispatch(addCourse(course));
-
     setSelectedPlace(null);
     setInfoWindowVisible(false);
     closeModal();

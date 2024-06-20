@@ -4,14 +4,17 @@ import { useSelector } from 'react-redux';
 import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
 
-function createDateRange(startDate, endDate) {
+function createDateRange(startDate, endDate, detailCourses) {
   const dateArray = [];
   let currentDate = new Date(startDate);
 
   while (currentDate <= new Date(endDate)) {
+    const dayCourses = detailCourses.filter(
+      (course) => course.dayNum === currentDate.toISOString().split('T')[0]
+    );
     dateArray.push({
       dayNum: currentDate.toISOString().split('T')[0],
-      courses: [],
+      courses: dayCourses,
     });
     currentDate.setDate(currentDate.getDate() + 1);
   }
@@ -32,7 +35,7 @@ const Schedule = () => {
 
   useEffect(() => {
     console.log('Initial detailCourses state:', detailCourses);
-  }, []);
+  }, [detailCourses]);
 
   const handleAddPlace = (detailIndex) => {
     const updatedVisibilities = [...modalVisibilities];
@@ -56,6 +59,21 @@ const Schedule = () => {
               <span>{detail.dayNum}</span>
               <button onClick={() => handleAddPlace(index)}>장소추가</button>
             </div>
+            <ul>
+              {detail.courses.map((course, courseIndex) => (
+                <li key={`course-${courseIndex}`}>
+                  <p>{course.place.name}</p>
+                  <p>{course.place.address}</p>
+                  {course.place.photoUrl && (
+                    <img
+                      src={course.place.photoUrl}
+                      alt={course.place.name}
+                      style={{ maxWidth: '100%', maxHeight: '150px' }}
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>

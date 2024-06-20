@@ -1,0 +1,54 @@
+.Schedule {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.Schedule h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.Schedule ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Schedule li {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.Schedule li > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.Schedule li button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.Schedule li button:hover {
+  background-color: #0056b3;
+}
+
+.Schedule li ul {
+  padding-left: 20px;
+}
+
+.Schedule li ul li {
+  margin-bottom: 10px;
+}
+
+.Schedule li p {
+  margin: 5px 0;
+}
