@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { updateAirline } from '../../../_slices/diySlice';
+import { updateAirline, updateRoute } from '../../../_slices/diySlice';
 import { formatDate } from '../../../utils/util';
 
 // components
@@ -60,6 +60,7 @@ const Airplane = () => {
         comingDate: '',
       })
     );
+    dispatch(updateRoute({ startDate, endDate }));
   };
 
   return (

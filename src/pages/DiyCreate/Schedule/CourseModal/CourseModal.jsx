@@ -11,7 +11,7 @@ const CourseModal = ({ isVisible, closeModal, detail }) => {
           x
         </button>
         <h5>{`${detail.dayNum} - 장소추가`}</h5>
-        <MapComponent detail={detail} />
+        <MapComponent detail={detail} closeModal={closeModal} />
       </div>
     </div>
   );

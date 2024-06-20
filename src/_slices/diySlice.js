@@ -28,7 +28,11 @@ const diySlice = createSlice({
       state.airline = { ...state.airline, ...action.payload };
     },
     updateRoute(state, action) {
-      state.route = { ...state.route, ...action.payload };
+      const { startDate, endDate } = action.payload;
+      state.route = {
+        startDate,
+        lastDate: endDate,
+      };
     },
     updateDetailCourses(state, action) {
       const { index, updatedCourses } = action.payload;
@@ -55,7 +59,7 @@ export const {
 } = diySlice.actions;
 
 export const selectAirline = (state) => state.diyCreate.airline;
-
+export const selectRoute = (state) => state.diyCreate.route;
 export const selectDetailCourses = (state) => state.diyCreate.detailCourses;
 
 export default diySlice.reducer;

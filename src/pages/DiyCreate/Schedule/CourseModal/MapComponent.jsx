@@ -1,4 +1,3 @@
-import styles from '../Schedule.module.css';
 import { useState, useCallback, useRef, memo } from 'react';
 import {
   GoogleMap,
@@ -9,6 +8,7 @@ import {
 } from '@react-google-maps/api';
 import { useDispatch } from 'react-redux';
 import { updateDetailCourses } from '../../../../_slices/diySlice';
+import styles from '../Schedule.module.css';
 
 const containerStyle = {
   width: '100%',
@@ -22,7 +22,7 @@ const center = {
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-function MapComponent({ detail }) {
+function MapComponent({ detail, closeModal }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
@@ -76,19 +76,26 @@ function MapComponent({ detail }) {
 
   const handleMarkerClick = () => {
     setInfoWindowVisible(!infoWindowVisible);
+    closeModal();
   };
 
   const handleUpdateCourses = () => {
     if (selectedPlace) {
-      const updatedCourses = [...detail.courses, selectedPlace.name]; // Assuming you're adding the place name to the courses array
+      const updatedCourses = [...detail.courses, selectedPlace.name];
 
       dispatch(
         updateDetailCourses({
-          index: detail.index, // Assuming detail has an index property
-          updatedCourses: updatedCourses,
-          fileUrl: selectedPlace.photoUrl,
+          index: detail.index,
+          updatedCourses: {
+            courses: updatedCourses,
+            fileUrl: selectedPlace.photoUrl,
+          },
         })
       );
+
+      setSelectedPlace(null);
+      setInfoWindowVisible(false);
+      closeModal();
     }
   };
 
