@@ -34,18 +34,14 @@ const diySlice = createSlice({
         lastDate: endDate,
       };
     },
-    updateDetailCourses(state, action) {
-      const { index, updatedCourses } = action.payload;
-      state.detailCourses[index] = {
-        ...state.detailCourses[index],
-        ...updatedCourses,
-      };
-    },
     updatePackageForm(state, action) {
       state.packageForm = { ...state.packageForm, ...action.payload };
     },
     updateUserNum(state, action) {
       state.userNum = action.payload;
+    },
+    addCourse(state, action) {
+      state.detailCourses.push(action.payload);
     },
   },
 });
@@ -56,6 +52,7 @@ export const {
   updateDetailCourses,
   updatePackageForm,
   updateUserNum,
+  addCourse,
 } = diySlice.actions;
 
 export const selectAirline = (state) => state.diyCreate.airline;

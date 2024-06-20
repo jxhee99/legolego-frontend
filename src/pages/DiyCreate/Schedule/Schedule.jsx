@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
 import { useSelector } from 'react-redux';
-import { selectRoute } from '../../../_slices/diySlice';
+import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
 
 function createDateRange(startDate, endDate) {
@@ -21,16 +21,17 @@ function createDateRange(startDate, endDate) {
 
 const Schedule = () => {
   const route = useSelector(selectRoute);
+  const detailCourses = useSelector(selectDetailCourses);
   const routeRange =
     route.startDate && route.lastDate
-      ? createDateRange(route.startDate, route.lastDate)
+      ? createDateRange(route.startDate, route.lastDate, detailCourses)
       : [];
   const [modalVisibilities, setModalVisibilities] = useState(
     new Array(routeRange.length).fill(false)
   );
 
   useEffect(() => {
-    console.log('Initial route state:', route);
+    console.log('Initial detailCourses state:', detailCourses);
   }, []);
 
   const handleAddPlace = (detailIndex) => {
@@ -54,12 +55,6 @@ const Schedule = () => {
             <div>
               <span>{detail.dayNum}</span>
               <button onClick={() => handleAddPlace(index)}>장소추가</button>
-            </div>
-            <div>
-              추가된 장소:
-              {detail.courses.map((course, idx) => (
-                <p key={idx}>{course}</p>
-              ))}
             </div>
           </li>
         ))}
