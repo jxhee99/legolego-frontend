@@ -32,7 +32,10 @@ const diySlice = createSlice({
     },
     updateDetailCourses(state, action) {
       const { index, updatedCourses } = action.payload;
-      state.detailCourses[index].courses = updatedCourses;
+      state.detailCourses[index] = {
+        ...state.detailCourses[index],
+        ...updatedCourses,
+      };
     },
     updatePackageForm(state, action) {
       state.packageForm = { ...state.packageForm, ...action.payload };
@@ -51,8 +54,8 @@ export const {
   updateUserNum,
 } = diySlice.actions;
 
-export const selectDetailCourses = (state) => {
-  return state.diyCreate.detailCourses;
-};
+export const selectAirline = (state) => state.diyCreate.airline;
+
+export const selectDetailCourses = (state) => state.diyCreate.detailCourses;
 
 export default diySlice.reducer;
