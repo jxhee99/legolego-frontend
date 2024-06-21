@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
-import { useSelector } from 'react-redux';
-import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectRoute,
+  selectDetailCourses,
+  updateCourseNames,
+} from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
+import PackageForm from '../PackageForm/PackageForm';
 
 function createDateRange(startDate, endDate, detailCourses) {
   const dateArray = [];
@@ -23,6 +28,7 @@ function createDateRange(startDate, endDate, detailCourses) {
 }
 
 const Schedule = () => {
+  const dispatch = useDispatch();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
   const routeRange =
@@ -47,6 +53,10 @@ const Schedule = () => {
     const updatedVisibilities = [...modalVisibilities];
     updatedVisibilities[detailIndex] = false;
     setModalVisibilities(updatedVisibilities);
+  };
+
+  const handleCourse = () => {
+    dispatch(updateCourseNames());
   };
 
   return (
@@ -85,6 +95,8 @@ const Schedule = () => {
           detail={{ ...detail, index: index }}
         />
       ))}
+      <button onClick={handleCourse}>일정 확정</button>
+      <PackageForm />
     </div>
   );
 };

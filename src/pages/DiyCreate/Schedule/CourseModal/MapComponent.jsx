@@ -85,7 +85,8 @@ function MapComponent({ detail, closeModal }) {
     const course = {
       dayNum: detail.dayNum,
       courses: [selectedCourse], // Assuming selectedCourse is an array of courses
-      fileUrl: detail.fileUrl || '',
+      //fileUrl: detail.fileUrl || '',
+      fileUrl: '/img/123',
     };
 
     dispatch(addCourse(course));
