@@ -14,7 +14,7 @@ function createDateRange(startDate, endDate, detailCourses) {
     );
     dateArray.push({
       dayNum: currentDate.toISOString().split('T')[0],
-      courses: dayCourses,
+      courses: dayCourses.map((course) => course.courses).flat(),
     });
     currentDate.setDate(currentDate.getDate() + 1);
   }
@@ -62,12 +62,12 @@ const Schedule = () => {
             <ul>
               {detail.courses.map((course, courseIndex) => (
                 <li key={`course-${courseIndex}`}>
-                  <p>{course.place.name}</p>
-                  <p>{course.place.address}</p>
-                  {course.place.photoUrl && (
+                  <p>{course.name}</p>
+                  <p>{course.address}</p>
+                  {course.photoUrl && (
                     <img
-                      src={course.place.photoUrl}
-                      alt={course.place.name}
+                      src={course.photoUrl}
+                      alt={course.name}
                       style={{ maxWidth: '100%', maxHeight: '150px' }}
                     />
                   )}
