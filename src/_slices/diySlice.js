@@ -52,6 +52,12 @@ const diySlice = createSlice({
         state.detailCourses.push({ dayNum, courses, fileUrl });
       }
     },
+    updateCourseNames(state) {
+      state.detailCourses = state.detailCourses.map(detailCourse => {
+        const courseNames = detailCourse.courses.map(course => course.name);
+        return { ...detailCourse, courses: courseNames };
+      });
+    },
   },
 });
 
@@ -62,6 +68,7 @@ export const {
   updatePackageForm,
   updateUserNum,
   addCourse,
+  updateCourseNames,
 } = diySlice.actions;
 
 export const selectAirline = (state) => state.diyCreate.airline;
