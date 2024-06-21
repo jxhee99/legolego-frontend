@@ -31,7 +31,7 @@ function MapComponent({ detail, closeModal }) {
 
   const [map, setMap] = useState(null);
   const [markerPosition, setMarkerPosition] = useState(center);
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const [infoWindowVisible, setInfoWindowVisible] = useState(false);
 
   const onLoad = useCallback(function callback(map) {
@@ -63,7 +63,7 @@ function MapComponent({ detail, closeModal }) {
           ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 400 })
           : null;
 
-      setSelectedPlace({
+      setSelectedCourse({
         name: place.name,
         address: place.formatted_address,
         position: { lat: location.lat(), lng: location.lng() },
@@ -80,13 +80,16 @@ function MapComponent({ detail, closeModal }) {
   };
 
   const handleUpdateCourses = () => {
+    if (!selectedCourse) return;
+
     const course = {
       dayNum: detail.dayNum,
-      place: selectedPlace,
-      fileUrl: '',
+      courses: [selectedCourse], // Assuming selectedCourse is an array of courses
+      fileUrl: detail.fileUrl || '',
     };
+
     dispatch(addCourse(course));
-    setSelectedPlace(null);
+    setSelectedCourse(null);
     setInfoWindowVisible(false);
     closeModal();
   };
@@ -103,18 +106,18 @@ function MapComponent({ detail, closeModal }) {
         className={styles.googlemap}
       >
         <MarkerF position={markerPosition} onClick={handleMarkerClick} />
-        {infoWindowVisible && selectedPlace && (
+        {infoWindowVisible && selectedCourse && (
           <InfoWindow
-            position={selectedPlace.position}
+            position={selectedCourse.position}
             onCloseClick={() => setInfoWindowVisible(false)}
           >
             <div>
-              <h3>{selectedPlace.name}</h3>
-              <p>{selectedPlace.address}</p>
-              {selectedPlace.photoUrl && (
+              <h3>{selectedCourse.name}</h3>
+              <p>{selectedCourse.address}</p>
+              {selectedCourse.photoUrl && (
                 <img
-                  src={selectedPlace.photoUrl}
-                  alt={selectedPlace.name}
+                  src={selectedCourse.photoUrl}
+                  alt={selectedCourse.name}
                   style={{ maxWidth: '100%', maxHeight: '150px' }}
                 />
               )}
