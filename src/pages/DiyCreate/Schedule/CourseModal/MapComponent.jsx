@@ -79,17 +79,12 @@ function MapComponent({ detail, closeModal }) {
     closeModal();
   };
 
-  // Updated handleUpdateCourses function to append to the existing courses
   const handleUpdateCourses = () => {
-    if (!selectedCourse) return; // If no course is selected, do nothing
-
-    const updatedCourses = detail.courses
-      ? [...detail.courses, selectedCourse]
-      : [selectedCourse];
+    if (!selectedCourse) return;
 
     const course = {
       dayNum: detail.dayNum,
-      courses: updatedCourses, // Updated to append the new course
+      courses: [selectedCourse], // Assuming selectedCourse is an array of courses
       fileUrl: detail.fileUrl || '',
     };
 

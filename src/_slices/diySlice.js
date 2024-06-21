@@ -41,7 +41,16 @@ const diySlice = createSlice({
       state.userNum = action.payload;
     },
     addCourse(state, action) {
-      state.detailCourses.push(action.payload);
+      const { dayNum, courses, fileUrl } = action.payload;
+      const existingCourseIndex = state.detailCourses.findIndex(
+        (course) => course.dayNum === dayNum
+      );
+
+      if (existingCourseIndex !== -1) {
+        state.detailCourses[existingCourseIndex].courses.push(...courses);
+      } else {
+        state.detailCourses.push({ dayNum, courses, fileUrl });
+      }
     },
   },
 });
