@@ -1,8 +1,8 @@
 import { http, HttpResponse } from 'msw';
-import packages from './pacakges.json';
+import airlineCode from './airline_code.json';
 
 export const handlers = [
-  http.get('/packages', () => {
-    return HttpResponse.json(packages);
+  http.get('/touristSpot', () => {
+    return HttpResponse.json(airlineCode);
   }),
 ];

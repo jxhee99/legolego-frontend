@@ -1,7 +1,7 @@
 import styles from './Diy.module.css';
 import DiyCard from '../../components/Card/DiyCard/DiyCard';
 import Avatar from '../../components/Avatar/Avatar';
-import { getRandomElement } from '../../utils/random';
+import { getRandomElement } from '../../utils/util';
 
 const titles = [
   'Exploring the Alps',

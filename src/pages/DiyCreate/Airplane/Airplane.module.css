@@ -1,8 +1,16 @@
-.DiyCreateAirplane {
+.Airplane {
   display: flex;
   justify-content: center;
 }
 
-.DiyCreateAirplane .button {
+.Airplane .button {
   background-color: #83e860;
+}
+
+.airplane_information {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 3.5rem;
+  cursor: pointer;
 }
