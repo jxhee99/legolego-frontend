@@ -1,0 +1,50 @@
+.list_box {
+  width: 100%;
+}
+
+.list_box table {
+  width: 100%;
+  text-align: center;
+  line-height: 48px;
+  border-collapse: separate;
+  border-spacing: 16px 0;
+  border: none;
+}
+
+.list_box td,
+.list_box th {
+  border: 1px solid #E0E0E0;
+  height: 48px;
+}
+
+.list_box table td,
+.list_box table th {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.list_box table tr:first-child th {
+  border-top: none;
+}
+
+.list_box table tr:last-child td,
+.list_box table tr:last-child th {
+  border-bottom: none;
+}
+
+.list_box th:not(:nth-child(2)) {
+  width: 10%;
+}
+
+.list_box th:nth-child(2),
+.list_box td:nth-child(2) {
+  text-align: left;
+}
+
+.list_box button{
+  width: 60px;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}

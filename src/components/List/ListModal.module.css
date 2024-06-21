@@ -1,0 +1,55 @@
+.Modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.Modal .modal_layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 570px;
+  max-width: 550px;
+  max-height: 1200px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.Modal .modal_close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.Modal .modal_button:hover {
+  color: red;
+}
+
+.Modal .modal_close_button img {
+  width: 100%;
+  height: 100%;
+}
+
+.Modal .modal_title h3 {
+  margin-top: 3rem;
+  text-align: center;
+}

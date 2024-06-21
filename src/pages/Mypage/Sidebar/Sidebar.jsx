@@ -15,6 +15,9 @@ const Sidebar = () => {
           <Link to="/mypage?tab=my-diy-package">내가 만든 DIY 패키지</Link>
         </li>
         <li>
+          <Link to="/mypage?tab=my-diy-prices">응원달성 DIY 패키지</Link>
+        </li>
+        <li>
           <Link to="/mypage?tab=saved-packages">찜한 패키지</Link>
         </li>
         <li>
