@@ -8,7 +8,7 @@ import styles from '../../../components/List/List.module.css';
 import useFetchData from '../../../hooks/useFetchListData';
 
 import ListTable from '../../../components/List/ListTable';
-import ListModal from '../../../components/List/ListModal';
+import ListModal from '../../../components/List/Modal/ListModal';
 
 const PartnerPackageList = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가

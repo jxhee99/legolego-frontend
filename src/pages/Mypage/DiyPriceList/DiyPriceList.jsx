@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from '../../../components/List/List.module.css';
 //컴포넌트
 import ListTable from '../../../components/List/ListTable';
-import ListModal from '../../../components/List/ListModal';
+import ListModal from '../../../components/List/Modal/ListModal';
 
 //api 요청
 import useFetchData from '../../../hooks/useFetchListData';
