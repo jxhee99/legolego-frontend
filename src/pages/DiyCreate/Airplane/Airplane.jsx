@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { updateAirline, updateRoute } from '../../../_slices/diySlice';
+import { updateRoute } from '../../../_slices/diySlice';
 import { formatDate } from '../../../utils/util';
 
 // components
@@ -44,22 +44,8 @@ const Airplane = () => {
   const onClick = (flightInfo) => {
     console.log('클릭한 비행 정보:', flightInfo);
     const { type, ...info } = flightInfo;
-    const storageKey =
-      type === 'start' ? 'selectedStartFlight' : 'selectedReturnFlight';
+    const storageKey = type === 'start' ? 'startFlight' : 'returnFlight';
     localStorage.setItem(storageKey, JSON.stringify(info));
-
-    dispatch(
-      updateAirline({
-        startAirlineName: '',
-        startingPoint: '',
-        destination: '',
-        startFlightNum: '',
-        boardingDate: '',
-        comeAirlineName: '',
-        comeFlightNum: '',
-        comingDate: '',
-      })
-    );
     dispatch(updateRoute({ startDate, endDate }));
   };
 
@@ -69,11 +55,13 @@ const Airplane = () => {
         <ControllableStates labelName="출발지" setLocation={setStartLocation} />
         <ControllableStates labelName="도착지" setLocation={setEndLocation} />
         <input
+          id="startDate"
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
+          id="endDate"
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
@@ -86,7 +74,6 @@ const Airplane = () => {
       <div className={styles.airplane_information}>
         <div>
           {flightData &&
-            flightData.startData &&
             flightData.startData.length > 0 &&
             flightData.startData.map((flight, index) => (
               <StartCard key={`start-${index}`} {...flight} onClick={onClick} />
@@ -94,9 +81,8 @@ const Airplane = () => {
         </div>
         <div>
           {flightData &&
-            flightData.startData &&
-            flightData.startData.length > 0 &&
-            flightData.startData.map((flight, index) => (
+            flightData.returnData.length > 0 &&
+            flightData.returnData.map((flight, index) => (
               <ReturnCard
                 key={`return-${index}`}
                 {...flight}

@@ -58,5 +58,6 @@ export const {
 export const selectAirline = (state) => state.diyCreate.airline;
 export const selectRoute = (state) => state.diyCreate.route;
 export const selectDetailCourses = (state) => state.diyCreate.detailCourses;
+export const selectDiyCreate = (state) => state.diyCreate;
 
 export default diySlice.reducer;
