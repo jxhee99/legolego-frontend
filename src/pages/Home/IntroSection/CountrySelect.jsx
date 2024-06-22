@@ -30,7 +30,7 @@ export default function CountrySelect() {
           label="어디로 여행가고 싶으신가요?"
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
+            autoComplete: 'new-password',
           }}
         />
       )}

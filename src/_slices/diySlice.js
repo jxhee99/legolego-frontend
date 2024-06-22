@@ -41,7 +41,22 @@ const diySlice = createSlice({
       state.userNum = action.payload;
     },
     addCourse(state, action) {
-      state.detailCourses.push(action.payload);
+      const { dayNum, courses, fileUrl } = action.payload;
+      const existingCourseIndex = state.detailCourses.findIndex(
+        (course) => course.dayNum === dayNum
+      );
+
+      if (existingCourseIndex !== -1) {
+        state.detailCourses[existingCourseIndex].courses.push(...courses);
+      } else {
+        state.detailCourses.push({ dayNum, courses, fileUrl });
+      }
+    },
+    updateCourseNames(state) {
+      state.detailCourses = state.detailCourses.map(detailCourse => {
+        const courseNames = detailCourse.courses.map(course => course.name);
+        return { ...detailCourse, courses: courseNames };
+      });
     },
   },
 });
@@ -53,10 +68,12 @@ export const {
   updatePackageForm,
   updateUserNum,
   addCourse,
+  updateCourseNames,
 } = diySlice.actions;
 
 export const selectAirline = (state) => state.diyCreate.airline;
 export const selectRoute = (state) => state.diyCreate.route;
 export const selectDetailCourses = (state) => state.diyCreate.detailCourses;
+export const selectDiyCreate = (state) => state.diyCreate;
 
 export default diySlice.reducer;

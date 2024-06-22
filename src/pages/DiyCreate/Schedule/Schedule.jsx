@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
-import { useSelector } from 'react-redux';
-import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectRoute,
+  selectDetailCourses,
+  updateCourseNames,
+} from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
+import PackageForm from '../PackageForm/PackageForm';
 
 function createDateRange(startDate, endDate, detailCourses) {
   const dateArray = [];
@@ -14,7 +19,7 @@ function createDateRange(startDate, endDate, detailCourses) {
     );
     dateArray.push({
       dayNum: currentDate.toISOString().split('T')[0],
-      courses: dayCourses,
+      courses: dayCourses.map((course) => course.courses).flat(),
     });
     currentDate.setDate(currentDate.getDate() + 1);
   }
@@ -23,6 +28,7 @@ function createDateRange(startDate, endDate, detailCourses) {
 }
 
 const Schedule = () => {
+  const dispatch = useDispatch();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
   const routeRange =
@@ -49,6 +55,10 @@ const Schedule = () => {
     setModalVisibilities(updatedVisibilities);
   };
 
+  const handleCourse = () => {
+    dispatch(updateCourseNames());
+  };
+
   return (
     <div className={styles.Schedule}>
       <h3>관광지와 맛집을 검색하여 일정을 추가해보세요!</h3>
@@ -62,12 +72,12 @@ const Schedule = () => {
             <ul>
               {detail.courses.map((course, courseIndex) => (
                 <li key={`course-${courseIndex}`}>
-                  <p>{course.place.name}</p>
-                  <p>{course.place.address}</p>
-                  {course.place.photoUrl && (
+                  <p>{course.name}</p>
+                  <p>{course.address}</p>
+                  {course.photoUrl && (
                     <img
-                      src={course.place.photoUrl}
-                      alt={course.place.name}
+                      src={course.photoUrl}
+                      alt={course.name}
                       style={{ maxWidth: '100%', maxHeight: '150px' }}
                     />
                   )}
@@ -85,6 +95,8 @@ const Schedule = () => {
           detail={{ ...detail, index: index }}
         />
       ))}
+      <button onClick={handleCourse}>일정 확정</button>
+      <PackageForm />
     </div>
   );
 };

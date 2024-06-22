@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { OPTIONS } from '../../../../constans/options';
 
 export default function ControllableStates({ labelName, setLocation }) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event, newValue) => {
