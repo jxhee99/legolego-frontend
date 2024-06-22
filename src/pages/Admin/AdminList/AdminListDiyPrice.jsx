@@ -9,7 +9,7 @@ import ListModal from '../../../components/List/Modal/ListModal';
 
 //api함수, util 함수
 import useFetchData from '../../../hooks/useFetchListData';
-import combineDateTime from '../../../utils/combineDateTime';
+import combineDateTime from '../../../utils/DateTime';
 
 const AdminListDiyPrice = () => {
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가

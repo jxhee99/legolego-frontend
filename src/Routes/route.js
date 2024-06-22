@@ -17,6 +17,7 @@ import DiyPriceList from "../pages/Mypage/DiyPriceList/DiyPriceList";
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
+import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList'
@@ -135,6 +136,11 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/lists/diy-prices',
     link: '/admin/lists/diy-prices',
     element: AdminListDiyPrice,
+  },
+  ADMIN_LISTS_PRODUCT: {
+    path: '/admin/lists/products',
+    link: '/admin/lists/products',
+    element: AdminListProduct,
   },
 }
 
