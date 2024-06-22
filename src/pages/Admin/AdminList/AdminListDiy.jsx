@@ -1,51 +1,86 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import styles from '../../../components/List/List.module.css';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
-
-//api함수, util 함수
 import useFetchData from '../../../hooks/useFetchListData';
 
-const AdminListDiy = () => {
-  const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
-  const [selectedItem, setSelectedItem] = useState(null);
+import styles from '../../../components/List/List.module.css';
 
-  //get요청
+const AdminListDiy = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // 초기 상태와 변수 설정
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const initialFilter = query.get('filter') === 'true';
+  const itemsPerPage = 10;
   const endpoint = '/api/packages';
+
+  // 상태 관리
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [page, setPage] = useState(initialPage);
+
+  // 데이터 가져오기 훅
   const { data, loading, refetch } = useFetchData(endpoint);
 
+  // 페이지 및 필터 변경 시 처리
+  useEffect(() => {
+    const newQuery = new URLSearchParams(location.search);
+    newQuery.set('page', page);
+    newQuery.set('filter', filterApplied);
+    navigate({ search: newQuery.toString() });
+  }, [page, filterApplied, navigate, location.search]);
+
+  // 로딩 중일 때
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>로딩 중...</div>;
   }
 
-  // 모달 열기
+  // 필터된 데이터 설정
+  const filteredData = filterApplied
+    ? data.filter((item) => item.packageLikedNum >= 2)
+    : data;
+
+  // 현재 페이지에 맞는 데이터 계산
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = filteredData.slice(startIndex, endIndex);
+
+  // 필터 토글 함수
+  const toggleFilter = () => {
+    setFilterApplied(!filterApplied);
+    setPage(1);
+  };
+
+  // 모달 열기 함수
   const openModal = (item) => {
-    setSelectedItem(item); // 선택된 아이템 설정
-    setModalOpen(true); // 모달 열기
+    setSelectedItem(item);
+    setModalOpen(true);
   };
 
-  // 모달 닫기
+  // 모달 닫기 함수
   const closeModal = () => {
-    setSelectedItem(null); // 선택된 아이템 초기화
-    setModalOpen(false); // 모달 닫기
+    setSelectedItem(null);
+    setModalOpen(false);
   };
 
+  // 삭제 처리 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedItem.packageNum);
     try {
       const response = await axios.delete(
         `/api/admin/packages/${selectedItem.packageNum}`
       );
 
       if (response.status === 204) {
-        // 요청이 성공한 경우
-        console.log('삭제');
-        refetch(); // 데이터 다시 가져오기
+        refetch();
       } else {
         console.error('삭제 실패:', response.status);
       }
@@ -58,6 +93,13 @@ const AdminListDiy = () => {
   return (
     <div className={styles.box}>
       <h2>Diy 목록</h2>
+
+      {/* 필터 버튼 */}
+      <button onClick={toggleFilter} className={styles.filter_button}>
+        {filterApplied ? '전체 보기' : '응원 달성'}
+      </button>
+
+      {/* 목록 테이블 */}
       <ListTable>
         <thead>
           <tr>
@@ -70,14 +112,20 @@ const AdminListDiy = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {currentItems.map((item) => (
             <tr key={item.packageNum}>
               <td>{item.packageNum}</td>
               <td>
                 <Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link>
               </td>
               <td>{item.user.userNickname}</td>
-              <td>{item.packageLikedNum}</td>
+              <td
+                className={
+                  item.packageLikedNum >= 2 ? styles.over_liked_package : ''
+                }
+              >
+                {item.packageLikedNum}
+              </td>
               <td>{item.packageViewNum}</td>
               <td>
                 <button onClick={() => openModal(item)}>삭제</button>
@@ -86,6 +134,8 @@ const AdminListDiy = () => {
           ))}
         </tbody>
       </ListTable>
+
+      {/* 확인 모달 */}
       <ConfirmModal
         isVisible={modalOpen}
         closeModal={closeModal}
@@ -101,6 +151,16 @@ const AdminListDiy = () => {
           </div>
         )}
       </ConfirmModal>
+      <div className={styles.pagination_box}>
+        {/* 페이지네이션 */}
+        <Stack spacing={2} className={styles.pagination}>
+          <Pagination
+            count={Math.ceil(filteredData.length / itemsPerPage)}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+          />
+        </Stack>
+      </div>
     </div>
   );
 };
