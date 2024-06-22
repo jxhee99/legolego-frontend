@@ -119,13 +119,7 @@ const AdminListDiy = () => {
                 <Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link>
               </td>
               <td>{item.user.userNickname}</td>
-              <td
-                className={
-                  item.packageLikedNum >= 2 ? styles.over_liked_package : ''
-                }
-              >
-                {item.packageLikedNum}
-              </td>
+              <td>{item.packageLikedNum}</td>
               <td>{item.packageViewNum}</td>
               <td>
                 <button onClick={() => openModal(item)}>삭제</button>

@@ -106,7 +106,7 @@ const AdminListProduct = () => {
             <th>Name</th>
             <th>작성자</th>
             <th>마감일</th>
-            <th>모집확정여부</th>
+            <th>모집확정</th>
             <th>삭제</th>
           </tr>
         </thead>
@@ -120,7 +120,9 @@ const AdminListProduct = () => {
                 </Link>
               </td>
               <td>{item.userNickname}</td>
-              <td>{formatDateTime(item.recruitmentDeadline)}</td>{' '}
+              <td style={{ width: '15%' }}>
+                {formatDateTime(item.recruitmentDeadline)}
+              </td>
               {/* formatDateTime 함수 호출 수정 */}
               <td>
                 {item.recruitmentConfirmed ? (

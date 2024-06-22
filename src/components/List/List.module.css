@@ -1,25 +1,21 @@
 .box{
 width: 100%;
-margin-top: 1rem;
+margin: 1rem;
 
 }
 
 .box h2 {
-  margin: 1.5rem;
+  margin-top: 1.5rem
 }
 
 .box .filter_button{
-  margin: 0 1.5rem;
+  margin: 1.5rem 0;
   width: 100px;
   height: 32px;
   border: 1px solid #E0E0E0;
   border-radius: 12px;
 }
 
-/* 25개(2개이상)인 td */
-.over_liked_package {
-  background-color: rgb(227, 248, 255);
-}
 
 /* 모달창 내부 폼 스타일 */
 .modal_form{
