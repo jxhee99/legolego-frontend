@@ -13,6 +13,9 @@
   --color-blue: #03e8f9;
   --color-orange: #fd6413;
   --color-gray: #1b1e26;
+  --color-dark-gray: #333333;
+  --color-blue: #007bff;
+  --color-border: #dddddd;
 
   /* Size */
   --size-max-width: 1200px;

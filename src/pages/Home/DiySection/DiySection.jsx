@@ -1,35 +1,52 @@
 import styles from '../Home.module.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import DiyCard from '../../../components/Card/DiyCard/DiyCard';
 import Avatar from '../../../components/Avatar/Avatar';
-import { getRandomElement } from '../../../utils/util';
 
-const userProfileImages = [
-  'https://randomuser.me/api/portraits/women/1.jpg',
-  'https://randomuser.me/api/portraits/men/1.jpg',
-  'https://randomuser.me/api/portraits/women/2.jpg',
-  'https://randomuser.me/api/portraits/men/2.jpg',
-  'https://randomuser.me/api/portraits/women/3.jpg',
-  'https://randomuser.me/api/portraits/men/3.jpg',
-  'https://randomuser.me/api/portraits/women/4.jpg',
-];
-
-const userNames = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Faythe', 'Grace'];
+const API_URL = '/api/packages';
 
 const DiySection = () => {
+  const [diyData, setDiyData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(API_URL);
+      setDiyData(response.data);
+    } catch (error) {
+      setError('데이터를 가져오는 중 문제가 발생했습니다.');
+      console.error('Error', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>로딩 중...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <section className={styles.DiySection}>
       <h2>방금 올라온 DIY 패키지</h2>
       <div className={styles.diy_section_cards}>
-        <DiyCard
-          imageUrl="https://picsum.photos/500/300"
-          title="문화재 위주로 다니는 여행"
-          user={
+        {diyData.map((packages) => (
+          <DiyCard key={packages.packageNum} {...packages} page={true}>
             <Avatar
-              nickname={getRandomElement(userNames)}
-              imageUrl={getRandomElement(userProfileImages)}
+              nickname={packages.user.userName}
+              imageUrl={packages.profileImg}
             />
-          }
-        />
+          </DiyCard>
+        ))}
       </div>
     </section>
   );

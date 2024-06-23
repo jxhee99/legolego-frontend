@@ -1,22 +1,7 @@
 /* IntroSection */
 .IntroSection {
-  padding: 3.5rem 3rem 7rem 3rem;
-  background-color: lightgreen;
-}
-
-.IntroSection .intro_section_search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3rem;
-}
-
-.IntroSection .intro_section_search div {
-  background-color: var(--color-white);
-}
-
-.IntroSection .intro_section_search button {
-  height: 56px;
+  padding: 8rem;
+  background-color: #d380fd;
 }
 
 /* PackageSection */
