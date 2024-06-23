@@ -3,20 +3,22 @@ import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
 import PackageDetail from '../pages/PackageDetail/PackageDetail';
 import Diy from '../pages/Diy/Diy';
-import DiyCreate from '../pages/DiyCreate/DiyCreate';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import Review from '../pages/Review/Review';
-
-import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
+import Payment from '../pages/Payment/Payment';
+
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
+import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
+
 //관리자
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
+
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
@@ -57,6 +59,11 @@ export const ROUTE = {
     path: '/review',
     link: '/review',
     element: Review,
+  },
+  PAYMENT: {
+    path: '/payment',
+    link: '/payment',
+    element: Payment,
   },
 };
 

@@ -1,6 +1,9 @@
 import styles from '../PackageDetail.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const PackageInformation = () => {
+  const navigate = useNavigate();
+
   return (
     <section className={styles.PackageInformation}>
       <div className={styles.left_box}>
@@ -13,7 +16,7 @@ const PackageInformation = () => {
         <div className={styles.progress_bar}>
           <div className={styles.progress_bar_inner}></div>
         </div>
-        <button>레고! 결제하기</button>
+        <button onClick={() => navigate('/payment')}>레고! 결제하기</button>
       </div>
     </section>
   );
