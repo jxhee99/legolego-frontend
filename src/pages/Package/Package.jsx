@@ -8,7 +8,7 @@ const Package = () => {
 
   const fetchPackage = async () => {
     try {
-      const response = await axios.get(`/products`);
+      const response = await axios.get(`/api/products`);
       console.log(response.data);
       setPackageData(response.data);
     } catch (error) {

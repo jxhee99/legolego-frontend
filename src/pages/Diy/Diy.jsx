@@ -1,69 +1,51 @@
 import styles from './Diy.module.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import DiyCard from '../../components/Card/DiyCard/DiyCard';
 import Avatar from '../../components/Avatar/Avatar';
-import { getRandomElement } from '../../utils/util';
 
-const titles = [
-  'Exploring the Alps',
-  'Journey to the Sahara',
-  'Adventure in the Amazon',
-  'Mystery of the Pyramids',
-  'Escape to Bali',
-  'Safari in Kenya',
-  'Discover Japan',
-];
-
-const partnerNames = [
-  'TravelCo',
-  'Globetrotter',
-  'Wanderlust',
-  'Explorer',
-  'VacationHub',
-  'TourMaster',
-  'WorldVoyage',
-];
-
-const userNames = ['Alice', 'Bob', 'Charlie', 'Dave', 'Eve', 'Faythe', 'Grace'];
-
-const userProfileImages = [
-  'https://randomuser.me/api/portraits/women/1.jpg',
-  'https://randomuser.me/api/portraits/men/1.jpg',
-  'https://randomuser.me/api/portraits/women/2.jpg',
-  'https://randomuser.me/api/portraits/men/2.jpg',
-  'https://randomuser.me/api/portraits/women/3.jpg',
-  'https://randomuser.me/api/portraits/men/3.jpg',
-  'https://randomuser.me/api/portraits/women/4.jpg',
-];
-
-const mock = Array.from({ length: 7 }, (_, index) => ({
-  index: index + 1,
-  imageUrl: 'https://picsum.photos/500/300',
-  title: getRandomElement(titles),
-  partnerName: getRandomElement(partnerNames),
-  userName: getRandomElement(userNames),
-  userProfileImage: getRandomElement(userProfileImages),
-}));
+const API_URL = '/api/packages';
 
 const Diy = () => {
+  const [diyData, setDiyData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(API_URL);
+      setDiyData(response.data);
+    } catch (error) {
+      setError('데이터를 가져오는 중 문제가 발생했습니다.');
+      console.error('Error', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>로딩 중...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <section className={`${styles.Diy} layout`}>
       <h2>DIY 패키지를 응원해주세요!</h2>
       <div className={styles.diy_cards}>
-        {mock.map((item) => (
-          <DiyCard
-            page={true}
-            userName={item.userName}
-            key={item.index}
-            imageUrl={item.imageUrl}
-            title={item.title}
-            partnerName={item.partnerName}
-            user={
-              <Avatar
-                nickname={item.userName}
-                imageUrl={item.userProfileImage}
-              />
-            }
-          />
+        {diyData.map((packages) => (
+          <DiyCard key={packages.packageNum} {...packages} page={true}>
+            <Avatar
+              nickname={packages.user.userName}
+              imageUrl={packages.profileImg}
+            />
+          </DiyCard>
         ))}
       </div>
     </section>

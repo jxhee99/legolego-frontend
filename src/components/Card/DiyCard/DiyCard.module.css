@@ -4,6 +4,7 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  border: 1px solid #bebebe;
 }
 
 .DiyCard .diy_card_thumbnail {
