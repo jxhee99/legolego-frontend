@@ -1,40 +1,80 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from '../../../components/List/List.module.css';
-//컴포넌트
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ListTable from '../../../components/List/ListTable';
-import ListModal from '../../../components/List/ListModal';
-
-//api 요청
+import ListModal from '../../../components/List/Modal/ListModal';
 import useFetchData from '../../../hooks/useFetchListData';
 
 const DiyPriceList = () => {
-  const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
-  const [selectedItem, setSelectedItem] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  //get요청
+  // 초기 상태와 변수 설정
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const initialFilter = query.get('filter') || null; // 초기값 'null'로 설정
+  const itemsPerPage = 10;
+
+  // 상태관리
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [filter, setFilter] = useState(initialFilter); // filter 상태 추가
+  const [page, setPage] = useState(initialPage);
+
+  // get 요청
   const endpoint = '/api/diylists/user/1';
   const { data, loading, refetch } = useFetchData(endpoint);
 
+  // 페이지 및 필터 변경 시 처리
+  useEffect(() => {
+    const newQuery = new URLSearchParams(location.search);
+    newQuery.set('page', page);
+    newQuery.set('filter', filter);
+    navigate({ search: newQuery.toString() });
+  }, [page, filter, navigate, location.search]);
+
+  // 로딩 중일 때
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  // 필터된 데이터 설정
+  let filteredData = [...data];
+  if (filter === 'suggest') {
+    filteredData = data.filter((item) => item.isSelected === null);
+  } else if (filter === 'product') {
+    filteredData = data.filter((item) => item.isRegistered === true);
+  }
+
+  // 현재 페이지에 맞는 데이터 계산
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = filteredData.slice(startIndex, endIndex);
+
   // 모달 열기
   const openModal = (item) => {
-    setSelectedItem(item); // 선택된 아이템 설정
-    setModalOpen(true); // 모달 열기
+    setSelectedItem(item);
+    setModalOpen(true);
   };
 
   // 모달 닫기
   const closeModal = () => {
-    setSelectedItem(null); // 선택된 아이템 초기화
-    setModalOpen(false); // 모달 닫기
+    setSelectedItem(null);
+    setModalOpen(false);
   };
 
-  //승인요청
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    setFilter(newFilter);
+    setPage(1);
+  };
+
+  // 승인 요청
   const handleApprove = async (item) => {
     try {
       const response = await axios.post(
@@ -42,7 +82,6 @@ const DiyPriceList = () => {
       );
 
       if (response.status === 200) {
-        // 요청이 성공한 경우
         console.log('승인');
         refetch();
       } else {
@@ -55,6 +94,33 @@ const DiyPriceList = () => {
 
   return (
     <>
+      <ToggleButtonGroup
+        color="primary"
+        value={filter}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        <ToggleButton
+          value="suggest"
+          sx={{
+            borderRadius: '12px',
+            height: 32,
+          }}
+        >
+          제안
+        </ToggleButton>
+        <ToggleButton
+          value="product"
+          sx={{
+            borderRadius: '12px',
+            height: 32,
+          }}
+        >
+          상품
+        </ToggleButton>
+      </ToggleButtonGroup>
+
       <ListTable>
         <thead>
           <tr>
@@ -68,7 +134,7 @@ const DiyPriceList = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {currentItems.map((item) => (
             <tr key={item.listNum}>
               <td>{item.diyPackage.packageNum}</td>
               <td>
@@ -128,6 +194,16 @@ const DiyPriceList = () => {
           </div>
         )}
       </ListModal>
+      {/* 페이지네이션 */}
+      <div className={styles.pagination_box}>
+        <Stack spacing={2} className={styles.pagination}>
+          <Pagination
+            count={Math.ceil(filteredData.length / itemsPerPage)}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+          />
+        </Stack>
+      </div>
     </>
   );
 };

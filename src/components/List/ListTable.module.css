@@ -6,8 +6,8 @@
   width: 100%;
   text-align: center;
   line-height: 48px;
-  border-collapse: separate;
-  border-spacing: 16px 0;
+  border-collapse: collapse;
+  /* border-spacing: 16px 0; */
   border: none;
 }
 

@@ -1,98 +1,115 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from '../../../components/List/List.module.css';
-
 import useFetchData from '../../../hooks/useFetchListData';
-
 import ListTable from '../../../components/List/ListTable';
-import ListModal from '../../../components/List/ListModal';
+import ListModal from '../../../components/List/Modal/ListModal';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const PartnerPackageList = () => {
-  const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
-  const [selectedItem, setSelectedItem] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  // 초기상태와 변수
+  const itemsPerPage = 10; // 필요에 따라 조정 가능
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const endpoint = '/api/partner/over-liked-packages/3';
+
+  // 상태 관리
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [page, setPage] = useState(initialPage);
   const [price, setPrice] = useState('');
   const [necessaryPeople, setNecessaryPeople] = useState('');
   const [specialBenefits, setSpecialBenefits] = useState('');
 
-  const endpoint = '/api/partner/over-liked-packages/3';
-  //get요청
+  // 데이터 가져오는 커스텀 훅 사용
   const { data, loading, refetch } = useFetchData(endpoint);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // 페이지 변경 시 처리
+  useEffect(() => {
+    const newQuery = new URLSearchParams(location.search);
+    newQuery.set('page', page);
+    navigate({ search: newQuery.toString() });
+  }, [page, navigate, location.search]);
 
   // 모달 열기
   const openModal = (item) => {
-    setSelectedItem(item); // 선택된 아이템 설정
-    setModalOpen(true); // 모달 열기
+    setSelectedItem(item);
+    setModalOpen(true);
   };
 
   // 모달 닫기
   const closeModal = () => {
-    setSelectedItem(null); // 선택된 아이템 초기화
-    setNecessaryPeople('');
+    setSelectedItem(null);
     setPrice('');
+    setNecessaryPeople('');
     setSpecialBenefits('');
-    setModalOpen(false); // 모달 닫기
+    setModalOpen(false);
   };
 
+  // 입력 값 변경 시 처리
   const handleInputChange = (setValue) => (e) => {
-    const value = e.target.value;
-    setValue(value);
-    console.log(value);
+    setValue(e.target.value);
   };
 
+  // 제출 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
       packageNum: selectedItem.diyPackage.packageNum,
-      price: price,
-      necessaryPeople: necessaryPeople,
-      specialBenefits: specialBenefits,
+      price,
+      necessaryPeople,
+      specialBenefits,
     };
 
     try {
       const response = await axios.post(
         `/api/partner/over-liked-packages/3/offer`,
-        formData, // JSON 형식의 데이터
-        {
-          headers: {
-            'Content-Type': 'application/json', // JSON 형식으로 보냄을 명시
-          },
-        }
+        formData,
+        { headers: { 'Content-Type': 'application/json' } }
       );
-      console.log('등록할 가격제안:', formData);
+
       if (response.status === 201) {
-        // 요청이 성공한 경우
         closeModal();
         refetch();
       }
     } catch (err) {
-      console.error('상품 등록 중 오류:', err);
+      console.error('제안 등록 중 오류:', err);
     }
   };
 
+  // 로딩 중이면 로딩 표시
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
+  // 현재 페이지에 해당하는 데이터 계산
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = data.slice(startIndex, endIndex);
+
+  // 화면 렌더링
   return (
     <div className={styles.box}>
-      <h2>Diy 목록</h2>
+      <h2 style={{ margin: '1.5rem 0' }}>Diy 목록</h2>
       <ListTable>
         <thead>
           <tr>
             <th>패키지 번호</th>
-            <th>Name</th>
+            <th>이름</th>
             <th>작성자</th>
-            <th>응원 수</th>
+            <th>좋아요 수</th>
             <th>가격 등록</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {currentItems.map((item) => (
             <tr key={item.overLikedListNum}>
               <td>{item.diyPackage.packageNum}</td>
               <td>
@@ -126,7 +143,7 @@ const PartnerPackageList = () => {
                 onChange={handleInputChange(setPrice)}
                 required
               />
-              <br></br>
+              <br />
               <label>모집 인원:</label>
               <input
                 type="text"
@@ -135,7 +152,7 @@ const PartnerPackageList = () => {
                 onChange={handleInputChange(setNecessaryPeople)}
                 required
               />
-              <br></br>
+              <br />
               <label>특별 혜택:</label>
               <input
                 type="text"
@@ -144,7 +161,7 @@ const PartnerPackageList = () => {
                 onChange={handleInputChange(setSpecialBenefits)}
                 required
               />
-              <br></br>
+              <br />
               <div className={styles.button_box}>
                 <button type="submit">등록하기</button>
               </div>
@@ -152,6 +169,16 @@ const PartnerPackageList = () => {
           </div>
         )}
       </ListModal>
+      {/* 페이지네이션 */}
+      <div className={styles.pagination_box}>
+        <Stack spacing={2} className={styles.pagination}>
+          <Pagination
+            count={Math.ceil(data.length / itemsPerPage)}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+          />
+        </Stack>
+      </div>
     </div>
   );
 };

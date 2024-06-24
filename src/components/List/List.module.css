@@ -1,12 +1,21 @@
 .box{
 width: 100%;
-margin-top: 1rem;
+margin: 1rem;
 
 }
 
 .box h2 {
-  margin: 1.5rem;
+  margin-top: 1.5rem
 }
+
+.box .filter_button{
+  margin: 1.5rem 0;
+  width: 100px;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}
+
 
 /* 모달창 내부 폼 스타일 */
 .modal_form{
@@ -68,4 +77,36 @@ margin-top: 1rem;
 
 .detail p {
   height: 40px;
+}
+
+/* 확인 모달창 내부 */
+.confirm_modal_inner{
+    width: 80%;
+      height: 80%;
+      margin-top: 5rem;
+}
+
+.confirm_modal_inner p {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.confirm_modal_inner div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.confirm_modal_inner button {
+      margin-top: 2rem;
+      width: 80px;
+      height: 40px;
+      border: 1px solid #E0E0E0;
+      border-radius: 12px;
+}
+
+/* 페이지네이션 위치 */
+.pagination_box{
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
 }

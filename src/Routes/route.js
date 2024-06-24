@@ -142,6 +142,12 @@ export const ROUTE_ADMIN_LISTS = {
     link: '/admin/lists/diy-prices',
     element: AdminListDiyPrice,
   },
+
+  ADMIN_LISTS_PRODUCT: {
+    path: '/admin/lists/products',
+    link: '/admin/lists/products',
+    element: AdminListProduct,
+  },
 };
 
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
