@@ -5,7 +5,7 @@
 }
 
 .DiyDetail h3 {
-  margin: 1.5rem 0;
+  margin: 2rem 0;
 }
 
 /* 썸네일, 유저, 응원하기 */
@@ -179,13 +179,24 @@
   height: 24px;
 }
 
-.imgs_box{
+.imgs_detail{
+  padding: 20px 0;
+  min-height: 180px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #E0E0E0;
+}
+
+.imgs_box{
+  width: 964px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  overflow: hidden;
 }
 
 .imgs_box img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
 }
