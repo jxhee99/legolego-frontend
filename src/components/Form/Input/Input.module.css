@@ -1,4 +1,24 @@
 .Input {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.Input label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.Input input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.Input input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
