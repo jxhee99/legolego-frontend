@@ -25,8 +25,6 @@ import AdminLogin from '../pages/AdminLogin/AdminLogin';
 import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
 import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
-import PartnerLogin from '../pages/PartnerLogin/PartnerLogin';
-import PartnerSignup from '../pages/PartnerSignUp/PartnerSignUp';
 
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
@@ -194,17 +192,6 @@ export const ROUTE_PARTNER_LISTS = {
     path: '/partner/lists/prices',
     link: '/partner/lists/prices',
     element: PartnerPriceList,
-  },
-  PARTNER_LOGIN: {
-    path: '/partner/login',
-    link: '/partner/login',
-    element: PartnerLogin,
-  },
-
-  PARTNER_SIGNUP: {
-    path: '/partner/signup',
-    link: '/partner/signup',
-    element: PartnerSignup,
   },
 };
 

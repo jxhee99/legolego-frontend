@@ -1,5 +1,5 @@
 import styles from './PartnerSignUp.module.css';
-import Input from '../../components/Form/Input/Input';
+import Input from '../../../Form/Input/Input';
 
 const PartnerSignUp = () => {
   return (
@@ -10,6 +10,8 @@ const PartnerSignUp = () => {
         <Input id="password" text="비밀번호" type="password" />
         <Input id="text" text="회사명" type="text" />
         <Input id="mobile" text="휴대폰번호" type="mobile" />
+        <p>sdsds</p>
+        <button>회원가입</button>
       </form>
     </div>
   );
