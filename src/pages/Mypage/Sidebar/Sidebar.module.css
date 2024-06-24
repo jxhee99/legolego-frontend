@@ -1,0 +1,54 @@
+.sidebar {
+  width: 200px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-right: 1px solid #dee2e6;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar li a,
+.sidebar li button {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.sidebar li a:hover,
+.sidebar li button:hover {
+  background-color: #5a32a3;
+  color: #fff;
+}
+
+.active a {
+  background-color: #b39ddb;
+  color: #fff;
+}
+
+.deleteButton {
+  background-color: #6f42c1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #5a32a3;
+}

@@ -12,3 +12,48 @@
   border: 1px solid #95c5f2;
   padding: 2rem;
 }
+
+.tableContainer {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table thead {
+  background-color: #f7f7f7;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table th {
+  border-bottom: 2px solid #ddd;
+}
+
+.table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.status {
+  display: flex;
+  gap: 10px;
+}
+
+.status span {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #e0f7fa;
+  color: #00796b;
+}
