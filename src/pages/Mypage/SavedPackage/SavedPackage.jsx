@@ -1,9 +1,9 @@
-import ListTable from '../../../components/List/ListTable';
+import styles from '../Mypage.module.css';
 
 const SavedPackage = () => {
   return (
-    <div>
-      <ListTable>
+    <div className={styles.tableContainer}>
+      <tbody className={styles.table}>
         <thead>
           <tr>
             <th>상품번호</th>
@@ -20,7 +20,7 @@ const SavedPackage = () => {
             <td>1</td>
             <td>베트남으로 떠나요!</td>
             <td>120000</td>
-            <td>
+            <td className={styles.status}>
               <span>응원 받는 중</span> <span>8/20</span>
             </td>
             <td>2024.06.24</td>
@@ -31,7 +31,7 @@ const SavedPackage = () => {
             <td>2</td>
             <td>스위스 자연여행</td>
             <td>120000</td>
-            <td>
+            <td className={styles.status}>
               <span>여행사 제안 완료</span>
             </td>
             <td>2024.06.24</td>
@@ -39,7 +39,7 @@ const SavedPackage = () => {
             <td></td>
           </tr>
         </tbody>
-      </ListTable>
+      </tbody>
     </div>
   );
 };

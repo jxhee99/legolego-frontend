@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from '../../../components/List/List.module.css';
+import style from '../Mypage.module.css';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -121,53 +122,55 @@ const DiyPriceList = () => {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      <ListTable>
-        <thead>
-          <tr>
-            <th>패키지 번호</th>
-            <th>Name</th>
-            <th>partner</th>
-            <th>가격</th>
-            <th>상세</th>
-            <th>제안받기</th>
-            <th>상품등록</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems.map((item) => (
-            <tr key={item.listNum}>
-              <td>{item.diyPackage.packageNum}</td>
-              <td>
-                <Link to={`/diy/${item.diyPackage.packageNum}`}>
-                  {item.diyPackage.packageName}
-                </Link>
-              </td>
-              <td>{item.partner.companyName}</td>
-              <td>{item.price}</td>
-              <td onClick={() => openModal(item)}>
-                <button>보기</button>
-              </td>
-              <td>
-                {item.isSelected === null && (
-                  <span onClick={() => handleApprove(item)}>
-                    <button>받기</button>
-                  </span>
-                )}
-                {item.isSelected === true && <span>수락</span>}
-                {item.isSelected === false && <span>거절</span>}
-              </td>
-              <td>
-                {item.isRegistered && (
-                  <Link to={`/package-product/${item.productNum}`}>완료</Link>
-                )}
-                {item.isSelected === true && item.isRegistered === false && (
-                  <span>대기중</span>
-                )}
-              </td>
+      <div className={style.tableContainer}>
+        <table className={style.table}>
+          <thead>
+            <tr>
+              <th>패키지 번호</th>
+              <th>Name</th>
+              <th>partner</th>
+              <th>가격</th>
+              <th>상세</th>
+              <th>제안받기</th>
+              <th>상품등록</th>
             </tr>
-          ))}
-        </tbody>
-      </ListTable>
+          </thead>
+          <tbody>
+            {currentItems.map((item) => (
+              <tr key={item.listNum}>
+                <td>{item.diyPackage.packageNum}</td>
+                <td>
+                  <Link to={`/diy/${item.diyPackage.packageNum}`}>
+                    {item.diyPackage.packageName}
+                  </Link>
+                </td>
+                <td>{item.partner.companyName}</td>
+                <td>{item.price}</td>
+                <td onClick={() => openModal(item)}>
+                  <button>보기</button>
+                </td>
+                <td>
+                  {item.isSelected === null && (
+                    <span onClick={() => handleApprove(item)}>
+                      <button>받기</button>
+                    </span>
+                  )}
+                  {item.isSelected === true && <span>수락</span>}
+                  {item.isSelected === false && <span>거절</span>}
+                </td>
+                <td>
+                  {item.isRegistered && (
+                    <Link to={`/package-product/${item.productNum}`}>완료</Link>
+                  )}
+                  {item.isSelected === true && item.isRegistered === false && (
+                    <span>대기중</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <ListModal
         isVisible={modalOpen}
         closeModal={closeModal}

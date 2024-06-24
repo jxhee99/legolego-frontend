@@ -21,6 +21,8 @@ import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 import AdminLogin from '../pages/AdminLogin/AdminLogin';
+import AdminAccount from '../pages/Admin/AdminAccount/AdminAccount';
+import PreTrips from '../pages/Admin/PreTrips/PreTrips';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
@@ -171,6 +173,16 @@ export const ROUTE_ADMIN_LISTS = {
     link: '/admin/login',
     element: AdminLogin,
   },
+  ADMIN_PROFILE: {
+    path: '/admin/profile',
+    link: '/admin/profile',
+    element: AdminAccount,
+  },
+  ADMIN_LISTS_PRE_TRIPS: {
+    path: '/admin/lists/pre-trips',
+    link: '/admin/lists/pre-trips',
+    element: PreTrips,
+  },
 };
 
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
@@ -194,6 +206,11 @@ export const ROUTE_PARTNER_LISTS = {
     path: '/partner/lists/prices',
     link: '/partner/lists/prices',
     element: PartnerPriceList,
+  },
+  PARTNER_PROFILE: {
+    path: '/partner/profile',
+    link: '/partner/profile',
+    element: AdminAccount,
   },
 };
 
