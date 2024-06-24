@@ -18,6 +18,7 @@ import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
+import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
