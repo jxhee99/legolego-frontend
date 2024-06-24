@@ -1,16 +1,17 @@
 import styles from './InputField.module.css';
 
-const InputField = ({ type, text, value, onChange }) => {
+const InputField = ({ type, text, value = '', onChange, name }) => {
   return (
     <div className={styles.InputField}>
       <input
-        id={text}
+        id={name}
+        name={name}
         type={type}
         placeholder=" "
         value={value}
         onChange={onChange}
       />
-      <label htmlFor={text}>{text}</label>
+      <label htmlFor={name}>{text}</label>
     </div>
   );
 };

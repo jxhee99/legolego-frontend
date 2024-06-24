@@ -25,6 +25,10 @@ import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
 import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
 
+// 아이디/비밀번호 찾기
+import ResetPassword from '../pages/ResetPassword/ResetPassword';
+import FindAccount from '../pages/FindAccount/FindAccount';
+
 export const ROUTE = {
   ABOUT: {
     path: '/',
@@ -65,6 +69,16 @@ export const ROUTE = {
     path: '/payment',
     link: '/payment',
     element: Payment,
+  },
+  FIND_ACCOUNT: {
+    path: 'find-account',
+    link: 'find-account',
+    element: FindAccount,
+  },
+  RESET_PASSWORD: {
+    path: 'reset-password',
+    link: 'reset-password',
+    element: ResetPassword,
   },
 };
 
