@@ -4,27 +4,63 @@
   padding: 4rem 3rem;
 }
 
-/* Description */
+.DiyDetail h3 {
+  margin: 1.5rem 0;
+}
+
+/* 썸네일, 유저, 응원하기 */
+.thumbnail_cheer_box{
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
 .DiyDetail .diy_thumbnail {
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
+  width: 600px;
+  height: 600px;
 }
 
 .DiyDetail .diy_thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
-.DiyDetail .cheering {
+/* 응원하기 */
+.DiyDetail .cheer_user_box {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-end;
+}
+
+.DiyDetail .like_view_box {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+}
+
+.DiyDetail .user{
   display: flex;
   align-items: center;
-  gap: 3rem;
+  justify-content: end;
+  gap: 0.5rem;
+  width: 120x;
+  height: 60px;
 }
 
-.DiyDetail .cheerButton {
-  background-color: #007bff;
+.user img{
+  width:40px;
+  height: 40px;
+}
+
+
+.DiyDetail .cheer_button {
+  background-color: #000;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -34,16 +70,122 @@
   transition: background-color 0.3s;
 }
 
-.cheerButton:hover {
-  background-color: #0056b3;
+
+
+/* 설명 박스 */
+.DiyDetail .desc_box {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  min-height: 160px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cheeredButton {
-  background-color: #28a745;
+/* 항공권 */
+.DiyDetail .airline_box h3{
+  margin: 1.5rem 0;
+}
+
+.airline_box .card_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.airline_box .AirplaneCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 400px;
+  height: 200px;
+
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.air_icon_box {
+  height: 48px;
+}
+
+.airline_box  .badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: inline-block;
+  background-color: black;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.airline_box .body {
+  margin-top: 1rem;
+}
+
+.airline_box .airport{
+  display: flex;
+  font-weight: bold;
+}
+
+.airline_box .to{
+  margin:  0 1.5rem;
+}
+
+/* 여행일정 박스 */
+.schedule_box{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.schedule_box h3{
+  margin: 1.5rem 0;
+}
+
+.day_course_box{
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border:1px solid #E0E0E0 ;
+}
+
+.day_box{
+  width: 10%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: not-allowed;
-  border-radius: 5px;
+}
+
+.course_box{
+  width: 100%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.course_box img{
+  position: absolute;
+  right:0.5rem;
+  width: 24px;
+  height: 24px;
+}
+
+.imgs_box{
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.imgs_box img {
+  width: 200px;
+  height: 200px;
 }

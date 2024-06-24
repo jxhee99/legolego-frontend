@@ -11,7 +11,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 //api함수, util 함수
-import useFetchData from '../../../hooks/useFetchListData';
+import useFetchData from '../../../hooks/useFetchDiyData';
 import { combineDateTime } from '../../../utils/DateTime';
 
 const AdminListDiyPrice = () => {

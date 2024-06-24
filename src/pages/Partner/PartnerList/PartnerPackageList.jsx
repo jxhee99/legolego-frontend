@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from '../../../components/List/List.module.css';
-import useFetchData from '../../../hooks/useFetchListData';
+import useFetchData from '../../../hooks/useFetchDiyData';
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
 import Pagination from '@mui/material/Pagination';

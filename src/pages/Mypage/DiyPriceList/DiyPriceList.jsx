@@ -8,7 +8,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
-import useFetchData from '../../../hooks/useFetchListData';
+import useFetchData from '../../../hooks/useFetchDiyData';
 
 const DiyPriceList = () => {
   const location = useLocation();
