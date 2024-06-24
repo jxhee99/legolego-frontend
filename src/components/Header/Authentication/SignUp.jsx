@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import {
-  signUpRequest,
-  signUpSuccess,
-  signUpFailure,
-} from '../../../_slices/authSlice';
 import styles from '../Header.module.css';
 import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
@@ -56,20 +51,6 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
-    if (formValues['비밀번호'] !== formValues['비밀번호 재확인']) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
-
-    dispatch(signUpRequest());
-
-    try {
-      const response = await axios.post('/api/signup', formValues);
-      dispatch(signUpSuccess(response.data.user));
-    } catch (error) {
-      dispatch(signUpFailure(error.message));
-    }
   };
 
   return (

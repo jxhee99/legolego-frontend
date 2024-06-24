@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './FindAccount.module.css';
 import Form from '../../components/Form/Form';
 import InputField from '../../components/Form/InputField';
 import SubmitButton from '../../components/Form/SubmitButton';
+import axios from 'axios';
 
 const FindAccount = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const FindAccount = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://your-backend-api/find-account', {
+      const response = await axios('http://your-backend-api/find-account', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +57,6 @@ const FindAccount = () => {
         submitButton={
           <SubmitButton text="아이디 찾기" onClick={handleSubmit} />
         }
-        findAccount={<p>비밀번호 찾기</p>}
       />
     </div>
   );

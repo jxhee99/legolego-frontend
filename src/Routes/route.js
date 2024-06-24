@@ -19,6 +19,7 @@ import Admin from '../pages/Admin/Admin';
 import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
+import AdminLogin from '../pages/AdminLogin/AdminLogin';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
@@ -79,6 +80,11 @@ export const ROUTE = {
     path: 'reset-password',
     link: 'reset-password',
     element: ResetPassword,
+  },
+  ADMIN_LOGIN: {
+    path: '/admin-login',
+    link: '/admin-login',
+    element: AdminLogin,
   },
 };
 

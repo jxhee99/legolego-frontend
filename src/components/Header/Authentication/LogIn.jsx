@@ -19,13 +19,24 @@ const LogIn = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/auth/login', { email, password });
+      const response = await axios.post('/api/auth/login', { email, password });
       console.log(response);
       dispatch(login(response.data.user));
-      navigate('/home');
     } catch (error) {
       setError('아이디와 비밀번호를 확인해주세요.');
     }
+
+    if (isAuthenticated) {
+      navigate('/home');
+    }
+  };
+
+  const handleFindAccount = () => {
+    navigate('/find-account');
+  };
+
+  const handleResetPassword = () => {
+    navigate('/reset-password');
   };
 
   return (
@@ -50,7 +61,12 @@ const LogIn = () => {
             />,
           ]}
           submitButton={<SubmitButton text="로그인" onClick={handleLogin} />}
-          findAccount={<p>아이디/비밀번호 찾기</p>}
+          findAccount={
+            <p>
+              <span onClick={handleFindAccount}>아이디 찾기</span>{' '}
+              <span onClick={handleResetPassword}>비밀번호 찾기</span>
+            </p>
+          }
         />
       </Modal>
     </>
