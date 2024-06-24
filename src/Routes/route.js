@@ -12,26 +12,26 @@ import Review from '../pages/Review/Review';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
 //마이페이지
-import DiyPriceList from "../pages/Mypage/DiyPriceList/DiyPriceList";
+import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
 //관리자
 import Admin from '../pages/Admin/Admin';
-import AdminListDiy from "../pages/Admin/AdminList/AdminListDiy";
+import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
-import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList'
+import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
 import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
 
 export const ROUTE = {
   ABOUT: {
-    path: '/about',
-    link: '/about',
+    path: '/',
+    link: '/',
     element: About,
   },
   HOME: {
-    path: '/',
-    link: '/',
+    path: '/home',
+    link: '/home',
     element: Home,
   },
   PACKAGE: {
@@ -123,10 +123,9 @@ export const ROUTE_ADMIN = {
     link: '/admin',
     element: Admin,
   },
-}
+};
 
 export const ROUTE_ADMIN_LISTS = {
-
   ADMIN_LISTS_DIY: {
     path: '/admin/lists/diy-packages',
     link: '/admin/lists/diy-packages',
@@ -137,12 +136,13 @@ export const ROUTE_ADMIN_LISTS = {
     link: '/admin/lists/diy-prices',
     element: AdminListDiyPrice,
   },
+
   ADMIN_LISTS_PRODUCT: {
     path: '/admin/lists/products',
     link: '/admin/lists/products',
     element: AdminListProduct,
   },
-}
+};
 
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
 
@@ -153,10 +153,9 @@ export const ROUTE_PARTNER = {
     link: '/partner',
     element: Partner,
   },
-}
+};
 
 export const ROUTE_PARTNER_LISTS = {
-
   PARTNER_LISTS_PACKAGES: {
     path: '/partner/lists/packages',
     link: '/partenr/lists/packages',
@@ -166,8 +165,7 @@ export const ROUTE_PARTNER_LISTS = {
     path: '/partner/lists/prices',
     link: '/partner/lists/prices',
     element: PartnerPriceList,
-  }
-}
+  },
+};
 
 export const ROUTE_PARTNER_ARR = Object.values(ROUTE_PARTNER_LISTS);
-
