@@ -1,23 +1,63 @@
 import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useFetchData from '../../../hooks/useFetchListData';
 import ListTable from '../../../components/List/ListTable';
-import ListModal from '../../../components/List/ListModal';
+import ListModal from '../../../components/List/Modal/ListModal';
 
 import styles from '../../../components/List/List.module.css';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const PartnerPriceList = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // 초기 상태와 변수 설정
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const initialFilter = query.get('filter') === 'true';
+  const itemsPerPage = 10;
+
+  //상태관리
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [selectedItem, setSelectedItem] = useState(null);
+  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [page, setPage] = useState(initialPage);
 
   //get요청
   const endpoint = '/api/diylists/partner/3';
   const { data, loading } = useFetchData(endpoint);
 
+  // 페이지 및 필터 변경 시 처리
+  useEffect(() => {
+    const newQuery = new URLSearchParams(location.search);
+    newQuery.set('page', page);
+    newQuery.set('filter', filterApplied);
+    navigate({ search: newQuery.toString() });
+  }, [page, filterApplied, navigate, location.search]);
+
+  // 로딩 중일 때
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  // 필터된 데이터 설정
+  const filteredData = filterApplied
+    ? data.filter((item) => item.isSelected === true)
+    : data;
+
+  // 현재 페이지에 맞는 데이터 계산
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = filteredData.slice(startIndex, endIndex);
+
+  // 필터 토글 함수
+  const toggleFilter = () => {
+    setFilterApplied(!filterApplied);
+    setPage(1);
+  };
 
   // 모달 열기
   const openModal = (item) => {
@@ -34,6 +74,11 @@ const PartnerPriceList = () => {
   return (
     <div className={styles.box}>
       <h2>가격 제안 목록</h2>
+      {/* 필터 버튼 */}
+      <button onClick={toggleFilter} className={styles.filter_button}>
+        {filterApplied ? '전체 보기' : '채택'}
+      </button>
+
       <ListTable>
         <thead>
           <tr>
@@ -47,7 +92,7 @@ const PartnerPriceList = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {currentItems.map((item) => (
             <tr key={item.listNum}>
               <td>{item.diyPackage.packageNum}</td>
               <td>
@@ -104,6 +149,16 @@ const PartnerPriceList = () => {
           </div>
         )}
       </ListModal>
+      {/* 페이지네이션 */}
+      <div className={styles.pagination_box}>
+        <Stack spacing={2} className={styles.pagination}>
+          <Pagination
+            count={Math.ceil(filteredData.length / itemsPerPage)}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+          />
+        </Stack>
+      </div>
     </div>
   );
 };
