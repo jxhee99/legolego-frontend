@@ -81,11 +81,6 @@ export const ROUTE = {
     link: 'reset-password',
     element: ResetPassword,
   },
-  ADMIN_LOGIN: {
-    path: '/admin-login',
-    link: '/admin-login',
-    element: AdminLogin,
-  },
 };
 
 export const ROUTE_ARR = Object.values(ROUTE);
@@ -168,6 +163,11 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/lists/products',
     link: '/admin/lists/products',
     element: AdminListProduct,
+  },
+  ADMIN_LOGIN: {
+    path: '/admin/login',
+    link: '/admin/login',
+    element: AdminLogin,
   },
 };
 

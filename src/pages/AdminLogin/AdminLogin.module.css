@@ -1,8 +1,8 @@
-/* AdminLogin.module.css */
-
 .container {
+  flex: 1;
   max-width: 400px;
-  margin: 0 auto;
+  height: 50%;
+  margin: 10rem auto 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
