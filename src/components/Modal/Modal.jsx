@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Modal.module.css';
 import Logo from '../Logo/Logo';
 
-const Modal = ({ children, title }) => {
+const Modal = ({ children }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const closeModal = () => {
@@ -19,7 +19,6 @@ const Modal = ({ children, title }) => {
         </button>
         <div className={styles.modal_title}>
           <Logo />
-          <h5>{title}</h5>
         </div>
         {children}
       </div>

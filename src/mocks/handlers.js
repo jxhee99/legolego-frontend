@@ -3,6 +3,6 @@ import airlineCode from './airline_code.json';
 
 export const handlers = [
   http.get('/touristSpot', () => {
-    return HttpResponse.json(airlineCode);
+    return new HttpResponse.json(airlineCode);
   }),
 ];
