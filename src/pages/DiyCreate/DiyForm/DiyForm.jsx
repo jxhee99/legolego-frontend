@@ -1,10 +1,13 @@
+// DiyForm.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from './DiyForm.module.css';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  updateCourseNames,
+  selectAirline,
   selectRoute,
   selectDetailCourses,
 } from '../../../_slices/diySlice';
@@ -12,28 +15,10 @@ import {
 const DiyForm = () => {
   const [packageName, setPackageName] = useState('');
   const [shortDesc, setShortDesc] = useState('');
-  const [startFlight, setStartFlight] = useState('');
-  const [returnFlight, setReturnFlight] = useState('');
-
+  const navigate = useNavigate();
+  const airline = useSelector(selectAirline);
   const route = useSelector(selectRoute);
-  const dispatch = useDispatch();
   const detailCourses = useSelector(selectDetailCourses);
-
-  useEffect(() => {
-    // 로컬 스토리지에서 'startFlight' 값 가져오기
-    const startFlight = localStorage.getItem('startFlight');
-    if (startFlight) {
-      // JSON 문자열을 객체로 변환
-      const jsonData = JSON.parse(startFlight);
-      setStartFlight(jsonData);
-    }
-    const returnFlight = localStorage.getItem('returnFlight');
-    if (returnFlight) {
-      // JSON 문자열을 객체로 변환
-      const jsonData = JSON.parse(returnFlight);
-      setReturnFlight(jsonData);
-    }
-  }, []);
 
   const handlePackageNameChange = (e) => {
     setPackageName(e.target.value);
@@ -46,24 +31,11 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: {
-        startAirlineName: startFlight.airlineKorean,
-        startingPoint: returnFlight.city,
-        destination: startFlight.city,
-        startFlightNum: startFlight.internationalNum,
-        boardingDate: '2024-06-15T10:00:00',
-        comeAirlineName: returnFlight.airlineKorean,
-        comeFlightNum: returnFlight.internationalNum,
-        comingDate: '2024-06-15T10:00:00',
-      },
-      route: {
-        startDate: route.startDate,
-        lastDate: route.lastDate,
-      },
+      airline: airline,
+      route: route,
       detailCourses: detailCourses,
       packageForm: {
         packageName: packageName,
-        profileImg: '/img/google/city',
         shortDescription: shortDesc,
       },
       userNum: 1,
@@ -76,6 +48,8 @@ const DiyForm = () => {
       if (response.status === 201) {
         // 요청이 성공한 경우
         console.log('승인');
+        const packageNum = response.data;
+        navigate(`/diy/${packageNum}`);
       } else {
         console.error('승인 실패:', response.status);
       }
@@ -85,23 +59,28 @@ const DiyForm = () => {
   };
 
   return (
-    <div>
+    <div className={styles.form_box}>
       <h2>패키지 정보 입력</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          패키지 이름:
+        <div className={styles.form_group_}>
+          <label>패키지 이름:</label>
           <input
             type="text"
             value={packageName}
             onChange={handlePackageNameChange}
           />
-        </label>
-        <br />
-        <label>
-          짧은 설명:
-          <textarea value={shortDesc} onChange={handleShortDescChange} />
-        </label>
-        <button type="submit">제출</button>
+        </div>
+        <div className={styles.form_group_}>
+          <label>짧은 설명:</label>
+          <textarea
+            value={shortDesc}
+            onChange={handleShortDescChange}
+            rows={4}
+          />
+        </div>
+        <button type="submit" className={styles.submit_btn_}>
+          제출
+        </button>
       </form>
     </div>
   );

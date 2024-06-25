@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Schedule.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -33,7 +34,7 @@ const createDetailedCourses = (routeRange, detailCourses) => {
 };
 
 const Schedule = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
@@ -67,8 +68,9 @@ const Schedule = () => {
     setModalVisibilities(updatedVisibilities);
   };
 
-  const handleCourse = () => {
-    dispatch(updateCourseNames());
+  const handleMove = () => {
+    //TODO 코스 갯수 유효성 검사 추후 추가
+    navigate('/diy-create?step=diy-form');
   };
 
   return (
@@ -106,7 +108,7 @@ const Schedule = () => {
           date={date}
         />
       ))}
-      <button onClick={handleCourse}>일정 확정</button>
+      <button onClick={handleMove}>레고 만들기</button>
     </div>
   );
 };

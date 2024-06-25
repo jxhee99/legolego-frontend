@@ -2,16 +2,6 @@ import { useState } from 'react';
 import styles from '../DiyDetail.module.css';
 
 const DiyDetailSchedule = ({ schedule }) => {
-  const fileUrls = [
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-    'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXX9w7_DDn_PD4ghoeaCXyKzofWukPqBdiCjPbaBCRFvFZmvWUmI1NylMrwjMrkvYSHT5QXZKGyOozbkfNvMU3ApOhyDXMIaW8z0i4yeRhCswr9EYDesnBFGxq70hYc5KUils9AHMnIxRttxiXmyfc3WzYJTlphBF8_0tUmoWv1LdAaK&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=39681',
-  ];
   const [openImgStates, setOpenImgStates] = useState({});
 
   const handleOpenImg = (detailCourseNum) => {
@@ -34,7 +24,7 @@ const DiyDetailSchedule = ({ schedule }) => {
                 </div>
                 <div className={styles.course_box}>
                   {item.courses.map((course, index) => (
-                    <div key={index}>{course}</div>
+                    <div key={index}>{`${index + 1} : ${course}`}</div>
                   ))}
                   <img
                     src={'/src/assets/images/arrow_to_bottom.png'}
@@ -45,7 +35,7 @@ const DiyDetailSchedule = ({ schedule }) => {
               {openImgStates[item.detailCourseNum] && (
                 <div className={styles.imgs_detail}>
                   <div className={styles.imgs_box}>
-                    {fileUrls.map((url, index) => (
+                    {item.fileUrls.map((url, index) => (
                       <div key={index}>
                         <img src={url} alt={`Image ${index}`} />
                       </div>

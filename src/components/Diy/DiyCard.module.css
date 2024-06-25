@@ -23,3 +23,21 @@
   object-fit: cover;
   border-radius: 12px 12px 0 0;
 }
+
+.DiyCard .text_box{
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.DiyCard .desc{
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

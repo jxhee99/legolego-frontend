@@ -37,6 +37,7 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  border-radius: 12px;
 }
 
 .Schedule li button:hover {
@@ -69,6 +70,17 @@
 .images img{
   width: 120px;
   height: 120px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.Schedule>button{
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
 }
 
 /* .map_info{

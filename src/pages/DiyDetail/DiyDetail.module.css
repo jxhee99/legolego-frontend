@@ -81,6 +81,12 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.desc_box pre{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  line-height: 1.5rem;
+}
+
 /* 항공권 */
 .DiyDetail .airline_box h3{
   margin: 1.5rem 0;
