@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateRoute } from '../../../_slices/diySlice';
-import { updateAirline } from '../../../_slices/diySlice';
+import { updateAirline, resetForm } from '../../../_slices/diySlice';
 import axios from 'axios';
 import { formatDate } from '../../../utils/util';
 import { formatTimeString } from '../../../utils/DateTime';
@@ -70,6 +70,7 @@ const Airplane = () => {
   const handleInputValues = (e) => {
     e.preventDefault();
     fetchAirline();
+    dispatch(resetForm());
     dispatch(updateRoute({ startDate, endDate }));
   };
 

@@ -5,17 +5,19 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './DiyForm.module.css';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectAirline,
   selectRoute,
   selectDetailCourses,
+  resetForm,
 } from '../../../_slices/diySlice';
 
 const DiyForm = () => {
   const [packageName, setPackageName] = useState('');
   const [shortDesc, setShortDesc] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const airline = useSelector(selectAirline);
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
@@ -50,6 +52,10 @@ const DiyForm = () => {
         console.log('승인');
         const packageNum = response.data;
         navigate(`/diy/${packageNum}`);
+        // 폼 초기화
+        setPackageName('');
+        setShortDesc('');
+        dispatch(resetForm());
       } else {
         console.error('승인 실패:', response.status);
       }

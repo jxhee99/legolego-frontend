@@ -62,6 +62,9 @@ const diySlice = createSlice({
         return { ...detailCourse, courses: courseNames };
       });
     },
+    resetForm(state) {
+      return initialState;
+    },
   },
 });
 
@@ -73,6 +76,7 @@ export const {
   updateUserNum,
   addCourse,
   updateCourseNames,
+  resetForm,
 } = diySlice.actions;
 
 export const selectAirline = (state) => state.diyCreate.airline;

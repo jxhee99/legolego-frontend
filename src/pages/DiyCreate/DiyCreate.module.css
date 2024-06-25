@@ -7,7 +7,7 @@
 }
 
 .DiyCreate .diy_create_steps li {
-  background-color: #bebebe;
+  border:1px solid #bebebe;
   border-radius: 12px;
   display: inline-block;
   width: 100px;
@@ -16,4 +16,11 @@
   line-height: 70px;
 }
 
+.active {
+  background-color: black;
+  color: white;
+}
 
+.active a {
+  color: white;
+}

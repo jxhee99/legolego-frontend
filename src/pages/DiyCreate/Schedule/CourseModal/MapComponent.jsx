@@ -27,6 +27,7 @@ function MapComponent({ date, closeModal }) {
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
     libraries: ['places'],
+    language: 'ko',
   });
 
   const [map, setMap] = useState(null);
@@ -62,6 +63,10 @@ function MapComponent({ date, closeModal }) {
         place.photos && place.photos.length > 0
           ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 400 })
           : null;
+
+      // const name = place.structured_formatting
+      //   ? place.structured_formatting.main_text
+      //   : place.name;
 
       setSelectedCourse({
         name: place.name,

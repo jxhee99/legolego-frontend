@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Schedule.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectRoute,
-  selectDetailCourses,
-  updateCourseNames,
-} from '../../../_slices/diySlice';
+import { useSelector } from 'react-redux';
+import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
 
 const createDateRange = (start, end) => {
@@ -24,13 +20,14 @@ const createDateRange = (start, end) => {
 };
 
 const createDetailedCourses = (routeRange, detailCourses) => {
-  return routeRange.map((date) => ({
-    date: date,
-    courses:
-      detailCourses.find((course) => course.dayNum === date)?.courses || [],
-    fileUrls:
-      detailCourses.find((course) => course.dayNum === date)?.fileUrls || [],
-  }));
+  return routeRange.map((date) => {
+    const detail = detailCourses.find((course) => course.dayNum === date);
+    return {
+      date,
+      courses: detail?.courses || [],
+      fileUrls: detail?.fileUrls || [],
+    };
+  });
 };
 
 const Schedule = () => {
@@ -43,9 +40,8 @@ const Schedule = () => {
       ? createDateRange(route.startDate, route.lastDate)
       : [];
   console.log(routeRange);
-  // Create detailed courses based on date range
-  const newDetaileCourses = createDetailedCourses(routeRange, detailCourses);
 
+  const newDetaileCourses = createDetailedCourses(routeRange, detailCourses);
   console.log(newDetaileCourses);
 
   const [modalVisibilities, setModalVisibilities] = useState(
@@ -69,7 +65,6 @@ const Schedule = () => {
   };
 
   const handleMove = () => {
-    //TODO 코스 갯수 유효성 검사 추후 추가
     navigate('/diy-create?step=diy-form');
   };
 
@@ -84,16 +79,12 @@ const Schedule = () => {
               <button onClick={() => handleAddPlace(index)}>장소추가</button>
             </div>
             <ul className={styles.courses}>
-              {detail.courses.map((course, index) => (
-                <li key={`course-${index}`}>
-                  <div>{`${index + 1} : ${course}`}</div>
-                </li>
-              ))}
-            </ul>
-            <ul className={styles.images}>
-              {detail.fileUrls.map((url, index) => (
-                <li key={`course-${index}`}>
-                  <img src={url} alt="코스 이미지"></img>
+              {detail.courses.map((course, i) => (
+                <li key={`course-${i}`}>
+                  <div>{`${i + 1} : ${course}`}</div>
+                  {detail.fileUrls[i] && (
+                    <img src={detail.fileUrls[i]} alt="코스 이미지" />
+                  )}
                 </li>
               ))}
             </ul>

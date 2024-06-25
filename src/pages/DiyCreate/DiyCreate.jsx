@@ -14,19 +14,17 @@ const DiyCreate = () => {
       <div>
         <h2>DIY 패키지 만들기</h2>
         <ol className={styles.diy_create_steps}>
-          {/* <li>
+          {/* <li className={step === 'tourist-spot' ? styles.active : ''}>
             <Link to="/diy-create?step=tourist-spot">여행지</Link>
           </li> */}
-          <li>
+          <li className={step === 'airplane' ? styles.active : ''}>
             <Link to="/diy-create?step=airplane">항공편</Link>
           </li>
-          <li>
-            {/* <Link to="/diy-create?step=schedule">일정</Link> */}
-            일정
+          <li className={step === 'schedule' ? styles.active : ''}>
+            <Link to="/diy-create?step=schedule">일정</Link>
           </li>
-          <li>
-            {/* <Link to="/diy-create?step=diy-form">레고 만들기</Link> */}
-            레고 만들기
+          <li className={step === 'diy-form' ? styles.active : ''}>
+            <Link to="/diy-create?step=diy-form">레고 만들기</Link>
           </li>
         </ol>
       </div>

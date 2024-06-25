@@ -12,7 +12,12 @@
 }
 
 .Airplane .button {
-  background-color: #83e860;
+  background-color: #131313;
+  color: #fff;
+}
+
+.Airplane>input {
+  border: 1px solid #b7b5b5;
 }
 
 .airplane_information {
@@ -34,9 +39,11 @@
 
 /* 일정 링크 버튼 */
 .link_schedule {
+  margin-left:7.5rem;
   background-color: black;
   color: #fff;
   width: 100px;
   height: 40px;
   border-radius: 12px;
+  align-self: flex-start;
 }
