@@ -13,6 +13,8 @@ import Payment from '../pages/Payment/Payment';
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
+import DiyPackage from '../pages/Mypage/DiyPackage/DiyPackage';
+import SavedPackage from '../pages/Mypage/SavedPackage/SavedPackage';
 
 //관리자
 import Admin from '../pages/Admin/Admin';
@@ -20,15 +22,20 @@ import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
 import AdminListDiyPrice from '../pages/Admin/AdminList/AdminListDiyPrice';
 import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 import AdminLogin from '../pages/AdminLogin/AdminLogin';
+import AdminAccount from '../pages/Admin/AdminAccount/AdminAccount';
+import PreTrips from '../pages/Admin/PreTrips/PreTrips';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
 import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
+import PartnerProfile from '../pages/Partner/PartnerProfile/PartnerProfile';
+import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
+import MembersList from '../pages/Admin/MembersList/MembersList';
 
 export const ROUTE = {
   ABOUT: {
@@ -119,21 +126,21 @@ export const ROUTE_MY_PAGE = {
     link: '/mypage?tab=my-diy-prices',
     element: DiyPriceList,
   },
-  // ORDER_SUMMARY: {
-  //   path: '/mypage?tab=order-summary',
-  //   link: '/mypage?tab=order-summary',
-  //   element: '',
-  // },
-  // MY_DIY_PACKAGE: {
-  //   path: '/mypage?tab=my-diy-package',
-  //   link: '/mypage?tab=my-diy-package',
-  //   element: '',
-  // },
-  // SAVED_PACKAGES: {
-  //   path: '/mypage?tab=saved-packages',
-  //   link: '/mypage?tab=saved-packages',
-  //   element: '',
-  // },
+  ORDER_SUMMARY: {
+    path: '/mypage?tab=order-summary',
+    link: '/mypage?tab=order-summary',
+    element: '',
+  },
+  MY_DIY_PACKAGE: {
+    path: '/mypage?tab=my-diy-package',
+    link: '/mypage?tab=my-diy-package',
+    element: DiyPackage,
+  },
+  SAVED_PACKAGES: {
+    path: '/mypage?tab=saved-packages',
+    link: '/mypage?tab=saved-packages',
+    element: SavedPackage,
+  },
 };
 
 export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);
@@ -158,7 +165,6 @@ export const ROUTE_ADMIN_LISTS = {
     link: '/admin/lists/diy-prices',
     element: AdminListDiyPrice,
   },
-
   ADMIN_LISTS_PRODUCT: {
     path: '/admin/lists/products',
     link: '/admin/lists/products',
@@ -168,6 +174,21 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/login',
     link: '/admin/login',
     element: AdminLogin,
+  },
+  ADMIN_PROFILE: {
+    path: '/admin/profile',
+    link: '/admin/profile',
+    element: AdminAccount,
+  },
+  ADMIN_LISTS_PRE_TRIPS: {
+    path: '/admin/lists/pre-trips',
+    link: '/admin/lists/pre-trips',
+    element: PreTrips,
+  },
+  ADMIN_LISTS_MEMBERS: {
+    path: '/admin/lists/members',
+    link: '/admin/lists/members',
+    element: MembersList,
   },
 };
 
@@ -192,6 +213,16 @@ export const ROUTE_PARTNER_LISTS = {
     path: '/partner/lists/prices',
     link: '/partner/lists/prices',
     element: PartnerPriceList,
+  },
+  PARTNER_PROFILE: {
+    path: '/partner/profile',
+    link: '/partner/profile',
+    element: PartnerProfile,
+  },
+  PARTNER_OREDERS: {
+    path: '/partner/lists/orders',
+    link: '/partenr/lists/orders',
+    element: PartnerOrders,
   },
 };
 

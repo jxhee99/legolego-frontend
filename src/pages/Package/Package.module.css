@@ -1,6 +1,5 @@
-.Package .package_cards {
+.package_cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  gap: 1rem;
+  row-gap: 3rem;
 }

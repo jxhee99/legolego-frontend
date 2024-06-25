@@ -1,23 +1,65 @@
 import styles from './PackageCard.module.css';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const PackageCard = ({ imageUrl, title, partnerName }) => {
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
+const PackageCard = ({
+  packageNum,
+  productImage,
+  recruitmentDeadline,
+  productName,
+  price,
+  wishlistCount,
+  productViewNum,
+}) => {
+  const navigate = useNavigate();
+  const handlePackageCard = () => {
+    navigate(`/package-product/${packageNum}`);
+  };
+
   return (
-    <div className={styles.PackageCard}>
+    <div className={styles.PackageCard} onClick={handlePackageCard}>
       <div className={styles.package_card_thumbnail}>
-        <img src={imageUrl} alt="패키지 썸네일" />
+        <img src={productImage} alt="패키지 썸네일" />
       </div>
       <div className={styles.package_card_body}>
-        <span>{partnerName}</span>
-        <h3>{title}</h3>
+        <div>
+          <div className={styles.package_card_icon}>
+            <span>
+              <CalendarMonthIcon />
+            </span>
+            <span>{recruitmentDeadline}</span>
+            <span>₩{price}</span>
+          </div>
+          <div className={styles.package_card_bottom}>
+            <h3>{productName}</h3>
+            <div>
+              <div className={styles.package_card_icon}>
+                <span>
+                  <VisibilityIcon />
+                </span>
+                <span>{productViewNum}</span>
+              </div>
+              <div className={styles.package_card_icon}>
+                <span>
+                  <CatchingPokemonIcon />
+                </span>
+                <span>{wishlistCount}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 PackageCard.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  productImage: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
   partnerName: PropTypes.string.isRequired,
 };
 

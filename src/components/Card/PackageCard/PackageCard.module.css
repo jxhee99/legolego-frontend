@@ -2,10 +2,17 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  max-width: 400px;
+  max-width: 300px;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.PackageCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 .PackageCard .package_card_thumbnail {
   display: flex;
   justify-content: center;
@@ -20,9 +27,34 @@
 }
 
 .PackageCard .package_card_body {
+  display: flex;
+  justify-content: center;
   padding: 0.75rem;
 }
 
 .PackageCard .package_card_body h3 {
   margin-top: 0.5rem;
+}
+
+.PackageCard .package_card_bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.PackageCard .package_card_bottom > div {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.PackageCard .package_card_icon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
