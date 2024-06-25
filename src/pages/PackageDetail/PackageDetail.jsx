@@ -2,13 +2,33 @@ import styles from './PackageDetail.module.css';
 import PackageInformation from './PackageInformation/PackageInformation';
 import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
 import Schedule from './ScheduleInformation/ScheduleInformation';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+// import { useParams } from 'react-router-dom';
 
 const PackageDetail = () => {
+  const [packageData, setPackageData] = useState({});
+  // const { id } = useParams();
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/products/1`);
+      console.log(response.data);
+      setPackageData(response.data);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className={`${styles.PackageDetail} layout`}>
-      <PackageInformation />
-      <AirplaneInfomation />
-      <Schedule />
+      <PackageInformation {...packageData} />
+      <AirplaneInfomation {...packageData.airline} />
+      <Schedule {...packageData} />
     </div>
   );
 };
