@@ -14,6 +14,7 @@ import Payment from '../pages/Payment/Payment';
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
 import DiyPackage from '../pages/Mypage/DiyPackage/DiyPackage';
+import SavedPackage from '../pages/Mypage/SavedPackage/SavedPackage';
 
 //관리자
 import Admin from '../pages/Admin/Admin';
@@ -28,11 +29,13 @@ import PreTrips from '../pages/Admin/PreTrips/PreTrips';
 import Partner from '../pages/Partner/Partner';
 import PartnerPackageList from '../pages/Partner/PartnerList/PartnerPackageList';
 import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
-import SavedPackage from '../pages/Mypage/SavedPackage/SavedPackage';
+import PartnerProfile from '../pages/Partner/PartnerProfile/PartnerProfile';
+import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
+import MembersList from '../pages/Admin/MembersList/MembersList';
 
 export const ROUTE = {
   ABOUT: {
@@ -162,7 +165,6 @@ export const ROUTE_ADMIN_LISTS = {
     link: '/admin/lists/diy-prices',
     element: AdminListDiyPrice,
   },
-
   ADMIN_LISTS_PRODUCT: {
     path: '/admin/lists/products',
     link: '/admin/lists/products',
@@ -182,6 +184,11 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/lists/pre-trips',
     link: '/admin/lists/pre-trips',
     element: PreTrips,
+  },
+  ADMIN_LISTS_MEMBERS: {
+    path: '/admin/lists/members',
+    link: '/admin/lists/members',
+    element: MembersList,
   },
 };
 
@@ -210,7 +217,12 @@ export const ROUTE_PARTNER_LISTS = {
   PARTNER_PROFILE: {
     path: '/partner/profile',
     link: '/partner/profile',
-    element: AdminAccount,
+    element: PartnerProfile,
+  },
+  PARTNER_OREDERS: {
+    path: '/partner/lists/orders',
+    link: '/partenr/lists/orders',
+    element: PartnerOrders,
   },
 };
 
