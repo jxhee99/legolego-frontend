@@ -1,3 +1,11 @@
+.airplane_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .Airplane {
   display: flex;
   justify-content: center;
@@ -10,7 +18,25 @@
 .airplane_information {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 3.5rem;
+  gap: 5rem;
   cursor: pointer;
+}
+
+/* 선택된 항공편 표시 */
+.selected {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.selectedFlight {
+  border: 2px solid blue;
+}
+
+/* 일정 링크 버튼 */
+.link_schedule {
+  background-color: black;
+  color: #fff;
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
 }

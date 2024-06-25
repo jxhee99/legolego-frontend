@@ -1,7 +1,7 @@
 import styles from './Diy.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import DiyCard from '../../components/Card/DiyCard/DiyCard';
+import DiyCard from '../../components/Diy/DiyCard';
 import Avatar from '../../components/Avatar/Avatar';
 
 const API_URL = '/api/packages';

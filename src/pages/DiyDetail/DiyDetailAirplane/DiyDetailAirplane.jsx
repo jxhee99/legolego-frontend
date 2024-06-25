@@ -1,36 +1,55 @@
 import styles from '../DiyDetail.module.css';
 import { formatDateTime } from '../../../utils/DateTime';
 
+const FlightCard = ({
+  flightNum,
+  date,
+  airlineName,
+  startingPoint,
+  destination,
+  type,
+}) => {
+  const formattedDate = formatDateTime(date);
+  return (
+    <div className={styles.AirplaneCard}>
+      <div>항공편: {flightNum}</div>
+      <div>
+        {type === 'departure' ? '출발일' : '도착일'}: {formattedDate}
+      </div>
+      <div className={styles.badge}>{airlineName}</div>
+      <div className={styles.airport}>
+        <div>{startingPoint}</div>
+        <div className={styles.to}>to</div>
+        <div>{destination}</div>
+      </div>
+    </div>
+  );
+};
+
 const DiyDetailAirplane = ({ airline }) => {
-  const startTime = formatDateTime(airline.boardingDate);
-  const comeTime = formatDateTime(airline.comingDate);
   return (
     <div className={styles.airline_box}>
       <h3>항공편</h3>
       <div className={styles.card_box}>
-        <div className={styles.AirplaneCard}>
-          <div>항공편: {airline.startFlightNum}</div>
-          <div>출발일: {startTime}</div>
-          <div className={styles.badge}>{airline.startAirlineName}</div>
-          <div className={styles.airport}>
-            <div>{airline.startingPoint}</div>
-            <div className={styles.to}>to</div>
-            <div>{airline.destination}</div>
-          </div>
-        </div>
+        <FlightCard
+          type="departure"
+          flightNum={airline.startFlightNum}
+          date={airline.boardingDate}
+          airlineName={airline.startAirlineName}
+          startingPoint={airline.startingPoint}
+          destination={airline.destination}
+        />
         <div className={styles.air_icon_box}>
-          <img src="/src/assets/images/airplane.png"></img>
+          <img src="/src/assets/images/airplane.png" alt="Airplane" />
         </div>
-        <div className={styles.AirplaneCard}>
-          <div>항공편: {airline.comeFlightNum}</div>
-          <div>도착일: {comeTime}</div>
-          <div className={styles.badge}>{airline.comeAirlineName}</div>
-          <div className={styles.airport}>
-            <div>{airline.destination}</div>
-            <div className={styles.to}>to</div>
-            <div>{airline.startingPoint}</div>
-          </div>
-        </div>
+        <FlightCard
+          type="arrival"
+          flightNum={airline.comeFlightNum}
+          date={airline.comingDate}
+          airlineName={airline.comeAirlineName}
+          startingPoint={airline.destination}
+          destination={airline.startingPoint}
+        />
       </div>
     </div>
   );

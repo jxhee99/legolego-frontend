@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  selectAirline,
   selectRoute,
   selectDetailCourses,
   updateCourseNames,
 } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
-import PackageForm from '../PackageForm/PackageForm';
 
 function createDateRange(startDate, endDate, detailCourses) {
   const dateArray = [];
@@ -31,6 +31,8 @@ const Schedule = () => {
   const dispatch = useDispatch();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
+  const airline = useSelector(selectAirline);
+  console.log(airline);
   const routeRange =
     route.startDate && route.lastDate
       ? createDateRange(route.startDate, route.lastDate, detailCourses)
@@ -96,7 +98,6 @@ const Schedule = () => {
         />
       ))}
       <button onClick={handleCourse}>일정 확정</button>
-      <PackageForm />
     </div>
   );
 };

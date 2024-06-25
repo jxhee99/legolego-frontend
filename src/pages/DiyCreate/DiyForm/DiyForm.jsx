@@ -9,7 +9,7 @@ import {
   selectDetailCourses,
 } from '../../../_slices/diySlice';
 
-const PackageForm = () => {
+const DiyForm = () => {
   const [packageName, setPackageName] = useState('');
   const [shortDesc, setShortDesc] = useState('');
   const [startFlight, setStartFlight] = useState('');
@@ -107,4 +107,4 @@ const PackageForm = () => {
   );
 };
 
-export default PackageForm;
+export default DiyForm;

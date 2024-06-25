@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import TouristSpot from './TouristSpot/TouristSpot';
 import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
+import PackageForm from './DiyForm/DiyForm';
 
 const DiyCreate = () => {
   const [searchParams] = useSearchParams();
@@ -13,14 +14,19 @@ const DiyCreate = () => {
       <div>
         <h2>DIY 패키지 만들기</h2>
         <ol className={styles.diy_create_steps}>
-          <li>
+          {/* <li>
             <Link to="/diy-create?step=tourist-spot">여행지</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/diy-create?step=airplane">항공편</Link>
           </li>
           <li>
-            <Link to="/diy-create?step=schedule">일정</Link>
+            {/* <Link to="/diy-create?step=schedule">일정</Link> */}
+            일정
+          </li>
+          <li>
+            {/* <Link to="/diy-create?step=diy-form">레고 만들기</Link> */}
+            레고 만들기
           </li>
         </ol>
       </div>
@@ -28,6 +34,7 @@ const DiyCreate = () => {
       {step === 'tourist-spot' && <TouristSpot />}
       {step === 'airplane' && <AirPlane />}
       {step === 'schedule' && <Schedule />}
+      {step === 'diy-form' && <PackageForm />}
     </div>
   );
 };

@@ -9,12 +9,11 @@
 .DiyCreate .diy_create_steps li {
   background-color: #bebebe;
   border-radius: 12px;
-}
-
-.DiyCreate .diy_create_steps li a {
   display: inline-block;
   width: 100px;
   height: 70px;
   text-align: center;
   line-height: 70px;
 }
+
+

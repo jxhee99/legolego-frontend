@@ -7,6 +7,7 @@ import DiyCreate from '../pages/DiyCreate/DiyCreate';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
+import DiyForm from '../pages/DiyCreate/DiyForm/DiyForm';
 import Review from '../pages/Review/Review';
 
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
@@ -79,6 +80,11 @@ export const ROUTE_DIY_CREATE = {
     path: '/diy-create?step=schedule',
     link: '/diy-create?step=schedule',
     element: Schedule,
+  },
+  DIY_CREATE_PACKAGEFORM: {
+    path: '/diy-create?step=diy-form',
+    link: '/diy-create?step=diy-form',
+    element: DiyForm,
   },
 };
 
