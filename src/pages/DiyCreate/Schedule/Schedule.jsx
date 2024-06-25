@@ -2,41 +2,51 @@ import { useState, useEffect } from 'react';
 import styles from './Schedule.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectAirline,
   selectRoute,
   selectDetailCourses,
   updateCourseNames,
 } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
 
-function createDateRange(startDate, endDate, detailCourses) {
+const createDateRange = (start, end) => {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
   const dateArray = [];
-  let currentDate = new Date(startDate);
+  let currentDate = startDate;
 
-  while (currentDate <= new Date(endDate)) {
-    const dayCourses = detailCourses.filter(
-      (course) => course.dayNum === currentDate.toISOString().split('T')[0]
-    );
-    dateArray.push({
-      dayNum: currentDate.toISOString().split('T')[0],
-      courses: dayCourses.map((course) => course.courses).flat(),
-    });
+  while (currentDate <= endDate) {
+    dateArray.push(new Date(currentDate).toISOString().split('T')[0]);
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
   return dateArray;
-}
+};
+
+const createDetailedCourses = (routeRange, detailCourses) => {
+  return routeRange.map((date) => ({
+    date: date,
+    courses:
+      detailCourses.find((course) => course.dayNum === date)?.courses || [],
+    fileUrls:
+      detailCourses.find((course) => course.dayNum === date)?.fileUrls || [],
+  }));
+};
 
 const Schedule = () => {
   const dispatch = useDispatch();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
-  const airline = useSelector(selectAirline);
-  console.log(airline);
+
   const routeRange =
     route.startDate && route.lastDate
-      ? createDateRange(route.startDate, route.lastDate, detailCourses)
+      ? createDateRange(route.startDate, route.lastDate)
       : [];
+  console.log(routeRange);
+  // Create detailed courses based on date range
+  const newDetaileCourses = createDetailedCourses(routeRange, detailCourses);
+
+  console.log(newDetaileCourses);
+
   const [modalVisibilities, setModalVisibilities] = useState(
     new Array(routeRange.length).fill(false)
   );
@@ -65,36 +75,35 @@ const Schedule = () => {
     <div className={styles.Schedule}>
       <h3>관광지와 맛집을 검색하여 일정을 추가해보세요!</h3>
       <ul>
-        {routeRange.map((detail, index) => (
-          <li key={detail.dayNum}>
-            <div>
-              <span>{detail.dayNum}</span>
+        {newDetaileCourses.map((detail, index) => (
+          <li key={index} className={styles.course_box}>
+            <div className={styles.date_and_button}>
+              <span>{detail.date}</span>
               <button onClick={() => handleAddPlace(index)}>장소추가</button>
             </div>
-            <ul>
-              {detail.courses.map((course, courseIndex) => (
-                <li key={`course-${courseIndex}`}>
-                  <p>{course.name}</p>
-                  <p>{course.address}</p>
-                  {course.photoUrl && (
-                    <img
-                      src={course.photoUrl}
-                      alt={course.name}
-                      style={{ maxWidth: '100%', maxHeight: '150px' }}
-                    />
-                  )}
+            <ul className={styles.courses}>
+              {detail.courses.map((course, index) => (
+                <li key={`course-${index}`}>
+                  <div>{`${index + 1} : ${course}`}</div>
+                </li>
+              ))}
+            </ul>
+            <ul className={styles.images}>
+              {detail.fileUrls.map((url, index) => (
+                <li key={`course-${index}`}>
+                  <img src={url} alt="코스 이미지"></img>
                 </li>
               ))}
             </ul>
           </li>
         ))}
       </ul>
-      {routeRange.map((detail, index) => (
+      {routeRange.map((date, index) => (
         <CourseModal
           key={`modal-${index}`}
           isVisible={modalVisibilities[index]}
           closeModal={() => closeModal(index)}
-          detail={{ ...detail, index: index }}
+          date={date}
         />
       ))}
       <button onClick={handleCourse}>일정 확정</button>

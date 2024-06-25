@@ -11,26 +11,28 @@
   text-align: center;
 }
 
-.Schedule ul {
-  list-style-type: none;
-  padding: 0;
-}
 
-.Schedule li {
+
+.Schedule .course_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
 }
 
-.Schedule li > div {
+.date_and_button{
   display: flex;
-  align-items: center;
+  width: 100%;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
 }
 
 .Schedule li button {
-  background-color: #007bff;
+  background-color: #111212;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -41,14 +43,41 @@
   background-color: #0056b3;
 }
 
-.Schedule li ul {
-  padding-left: 20px;
+.courses{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.Schedule li ul li {
-  margin-bottom: 10px;
+.courses li{
+  width: 120px;
 }
 
-.Schedule li p {
-  margin: 5px 0;
+.images{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
 }
+
+.images li {
+  width: 120px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.images img{
+  width: 120px;
+  height: 120px;
+}
+
+/* .map_info{
+  width: 100%;
+}
+
+.map_info> div{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */

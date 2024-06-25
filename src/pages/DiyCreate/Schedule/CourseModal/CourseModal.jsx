@@ -1,7 +1,7 @@
 import styles from './CourseModal.module.css';
 import MapComponent from './MapComponent';
 
-const CourseModal = ({ isVisible, closeModal, detail }) => {
+const CourseModal = ({ isVisible, closeModal, date }) => {
   if (!isVisible) return null;
 
   return (
@@ -10,8 +10,8 @@ const CourseModal = ({ isVisible, closeModal, detail }) => {
         <button className={styles.modal_close_button} onClick={closeModal}>
           x
         </button>
-        <h5>{`${detail.dayNum} - 장소추가`}</h5>
-        <MapComponent detail={detail} closeModal={closeModal} />
+        <h5>{`${date} - 장소추가`}</h5>
+        <MapComponent date={date} closeModal={closeModal} />
       </div>
     </div>
   );
