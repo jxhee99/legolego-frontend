@@ -81,10 +81,13 @@ const Schedule = () => {
             <ul className={styles.courses}>
               {detail.courses.map((course, i) => (
                 <li key={`course-${i}`}>
-                  <div>{`${i + 1} : ${course}`}</div>
-                  {detail.fileUrls[i] && (
-                    <img src={detail.fileUrls[i]} alt="코스 이미지" />
-                  )}
+                  <div className={styles.detail}>
+                    <div>{`course ${i + 1}`}</div>
+                    {detail.fileUrls[i] && (
+                      <img src={detail.fileUrls[i]} alt="코스 이미지" />
+                    )}
+                    <div>{course}</div>
+                  </div>
                 </li>
               ))}
             </ul>

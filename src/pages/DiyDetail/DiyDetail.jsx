@@ -7,7 +7,7 @@ import useFetchData from '../../hooks/useFetchDiyData';
 import axios from 'axios';
 
 const DiyDetail = () => {
-  const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id 값을 가져옴
+  const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
   const endpoint = `/api/packages/${id}`;
   const { data, loading, refetch } = useFetchData(endpoint);
 
@@ -15,7 +15,7 @@ const DiyDetail = () => {
   const [schedule, setSchedule] = useState([]);
   const [desc, setDesc] = useState({});
   const [writer, setWriter] = useState({});
-  const [isLiked, setIsLiked] = useState(false); // 추가: 응원 여부 상태
+  const [isLiked, setIsLiked] = useState(false); //응원 여부 상태
 
   useEffect(() => {
     if (data) {
