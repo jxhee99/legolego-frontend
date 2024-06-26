@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   token: null,
   isAuthenticated: false,
+  userNum: null,
 };
 
 const authSlice = createSlice({
@@ -11,23 +12,30 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.token = action.payload;
+      state.token = action.payload.token;
       state.isAuthenticated = true;
-      sessionStorage.setItem('token', action.payload);
+      state.userNum = action.payload.userNum;
+      sessionStorage.setItem('token', action.payload.token);
+      sessionStorage.setItem('userNum', action.payload.userNum);
     },
     logout: (state) => {
       state.token = null;
       state.isAuthenticated = false;
+      state.userNum = null;
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userNum');
     },
     checkAuth: (state) => {
       const token = sessionStorage.getItem('token');
-      if (token) {
+      const userNum = sessionStorage.getItem('userNum');
+      if (token && userNum) {
         state.token = token;
         state.isAuthenticated = true;
+        state.userNum = userNum;
       } else {
         state.token = null;
         state.isAuthenticated = false;
+        state.userNum = null;
       }
     },
   },

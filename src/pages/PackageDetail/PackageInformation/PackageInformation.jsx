@@ -17,7 +17,7 @@ const PackageInformation = ({
   recruitmentDeadline,
   productViewNum,
   wishlistCount,
-  neccesaryPeople,
+  necessaryPeople,
 }) => {
   const [wishNum, setWishNum] = useState(0);
   const navigate = useNavigate();
@@ -32,9 +32,9 @@ const PackageInformation = ({
   useEffect(() => {
     const fetchWishNum = async () => {
       try {
-        const response = await axios.get(`/products/${id}/wishlist`, {
-          user_num: 1,
-        });
+        const response = await axios.get(
+          `/api/products/${id}/wishlist?user_num=1`
+        );
         setWishNum(response.data.wishNum);
       } catch (error) {
         console.error('찜 불러오는 중 오류 발생:', error);
@@ -49,7 +49,7 @@ const PackageInformation = ({
     if (isWish) {
       try {
         const response = await axios.post(
-          `/api/products/2/wishlist?user_num=1`
+          `/api/products/${id}/wishlist?user_num=1`
         );
         setWishNum(response.data.wishNum);
       } catch (error) {
@@ -67,6 +67,7 @@ const PackageInformation = ({
         <h2>{productName}</h2>
         <p>{partnerName}</p>
         <p>{price}</p>
+        <div>{necessaryPeople}</div>
         <div className={styles.icon_information}>
           <div>
             <span>
