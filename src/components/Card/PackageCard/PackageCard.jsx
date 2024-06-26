@@ -7,7 +7,7 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const PackageCard = ({
-  packageNum,
+  productNum,
   productImg,
   recruitmentDeadline,
   productName,
@@ -17,7 +17,7 @@ const PackageCard = ({
 }) => {
   const navigate = useNavigate();
   const handlePackageCard = () => {
-    navigate(`/package-product/${packageNum}`);
+    navigate(`/package-product/${productNum}`);
   };
 
   return (
