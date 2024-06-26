@@ -8,7 +8,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const PackageCard = ({
   productNum,
-  productImg,
+  productImage,
   recruitmentDeadline,
   productName,
   price,
@@ -23,7 +23,7 @@ const PackageCard = ({
   return (
     <div className={styles.PackageCard} onClick={handlePackageCard}>
       <div className={styles.package_card_thumbnail}>
-        <img src={productImg} alt="패키지 썸네일" />
+        <img src={productImage} alt="패키지 썸네일" />
       </div>
       <div className={styles.package_card_body}>
         <h3>{productName}</h3>

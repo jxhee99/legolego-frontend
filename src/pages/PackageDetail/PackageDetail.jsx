@@ -4,22 +4,21 @@ import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
 import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});
-  // const { id } = useParams();
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`/api/products/1`);
-      setPackageData(response.data);
-    } catch (error) {
-      console.error('Error', error);
-    }
-  };
+  const { id } = useParams();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/products/${id}`);
+        setPackageData(response.data);
+      } catch (error) {
+        console.error('Error', error);
+      }
+    };
     fetchData();
   }, []);
 

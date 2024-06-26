@@ -13,7 +13,7 @@ const PackageInformation = ({
   productName,
   partnerName,
   price,
-  productImg,
+  productImage,
   recruitmentDeadline,
   productViewNum,
   wishlistCount,
@@ -48,9 +48,9 @@ const PackageInformation = ({
     const isWish = confirm('상품을 찜하시겠습니까?');
     if (isWish) {
       try {
-        const response = await axios.post(`/products/${id}/wishlist`, {
-          user_num: 1,
-        });
+        const response = await axios.post(
+          `/api/products/2/wishlist?user_num=1`
+        );
         setWishNum(response.data.wishNum);
       } catch (error) {
         console.error('찜 업데이트 오류 발생:', error);
@@ -61,7 +61,7 @@ const PackageInformation = ({
   return (
     <section className={styles.PackageInformation}>
       <div className={styles.left_box}>
-        <img src={productImg} alt="상품 이미지" />
+        <img src={productImage} alt="상품 이미지" />
       </div>
       <div className={styles.right_box}>
         <h2>{productName}</h2>
