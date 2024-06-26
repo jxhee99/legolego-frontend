@@ -9,7 +9,6 @@ import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import DiyForm from '../pages/DiyCreate/DiyForm/DiyForm';
 import Review from '../pages/Review/Review';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
-import Payment from '../pages/Payment/Payment';
 
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
@@ -37,6 +36,12 @@ import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
 import MembersList from '../pages/Admin/MembersList/MembersList';
+
+// 주문 및 결제
+import Order from '../pages/Order/Order';
+import Payment from '../pages/Payment/Payment';
+
+import { element } from 'prop-types';
 
 export const ROUTE = {
   ABOUT: {
@@ -73,11 +78,6 @@ export const ROUTE = {
     path: '/review',
     link: '/review',
     element: Review,
-  },
-  PAYMENT: {
-    path: '/payment',
-    link: '/payment',
-    element: Payment,
   },
   FIND_ACCOUNT: {
     path: 'find-account',
@@ -233,3 +233,25 @@ export const ROUTE_PARTNER_LISTS = {
 };
 
 export const ROUTE_PARTNER_ARR = Object.values(ROUTE_PARTNER_LISTS);
+
+
+// Order 및 Payment 경로 추가
+export const ROUTE_ORDER = {
+  ORDER : {
+    path: '/order/:productNum',  
+    link: '/order/:productNum',
+    element: Order,
+  }
+};
+
+export const ROUTE_ORDER_ARR = Object.values(ROUTE_ORDER); 
+
+export const ROUTE_PAYMENT = {
+  PAYMENT: {
+    path: '/payment',
+    link: '/payment',
+    element: Payment,
+  },
+};
+
+export const ROUTE_PAYMENT_ARR = Object.values(ROUTE_PAYMENT); 
