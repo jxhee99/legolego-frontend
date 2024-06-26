@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
-import useFetchData from '../../../hooks/useFetchListData';
+import useFetchData from '../../../hooks/useFetchDiyData';
 
 import styles from '../../../components/List/List.module.css';
 

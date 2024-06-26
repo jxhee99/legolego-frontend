@@ -1,14 +1,15 @@
 import styles from './Airplane.module.css';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import { updateRoute } from '../../../_slices/diySlice';
+import { updateAirline, resetForm } from '../../../_slices/diySlice';
+import axios from 'axios';
 import { formatDate } from '../../../utils/util';
+import { formatTimeString } from '../../../utils/DateTime';
 
 // components
-import StartCard from '../StartCard/StartCard';
-import ReturnCard from '../ReturnCard/ReturnCard';
+import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import ControllableStates from './ControllableStates/ControllableStates';
 
 function extractCode(inputString) {
@@ -20,9 +21,12 @@ const Airplane = () => {
   const [endLocation, setEndLocation] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [flightData, setFlightData] = useState(null);
-  const dispatch = useDispatch();
+  const [startFlight, setStartFlight] = useState([]);
+  const [returnFlight, setReturnFlight] = useState([]);
+  const [selectedStart, setSelectedStart] = useState(-1);
+  const [selectedReturn, setSelectedReturn] = useState(-1);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const fetchAirline = async () => {
     try {
@@ -30,7 +34,34 @@ const Airplane = () => {
         `/api/api/airline?schDate=${formatDate(startDate)}&returnDate=${formatDate(endDate)}&schDeptCityCode=${extractCode(startLocation)}&schArrvCityCode=${extractCode(endLocation)}`
       );
       console.log(response.data);
-      setFlightData(response.data);
+      console.log(startDate);
+      const flightData = response.data;
+
+      const newStartFlights = flightData.startData.map((flight) => ({
+        flightNum: flight.internationalNum,
+        date: `${startDate}T${formatTimeString(flight.internationalTime)}:00`,
+        airlineName: flight.airlineKorean,
+        startingPoint: flight.airport,
+        destination: flight.city,
+      }));
+
+      setStartFlight((prevStartFlights) => [
+        ...prevStartFlights,
+        ...newStartFlights,
+      ]);
+
+      const newReturnFlights = flightData.returnData.map((flight) => ({
+        flightNum: flight.internationalNum,
+        date: `${endDate}T${formatTimeString(flight.internationalTime)}:00`,
+        airlineName: flight.airlineKorean,
+        startingPoint: flight.airport,
+        destination: flight.city,
+      }));
+
+      setReturnFlight((prevReturnFlights) => [
+        ...prevReturnFlights,
+        ...newReturnFlights,
+      ]);
     } catch (error) {
       console.error('Error fetching airline data:', error);
     }
@@ -39,18 +70,36 @@ const Airplane = () => {
   const handleInputValues = (e) => {
     e.preventDefault();
     fetchAirline();
-  };
-
-  const onClick = (flightInfo) => {
-    console.log('클릭한 비행 정보:', flightInfo);
-    const { type, ...info } = flightInfo;
-    const storageKey = type === 'start' ? 'startFlight' : 'returnFlight';
-    localStorage.setItem(storageKey, JSON.stringify(info));
+    dispatch(resetForm());
     dispatch(updateRoute({ startDate, endDate }));
   };
 
+  const handleSelectedStart = (flight, index) => {
+    setSelectedStart(index);
+    dispatch(
+      updateAirline({
+        startAirlineName: flight.airlineName,
+        startingPoint: flight.startingPoint,
+        destination: flight.destination,
+        startFlightNum: flight.flightNum,
+        boardingDate: flight.date,
+      })
+    );
+  };
+
+  const handleSelectedReturn = (flight, index) => {
+    setSelectedReturn(index);
+    dispatch(
+      updateAirline({
+        comeAirlineName: flight.airlineName,
+        comeFlightNum: flight.flightNum,
+        comingDate: flight.date,
+      })
+    );
+  };
+
   return (
-    <>
+    <div className={styles.airplane_box}>
       <form className={styles.Airplane} onSubmit={handleInputValues}>
         <ControllableStates labelName="출발지" setLocation={setStartLocation} />
         <ControllableStates labelName="도착지" setLocation={setEndLocation} />
@@ -70,32 +119,49 @@ const Airplane = () => {
           검색
         </button>
       </form>
-
+      {selectedReturn >= 0 && (
+        <button
+          onClick={() => navigate('/diy-create?step=schedule')}
+          className={styles.link_schedule}
+        >
+          일정 만들기
+        </button>
+      )}
       <div className={styles.airplane_information}>
         <div>
-          {flightData &&
-            flightData.startData.length > 0 &&
-            flightData.startData.map((flight, index) => (
-              <StartCard key={`start-${index}`} {...flight} onClick={onClick} />
+          {startFlight &&
+            startFlight.length > 0 &&
+            startFlight.map((flight, index) => (
+              <div
+                key={`start-${index}`}
+                onClick={() => {
+                  handleSelectedStart(flight, index);
+                }}
+                className={selectedStart === index ? styles.selectedFlight : ''}
+              >
+                <DiyFlightCard flight={flight} type={'departure'} />
+              </div>
             ))}
         </div>
         <div>
-          {flightData &&
-            flightData.returnData.length > 0 &&
-            flightData.returnData.map((flight, index) => (
-              <ReturnCard
+          {returnFlight &&
+            returnFlight.length > 0 &&
+            returnFlight.map((flight, index) => (
+              <div
                 key={`return-${index}`}
-                {...flight}
-                onClick={onClick}
-              />
+                onClick={() => {
+                  handleSelectedReturn(flight, index);
+                }}
+                className={
+                  selectedReturn === index ? styles.selectedFlight : ''
+                }
+              >
+                <DiyFlightCard flight={flight} />
+              </div>
             ))}
         </div>
       </div>
-
-      <button onClick={() => navigate('/diy-create?step=schedule')}>
-        일정 선택하기
-      </button>
-    </>
+    </div>
   );
 };
 
