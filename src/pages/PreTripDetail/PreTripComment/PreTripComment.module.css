@@ -1,0 +1,40 @@
+.Comment {
+    background: rgba(235, 102, 43, 0.05);
+    padding: 2rem 2rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .comment_header {
+    width: 100%;
+    margin-bottom: 2rem;
+    
+  }
+  
+  .comment_container {
+    display: flex;
+    flex-wrap: wrap; /* 요소들을 줄 바꿈하도록 설정 */
+    gap: 40px; /* 요소들 사이의 간격 설정 */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    justify-content: center; 
+
+  }
+  
+  .comment_box {
+    flex: 1 0 25%; /* Flexbox에서는 요소의 크기를 자유롭게 설정할 수 있습니다. */
+    max-width: calc(25% - 16px); /* 간격을 고려한 최대 너비 설정 */
+    min-width: 25%; /* 최소 너비 설정 */
+    height: 25rem;
+    background-color: rgba(204, 204, 204, 0.1);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5%;
+   
+  }
+  
+  .comment_box hr {
+    background: white;
+    height: 2px;
+    border: 0;
+  }
+  

@@ -28,29 +28,17 @@
 
 .PackageCard .package_card_body {
   display: flex;
-  justify-content: center;
-  padding: 0.75rem;
-}
-
-.PackageCard .package_card_body h3 {
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
   margin-top: 0.5rem;
 }
 
 .PackageCard .package_card_bottom {
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
-}
-
-.PackageCard .package_card_bottom > div {
-  position: absolute;
-  right: 0;
-  bottom: -2px;
-  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  padding: 1rem 1.25rem;
 }
 
 .PackageCard .package_card_icon {

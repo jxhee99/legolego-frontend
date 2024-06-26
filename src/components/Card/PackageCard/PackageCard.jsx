@@ -1,13 +1,13 @@
 import styles from './PackageCard.module.css';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-
+import { formatDateTime } from '../../../utils/DateTime';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const PackageCard = ({
-  packageNum,
+  productNum,
   productImage,
   recruitmentDeadline,
   productName,
@@ -17,7 +17,7 @@ const PackageCard = ({
 }) => {
   const navigate = useNavigate();
   const handlePackageCard = () => {
-    navigate(`/package-product/${packageNum}`);
+    navigate(`/package-product/${productNum}`);
   };
 
   return (
@@ -26,31 +26,24 @@ const PackageCard = ({
         <img src={productImage} alt="패키지 썸네일" />
       </div>
       <div className={styles.package_card_body}>
-        <div>
-          <div className={styles.package_card_icon}>
-            <span>
-              <CalendarMonthIcon />
-            </span>
-            <span>{recruitmentDeadline}</span>
-            <span>₩{price}</span>
-          </div>
-          <div className={styles.package_card_bottom}>
-            <h3>{productName}</h3>
-            <div>
-              <div className={styles.package_card_icon}>
-                <span>
-                  <VisibilityIcon />
-                </span>
-                <span>{productViewNum}</span>
-              </div>
-              <div className={styles.package_card_icon}>
-                <span>
-                  <CatchingPokemonIcon />
-                </span>
-                <span>{wishlistCount}</span>
-              </div>
-            </div>
-          </div>
+        <h3>{productName}</h3>
+        <span>₩ {price}</span>
+      </div>
+      <div className={styles.package_card_bottom}>
+        <div className={styles.package_card_icon}>
+          <CalendarMonthIcon />
+          <span>
+            ~{' '}
+            {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
+          </span>
+        </div>
+        <div className={styles.package_card_icon}>
+          <VisibilityIcon />
+          <span>{productViewNum}</span>
+        </div>
+        <div className={styles.package_card_icon}>
+          <CatchingPokemonIcon />
+          <span>{wishlistCount}</span>
         </div>
       </div>
     </div>
