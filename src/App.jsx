@@ -5,12 +5,16 @@ import {
   ROUTE_MY_PAGE_ARR,
   ROUTE_ADMIN_ARR,
   ROUTE_PARTNER_ARR,
+  ROUTE_ORDER_ARR,
+  ROUTE_PAYMENT_ARR,
 } from './Routes/route';
 import Layout from './components/Layout/Layout';
 import DiyCreate from './pages/DiyCreate/DiyCreate';
 import Mypage from './pages/Mypage/Mypage';
 import Admin from './pages/Admin/Admin';
 import Partner from './pages/Partner/Partner';
+import Order from './pages/Order/Order';
+import Payment from './pages/Payment/Payment';
 
 const App = () => {
   return (
@@ -59,6 +63,24 @@ const App = () => {
               element={<route.element />}
               key={route.path}
             />
+          ))}
+        </Route>
+        <Route path='/order' element={<Order />}>
+          {ROUTE_ORDER_ARR.map((route)=>(
+            <Route 
+              path={route.path}
+              element={<route.element />}
+              key={route.path}
+              />
+          ))}
+        </Route>
+        <Route path='/payment' element={<Payment />}>
+          {ROUTE_PAYMENT_ARR.map((route)=>(
+            <Route 
+              path={route.path}
+              element={<route.element />}
+              key={route.path}
+              />
           ))}
         </Route>
       </Routes>

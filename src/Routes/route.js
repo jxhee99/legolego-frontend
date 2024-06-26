@@ -6,9 +6,9 @@ import Diy from '../pages/Diy/Diy';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
+import DiyForm from '../pages/DiyCreate/DiyForm/DiyForm';
 import Review from '../pages/Review/Review';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
-import Payment from '../pages/Payment/Payment';
 
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
@@ -36,6 +36,12 @@ import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
 import MembersList from '../pages/Admin/MembersList/MembersList';
+
+// 주문 및 결제
+import Order from '../pages/Order/Order';
+import Payment from '../pages/Payment/Payment';
+
+import { element } from 'prop-types';
 
 export const ROUTE = {
   ABOUT: {
@@ -73,11 +79,6 @@ export const ROUTE = {
     link: '/review',
     element: Review,
   },
-  PAYMENT: {
-    path: '/payment',
-    link: '/payment',
-    element: Payment,
-  },
   FIND_ACCOUNT: {
     path: 'find-account',
     link: 'find-account',
@@ -108,6 +109,11 @@ export const ROUTE_DIY_CREATE = {
     path: '/diy-create?step=schedule',
     link: '/diy-create?step=schedule',
     element: Schedule,
+  },
+  DIY_CREATE_PACKAGEFORM: {
+    path: '/diy-create?step=diy-form',
+    link: '/diy-create?step=diy-form',
+    element: DiyForm,
   },
 };
 
@@ -227,3 +233,25 @@ export const ROUTE_PARTNER_LISTS = {
 };
 
 export const ROUTE_PARTNER_ARR = Object.values(ROUTE_PARTNER_LISTS);
+
+
+// Order 및 Payment 경로 추가
+export const ROUTE_ORDER = {
+  ORDER : {
+    path: '/order/:productNum',  
+    link: '/order/:productNum',
+    element: Order,
+  }
+};
+
+export const ROUTE_ORDER_ARR = Object.values(ROUTE_ORDER); 
+
+export const ROUTE_PAYMENT = {
+  PAYMENT: {
+    path: '/payment',
+    link: '/payment',
+    element: Payment,
+  },
+};
+
+export const ROUTE_PAYMENT_ARR = Object.values(ROUTE_PAYMENT); 

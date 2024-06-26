@@ -6,9 +6,9 @@ import {
   InfoWindow,
   Autocomplete,
 } from '@react-google-maps/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './CourseModal.module.css';
-import { addCourse } from '../../../../_slices/diySlice';
+import { updateDetailCourses } from '../../../../_slices/diySlice';
 
 const containerStyle = {
   width: '100%',
@@ -22,11 +22,12 @@ const center = {
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-function MapComponent({ detail, closeModal }) {
+function MapComponent({ date, closeModal }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey,
     libraries: ['places'],
+    language: 'ko',
   });
 
   const [map, setMap] = useState(null);
@@ -63,6 +64,10 @@ function MapComponent({ detail, closeModal }) {
           ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 400 })
           : null;
 
+      // const name = place.structured_formatting
+      //   ? place.structured_formatting.main_text
+      //   : place.name;
+
       setSelectedCourse({
         name: place.name,
         address: place.formatted_address,
@@ -81,15 +86,15 @@ function MapComponent({ detail, closeModal }) {
 
   const handleUpdateCourses = () => {
     if (!selectedCourse) return;
-
+    console.log(selectedCourse);
+    console.log(date);
     const course = {
-      dayNum: detail.dayNum,
-      courses: [selectedCourse], // Assuming selectedCourse is an array of courses
-      //fileUrl: detail.fileUrl || '',
-      fileUrl: '/img/123',
+      dayNum: date,
+      courses: [selectedCourse.name],
+      fileUrls: [selectedCourse.photoUrl],
     };
 
-    dispatch(addCourse(course));
+    dispatch(updateDetailCourses(course));
     setSelectedCourse(null);
     setInfoWindowVisible(false);
     closeModal();

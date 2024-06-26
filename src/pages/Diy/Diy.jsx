@@ -1,7 +1,7 @@
 import styles from './Diy.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import DiyCard from '../../components/Card/DiyCard/DiyCard';
+import DiyCard from '../../components/Diy/DiyCard';
 import Avatar from '../../components/Avatar/Avatar';
 
 const API_URL = '/api/packages';
@@ -40,12 +40,17 @@ const Diy = () => {
       <h2>DIY 패키지를 응원해주세요!</h2>
       <div className={styles.diy_cards}>
         {diyData.map((packages) => (
-          <DiyCard key={packages.packageNum} {...packages} page={true}>
-            <Avatar
-              nickname={packages.user.userName}
-              imageUrl={packages.profileImg}
-            />
-          </DiyCard>
+          <div key={packages.packageNum}>
+            <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+              {packages.user.userName}님의 여행 둘러보세요!
+            </h4>
+            <DiyCard {...packages} page={true}>
+              <Avatar
+                nickname={packages.user.userName}
+                imageUrl={'/src/assets/images/no-profile.png'}
+              />
+            </DiyCard>
+          </div>
         ))}
       </div>
     </section>
