@@ -50,9 +50,16 @@ const diySlice = createSlice({
     },
     resetDetailCoursesForDate(state, action) {
       const dayNum = action.payload;
-      state.detailCourses = state.detailCourses.filter(
-        (course) => course.dayNum !== dayNum
+      const existingCourseIndex = state.detailCourses.findIndex(
+        (course) => course.dayNum === dayNum
       );
+
+      if (existingCourseIndex !== -1) {
+        state.detailCourses[existingCourseIndex].courses = [];
+        state.detailCourses[existingCourseIndex].fileUrls = [];
+      } else {
+        state.detailCourses.push({ dayNum, courses: [], fileUrls: [] });
+      }
     },
     updatePackageForm(state, action) {
       state.packageForm = { ...state.packageForm, ...action.payload };

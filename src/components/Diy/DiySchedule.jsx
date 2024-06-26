@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './DiySchedule.module.css'; // CSS 모듈 경로를 알맞게 변경하세요
+import styles from './DiySchedule.module.css';
 
 const CourseList = ({ detaileCourses }) => {
   return (
-    <ul>
+    <ul style={{ width: '100%' }}>
       {detaileCourses.map((detail, index) => (
         <li key={index} className={styles.course_box}>
           <div className={styles.date_and_button}>

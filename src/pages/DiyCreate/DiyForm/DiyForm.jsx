@@ -72,6 +72,7 @@ const DiyForm = () => {
 
   return (
     <div className={styles.container}>
+      <h3>항공편</h3>
       <div className={styles.flight_box}>
         <DiyFlightCard
           flight={{
@@ -93,12 +94,12 @@ const DiyForm = () => {
           }}
         />
       </div>
+      <h3>일정</h3>
       <div className={styles.schedule_box}>
         <DiySchedule detaileCourses={detailCourses} />
       </div>
-
+      <h3>레고 만들기</h3>
       <div className={styles.form_box}>
-        <h2>패키지 정보 입력</h2>
         <form onSubmit={handleSubmit}>
           <div className={styles.form_group_}>
             <label>패키지 이름</label>

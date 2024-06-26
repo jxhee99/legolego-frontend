@@ -200,13 +200,15 @@
 .imgs_box{
   padding: 1rem;
   display: flex;
+  /* justify-content: center; */
   flex-wrap: wrap;
   border: 1px solid #E0E0E0;
 }
 
 .line{
   left: 0;
-  width: 90px;
+  width: 100px;
+  flex-grow: 1;
   height: 180px;
 }
 

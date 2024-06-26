@@ -60,15 +60,11 @@ const DiyDetailSchedule = ({ schedule }) => {
                       // 각 인덱스 사이에 SVG 태그 삽입
                       if (index < courseDetails.length - 1) {
                         acc.push(
-                          <svg
-                            key={`line-${index}`}
-                            className={styles.line}
-                            // style={{ border: '1px solid black' }}
-                          >
+                          <svg key={`line-${index}`} className={styles.line}>
                             <line
                               x1="0"
                               y1="100"
-                              x2="300"
+                              x2="500"
                               y2="100"
                               stroke="#070707"
                               strokeWidth="4"

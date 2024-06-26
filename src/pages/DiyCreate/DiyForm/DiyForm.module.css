@@ -5,6 +5,12 @@
   gap: 1.5rem;
 }
 
+.container h3 {
+  margin: 1.5rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid #f1eeee;;
+}
+
 .flight_box{
   width: 80%;
   margin: 0 auto;
@@ -29,10 +35,6 @@
   border-radius: 12px;
 }
 
-.form_box h2 {
-  margin-bottom: 1.5rem;
-}
-
 .form_group_ {
   margin-bottom: 1rem;
 }
@@ -48,7 +50,7 @@
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #f1eeee;
   border-radius: 4px;
 }
 
