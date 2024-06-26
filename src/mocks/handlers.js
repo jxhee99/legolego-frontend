@@ -16,7 +16,7 @@ export const handlers = [
       productNum: 1,
       partnerName: '모두투어',
       productName: '신나는 태국 여행',
-      productImage:
+      productImg:
         'https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAUc7tXVSgjkrTtRv9FD32qqMAFzRYmCJ95-Si8UyRecdbIuXy7xxfyUwlHuuZwgd_P5hZjMgD3Q1s7PeJHinek_qu11UkHiouDNM-RF9RCH7ou30v3snS_Cs0XYWUfDVCpSNT5VqAZ7J2kLsmxCqPw-J_wzzhMoOfIJpUX6ImpzyvKHdPKhy&3u400&4u400&5m1&2e1&callback=none&r_url=http%3A%2F%2Flocalhost%3A5173&key=AIzaSyAblAMlRJOooJk9NNyvDtHhL8fpd9vtgck&token=75694',
       price: 700000.0,
       regDate: '2024-06-20T01:39:47.282+00:00',
