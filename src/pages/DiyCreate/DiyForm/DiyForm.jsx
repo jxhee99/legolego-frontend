@@ -66,7 +66,7 @@ const DiyForm = () => {
     }
   };
 
-  if (!detailCourses || !detailCourses.courses) {
+  if (!detailCourses[0]) {
     return <div>일정을 먼저 선택해주세요</div>;
   }
 

@@ -42,13 +42,17 @@ const diySlice = createSlice({
       );
 
       if (existingCourseIndex !== -1) {
-        // 같은 dayNum이 존재하는 객체가 있을 경우
         state.detailCourses[existingCourseIndex].courses.push(...courses);
         state.detailCourses[existingCourseIndex].fileUrls.push(...fileUrls);
       } else {
-        // 같은 dayNum이 존재하는 객체가 없을 경우
         state.detailCourses.push({ dayNum, courses, fileUrls });
       }
+    },
+    resetDetailCoursesForDate(state, action) {
+      const dayNum = action.payload;
+      state.detailCourses = state.detailCourses.filter(
+        (course) => course.dayNum !== dayNum
+      );
     },
     updatePackageForm(state, action) {
       state.packageForm = { ...state.packageForm, ...action.payload };
@@ -72,9 +76,9 @@ export const {
   updateAirline,
   updateRoute,
   updateDetailCourses,
+  resetDetailCoursesForDate,
   updatePackageForm,
   updateUserNum,
-  addCourse,
   updateCourseNames,
   resetForm,
 } = diySlice.actions;

@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Schedule.module.css';
-import { useSelector } from 'react-redux';
-import { selectRoute, selectDetailCourses } from '../../../_slices/diySlice';
+import {
+  selectRoute,
+  selectDetailCourses,
+  resetDetailCoursesForDate,
+} from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
 
 const createDateRange = (start, end) => {
@@ -32,6 +36,7 @@ const createDetailedCourses = (routeRange, detailCourses) => {
 
 const Schedule = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
@@ -64,6 +69,10 @@ const Schedule = () => {
     setModalVisibilities(updatedVisibilities);
   };
 
+  const handleResetCourses = (date) => {
+    dispatch(resetDetailCoursesForDate(date));
+  };
+
   const handleMove = () => {
     navigate('/diy-create?step=diy-form');
   };
@@ -80,7 +89,12 @@ const Schedule = () => {
           <li key={index} className={styles.course_box}>
             <div className={styles.date_and_button}>
               <span>{detail.date}</span>
-              <button onClick={() => handleAddPlace(index)}>장소추가</button>
+              <div className={styles.add_reset_button}>
+                <button onClick={() => handleAddPlace(index)}>장소추가</button>
+                <button onClick={() => handleResetCourses(detail.date)}>
+                  reset
+                </button>
+              </div>
             </div>
             <ul className={styles.courses}>
               {detail.courses.map((course, i) => (

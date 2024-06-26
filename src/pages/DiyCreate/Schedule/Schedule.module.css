@@ -32,6 +32,11 @@
   align-items: center;
 }
 
+.add_reset_button{
+  display: flex;
+  gap: 0.5rem;
+}
+
 .Schedule li button {
   background-color: #111212;
   color: #fff;
@@ -48,6 +53,7 @@
 .courses{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   width: 100%;
 }
