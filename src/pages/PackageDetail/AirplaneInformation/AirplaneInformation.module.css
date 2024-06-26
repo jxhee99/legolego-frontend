@@ -50,13 +50,13 @@
 
 .airline_card span {
   display: block;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #555;
+  font-size: 1.25rem;
+  color: #777;
 }
 
 .airline_card p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #777;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555;
 }

@@ -1,4 +1,5 @@
 import styles from './AirplaneInformation.module.css';
+import { formatDateTime } from '../../../utils/DateTime';
 
 const AirplaneInformation = ({
   startAirlineName,
@@ -22,7 +23,7 @@ const AirplaneInformation = ({
           </div>
           <div>
             <p>{startingPoint}</p>
-            <p>{boardingDate}</p>
+            <p>{formatDateTime(boardingDate)}</p>
           </div>
         </div>
         <div className={styles.comming_airline}>
@@ -33,7 +34,7 @@ const AirplaneInformation = ({
           </div>
           <div>
             <p>{destination}</p>
-            <p>{comingDate}</p>
+            <p>{formatDateTime(comingDate)}</p>
           </div>
         </div>
       </div>
