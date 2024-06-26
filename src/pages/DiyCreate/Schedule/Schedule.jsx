@@ -68,6 +68,10 @@ const Schedule = () => {
     navigate('/diy-create?step=diy-form');
   };
 
+  if (!route || !route.startDate || !route.lastDate) {
+    return <div>항공편을 먼저 선택해주세요</div>;
+  }
+
   return (
     <div className={styles.Schedule}>
       <h3>관광지와 맛집을 검색하여 일정을 추가해보세요!</h3>

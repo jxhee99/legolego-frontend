@@ -53,9 +53,13 @@
 }
 
 .courses li{
-  flex-grow: 1;
+  display: flex;
+  justify-content: start;
 }
 
+.courses li:last-child {
+  flex-grow: 1;
+}
 
 .courses .detail{
   display: flex;

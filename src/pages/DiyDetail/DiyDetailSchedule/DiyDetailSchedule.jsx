@@ -47,8 +47,8 @@ const DiyDetailSchedule = ({ schedule }) => {
                   <div className={styles.imgs_box}>
                     {courseDetails.map((detail, index) => (
                       <div key={index} className={styles.img_desc}>
-                        <div>{`${detail.course}`}</div>
                         <img src={detail.fileUrl} alt={`Image ${index}`} />
+                        <div>{`${detail.course}`}</div>
                       </div>
                     ))}
                   </div>

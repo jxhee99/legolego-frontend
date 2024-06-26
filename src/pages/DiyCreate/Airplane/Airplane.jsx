@@ -1,20 +1,17 @@
 import styles from './Airplane.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateRoute } from '../../../_slices/diySlice';
-import { updateAirline, resetForm } from '../../../_slices/diySlice';
-import axios from 'axios';
-import { formatDate } from '../../../utils/util';
-import { formatTimeString } from '../../../utils/DateTime';
-
+import {
+  updateAirline,
+  resetForm,
+  selectAirline,
+} from '../../../_slices/diySlice';
+import { fetchAirline } from './fetchAirline';
 // components
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import ControllableStates from './ControllableStates/ControllableStates';
-
-function extractCode(inputString) {
-  return inputString.split(', ')[0];
-}
 
 const Airplane = () => {
   const [startLocation, setStartLocation] = useState('');
@@ -28,48 +25,23 @@ const Airplane = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const fetchAirline = async () => {
-    try {
-      const response = await axios.get(
-        `/api/api/airline?schDate=${formatDate(startDate)}&returnDate=${formatDate(endDate)}&schDeptCityCode=${extractCode(startLocation)}&schArrvCityCode=${extractCode(endLocation)}`
-      );
-      console.log(response.data);
-      console.log(startDate);
-      const flightData = response.data;
-
-      const newStartFlights = flightData.startData.map((flight) => ({
-        flightNum: flight.internationalNum,
-        date: `${startDate}T${formatTimeString(flight.internationalTime)}:00`,
-        airlineName: flight.airlineKorean,
-        startingPoint: flight.airport,
-        destination: flight.city,
-      }));
-
-      setStartFlight((prevStartFlights) => [
-        ...prevStartFlights,
-        ...newStartFlights,
-      ]);
-
-      const newReturnFlights = flightData.returnData.map((flight) => ({
-        flightNum: flight.internationalNum,
-        date: `${endDate}T${formatTimeString(flight.internationalTime)}:00`,
-        airlineName: flight.airlineKorean,
-        startingPoint: flight.airport,
-        destination: flight.city,
-      }));
-
-      setReturnFlight((prevReturnFlights) => [
-        ...prevReturnFlights,
-        ...newReturnFlights,
-      ]);
-    } catch (error) {
-      console.error('Error fetching airline data:', error);
-    }
-  };
+  //리덕스에 저장된 항공편 정보
+  const airline = useSelector(selectAirline);
 
   const handleInputValues = (e) => {
     e.preventDefault();
-    fetchAirline();
+    setSelectedStart(-1);
+    setSelectedReturn(-1);
+    setStartFlight([]);
+    setReturnFlight([]);
+    fetchAirline(
+      startDate,
+      endDate,
+      startLocation,
+      endLocation,
+      setStartFlight,
+      setReturnFlight
+    );
     dispatch(resetForm());
     dispatch(updateRoute({ startDate, endDate }));
   };
@@ -160,6 +132,38 @@ const Airplane = () => {
               </div>
             ))}
         </div>
+      </div>
+      {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
+      {airline.startAirlineName && (
+        <>
+          <h3>선택한 항공권</h3>
+          <p>다른 항공편을 보려면 재검색 해주세요</p>
+        </>
+      )}
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        {airline.startAirlineName && (
+          <DiyFlightCard
+            flight={{
+              flightNum: airline.startFlightNum,
+              date: airline.boardingDate,
+              airlineName: airline.startAirlineName,
+              startingPoint: airline.startingPoint,
+              destination: airline.destination,
+            }}
+            type={'departure'}
+          />
+        )}
+        {airline.comeAirlineName && (
+          <DiyFlightCard
+            flight={{
+              flightNum: airline.comeFlightNum,
+              date: airline.comingDate,
+              airlineName: airline.comeAirlineName,
+              startingPoint: airline.destination,
+              destination: airline.startingPoint,
+            }}
+          />
+        )}
       </div>
     </div>
   );
