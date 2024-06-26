@@ -92,3 +92,32 @@
   color: #333;
   transition: background-color 0.3s ease;
 }
+
+.dailySchedule {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid skyblue;
+  padding: 1rem;
+  border-radius: 1%;
+}
+
+.scheduleItem {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.Schedule img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 5%;
+}
+
+.dailyDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}

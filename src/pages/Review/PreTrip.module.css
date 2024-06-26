@@ -1,0 +1,14 @@
+.PreTrip {
+    padding: 3.5rem 3rem 3rem;
+    filter:grayscale(100%);}
+
+
+.preTrip_grid{
+    column-count: 3;
+    column-gap: 16px; 
+    margin-top: 3rem;
+    margin-bottom:3rem;}
+
+.preTrip_product {
+        margin-bottom: 3rem;
+      }

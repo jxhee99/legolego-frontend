@@ -13,6 +13,8 @@ import DiyDetail from '../pages/DiyDetail/DiyDetail';
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
+import OrderList from '../pages/Order/OrderList';
+import OrderDetail from '../pages/Order/OrderDetail';
 import DiyPackage from '../pages/Mypage/DiyPackage/DiyPackage';
 import SavedPackage from '../pages/Mypage/SavedPackage/SavedPackage';
 
@@ -24,6 +26,7 @@ import AdminListProduct from '../pages/Admin/AdminList/AdminListProduct';
 import AdminLogin from '../pages/AdminLogin/AdminLogin';
 import AdminAccount from '../pages/Admin/AdminAccount/AdminAccount';
 import PreTrips from '../pages/Admin/PreTrips/PreTrips';
+import MembersList from '../pages/Admin/MembersList/MembersList';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
@@ -35,13 +38,13 @@ import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
-import MembersList from '../pages/Admin/MembersList/MembersList';
 
 // 주문 및 결제
 import Order from '../pages/Order/Order';
 import Payment from '../pages/Payment/Payment';
 
-import { element } from 'prop-types';
+// 지난여행
+import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
 
 export const ROUTE = {
   ABOUT: {
@@ -89,6 +92,16 @@ export const ROUTE = {
     link: 'reset-password',
     element: ResetPassword,
   },
+  ORDER_DETAIL: {
+    path: 'order-detail',
+    link: 'order-detail',
+    element: OrderDetail,
+  },
+  PRETRIP_DETAIL: {
+    path: 'preTrip_detail',
+    link: 'preTrip_detail',
+    element: PreTripDetail,
+  },
 };
 
 export const ROUTE_ARR = Object.values(ROUTE);
@@ -135,7 +148,7 @@ export const ROUTE_MY_PAGE = {
   ORDER_SUMMARY: {
     path: '/mypage?tab=order-summary',
     link: '/mypage?tab=order-summary',
-    element: '',
+    element: OrderList,
   },
   MY_DIY_PACKAGE: {
     path: '/mypage?tab=my-diy-package',
@@ -234,17 +247,16 @@ export const ROUTE_PARTNER_LISTS = {
 
 export const ROUTE_PARTNER_ARR = Object.values(ROUTE_PARTNER_LISTS);
 
-
 // Order 및 Payment 경로 추가
 export const ROUTE_ORDER = {
-  ORDER : {
-    path: '/order/:productNum',  
+  ORDER: {
+    path: '/order/:productNum',
     link: '/order/:productNum',
     element: Order,
-  }
+  },
 };
 
-export const ROUTE_ORDER_ARR = Object.values(ROUTE_ORDER); 
+export const ROUTE_ORDER_ARR = Object.values(ROUTE_ORDER);
 
 export const ROUTE_PAYMENT = {
   PAYMENT: {
@@ -254,4 +266,4 @@ export const ROUTE_PAYMENT = {
   },
 };
 
-export const ROUTE_PAYMENT_ARR = Object.values(ROUTE_PAYMENT); 
+export const ROUTE_PAYMENT_ARR = Object.values(ROUTE_PAYMENT);
