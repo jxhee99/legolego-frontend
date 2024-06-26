@@ -44,12 +44,7 @@ const Diy = () => {
             <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
               {packages.user.userName}님의 여행 둘러보세요!
             </h4>
-            <DiyCard {...packages} page={true}>
-              <Avatar
-                nickname={packages.user.userName}
-                imageUrl={'/src/assets/images/no-profile.png'}
-              />
-            </DiyCard>
+            <DiyCard {...packages} page={true}></DiyCard>
           </div>
         ))}
       </div>
