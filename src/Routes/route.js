@@ -13,7 +13,8 @@ import Payment from '../pages/Payment/Payment';
 //마이페이지
 import DiyPriceList from '../pages/Mypage/DiyPriceList/DiyPriceList';
 import ProfileSetting from '../pages/Mypage/ProfileSetting/ProfileSetting';
-
+import OrderList from '../pages/Order/OrderList';
+import OrderDetail from '../pages/Order/OrderDetail';
 //관리자
 import Admin from '../pages/Admin/Admin';
 import AdminListDiy from '../pages/Admin/AdminList/AdminListDiy';
@@ -29,6 +30,9 @@ import PartnerPriceList from '../pages/Partner/PartnerList/PartnerPriceList';
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindAccount from '../pages/FindAccount/FindAccount';
+
+// 지난여행
+import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
 
 export const ROUTE = {
   ABOUT: {
@@ -81,6 +85,16 @@ export const ROUTE = {
     link: 'reset-password',
     element: ResetPassword,
   },
+  ORDER_DETAIL: {
+    path: 'order-detail',
+    link: 'order-detail',
+    element: OrderDetail,
+  },
+  PRETRIP_DETAIL: {
+    path: 'preTrip_detail',
+    link: 'preTrip_detail',
+    element: PreTripDetail,
+  }
 };
 
 export const ROUTE_ARR = Object.values(ROUTE);
@@ -119,11 +133,11 @@ export const ROUTE_MY_PAGE = {
     link: '/mypage?tab=my-diy-prices',
     element: DiyPriceList,
   },
-  // ORDER_SUMMARY: {
-  //   path: '/mypage?tab=order-summary',
-  //   link: '/mypage?tab=order-summary',
-  //   element: '',
-  // },
+  ORDER_SUMMARY: {
+    path: '/mypage?tab=order-summary',
+    link: '/mypage?tab=order-summary',
+    element: OrderList,
+  },
   // MY_DIY_PACKAGE: {
   //   path: '/mypage?tab=my-diy-package',
   //   link: '/mypage?tab=my-diy-package',

@@ -43,7 +43,7 @@
 
 .About .about_make_diy {
   display: flex;
-  flex-direction: row; /* 가로로 나열 */
+  flex-direction: row; 
   align-items: flex-start;
   font-size: 35px;
   gap: 24px;
@@ -56,7 +56,7 @@
   line-height: 1.5;
 }
 
-/* 이미지 컨테이너 스타일 */
+
 .About .go_picture {
   width: 300px; 
   height: 500px;
@@ -66,14 +66,14 @@
   align-items: center;
 }
 
-/* 이미지 자체 스타일 */
+
 .About .go_picture img {
-  width: 100%; /* 부모 컨테이너의 크기에 맞게 조정 */
-  height: 100%; /* 부모 컨테이너의 크기에 맞게 조정 */
-  object-fit: cover; /* 이미지가 컨테이너에 맞게 잘려서 들어감 */
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 }
 
-/* 텍스트 및 버튼 컨테이너 스타일 */
+
 .About .diy_intro {
   display: flex;
   flex-direction: column;
@@ -91,7 +91,7 @@ margin-top: 2%;
  margin-left: 20%;
 
 }
-/* 버튼 스타일 */
+
 .About .make_lego {
   padding: 25px 35px;
   margin-top: 25px;
@@ -192,3 +192,4 @@ margin-top: 2%;
 
 
 }
+

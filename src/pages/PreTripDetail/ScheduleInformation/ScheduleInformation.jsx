@@ -1,4 +1,4 @@
-import styles from '../PackageDetail.module.css';
+import styles from '../PreTripDetail.module.css';
 
 const ScheduleInformation = () => {
   return (

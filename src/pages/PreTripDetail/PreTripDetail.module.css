@@ -1,7 +1,16 @@
+.preTripDetail_box{
+width: 95%;
+padding:3rem;
+background-color: rgba(244, 247, 230,0.3);
+border-radius: 1%;
+}
+
+
 /* PackageInformation */
 .PackageInformation {
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .PackageInformation .left_box {
@@ -25,21 +34,13 @@
 .PackageInformation .right_box button {
   padding: 1rem;
   color: var(--color-white);
-  background-color: var(--color-black);
+  background-color: gray; 
 }
 
-/* Progress Bar */
-.progress_bar {
-  width: 100%;
-  height: 12px;
-  background-color: #bebebe;
+.PackageInformation #pretrip_price{
+text-decoration: line-through;
 }
 
-.progress_bar_inner {
-  width: 30%;
-  height: 12px;
-  background-color: #ff0000;
-}
 
 /* AirplainInformation */
 .AirplainInformation {
@@ -56,6 +57,7 @@
 /* Schedule */
 .Schedule {
   margin-top: 3rem;
+  line-height: 2;
 }
 
 .dailySchedule {
@@ -78,6 +80,9 @@
   width: 18rem;
   height: 18rem;
   border-radius: 5%;
+  margin-left:0.8rem;
+
+  margin-bottom: 0.5rem;
 }
 
 .dailyDetail {
@@ -85,4 +90,6 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  margin-left:1.5rem;
+  margin-right:4rem;
 }
