@@ -1,0 +1,62 @@
+.AirplaneInformation {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.AirplaneInformation h3 {
+  margin-bottom: 2.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.AirplaneInformation .airline_card {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem;
+  background-color: #fff;
+  border: 1px solid var(--color-gray);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.start_airline,
+.comming_airline {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.start_airline:last-child,
+.comming_airline:last-child {
+  margin-right: 0;
+}
+
+.start_airline h4,
+.comming_airline h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.airline_card div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.airline_card div div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.airline_card span {
+  display: block;
+  font-size: 1.25rem;
+  color: #777;
+}
+
+.airline_card p {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555;
+}

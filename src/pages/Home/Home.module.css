@@ -10,6 +10,9 @@
 }
 
 .PackageSection .package_section_cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
   margin-top: 3rem;
 }
 

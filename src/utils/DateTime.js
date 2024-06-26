@@ -20,3 +20,10 @@ export const formatDateTime = (isoDateTime) => {
   // 원하는 형식으로 조합하여 반환
   return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
 };
+
+export const formatTimeString = (timeString) => {
+  // HHMM 형식의 문자열을 HH:MM 형식으로 변환
+  const hours = timeString.slice(0, 2);
+  const minutes = timeString.slice(2, 4);
+  return `${hours}:${minutes}`;
+};

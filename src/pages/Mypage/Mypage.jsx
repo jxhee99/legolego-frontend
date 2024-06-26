@@ -4,6 +4,8 @@ import ProfileSetting from './ProfileSetting/ProfileSetting';
 import DiyPriceList from './DiyPriceList/DiyPriceList';
 import Sidebar from './Sidebar/Sidebar';
 import OrderList from '../Order/OrderList';
+import DiyPackage from './DiyPackage/DiyPackage';
+import SavedPackage from './SavedPackage/SavedPackage';
 
 const Mypage = () => {
   const [searchParams] = useSearchParams();
@@ -16,6 +18,8 @@ const Mypage = () => {
         {tab === 'profile-setting' && <ProfileSetting />}
         {tab === 'order-summary' && <OrderList />}
         {tab === 'my-diy-prices' && <DiyPriceList />}
+        {tab === 'my-diy-package' && <DiyPackage />}
+        {tab === 'saved-packages' && <SavedPackage />}
       </div>
     </div>
   );

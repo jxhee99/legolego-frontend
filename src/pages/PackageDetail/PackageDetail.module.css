@@ -1,10 +1,12 @@
-/* PackageInformation */
 .PackageInformation {
   display: flex;
   justify-content: center;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--color-gray);
 }
 
 .PackageInformation .left_box {
+  flex-basis: 50%;
   width: 400px;
   height: 400px;
 }
@@ -17,45 +19,78 @@
 
 .PackageInformation .right_box {
   display: flex;
+  flex-basis: 50%;
   flex-direction: column;
   gap: 2rem;
   margin-left: 2rem;
+  padding: 1rem 0;
 }
 
-.PackageInformation .right_box button {
+.PackageInformation .right_box button:first-child {
+  padding: 1rem;
+  color: var(--color-white);
+  background-color: var(--color-orange);
+  width: 50%;
+}
+
+.PackageInformation .right_box button:last-child {
   padding: 1rem;
   color: var(--color-white);
   background-color: var(--color-black);
+  width: 50%;
 }
 
-/* Progress Bar */
-.progress_bar {
-  width: 100%;
-  height: 12px;
-  background-color: #bebebe;
-}
-
-.progress_bar_inner {
-  width: 30%;
-  height: 12px;
-  background-color: #ff0000;
-}
-
-/* AirplainInformation */
-.AirplainInformation {
-  margin-top: 3rem;
-}
-
-.AirplainInformation .airplain_information_cards {
+.icon_information {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 1.5rem;
+  justify-content: space-between;
+}
+
+.icon_information div {
+  display: flex;
+  align-items: center;
+}
+
+.icon_information span {
+  margin-left: 8px;
+  color: #555;
+}
+
+.icon_information .MuiSvgIcon-root {
+  color: #007bff;
 }
 
 /* Schedule */
 .Schedule {
-  margin-top: 3rem;
+  padding: 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.Schedule h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  color: #333;
+}
+
+.Schedule h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.Schedule ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.Schedule li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0.7rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  color: #333;
+  transition: background-color 0.3s ease;
 }
 
 .dailySchedule {

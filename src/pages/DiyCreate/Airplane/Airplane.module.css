@@ -1,16 +1,49 @@
+.airplane_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .Airplane {
   display: flex;
   justify-content: center;
 }
 
 .Airplane .button {
-  background-color: #83e860;
+  background-color: #131313;
+  color: #fff;
+}
+
+.Airplane>input {
+  border: 1px solid #b7b5b5;
 }
 
 .airplane_information {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 3.5rem;
+  gap: 5rem;
   cursor: pointer;
+}
+
+/* 선택된 항공편 표시 */
+.selected {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.selectedFlight {
+  border: 2px solid blue;
+}
+
+/* 일정 링크 버튼 */
+.link_schedule {
+  margin-left:7.5rem;
+  background-color: black;
+  color: #fff;
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
+  align-self: flex-start;
 }

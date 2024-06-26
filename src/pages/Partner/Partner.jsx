@@ -15,7 +15,7 @@ const Partner = () => {
         <Link to="/partner/lists/prices">가격 제안 목록</Link>
       </li>
       <li>
-        <Link to="/admin/lists/orders">여행 상품</Link>
+        <Link to="/partner/lists/orders">여행 상품</Link>
       </li>
       <li>
         <span>로그아웃</span>
