@@ -81,16 +81,18 @@ const PackageInformation = ({
             </span>
           </div>
           <div>
-            <span>
-              <VisibilityIcon />
-            </span>
-            <span>{productViewNum}</span>
-          </div>
-          <div>
-            <span>
-              <CatchingPokemonIcon />
-            </span>
-            <span>{wishlistCount}</span>
+            <div>
+              <span>
+                <VisibilityIcon />
+              </span>
+              <span>{productViewNum}</span>
+            </div>
+            <div>
+              <span>
+                <CatchingPokemonIcon />
+              </span>
+              <span>{wishlistCount}</span>
+            </div>
           </div>
         </div>
         <div>
