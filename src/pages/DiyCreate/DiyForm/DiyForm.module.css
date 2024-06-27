@@ -57,6 +57,7 @@
 .form_group_ textarea {
   height: 100px;
   resize: none;
+  line-height: 1.5rem;
 }
 
 .submit_btn_ {

@@ -3,43 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Schedule.module.css';
 import {
+  selectAirline,
   selectRoute,
   selectDetailCourses,
   resetDetailCoursesForDate,
 } from '../../../_slices/diySlice';
+import {
+  createDateRange,
+  createDetailedCourses,
+  checkAllCoursesNotEmpty,
+} from './schedule';
 import CourseModal from './CourseModal/CourseModal';
 import PlaceIcon from '@mui/icons-material/Place';
-
-// 시작 날짜와 종료 날짜 사이의 날짜 배열을 생성하는 함수
-const createDateRange = (start, end) => {
-  const startDate = new Date(start);
-  const endDate = new Date(end);
-  const dateArray = [];
-  let currentDate = startDate;
-
-  while (currentDate <= endDate) {
-    dateArray.push(new Date(currentDate).toISOString().split('T')[0]);
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
-
-  return dateArray;
-};
-
-// 날짜 범위에 따라 세부 코스 정보를 매핑하는 함수
-const createDetailedCourses = (routeRange, detailCourses) => {
-  return routeRange.map((date) => {
-    const detail = detailCourses.find((course) => course.dayNum === date);
-    return {
-      date,
-      courses: detail?.courses || [],
-      fileUrls: detail?.fileUrls || [],
-    };
-  });
-};
 
 const Schedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const airline = useSelector(selectAirline);
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
@@ -89,7 +69,12 @@ const Schedule = () => {
   };
 
   // route 정보가 없을 때 안내 메시지 표시
-  if (!route || !route.startDate || !route.lastDate) {
+  if (
+    !route ||
+    !route.startDate ||
+    !route.lastDate ||
+    !airline.comeAirlineName
+  ) {
     return <div>항공편을 먼저 선택해주세요</div>;
   }
 
@@ -134,7 +119,9 @@ const Schedule = () => {
           date={date}
         />
       ))}
-      <button onClick={handleMove}>레고 만들기</button>
+      {checkAllCoursesNotEmpty(detailCourses) && (
+        <button onClick={handleMove}>레고 만들기</button>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '../DiyDetail.module.css';
 import PlaceIcon from '@mui/icons-material/Place';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const DiyDetailSchedule = ({ schedule }) => {
   // 상태 객체를 사용하여 각 detailCourseNum별 이미지 보이기 상태를 관리
@@ -32,15 +33,15 @@ const DiyDetailSchedule = ({ schedule }) => {
                   <div className={styles.day_box}>
                     <span>{item.dayNum}</span>
                   </div>
-                  <div className={styles.course_box}>
+                  <div
+                    className={styles.course_box}
+                    onClick={() => handleOpenImg(item.detailCourseNum)}
+                  >
                     {item.courses.map((course, index) => (
                       <div key={index}>{`${index + 1} : ${course}`}</div>
                     ))}
-                    <img
-                      src={'/src/assets/images/arrow_to_bottom.png'}
-                      onClick={() => handleOpenImg(item.detailCourseNum)} // 이미지 클릭 시 상태 변경 함수 호출
-                      alt="Toggle"
-                    />
+
+                    <KeyboardArrowDownIcon className={styles.icon} />
                   </div>
                 </div>
                 {/* openImgStates 상태가 true일 때만 courseDetails를 렌더링 */}

@@ -189,7 +189,7 @@
 .course_box div{
   margin-right: 1rem;
 }
-.course_box img{
+.course_box .icon{
   position: absolute;
   top: 1rem;
   right:0.5rem;
