@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './DiyCard.module.css';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const DiyCard = ({
   packageNum,
@@ -26,7 +27,10 @@ const DiyCard = ({
         <h4>{packageName}</h4>
         <div className={styles.desc}>{shortDescription}</div>
       </div>
-      {children}
+      <div className={styles.user_box}>
+        <AccountCircleIcon fontSize="large" />
+        <div>{user.userNickname}</div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './DiyDetail.module.css';
 import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
@@ -53,19 +56,21 @@ const DiyDetail = () => {
   return (
     <div className={styles.DiyDetail}>
       <div>
-        <h2>{desc.packageName}</h2>
         <div className={styles.thumbnail_cheer_box}>
           <div className={styles.diy_thumbnail}>
             <img src={desc.profileImg} alt="" />
           </div>
           <div className={styles.cheer_user_box}>
+            <h2>{desc.packageName}</h2>
             <div className={styles.user}>
               <span>{writer.userNickname}</span>
-              <img src="/src/assets/images/no-profile.png" alt="profile" />
+              <AccountCircleIcon />
             </div>
             <div className={styles.like_view_box}>
-              <div>응원수 : {data.likedNum}</div>
-              <div>조회수 : {data.viewNum}</div>
+              <ThumbUpAltIcon />
+              <div>{data.likedNum}</div>
+              <VisibilityIcon />
+              <div>{data.viewNum}</div>
             </div>
             <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
             {!isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
