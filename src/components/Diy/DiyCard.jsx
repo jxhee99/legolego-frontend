@@ -5,12 +5,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const DiyCard = ({
   packageNum,
-  page,
   user,
   profileImg,
   packageName,
   shortDescription,
-  children,
 }) => {
   const navigate = useNavigate();
 

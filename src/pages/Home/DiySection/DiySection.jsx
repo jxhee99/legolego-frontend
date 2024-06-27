@@ -1,8 +1,8 @@
 import styles from '../Home.module.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import DiyCard from '../../../components/Card/DiyCard/DiyCard';
-import Avatar from '../../../components/Avatar/Avatar';
+import DiyCard from '../../../components/Diy/DiyCard';
 
 const API_URL = '/api/packages';
 
@@ -10,6 +10,7 @@ const DiySection = () => {
   const [diyData, setDiyData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -35,17 +36,21 @@ const DiySection = () => {
     return <p>{error}</p>;
   }
 
+  const limitedDiyData = diyData.slice(0, 6);
+
   return (
     <section className={styles.DiySection}>
-      <h2>방금 올라온 DIY 패키지</h2>
+      <div className={styles.diy_title}>
+        <h2>방금 올라온 DIY 패키지</h2>
+        <button className={styles.more_button} onClick={() => navigate('/diy')}>
+          더보러가기
+        </button>
+      </div>
       <div className={styles.diy_section_cards}>
-        {diyData.map((packages) => (
-          <DiyCard key={packages.packageNum} {...packages} page={true}>
-            <Avatar
-              nickname={packages.user.userName}
-              imageUrl={packages.profileImg}
-            />
-          </DiyCard>
+        {limitedDiyData.map((packages) => (
+          <div key={packages.packageNum}>
+            <DiyCard {...packages} page={true}></DiyCard>
+          </div>
         ))}
       </div>
     </section>
