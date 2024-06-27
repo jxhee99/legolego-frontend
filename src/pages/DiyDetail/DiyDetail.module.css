@@ -32,7 +32,7 @@
 /* 응원하기 */
 .DiyDetail .cheer_user_box {
   max-width: 40%;
-  height: 300px;
+  height: 400px;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -205,7 +205,9 @@
   border: 1px solid #E0E0E0;
 }
 
+
 .line{
+  /* 각 이미지 연결 선 */
   left: 0;
   width: 100px;
   flex-grow: 1;

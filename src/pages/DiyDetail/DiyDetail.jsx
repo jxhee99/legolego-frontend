@@ -61,6 +61,7 @@ const DiyDetail = () => {
             <img src={desc.profileImg} alt="" />
           </div>
           <div className={styles.cheer_user_box}>
+            <p>{data.regDate}</p>
             <h2>{desc.packageName}</h2>
             <div className={styles.user}>
               <span>{writer.userNickname}</span>

@@ -8,7 +8,9 @@ import {
   resetDetailCoursesForDate,
 } from '../../../_slices/diySlice';
 import CourseModal from './CourseModal/CourseModal';
+import PlaceIcon from '@mui/icons-material/Place';
 
+// 시작 날짜와 종료 날짜 사이의 날짜 배열을 생성하는 함수
 const createDateRange = (start, end) => {
   const startDate = new Date(start);
   const endDate = new Date(end);
@@ -23,6 +25,7 @@ const createDateRange = (start, end) => {
   return dateArray;
 };
 
+// 날짜 범위에 따라 세부 코스 정보를 매핑하는 함수
 const createDetailedCourses = (routeRange, detailCourses) => {
   return routeRange.map((date) => {
     const detail = detailCourses.find((course) => course.dayNum === date);
@@ -40,43 +43,52 @@ const Schedule = () => {
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
+  // route의 시작 날짜와 종료 날짜로 날짜 범위 생성
   const routeRange =
     route.startDate && route.lastDate
       ? createDateRange(route.startDate, route.lastDate)
       : [];
   console.log(routeRange);
 
+  // 날짜 범위에 따라 세부 코스 정보 생성
   const newDetaileCourses = createDetailedCourses(routeRange, detailCourses);
   console.log(newDetaileCourses);
 
+  // 모달의 가시성 상태를 관리하는 state
   const [modalVisibilities, setModalVisibilities] = useState(
     new Array(routeRange.length).fill(false)
   );
 
+  // detailCourses가 변경될 때마다 실행
   useEffect(() => {
     console.log('Initial detailCourses state:', detailCourses);
   }, [detailCourses]);
 
+  // 장소 추가 버튼 클릭 핸들러
   const handleAddPlace = (detailIndex) => {
     const updatedVisibilities = [...modalVisibilities];
     updatedVisibilities[detailIndex] = true;
     setModalVisibilities(updatedVisibilities);
   };
 
+  // 모달 닫기 핸들러
   const closeModal = (detailIndex) => {
     const updatedVisibilities = [...modalVisibilities];
     updatedVisibilities[detailIndex] = false;
     setModalVisibilities(updatedVisibilities);
   };
 
+  // 코스 초기화 버튼 클릭 핸들러
   const handleResetCourses = (date) => {
     dispatch(resetDetailCoursesForDate(date));
   };
 
+  // DIY 만들기 페이지로 이동하는 핸들러
   const handleMove = () => {
     navigate('/diy-create?step=diy-form');
   };
 
+  // route 정보가 없을 때 안내 메시지 표시
   if (!route || !route.startDate || !route.lastDate) {
     return <div>항공편을 먼저 선택해주세요</div>;
   }
@@ -101,8 +113,10 @@ const Schedule = () => {
                 <li key={`course-${i}`}>
                   <div className={styles.detail}>
                     <div>{`course ${i + 1}`}</div>
-                    {detail.fileUrls[i] && (
+                    {detail.fileUrls[i] ? (
                       <img src={detail.fileUrls[i]} alt="코스 이미지" />
+                    ) : (
+                      <PlaceIcon sx={{ m: 2 }} />
                     )}
                     <div>{course}</div>
                   </div>

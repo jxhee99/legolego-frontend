@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../DiyDetail.module.css';
+import PlaceIcon from '@mui/icons-material/Place';
 
 const DiyDetailSchedule = ({ schedule }) => {
   // 상태 객체를 사용하여 각 detailCourseNum별 이미지 보이기 상태를 관리
@@ -51,7 +52,11 @@ const DiyDetailSchedule = ({ schedule }) => {
                           key={`detail-${index}`}
                           className={styles.img_desc}
                         >
-                          <img src={detail.fileUrl} alt={`Image ${index}`} />
+                          {detail.fileUrl ? (
+                            <img src={detail.fileUrl} alt={`Image ${index}`} />
+                          ) : (
+                            <PlaceIcon sx={{ m: 2 }} />
+                          )}
                           <div className={styles.course_name}>
                             {`${detail.course}`}
                           </div>
@@ -61,16 +66,7 @@ const DiyDetailSchedule = ({ schedule }) => {
                       if (index < courseDetails.length - 1) {
                         acc.push(
                           <svg key={`line-${index}`} className={styles.line}>
-                            <line
-                              x1="0"
-                              y1="100"
-                              x2="500"
-                              y2="100"
-                              stroke="#070707"
-                              strokeWidth="4"
-                              strokeDasharray="5,16"
-                              strokeLinecap="round"
-                            />
+                            <line x1="0" y1="118" x2="500" y2="118" />
                           </svg>
                         );
                       }
