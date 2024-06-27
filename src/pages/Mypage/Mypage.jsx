@@ -6,22 +6,26 @@ import Sidebar from './Sidebar/Sidebar';
 import OrderList from '../Order/OrderList';
 import DiyPackage from './DiyPackage/DiyPackage';
 import SavedPackage from './SavedPackage/SavedPackage';
+import Metas from '../../components/common/Metas';
 
 const Mypage = () => {
   const [searchParams] = useSearchParams();
   const tab = searchParams.get('tab');
 
   return (
-    <div className={styles.Mypage}>
-      <Sidebar />
-      <div className={styles.mypage_wrapper}>
-        {tab === 'profile-setting' && <ProfileSetting />}
-        {tab === 'order-summary' && <OrderList />}
-        {tab === 'my-diy-prices' && <DiyPriceList />}
-        {tab === 'my-diy-package' && <DiyPackage />}
-        {tab === 'saved-packages' && <SavedPackage />}
+    <>
+      <Metas title="LEGOLEGO — 마이페이지" />
+      <div className={styles.Mypage}>
+        <Sidebar />
+        <div className={styles.mypage_wrapper}>
+          {tab === 'profile-setting' && <ProfileSetting />}
+          {tab === 'order-summary' && <OrderList />}
+          {tab === 'my-diy-prices' && <DiyPriceList />}
+          {tab === 'my-diy-package' && <DiyPackage />}
+          {tab === 'saved-packages' && <SavedPackage />}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

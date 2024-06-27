@@ -2,6 +2,7 @@ import styles from './Diy.module.css';
 import { useState } from 'react';
 import useFetchData from '../../hooks/useFetchDiyData';
 import DiyCard from '../../components/Diy/DiyCard';
+import Metas from '../../components/common/Metas';
 import PaginationComp from '../../components/Pagination/PaginationComp';
 
 const Diy = () => {
@@ -25,6 +26,7 @@ const Diy = () => {
 
   return (
     <>
+      <Metas title="DIY" />
       <section className={`${styles.Diy} layout`}>
         <h2>DIY 패키지를 응원해주세요!</h2>
         <div className={styles.diy_cards}>
