@@ -67,7 +67,7 @@ const DiyDetailSchedule = ({ schedule }) => {
                       if (index < courseDetails.length - 1) {
                         acc.push(
                           <svg key={`line-${index}`} className={styles.line}>
-                            <line x1="0" y1="118" x2="500" y2="118" />
+                            <line x1="0" y1="118" x2="800" y2="118" />
                           </svg>
                         );
                       }

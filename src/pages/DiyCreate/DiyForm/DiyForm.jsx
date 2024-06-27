@@ -67,7 +67,7 @@ const DiyForm = () => {
   };
 
   if (!detailCourses[0]) {
-    return <div>일정을 먼저 선택해주세요</div>;
+    return <div>항공편과 일정을 먼저 선택해주세요</div>;
   }
 
   return (

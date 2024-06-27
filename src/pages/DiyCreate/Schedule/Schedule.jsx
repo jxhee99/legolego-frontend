@@ -12,7 +12,7 @@ import {
   createDateRange,
   createDetailedCourses,
   checkAllCoursesNotEmpty,
-} from './schedule';
+} from './scheduleUtil';
 import CourseModal from './CourseModal/CourseModal';
 import PlaceIcon from '@mui/icons-material/Place';
 
@@ -119,9 +119,10 @@ const Schedule = () => {
           date={date}
         />
       ))}
-      {checkAllCoursesNotEmpty(detailCourses) && (
-        <button onClick={handleMove}>레고 만들기</button>
-      )}
+      {checkAllCoursesNotEmpty(detailCourses) &&
+        detailCourses.length === routeRange.length && (
+          <button onClick={handleMove}>레고 만들기</button>
+        )}
     </div>
   );
 };

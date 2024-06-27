@@ -91,14 +91,6 @@ const Airplane = () => {
           검색
         </button>
       </form>
-      {/* {selectedReturn >= 0 && (
-        <button
-          onClick={() => navigate('/diy-create?step=schedule')}
-          className={styles.link_schedule}
-        >
-          일정 만들기
-        </button>
-      )} */}
       {/* 출발편 정보 */}
       <div className={styles.airplane_information}>
         <div className={styles.searched}>
@@ -140,36 +132,46 @@ const Airplane = () => {
         </div>
       </div>
       {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
-      {airline.startAirlineName && (
-        <>
-          <h3>선택한 항공권</h3>
-          <p>다른 항공편을 보려면 재검색 해주세요</p>
-        </>
-      )}
-      <div style={{ display: 'flex', gap: '1rem' }}>
+      <div className={styles.selected_box}>
         {airline.startAirlineName && (
-          <DiyFlightCard
-            flight={{
-              flightNum: airline.startFlightNum,
-              date: airline.boardingDate,
-              airlineName: airline.startAirlineName,
-              startingPoint: airline.startingPoint,
-              destination: airline.destination,
-            }}
-            type={'departure'}
-          />
+          <>
+            <h3>선택한 항공권</h3>
+            <p>다른 항공편을 보려면 재검색 해주세요</p>
+            {airline.startAirlineName && airline.comeAirlineName && (
+              <button
+                onClick={() => navigate('/diy-create?step=schedule')}
+                className={styles.link_schedule}
+              >
+                일정 만들기
+              </button>
+            )}
+          </>
         )}
-        {airline.comeAirlineName && (
-          <DiyFlightCard
-            flight={{
-              flightNum: airline.comeFlightNum,
-              date: airline.comingDate,
-              airlineName: airline.comeAirlineName,
-              startingPoint: airline.destination,
-              destination: airline.startingPoint,
-            }}
-          />
-        )}
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          {airline.startAirlineName && (
+            <DiyFlightCard
+              flight={{
+                flightNum: airline.startFlightNum,
+                date: airline.boardingDate,
+                airlineName: airline.startAirlineName,
+                startingPoint: airline.startingPoint,
+                destination: airline.destination,
+              }}
+              type={'departure'}
+            />
+          )}
+          {airline.comeAirlineName && (
+            <DiyFlightCard
+              flight={{
+                flightNum: airline.comeFlightNum,
+                date: airline.comingDate,
+                airlineName: airline.comeAirlineName,
+                startingPoint: airline.destination,
+                destination: airline.startingPoint,
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
