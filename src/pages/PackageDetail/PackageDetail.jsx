@@ -5,6 +5,7 @@ import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Metas from '../../components/common/Metas';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});
@@ -23,11 +24,14 @@ const PackageDetail = () => {
   }, []);
 
   return (
-    <div className={`${styles.PackageDetail} layout`}>
-      <PackageInformation {...packageData} />
-      <AirplaneInfomation {...packageData.airline} />
-      <ScheduleInformation detailCourse={packageData.detailCourse} />
-    </div>
+    <>
+      <Metas title={packageData.productName} />
+      <div className={`${styles.PackageDetail} layout`}>
+        <PackageInformation {...packageData} />
+        <AirplaneInfomation {...packageData.airline} />
+        <ScheduleInformation detailCourse={packageData.detailCourse} />
+      </div>
+    </>
   );
 };
 
