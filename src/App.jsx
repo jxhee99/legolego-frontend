@@ -15,6 +15,7 @@ import Admin from './pages/Admin/Admin';
 import Partner from './pages/Partner/Partner';
 import Order from './pages/Order/Order';
 import Payment from './pages/Payment/Payment';
+import NotFound from './pages/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -65,24 +66,25 @@ const App = () => {
             />
           ))}
         </Route>
-        <Route path='/order' element={<Order />}>
-          {ROUTE_ORDER_ARR.map((route)=>(
-            <Route 
+        <Route path="/order" element={<Order />}>
+          {ROUTE_ORDER_ARR.map((route) => (
+            <Route
               path={route.path}
               element={<route.element />}
               key={route.path}
-              />
+            />
           ))}
         </Route>
-        <Route path='/payment' element={<Payment />}>
-          {ROUTE_PAYMENT_ARR.map((route)=>(
-            <Route 
+        <Route path="/payment" element={<Payment />}>
+          {ROUTE_PAYMENT_ARR.map((route) => (
+            <Route
               path={route.path}
               element={<route.element />}
               key={route.path}
-              />
+            />
           ))}
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

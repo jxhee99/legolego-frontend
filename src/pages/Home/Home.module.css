@@ -1,7 +1,7 @@
 /* IntroSection */
 .IntroSection {
   padding: 8rem;
-  background-color: #d380fd;
+  background-color: #d79ef3;
 }
 
 /* PackageSection */
@@ -16,11 +16,44 @@
   margin-top: 3rem;
 }
 
+.PackageSection .package_title {
+  position: relative;
+}
+
 /* DiySection */
 .DiySection {
   padding: 3.5rem 3rem 3rem;
 }
 
 .DiySection .diy_section_cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
   margin-top: 3rem;
+}
+
+.DiySection .diy_title {
+  position: relative;
+}
+
+.more_button {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background-color: #cc70f0;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0.25rem 0.5rem;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.more_button:hover {
+  background-color: #8e44ad;
 }
