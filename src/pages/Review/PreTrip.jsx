@@ -10,7 +10,7 @@ const PreTrip = () => {
   };
   return (
     <>
-      <Metas title="LEGOLEGO — 지난여행후기" />
+      <Metas title="지난여행후기" />
       <section className={styles.PreTrip}>
         <h2>지난 여행 후기를 둘러보세요! </h2>
         <div className={styles.preTrip_grid}>

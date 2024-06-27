@@ -1,10 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 const Metas = ({ title }) => {
+  const location = useLocation();
+
   return (
     <Helmet>
-      <title>{title}</title>
+      <title>{`LEGOLEGO — ${title}`}</title>
       <meta name="title" content="LEGOLEGO — 내가 만드는 패키지 여행" />
       <meta
         name="description"
@@ -12,7 +15,7 @@ const Metas = ({ title }) => {
       />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://metatags.io/" />
+      <meta property="og:url" content={`https://${location.pathname}/`} />
       <meta property="og:title" content="LEGOLEGO — 내가 만드는 패키지 여행" />
       <meta
         property="og:description"
@@ -24,7 +27,7 @@ const Metas = ({ title }) => {
       />
 
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://metatags.io/" />
+      <meta property="twitter:url" content={`https://${location.pathname}/`} />
       <meta
         property="twitter:title"
         content="LEGOLEGO — 내가 만드는 패키지 여행"

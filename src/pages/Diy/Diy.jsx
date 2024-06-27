@@ -37,7 +37,7 @@ const Diy = () => {
 
   return (
     <>
-      <Metas title="LEGOLEGO — DIY" />
+      <Metas title="DIY" />
       <section className={`${styles.Diy} layout`}>
         <h2>DIY 패키지를 응원해주세요!</h2>
         <div className={styles.diy_cards}>

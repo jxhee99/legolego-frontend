@@ -8,6 +8,7 @@ import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
 import useFetchData from '../../hooks/useFetchDiyData';
 import axios from 'axios';
+import Metas from '../../components/common/Metas';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
@@ -54,46 +55,49 @@ const DiyDetail = () => {
   }
 
   return (
-    <div className={styles.DiyDetail}>
-      <div>
-        <div className={styles.thumbnail_cheer_box}>
-          <div className={styles.diy_thumbnail}>
-            <img src={desc.profileImg} alt="" />
+    <>
+      <Metas title={desc.packageName} />
+      <div className={styles.DiyDetail}>
+        <div>
+          <div className={styles.thumbnail_cheer_box}>
+            <div className={styles.diy_thumbnail}>
+              <img src={desc.profileImg} alt="" />
+            </div>
+            <div className={styles.cheer_user_box}>
+              <h2>{desc.packageName}</h2>
+              <div className={styles.user}>
+                <span>{writer.userNickname}</span>
+                <AccountCircleIcon />
+              </div>
+              <div className={styles.like_view_box}>
+                <ThumbUpAltIcon />
+                <div>{data.likedNum}</div>
+                <VisibilityIcon />
+                <div>{data.viewNum}</div>
+              </div>
+              <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
+              {!isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
+                <button className={styles.cheer_button} onClick={handleLike}>
+                  응원하기
+                </button>
+              ) : (
+                <button
+                  className={styles.cheer_button}
+                  style={{ cursor: 'default' }}
+                >
+                  응원 완료!
+                </button>
+              )}
+            </div>
           </div>
-          <div className={styles.cheer_user_box}>
-            <h2>{desc.packageName}</h2>
-            <div className={styles.user}>
-              <span>{writer.userNickname}</span>
-              <AccountCircleIcon />
-            </div>
-            <div className={styles.like_view_box}>
-              <ThumbUpAltIcon />
-              <div>{data.likedNum}</div>
-              <VisibilityIcon />
-              <div>{data.viewNum}</div>
-            </div>
-            <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
-            {!isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
-              <button className={styles.cheer_button} onClick={handleLike}>
-                응원하기
-              </button>
-            ) : (
-              <button
-                className={styles.cheer_button}
-                style={{ cursor: 'default' }}
-              >
-                응원 완료!
-              </button>
-            )}
+          <div className={styles.desc_box}>
+            <pre>{desc.shortDescription}</pre>
           </div>
         </div>
-        <div className={styles.desc_box}>
-          <pre>{desc.shortDescription}</pre>
-        </div>
+        {<DiyDetailAirplane airline={airline} />}
+        {<DiyDetailSchedule schedule={schedule} />}
       </div>
-      {<DiyDetailAirplane airline={airline} />}
-      {<DiyDetailSchedule schedule={schedule} />}
-    </div>
+    </>
   );
 };
 

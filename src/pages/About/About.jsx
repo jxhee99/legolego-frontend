@@ -37,7 +37,7 @@ const About = () => {
 
   return (
     <>
-      <Metas title="LEGOLEGO — 내가 만드는 패키지 여행" />
+      <Metas title="내가 만드는 패키지 여행" />
       <div className={styles.About}>
         <section className={styles.about_top}>
           <div className={styles.about_intro}>

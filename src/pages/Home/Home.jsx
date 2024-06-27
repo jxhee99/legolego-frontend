@@ -6,7 +6,7 @@ import PackageSection from './PackageSection/PackageSection';
 const Home = () => {
   return (
     <>
-      <Metas title="LEGOLEGO — 내가 만드는 패키지 여행" />
+      <Metas title="내가 만드는 패키지 여행" />
       <IntroSection />
       <PackageSection />
       <DiySection />

@@ -23,7 +23,7 @@ const Package = () => {
 
   return (
     <>
-      <Metas title="LEGOLEGO — 패키지 상품" />
+      <Metas title="패키지 상품" />
       <section className={`${styles.Package} layout`}>
         <h2>어떤 여행을 함께 해볼까요?</h2>
         <div className={styles.package_cards}>
