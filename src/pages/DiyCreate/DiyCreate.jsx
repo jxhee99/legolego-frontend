@@ -10,7 +10,10 @@ import {
   selectRoute,
   selectDetailCourses,
 } from '../../_slices/diySlice';
-import { createDateRange, checkAllCoursesNotEmpty } from './Schedule/schedule';
+import {
+  createDateRange,
+  checkAllCoursesNotEmpty,
+} from './Schedule/scheduleUtil';
 
 const DiyCreate = () => {
   const [searchParams] = useSearchParams();
@@ -53,11 +56,13 @@ const DiyCreate = () => {
                 일정
               </Link>
             ) : (
-              <spa>일정</spa>
+              <span>일정</span>
             )}
           </li>
           <li className={step === 'diy-form' ? styles.active : ''}>
-            {routeRange.length === detailCourses.length && isAllSelected ? (
+            {routeRange.length === detailCourses.length &&
+            isAllSelected &&
+            airline.comeAirlineName ? (
               <Link
                 to="/diy-create?step=diy-form"
                 className={step === 'schedule' ? styles.blink : ''}
