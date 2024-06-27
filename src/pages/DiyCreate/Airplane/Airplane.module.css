@@ -9,15 +9,19 @@
 .Airplane {
   display: flex;
   justify-content: center;
+  gap: 4px;
 }
 
 .Airplane .button {
+  width: 60px;
   background-color: #131313;
   color: #fff;
+  border-radius: 4px;
 }
 
 .Airplane>input {
-  border: 1px solid #b7b5b5;
+  border: 1px solid #bebebe;
+  border-radius: 4px;
 }
 
 .airplane_information {
@@ -25,6 +29,12 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 5rem;
   cursor: pointer;
+}
+
+.airplane_information .searched {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /* 선택된 항공편 표시 */

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './DiySchedule.module.css';
+import PlaceIcon from '@mui/icons-material/Place';
 
 const CourseList = ({ detaileCourses }) => {
   return (
@@ -14,8 +15,10 @@ const CourseList = ({ detaileCourses }) => {
               <li key={`course-${i}`}>
                 <div className={styles.detail}>
                   <div>{`course ${i + 1}`}</div>
-                  {detail.fileUrls[i] && (
+                  {detail.fileUrls[i] ? (
                     <img src={detail.fileUrls[i]} alt="코스 이미지" />
+                  ) : (
+                    <PlaceIcon sx={{ m: 2 }} />
                   )}
                   <div>{course}</div>
                 </div>

@@ -43,7 +43,6 @@ const Airplane = () => {
       setReturnFlight
     );
     dispatch(resetForm());
-    dispatch(updateRoute({ startDate, endDate }));
   };
 
   const handleSelectedStart = (flight, index) => {
@@ -68,6 +67,7 @@ const Airplane = () => {
         comingDate: flight.date,
       })
     );
+    dispatch(updateRoute({ startDate, endDate }));
   };
 
   return (
@@ -91,46 +91,52 @@ const Airplane = () => {
           검색
         </button>
       </form>
-      {selectedReturn >= 0 && (
+      {/* {selectedReturn >= 0 && (
         <button
           onClick={() => navigate('/diy-create?step=schedule')}
           className={styles.link_schedule}
         >
           일정 만들기
         </button>
-      )}
+      )} */}
+      {/* 출발편 정보 */}
       <div className={styles.airplane_information}>
-        <div>
-          {startFlight &&
-            startFlight.length > 0 &&
-            startFlight.map((flight, index) => (
-              <div
-                key={`start-${index}`}
-                onClick={() => {
-                  handleSelectedStart(flight, index);
-                }}
-                className={selectedStart === index ? styles.selectedFlight : ''}
-              >
-                <DiyFlightCard flight={flight} type={'departure'} />
-              </div>
-            ))}
+        <div className={styles.searched}>
+          {startFlight && startFlight.length > 0 && (
+            <>
+              <h4>출발편</h4>
+              {startFlight.map((flight, index) => (
+                <div
+                  key={`start-${index}`}
+                  onClick={() => handleSelectedStart(flight, index)}
+                  className={
+                    selectedStart === index ? styles.selectedFlight : ''
+                  }
+                >
+                  <DiyFlightCard flight={flight} type="departure" />
+                </div>
+              ))}
+            </>
+          )}
         </div>
-        <div>
-          {returnFlight &&
-            returnFlight.length > 0 &&
-            returnFlight.map((flight, index) => (
-              <div
-                key={`return-${index}`}
-                onClick={() => {
-                  handleSelectedReturn(flight, index);
-                }}
-                className={
-                  selectedReturn === index ? styles.selectedFlight : ''
-                }
-              >
-                <DiyFlightCard flight={flight} />
-              </div>
-            ))}
+        {/* 도착편 정보 */}
+        <div className={styles.searched}>
+          {returnFlight && returnFlight.length > 0 && (
+            <>
+              <h4>도착편</h4>
+              {returnFlight.map((flight, index) => (
+                <div
+                  key={`return-${index}`}
+                  onClick={() => handleSelectedReturn(flight, index)}
+                  className={
+                    selectedReturn === index ? styles.selectedFlight : ''
+                  }
+                >
+                  <DiyFlightCard flight={flight} />
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
       {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
