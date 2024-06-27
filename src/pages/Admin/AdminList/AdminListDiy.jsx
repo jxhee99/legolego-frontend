@@ -35,7 +35,7 @@ const AdminListDiy = () => {
     const newQuery = new URLSearchParams(location.search);
     newQuery.set('page', page);
     newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() });
+    navigate({ search: newQuery.toString() }, { replace: true });
   }, [page, filterApplied, navigate, location.search]);
 
   // 로딩 중일 때
