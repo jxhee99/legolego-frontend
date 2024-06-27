@@ -1,9 +1,14 @@
-import styles from './MembersList.module.css';
+import styles from '../../../components/List/List.module.css';
 import ListTable from '../../../components/List/ListTable';
+import { useEffect } from 'react';
+import useFetchData from '../../../hooks/useFetchDiyData';
 
 const MembersList = () => {
+  const { data, loading, refetch } = useFetchData(endpoint);
+  const endpoint = '/api/admin/all-members';
+
   return (
-    <div className={styles.MembersList}>
+    <div className={styles.box}>
       <h2>회원목록</h2>
       <ListTable>
         <thead>

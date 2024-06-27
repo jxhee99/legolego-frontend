@@ -2,7 +2,7 @@ import styles from './Diy.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import DiyCard from '../../components/Diy/DiyCard';
-import Avatar from '../../components/Avatar/Avatar';
+import Metas from '../../components/common/Metas';
 
 const API_URL = '/api/packages';
 
@@ -36,19 +36,22 @@ const Diy = () => {
   }
 
   return (
-    <section className={`${styles.Diy} layout`}>
-      <h2>DIY 패키지를 응원해주세요!</h2>
-      <div className={styles.diy_cards}>
-        {diyData.map((packages) => (
-          <div key={packages.packageNum}>
-            <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-              {packages.user.userName}님의 여행 둘러보세요!
-            </h4>
-            <DiyCard {...packages} page={true}></DiyCard>
-          </div>
-        ))}
-      </div>
-    </section>
+    <>
+      <Metas title="LEGOLEGO — DIY" />
+      <section className={`${styles.Diy} layout`}>
+        <h2>DIY 패키지를 응원해주세요!</h2>
+        <div className={styles.diy_cards}>
+          {diyData.map((packages) => (
+            <div key={packages.packageNum}>
+              <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                {packages.user.userName}님의 여행 둘러보세요!
+              </h4>
+              <DiyCard {...packages} page={true}></DiyCard>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
