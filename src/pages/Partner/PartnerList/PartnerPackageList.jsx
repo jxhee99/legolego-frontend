@@ -17,7 +17,7 @@ const PartnerPackageList = () => {
   const itemsPerPage = 10; // 필요에 따라 조정 가능
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const endpoint = '/api/partner/over-liked-packages/3';
+  const endpoint = '/api/partner/over-liked-packages';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);
@@ -69,10 +69,16 @@ const PartnerPackageList = () => {
     };
 
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
-        `/api/partner/over-liked-packages/3/offer`,
+        `/api/partner/over-liked-packages/offer`,
         formData,
-        { headers: { 'Content-Type': 'application/json' } }
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.status === 201) {

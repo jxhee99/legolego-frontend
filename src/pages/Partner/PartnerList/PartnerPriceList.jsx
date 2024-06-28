@@ -26,7 +26,7 @@ const PartnerPriceList = () => {
   const [page, setPage] = useState(initialPage);
 
   //get요청
-  const endpoint = '/api/diylists/partner/3';
+  const endpoint = '/api/partner/diylists';
   const { data, loading } = useFetchData(endpoint);
 
   // 페이지 및 필터 변경 시 처리

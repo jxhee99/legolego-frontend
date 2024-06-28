@@ -33,7 +33,7 @@ const AdminListDiyPrice = () => {
   const [deadlineTime, setDeadlineTime] = useState(null);
 
   //get요청
-  const endpoint = '/api/diylists/admin';
+  const endpoint = '/api/admin/diylists';
   const { data, loading, refetch } = useFetchData(endpoint);
 
   // 페이지 및 필터 변경 시 처리
@@ -96,8 +96,16 @@ const AdminListDiyPrice = () => {
         console.error('날짜와 시간을 선택해주세요');
         return;
       }
+      const token = localStorage.getItem('token');
       const response = await axios.post(
-        `/api/diylists/admin/1/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`
+        `/api/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`,
+        {},
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.status === 200) {

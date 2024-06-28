@@ -28,7 +28,7 @@ const DiyPriceList = () => {
   const [page, setPage] = useState(initialPage);
 
   // get 요청
-  const endpoint = '/api/diylists/user/1';
+  const endpoint = '/api/user/diylists';
   const { data, loading, refetch } = useFetchData(endpoint);
 
   // 페이지 및 필터 변경 시 처리
@@ -78,8 +78,16 @@ const DiyPriceList = () => {
   // 승인 요청
   const handleApprove = async (item) => {
     try {
+      const token = localStorage.getItem('token');
       const response = await axios.post(
-        `/api/diylists/user/1/accept?list_num=${item.listNum}&package_num=${item.diyPackage.packageNum}`
+        `/api/user/accept?list_num=${item.listNum}&package_num=${item.diyPackage.packageNum}`,
+        {},
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (response.status === 200) {
