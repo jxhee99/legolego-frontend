@@ -9,9 +9,16 @@ function extractCode(inputString) {
 
 export const fetchAirline = async (startDate, endDate, startLocation, endLocation, setStartFlight, setReturnFlight) => {
   try {
+
+    const token = localStorage.getItem('token');
     const response = await axios.get(
-      `/api/api/airline?schDate=${formatDate(startDate)}&returnDate=${formatDate(endDate)}&schDeptCityCode=${extractCode(startLocation)}&schArrvCityCode=${extractCode(endLocation)}`
-    );
+      `/api/user/airline?schDate=${formatDate(startDate)}&returnDate=${formatDate(endDate)}&schDeptCityCode=${extractCode(startLocation)}&schArrvCityCode=${extractCode(endLocation)}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
     console.log(response.data);
     console.log(startDate);
     const flightData = response.data;

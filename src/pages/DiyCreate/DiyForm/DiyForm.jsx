@@ -42,12 +42,17 @@ const DiyForm = () => {
         packageName: packageName,
         shortDescription: shortDesc,
       },
-      userNum: 1,
     };
 
     console.log(formData);
     try {
-      const response = await axios.post(`/api/packages`, formData);
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`/api/user/packages`, formData, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.status === 201) {
         // 요청이 성공한 경우
