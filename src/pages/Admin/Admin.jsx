@@ -1,8 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import ListMenu from '../../components/List/ListMenu';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Admin = () => {
+
+  const { role, handleLogout } = useContext(AuthContext);
+
+  if (role !== 'ADMIN') {
+    return <div>권한이 없습니다.</div>;
+  }
+
   return (
     <ListMenu title={<Link to="/admin">관리자 페이지</Link>}>
       <li>
@@ -24,7 +32,7 @@ const Admin = () => {
         <Link to="/admin/lists/members">회원 목록</Link>
       </li>
       <li>
-        <span>로그아웃</span>
+      <span onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</span>
       </li>
     </ListMenu>
   );
