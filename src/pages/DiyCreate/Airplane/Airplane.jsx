@@ -132,7 +132,7 @@ const Airplane = () => {
         </div>
       </div>
       {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
-      <div className={styles.selected_box}>
+      <div className={airline.startAirlineName ? styles.selected_box : ''}>
         {airline.startAirlineName && (
           <>
             <h3>선택한 항공권</h3>
