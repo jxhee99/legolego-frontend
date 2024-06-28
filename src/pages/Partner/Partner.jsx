@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ListMenu from '../../components/List/ListMenu';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Partner = () => {
+
+  const { role, handleLogout } = useContext(AuthContext);
+
+  if (role !== 'PARTNER') {
+    return <div>권한이 없습니다.</div>;
+  }
+
   return (
     <ListMenu title={<Link to="/partner">여행사 페이지</Link>}>
       <li>
@@ -18,7 +26,7 @@ const Partner = () => {
         <Link to="/admin/lists/orders">여행 상품</Link>
       </li>
       <li>
-        <span>로그아웃</span>
+      <span onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</span>
       </li>
     </ListMenu>
   );
