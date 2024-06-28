@@ -1,17 +1,30 @@
+import React from 'react';
 import styles from './InputField.module.css';
 
-const InputField = ({ type, text, value = '', onChange, name }) => {
+const InputField = ({
+  type,
+  text,
+  name,
+  onChange,
+  onBlur,
+  error,
+  maxLength,
+  value,
+}) => {
   return (
     <div className={styles.InputField}>
       <input
-        id={name}
-        name={name}
+        id={text}
         type={type}
+        name={name}
         placeholder=" "
-        value={value}
         onChange={onChange}
+        onBlur={onBlur}
+        maxLength={maxLength}
+        value={value}
       />
       <label htmlFor={name}>{text}</label>
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 };
