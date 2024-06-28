@@ -43,3 +43,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.DiyCard .user_box{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

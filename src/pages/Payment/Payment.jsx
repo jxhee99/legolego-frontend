@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './Payment.module.css';
+// import styles from './Payment.module.css';
 import axios from 'axios';
 
 const PaymentPage = () => {
@@ -76,12 +76,13 @@ const PaymentPage = () => {
     }, [navigate, product, count, totalPrice, user]);
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>{product.productName}</h1>
-            <p className={styles.price}>{product.price.toLocaleString()}원</p>
-            <p className={styles.quantity}>수량: {count}</p>
-            <p className={styles.totalPrice}>결제 금액: {totalPrice.toLocaleString()}원</p>
-        </div>
+      <div></div>
+        // <div className={styles.container}>
+        //     <h1 className={styles.title}>{product.productName}</h1>
+        //     <p className={styles.price}>{product.price.toLocaleString()}원</p>
+        //     <p className={styles.quantity}>수량: {count}</p>
+        //     <p className={styles.totalPrice}>결제 금액: {totalPrice.toLocaleString()}원</p>
+        // </div>
     );
 };
 

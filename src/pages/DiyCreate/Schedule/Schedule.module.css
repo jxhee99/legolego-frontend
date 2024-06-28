@@ -7,7 +7,7 @@
 
 .Schedule h3 {
   font-size: 1.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -32,6 +32,11 @@
   align-items: center;
 }
 
+.add_reset_button{
+  display: flex;
+  gap: 0.5rem;
+}
+
 .Schedule li button {
   background-color: #111212;
   color: #fff;
@@ -48,14 +53,19 @@
 .courses{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   width: 100%;
 }
 
 .courses li{
-  flex-grow: 1;
+  display: flex;
+  justify-content: start;
 }
 
+.courses li:last-child {
+  flex-grow: 1;
+}
 
 .courses .detail{
   display: flex;

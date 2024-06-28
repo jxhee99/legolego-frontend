@@ -1,59 +1,55 @@
 import styles from './Diy.module.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import useFetchData from '../../hooks/useFetchDiyData';
 import DiyCard from '../../components/Diy/DiyCard';
-import Avatar from '../../components/Avatar/Avatar';
-
-const API_URL = '/api/packages';
+import Metas from '../../components/common/Metas';
+import PaginationComp from '../../components/Pagination/PaginationComp';
 
 const Diy = () => {
-  const [diyData, setDiyData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const [page, setPage] = useState(initialPage);
+  const itemsPerPage = 12;
+  const endpoint = '/api/packages';
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(API_URL);
-      setDiyData(response.data);
-    } catch (error) {
-      setError('데이터를 가져오는 중 문제가 발생했습니다.');
-      console.error('Error', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // 데이터 훅을 이용해 API 호출
+  const { data, loading } = useFetchData(endpoint);
 
   if (loading) {
     return <p>로딩 중...</p>;
   }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+  // 현재 페이지에 맞는 데이터 계산
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = data.slice(startIndex, endIndex);
 
   return (
-    <section className={`${styles.Diy} layout`}>
-      <h2>DIY 패키지를 응원해주세요!</h2>
-      <div className={styles.diy_cards}>
-        {diyData.map((packages) => (
-          <div key={packages.packageNum}>
-            <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-              {packages.user.userName}님의 여행 둘러보세요!
-            </h4>
-            <DiyCard {...packages} page={true}>
-              <Avatar
-                nickname={packages.user.userName}
-                imageUrl={'/src/assets/images/no-profile.png'}
-              />
-            </DiyCard>
-          </div>
-        ))}
+    <>
+      <Metas title="DIY" />
+      <section className={`${styles.Diy} layout`}>
+        <h2>DIY 패키지를 응원해주세요!</h2>
+        <div className={styles.diy_cards}>
+          {currentItems.map((packages) => (
+            <div key={packages.packageNum}>
+              <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+                {packages.user.userName}님의 여행 둘러보세요!
+              </h4>
+              <DiyCard {...packages} page={true} />
+            </div>
+          ))}
+        </div>
+      </section>
+      <div className={styles.pagination_box}>
+        {/* 페이지네이션 컴포넌트 */}
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+        />
       </div>
-    </section>
+    </>
   );
 };
 

@@ -45,6 +45,7 @@ import Payment from '../pages/Payment/Payment';
 
 // 지난여행
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
+import NotFound from '../pages/NotFound/NotFound';
 
 export const ROUTE = {
   ABOUT: {

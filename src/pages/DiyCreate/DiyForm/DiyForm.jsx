@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './DiyForm.module.css';
+import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
+import DiySchedule from '../../../components/Diy/DiySchedule';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -40,12 +42,17 @@ const DiyForm = () => {
         packageName: packageName,
         shortDescription: shortDesc,
       },
-      userNum: 1,
     };
 
     console.log(formData);
     try {
-      const response = await axios.post(`/api/packages`, formData);
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`/api/user/packages`, formData, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.status === 201) {
         // 요청이 성공한 경우
@@ -64,30 +71,62 @@ const DiyForm = () => {
     }
   };
 
+  if (!detailCourses[0]) {
+    return <div>항공편과 일정을 먼저 선택해주세요</div>;
+  }
+
   return (
-    <div className={styles.form_box}>
-      <h2>패키지 정보 입력</h2>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.form_group_}>
-          <label>패키지 이름:</label>
-          <input
-            type="text"
-            value={packageName}
-            onChange={handlePackageNameChange}
-          />
-        </div>
-        <div className={styles.form_group_}>
-          <label>짧은 설명:</label>
-          <textarea
-            value={shortDesc}
-            onChange={handleShortDescChange}
-            rows={4}
-          />
-        </div>
-        <button type="submit" className={styles.submit_btn_}>
-          제출
-        </button>
-      </form>
+    <div className={styles.container}>
+      <h3>항공편</h3>
+      <div className={styles.flight_box}>
+        <DiyFlightCard
+          flight={{
+            flightNum: airline.startFlightNum,
+            date: airline.boardingDate,
+            airlineName: airline.startAirlineName,
+            startingPoint: airline.startingPoint,
+            destination: airline.destination,
+          }}
+          type={'departure'}
+        />
+        <DiyFlightCard
+          flight={{
+            flightNum: airline.comeFlightNum,
+            date: airline.comingDate,
+            airlineName: airline.comeAirlineName,
+            startingPoint: airline.destination,
+            destination: airline.startingPoint,
+          }}
+        />
+      </div>
+      <h3>일정</h3>
+      <div className={styles.schedule_box}>
+        <DiySchedule detaileCourses={detailCourses} />
+      </div>
+      <h3>레고 만들기</h3>
+      <div className={styles.form_box}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.form_group_}>
+            <label>패키지 이름</label>
+            <input
+              type="text"
+              value={packageName}
+              onChange={handlePackageNameChange}
+            />
+          </div>
+          <div className={styles.form_group_}>
+            <label>짧은 설명</label>
+            <textarea
+              value={shortDesc}
+              onChange={handleShortDescChange}
+              rows={4}
+            />
+          </div>
+          <button type="submit" className={styles.submit_btn_}>
+            제출
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -13,3 +13,8 @@
   border-radius: 12px;
   object-fit: cover;
 }
+
+.pagination_box{
+  display: flex;
+  justify-content: center;
+}

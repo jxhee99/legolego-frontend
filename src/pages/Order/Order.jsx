@@ -52,10 +52,10 @@ const Order = () => {
     // 구매 버튼 핸들러
     const onClickBuy = () => {
         const totalPrice = count * product.price;
-        // const userNum = 1; // 올바른 userNum 불러와야함
-        const userEmail = 'user1@naver.com'; // 구매자 이메일 불러와야함
-        const userName = '김김김'; // 구매자 이름 불러와야함
-        const userPhone = '010-2222-2222'; // 구매자 번호 불러와야함
+        // const userNum = user.userNum; // 올바른 userNum 불러와야함
+        // const userEmail = user.userEmail; // 구매자 이메일 불러와야함
+        // const userName = user.userName; // 구매자 이름 불러와야함
+        // const userPhone = user.userPhone; // 구매자 번호 불러와야함
         navigate('/payment', { state: { product, count, totalPrice } });
     };
 
@@ -63,32 +63,30 @@ const Order = () => {
     if (!product) return <div>Product not found</div>
  
     return (
-        <>
-            <div>
-                <h1>{product.partnerName}</h1>
-                <h1>{product.productName}</h1>
-                <div className={styles.order_img}>
-                    <img src="https://picsum.photos/seed/picsum/200/300" alt="" />
-                </div>
-                {/* {product.price !== undefined && (
-                <> */}
-                    <p>{product.price.toLocaleString()}원</p>
-                    {/* 수량 카운트 */}
+        <div className={styles.container}>
+            <h1>주문 정보</h1>
+            <hr className={styles.hr1}/>
+            <div className={styles.partner_name}>✈️ {product.partnerName}</div>
+            <hr className={styles.hr2}/>
+            <div className={styles.order_box}>
+                <div className={styles.order_info}>
+                    <h3>{product.productName}</h3>
+                    <p className={styles.price}>가격 : {product.price.toLocaleString()}원</p>
                     <div className={styles.quantity}>
-                    <button className={styles.quantity_btn} onClick={onClickMinus}>-</button>
-                    <span>{count}</span>
-                    <button className={styles.quantity_btn} onClick={onClickPlus}>+</button>
+                        <button className={styles.quantity_btn} onClick={onClickMinus}>-</button>
+                        <span className={styles.quantity_span}>{count}</span>
+                        <button className={styles.quantity_btn} onClick={onClickPlus}>+</button>
                     </div>
-                    {/* 총 금액 */}
-                    <span className={styles.total_price}>{(count * product.price).toLocaleString()}
-                    <span className={styles.total_unit}>원</span>
+                    <span className={styles.total_price}>결제금액 : {(count * product.price).toLocaleString()}<span className={styles.total_unit}>원</span>
                     </span>
-                    {/* 구매 버튼 */}
-                    <button className={styles.buy_btn} onClick={onClickBuy}>BUY NOW</button>
-                {/* </>
-        )} */}
+                </div>
+                <div className={styles.order_img}>
+                    <img src={product.productImage} alt="" />
+                </div> 
             </div>
-        </>
+            <button className={styles.buy_btn} onClick={onClickBuy}>BUY NOW</button>
+            <hr className={styles.hr2}/>
+        </div>
     );
 
 };

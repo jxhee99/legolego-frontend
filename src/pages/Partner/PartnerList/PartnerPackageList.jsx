@@ -34,7 +34,7 @@ const PartnerPackageList = () => {
   useEffect(() => {
     const newQuery = new URLSearchParams(location.search);
     newQuery.set('page', page);
-    navigate({ search: newQuery.toString() });
+    navigate({ search: newQuery.toString() }, { replace: true });
   }, [page, navigate, location.search]);
 
   // 모달 열기

@@ -28,19 +28,29 @@ const AdminListDiy = () => {
   const [page, setPage] = useState(initialPage);
 
   // 데이터 가져오기 훅
-  const { data, loading, refetch } = useFetchData(endpoint);
+  const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 페이지 및 필터 변경 시 처리
   useEffect(() => {
     const newQuery = new URLSearchParams(location.search);
     newQuery.set('page', page);
     newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() });
+    navigate({ search: newQuery.toString() }, { replace: true });
   }, [page, filterApplied, navigate, location.search]);
 
   // 로딩 중일 때
   if (loading) {
     return <div>로딩 중...</div>;
+  }
+
+  // 에러 발생 시
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  // 데이터가 없을 때
+  if (!data || data.length === 0) {
+    return <div>데이터가 없습니다.</div>;
   }
 
   // 필터된 데이터 설정
