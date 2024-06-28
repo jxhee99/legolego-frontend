@@ -3,18 +3,50 @@ import axios from 'axios';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const OrderList=()=>{
+const OrderList = () => {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const goToOrderDetail=()=>{
-    navigate('/order-detail')
-  }
-  return(
-    <div className={styles.OrderList}>
-      <div>
-    <h2>
-      결제내역
-    </h2>
-    </div>
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const userNum = 1; // 로그인된 userNum 필요. 임시로 1 넣어둠 
+        const response = await axios.get(`/api/orders?user_num=${userNum}`);
+        const ordersData = response.data;
+
+        // 각 주문의 상품 정보를 추가로 요청
+        const updatedOrders = await Promise.all(
+          ordersData.map(async (order) => {
+            const productResponse = await axios.get(`/api/products/${order.productNum}`);
+            return {
+              ...order,
+              productName: productResponse.data.productName,
+              productPrice: productResponse.data.price,
+            };
+          })
+        );
+
+        setOrders(updatedOrders);
+        setLoading(false);
+      } catch (error) {
+        setError('주문 목록을 불러오는 중 오류가 발생했습니다.');
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  const goToOrderDetail = (orderNum) => {
+    navigate(`/order-detail/${orderNum}`);
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
+  return (
     <table className={styles.OrderList}>
       <thead>
         <tr>
@@ -27,26 +59,26 @@ const OrderList=()=>{
           <th>리뷰</th>
         </tr>
       </thead>
-       <tbody>
-        <td>1</td>
-        <td onClick={goToOrderDetail}>일본 온천 여행</td>
-        <td>999,000</td>
-        <td>1</td>
-        <td>999,000</td>
-        <td>결제완료</td>
-        <td>작성완료</td>
-      </tbody>
       <tbody>
-        <td>2</td>
-        <td>베트남 배낭여행</td>
-        <td>1200,000</td>
-        <td>2</td>
-        <td>2400,000</td>
-        <td>결제대기</td>
-        <td>작성대기</td>
+        {orders.map((order) => (
+          <tr key={order.merchantUid}>
+            <td>{order.merchantUid}</td>
+            <td onClick={() => goToOrderDetail(order.orderNum)}>{order.productName}</td>
+            <td>{order.productPrice.toLocaleString()}원</td>
+            <td>{order.quantity}</td>
+            <td>{order.totalPrice.toLocaleString()}원</td>
+            <td>{order.paymentStatus ? '결제완료' : '결제대기'}</td>
+            <td>
+              {order.review ? (
+                '작성완료'
+              ) : (
+                <button className={styles.status} onClick={() => navigate(`/review/${order.orderNum}`)}>리뷰 작성하기</button>
+              )}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
-    </div>
   );
 };
 

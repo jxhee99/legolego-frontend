@@ -1,95 +1,109 @@
-.preTripDetail_box{
-width: 95%;
-padding:3rem;
-background-color: rgba(244, 247, 230,0.3);
-border-radius: 1%;
-}
 
-
-/* PackageInformation */
-.PackageInformation {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-
-.PackageInformation .left_box {
-  width: 400px;
-  height: 400px;
-}
-
-.PackageInformation .left_box img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-}
-
-.PackageInformation .right_box {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-left: 2rem;
-}
-
-.PackageInformation .right_box button {
-  padding: 1rem;
-  color: var(--color-white);
-  background-color: gray; 
-}
-
-.PackageInformation #pretrip_price{
-text-decoration: line-through;
-}
-
-
-/* AirplainInformation */
-.AirplainInformation {
-  margin-top: 3rem;
-}
-
-.AirplainInformation .airplain_information_cards {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 1.5rem;
-}
-
-/* Schedule */
-.Schedule {
-  margin-top: 3rem;
-  line-height: 2;
-}
-
-.dailySchedule {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border: 2px solid skyblue;
-  padding: 1rem;
+.preTripDetail_review_box{
+  width: 95%;
+  padding:3rem;
+  background-color: rgba(247, 188, 217, 0.041);
   border-radius: 1%;
-}
-
-.scheduleItem {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.Schedule img {
-  width: 18rem;
-  height: 18rem;
-  border-radius: 5%;
-  margin-left:0.8rem;
-
-  margin-bottom: 0.5rem;
-}
-
-.dailyDetail {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  margin-left:1.5rem;
-  margin-right:4rem;
-}
+  margin-bottom: 2rem;
+  }
+  
+  .preTripDetail_box{
+    width: 95%;
+    padding:3rem;
+    background-color: rgba(230, 233, 247, 0.116);
+    border-radius: 1%;
+    }
+    
+  
+  
+  /* PackageInformation */
+  .PackageInformation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  
+  .PackageInformation .left_box {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .PackageInformation .left_box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .PackageInformation .right_box {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-left: 2rem;
+  }
+  
+  .PackageInformation .right_box button {
+    padding: 1rem;
+    color: var(--color-white);
+    background-color: gray; 
+  }
+  
+  .PackageInformation #pretrip_price{
+  text-decoration: line-through;
+  }
+  
+  
+  /* AirplainInformation */
+  .AirplainInformation {
+    margin-top: 3rem;
+  
+  }
+  
+  
+  .AirplainInformation .airplain_information_cards {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Schedule */
+  .Schedule {
+    margin-top: 3rem;
+    line-height: 2;
+  }
+  
+  .dailySchedule {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border: 2px solid skyblue;
+    padding: 1rem;
+    border-radius: 1%;
+    background-color: white;
+  }
+  
+  .scheduleItem {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .Schedule img {
+    width: 18rem;
+    height: 18rem;
+    border-radius: 5%;
+    margin-left:0.8rem;
+  
+    margin-bottom: 0.5rem;
+  }
+  
+  .dailyDetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin-left:1.5rem;
+    margin-right:4rem;
+  }
+  

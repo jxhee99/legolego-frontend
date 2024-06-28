@@ -51,7 +51,9 @@ const PaymentPage = () => {
                               });
 
                               alert('결제가 완료되었습니다.');
+                   
                               // navigate();  // 주문 상세 페이지로 이동
+                         
                           } catch (error) {
                               alert('결제 정보 저장에 실패하였습니다.');
                               console.log("결제 정보 저장 실패 - Merchant UID: " + merchantUid);

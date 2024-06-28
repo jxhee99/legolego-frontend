@@ -9,8 +9,10 @@ const PreTripDetail = () =>
   return (
     <div className={`${styles.PreTripDetail} layout`}>
       <PackageInformation />
-      <div className={styles.preTripDetail_box}>
+      <div className={styles.preTripDetail_review_box}>
       <PreTripComment/>
+      </div>
+      <div className={styles.preTripDetail_box}>
       <AirplaneInformation />
       <Schedule />
       </div>
