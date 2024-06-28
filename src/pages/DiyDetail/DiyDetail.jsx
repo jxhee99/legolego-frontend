@@ -20,6 +20,7 @@ const DiyDetail = () => {
   const [desc, setDesc] = useState({});
   const [writer, setWriter] = useState({});
   const [isLiked, setIsLiked] = useState(false); //응원 여부 상태
+  const [isWriter, setIsWriter] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -27,15 +28,24 @@ const DiyDetail = () => {
       setSchedule(data.detailCourses);
       setDesc(data.packageForm);
       setWriter(data.user);
-      setIsLiked(data.liked); // 서버에서 받아온 응원 여부 설정
+      setIsLiked(data.isLiked); // 서버에서 받아온 응원 여부 설정
+      setIsWriter(data.isWriter);
     }
   }, [data]);
 
   const handleLike = async () => {
     try {
-      const response = await axios.post(`/api/packages/likes/${id}`, {
-        userNum: 3,
-      });
+      const token = localStorage.getItem('token');
+      const response = await axios.post(
+        `/api/user/packages/likes/${id}`,
+        {},
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('성공');
@@ -77,11 +87,14 @@ const DiyDetail = () => {
                 <div>{data.viewNum}</div>
               </div>
               <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
-              {!isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
+              {isWriter ? ( // 응원은 했지만 완료하지 않은 경우 버튼 렌더링
+                <button className={styles.cheer_button}>응원 받는 중!</button>
+              ) : !isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
                 <button className={styles.cheer_button} onClick={handleLike}>
                   응원하기
                 </button>
               ) : (
+                // 응원 완료한 경우 버튼 렌더링
                 <button
                   className={styles.cheer_button}
                   style={{ cursor: 'default' }}
