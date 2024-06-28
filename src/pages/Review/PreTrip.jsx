@@ -13,43 +13,31 @@ const PreTrip = () => {
       <div className={styles.preTrip_product} onClick={goToPreTripDetail}>
         <PackageCard 
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       <div className={styles.preTrip_product}>
         <PackageCard
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       <div className={styles.preTrip_product}>
         <PackageCard
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       <div className={styles.preTrip_product}>
         <PackageCard
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       <div className={styles.preTrip_product}>
         <PackageCard
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       <div className={styles.preTrip_product}>
         <PackageCard
           imageUrl="https://picsum.photos/400/400"
-          title="lorem ipsum......."
-          partnerName="하나투어"
         />
       </div>
       

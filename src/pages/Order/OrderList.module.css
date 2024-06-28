@@ -1,37 +1,51 @@
 .OrderList h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: #333;
-  }
-  .OrderList {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-  }
-  
-  .OrderList th, .OrderList td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-    font-size: 16px; /* 글자 크기 */
-  }
-  
-  .OrderList th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .OrderList td {
-    background-color: #fff;
-  }
-  
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+.OrderList {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
 
-  .OrderList tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .OrderList tbody tr:hover {
-    background-color: #ddd;
-  }
-  
+.OrderList th, .OrderList td {
+  padding: 12px;
+  text-align: left;
+}
+
+.OrderList th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.OrderList td {
+  border-bottom: 1px solid #ddd;  }
+
+
+.OrderList tbody tr:nth-child(even) {
+  background-color: #f9f9f95b;
+}
+
+.OrderList tbody tr:hover {
+  background-color: #ddd;
+}
+
+
+
+
+.OrderList thead {
+  background-color: #f7f7f7;
+}
+
+.OrderList tbody tr:hover {
+  background-color: #f1f1f1;
+}
+.status{
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #df90d875;
+  color: white;
+}
