@@ -34,8 +34,13 @@ const DiyDetail = () => {
   }, [data]);
 
   const handleLike = async () => {
+    const userRole = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+    if (!token || userRole != 'USER') {
+      window.alert('로그인한 유저만 가능합니다.');
+      return;
+    }
     try {
-      const token = localStorage.getItem('token');
       const response = await axios.post(
         `/api/user/packages/likes/${id}`,
         {},
@@ -49,7 +54,7 @@ const DiyDetail = () => {
       if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('성공');
-        refetch();
+        //refetch();
         setIsLiked(true); // 응원 완료 상태로 설정
       } else {
         console.error('승인 실패:', response.status);
@@ -87,7 +92,7 @@ const DiyDetail = () => {
                 <div>{data.viewNum}</div>
               </div>
               <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
-              {isWriter ? ( // 응원은 했지만 완료하지 않은 경우 버튼 렌더링
+              {isWriter ? ( // 작성자일 경우 렌더링
                 <button className={styles.cheer_button}>응원 받는 중!</button>
               ) : !isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
                 <button className={styles.cheer_button} onClick={handleLike}>

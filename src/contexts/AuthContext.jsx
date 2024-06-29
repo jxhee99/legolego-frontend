@@ -37,11 +37,14 @@ const AuthProvider = ({ children }) => {
     navigate('/home');
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
     const userRole = localStorage.getItem('role');
     if (token && userRole) {
-      console.log('토큰과 역할이 로컬 스토리지에서 로드됨:', { token, userRole });
+      console.log('토큰과 역할이 로컬 스토리지에서 로드됨:', {
+        token,
+        userRole,
+      });
       setIsAuthenticated(true);
       setRole(userRole);
     } else {
@@ -54,10 +57,15 @@ const AuthProvider = ({ children }) => {
     if (role === 'PARTNER') {
       navigate('/partner');
     }
+    if (role === 'ADMIN') {
+      navigate('/admin');
+    }
   }, [role]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, role, login, logout, setRedirectPath }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, role, login, logout, setRedirectPath }}
+    >
       {children}
     </AuthContext.Provider>
   );

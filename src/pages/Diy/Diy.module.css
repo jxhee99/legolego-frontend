@@ -1,17 +1,29 @@
-.Diy .diy_cards {
+.Diy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.create_button{
+  align-self: flex-end;
+  width: 120px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #000;
+  color: #fff;
+}
+
+.create_button>a{
+  color: #fff;
+}
+
+.diy_cards {
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   width: 100%;
   max-width: var(--size-max-width);
-}
-
-.Diy .diy_card_thumbnail img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
 }
 
 .pagination_box{
