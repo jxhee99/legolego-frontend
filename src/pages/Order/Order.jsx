@@ -18,7 +18,12 @@ const Order = () => {
         const fetchProductDetail = async () => {
             try {
                 console.log("Fetching product for productNum:", productNum);
-                const response = await axios.get(`/api/products/${productNum}`); // 백에서 상품 상세 정보 가져오기
+                const token = localStorage.getItem('token');
+                const response = await axios.get(`/api/products/${productNum}`, {
+                    headers : {
+                        Authorization: `Bearer ${token}`
+                    }
+                }); // 백에서 상품 상세 정보 가져오기
                 if(response.data) {
                     setProduct(response.data);
                     console.log("Product details fetched : ", response.data);
@@ -50,13 +55,40 @@ const Order = () => {
     };
     
     // 구매 버튼 핸들러
-    const onClickBuy = () => {
+    const onClickBuy = async () => {
         const totalPrice = count * product.price;
-        // const userNum = user.userNum; // 올바른 userNum 불러와야함
-        // const userEmail = user.userEmail; // 구매자 이메일 불러와야함
-        // const userName = user.userName; // 구매자 이름 불러와야함
-        // const userPhone = user.userPhone; // 구매자 번호 불러와야함
-        navigate('/payment', { state: { product, count, totalPrice } });
+        
+        try {
+            const token = localStorage.getItem('token');
+            if(!token) {
+                console.error("토큰을 찾을 수 없습니다.");
+                return;
+            }
+            console.log("토큰 발급 : ", token);
+
+            const orderResponse = await axios.post('/api/user/orders', {
+                productNum : product.productNum,
+                quantity : count,
+                totalPrice : totalPrice
+            }, {
+                headers : {
+                    'Content-Type' : 'application/json',
+                    Authorization : `Bearer ${token}`,
+                },
+                // withCredentials: true
+            });
+            if(orderResponse.status === 201) {
+                // const { orderNumber } = orderResponse.data;
+                const orderData = orderResponse.data;
+                const merchantUid = orderData.orderNumber;
+                console.log("주문 생성 성공 - Merchant UID: " + merchantUid);
+                navigate('/payment', { state: { product, count, totalPrice, orderData, merchantUid} });
+            } else {
+                console.error('주문 생성 실패 :', orderResponse.status);
+            }
+        } catch (error) {
+            console.error("에러 발생 :", error);
+        }
     };
 
     if(loading) return <div>Loading...</div>
