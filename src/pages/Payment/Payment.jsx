@@ -5,27 +5,13 @@ import axios from 'axios';
 
 const PaymentPage = () => {
     const { state } = useLocation();
-    const { product, count, totalPrice, user } = state;
+    const { product, count, totalPrice, orderData, merchantUid} = state;
     const navigate = useNavigate();
 
     useEffect(() => {
       const handlePayment = async () => {
           try {
-              // 주문 정보 생성 요청
-              const orderResponse = await axios.post('/api/orders', {
-                  userNum: 1, // 실제 사용자 정보를 여기에 설정
-                  userName: '김김김',
-                  userEmail: 'wngml2666@naver.com',
-                  userPhone: '010-2222-2222',
-                  productNum: product.productNum,
-                  price: product.price,
-                  quantity: count,
-                  totalPrice: totalPrice
-              });
-
-              const merchantUid = orderResponse.data.orderNumber;
-              console.log("주문 생성 성공 - Merchant UID: " + merchantUid);
-
+            
               // Portone 결제 요청
               const { IMP } = window;
               if (IMP) {
@@ -36,23 +22,33 @@ const PaymentPage = () => {
                       merchant_uid: merchantUid,
                       name: product.productName,
                       amount: totalPrice,
-                      buyer_email: 'wngml2666@naver.com', // 실제 사용자 이메일
-                      buyer_name: '김김김', // 실제 사용자 이름
-                      buyer_tel: '010-2222-2222' // 실제 사용자 전화번호
+                      buyer_email: orderData.userEmail, // 실제 사용자 이메일
+                      buyer_name: orderData.userName, // 실제 사용자 이름
+                    //   buyer_tel: orderData.userPhone // 실제 사용자 전화번호
                   }, async function (rsp) {
                       if (rsp.success) {
                           console.log("결제 성공 - Imp UID: " + rsp.imp_uid);
 
                           try {
+                                const token = localStorage.getItem('token');
+                                if(!token) {
+                                    console.error("토큰을 찾지 못했습니다.");
+                                    return;
+                                }
                               // 결제 성공 시 결제 정보 저장
-                              await axios.post('/api/payments/complete', {
+                              await axios.post('/api/user/payments/complete', {
                                   impUid: rsp.imp_uid,
                                   merchantUid: merchantUid
+                              }, {
+                                headers : {
+                                    'Content-Type' : 'application/json',
+                                    Authorization : `Bearer ${token}`,
+                                }
                               });
 
                               alert('결제가 완료되었습니다.');
-                   
-                              // navigate();  // 주문 상세 페이지로 이동
+                              navigate(`/order-Detail/${orderData.orderNum}`);  // 주문 상세 페이지로 이동
+                              //{state : {orderNum : orderData.orderNum}}
                          
                           } catch (error) {
                               alert('결제 정보 저장에 실패하였습니다.');
@@ -61,19 +57,22 @@ const PaymentPage = () => {
                           }
                       } else {
                           alert('결제를 실패하였습니다.');
+                          navigate(`/order/${product.productNum}`);
                       }
                   });
               } else {
                   console.error("IMP 객체를 찾을 수 없습니다.");
+                  navigate(`/order/${product.productNum}`);
               }
           } catch (error) {
               alert('주문 생성에 실패하였습니다.');
               console.error("주문 생성 실패: ", error);
+              navigate(`/order/${product.productNum}`);
           }
       };
 
         handlePayment();
-    }, [navigate, product, count, totalPrice, user]);
+    }, [navigate, product, count, totalPrice, orderData]);
 
     return (
       <div></div>
