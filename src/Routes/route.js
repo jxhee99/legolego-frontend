@@ -172,15 +172,12 @@ export const ROUTE_MY_PAGE = {
 export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);
 
 //admin pages
-export const ROUTE_ADMIN = {
+export const ROUTE_ADMIN_LISTS = {
   ADMIN: {
     path: '/admin',
     link: '/admin',
     element: Admin,
   },
-};
-
-export const ROUTE_ADMIN_LISTS = {
   ADMIN_LISTS_DIY: {
     path: '/admin/lists/diy-packages',
     link: '/admin/lists/diy-packages',

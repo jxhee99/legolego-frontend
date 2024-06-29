@@ -12,7 +12,7 @@ import {
 import Layout from './components/Layout/Layout';
 import DiyCreate from './pages/DiyCreate/DiyCreate';
 import Mypage from './pages/Mypage/Mypage';
-import Admin from './pages/Admin/Admin';
+import AdminMenu from './pages/Admin/AdminMenu';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import PartnerMenu from './pages/Partner/PartnerMenu';
 import Order from './pages/Order/Order';
@@ -61,7 +61,7 @@ const App = () => {
       <Route path="/admin/login" element={<AdminLogin />} />
 
       <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
-        <Route path="/admin" element={<Admin />}>
+        <Route element={<AdminMenu />}>
           {ROUTE_ADMIN_ARR.map((route) => (
             <Route
               key={route.path}

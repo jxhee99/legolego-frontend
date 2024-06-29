@@ -1,17 +1,24 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
-import PartnerHeader from '../Header/PartnerHeader';
+import HeaderPartner from '../Header/HeaderPartner';
+import HeaderAdmin from '../Header/HeaderAdmin';
 
 const Layout = () => {
   const userRole = localStorage.getItem('role');
+
+  const renderHeader = () => {
+    if (userRole === 'ADMIN') {
+      return <HeaderAdmin />;
+    } else if (userRole === 'PARTNER') {
+      return <HeaderPartner />;
+    } else {
+      return <Header isLoggedIn={false} />;
+    }
+  };
+
   return (
     <>
-      {userRole === 'PARTNER' ? (
-        <PartnerHeader />
-      ) : (
-        <Header isLoggedIn={false} />
-      )}
-
+      {renderHeader()}
       <Outlet />
     </>
   );

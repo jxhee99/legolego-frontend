@@ -7,7 +7,7 @@ import styles from './Header.module.css';
 import Logo from '../Logo/Logo';
 import { AuthContext } from '../../contexts/AuthContext';
 
-const PartnerHeader = () => {
+const HeaderPartner = () => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -34,4 +34,4 @@ const PartnerHeader = () => {
   );
 };
 
-export default PartnerHeader;
+export default HeaderPartner;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ListMenu from '../../components/List/ListMenu';
-import PartnerHeader from '../../components/Header/PartnerHeader';
+import HeaderPartner from '../../components/Header/HeaderPartner';
 
 const Partner = () => {
   return (
     <>
-      <PartnerHeader />
+      <HeaderPartner />
       <ListMenu>
         <li>
           <Link to="/partner/profile">프로필 관리</Link>
