@@ -37,7 +37,8 @@ import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
-import FindAccount from '../pages/FindAccount/FindAccount';
+import FindEmail from '../pages/FindAccount/FindEmail';
+import FindPassword from '../pages/FindAccount/FindPassword';
 
 // 주문 및 결제
 import Order from '../pages/Order/Order';
@@ -83,14 +84,19 @@ export const ROUTE = {
     link: '/review',
     element: Review,
   },
-  FIND_ACCOUNT: {
-    path: 'find-account',
-    link: 'find-account',
-    element: FindAccount,
+  FIND_EMAIL: {
+    path: '/find-email',
+    link: '/find-email',
+    element: FindEmail,
+  },
+  FIND_PASSWORD: {
+    path: '/find-password',
+    link: '/find-password',
+    element: FindPassword,
   },
   RESET_PASSWORD: {
-    path: 'reset-password',
-    link: 'reset-password',
+    path: '/reset-password',
+    link: '/reset-password',
     element: ResetPassword,
   },
   ORDER_DETAIL: {

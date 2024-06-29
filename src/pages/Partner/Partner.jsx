@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const Partner = () => {
 
-  const { role, handleLogout } = useContext(AuthContext);
+  const { role, logout } = useContext(AuthContext);
 
   if (role !== 'PARTNER') {
     return <div>권한이 없습니다.</div>;
@@ -26,7 +26,7 @@ const Partner = () => {
         <Link to="/partner/lists/orders">여행 상품</Link>
       </li>
       <li>
-      <span onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</span>
+      <span onClick={logout} style={{ cursor: 'pointer' }}>로그아웃</span>
       </li>
     </ListMenu>
   );
