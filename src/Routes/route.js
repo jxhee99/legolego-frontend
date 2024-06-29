@@ -178,15 +178,12 @@ export const ROUTE_MY_PAGE = {
 export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);
 
 //admin pages
-export const ROUTE_ADMIN = {
+export const ROUTE_ADMIN_LISTS = {
   ADMIN: {
     path: '/admin',
     link: '/admin',
     element: Admin,
   },
-};
-
-export const ROUTE_ADMIN_LISTS = {
   ADMIN_LISTS_DIY: {
     path: '/admin/lists/diy-packages',
     link: '/admin/lists/diy-packages',
@@ -227,15 +224,12 @@ export const ROUTE_ADMIN_LISTS = {
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
 
 //partner pages
-export const ROUTE_PARTNER = {
+export const ROUTE_PARTNER_LISTS = {
   PARTNER: {
     path: '/partner',
     link: '/partner',
     element: Partner,
   },
-};
-
-export const ROUTE_PARTNER_LISTS = {
   PARTNER_LISTS_PACKAGES: {
     path: '/partner/lists/packages',
     link: '/partenr/lists/packages',

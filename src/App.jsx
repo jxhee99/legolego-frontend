@@ -12,9 +12,9 @@ import {
 import Layout from './components/Layout/Layout';
 import DiyCreate from './pages/DiyCreate/DiyCreate';
 import Mypage from './pages/Mypage/Mypage';
-import Admin from './pages/Admin/Admin';
+import AdminMenu from './pages/Admin/AdminMenu';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
-import Partner from './pages/Partner/Partner';
+import PartnerMenu from './pages/Partner/PartnerMenu';
 import Order from './pages/Order/Order';
 import Payment from './pages/Payment/Payment';
 import NotFound from './pages/NotFound/NotFound';
@@ -67,7 +67,7 @@ const App = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
 
       <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
-        <Route path="/admin" element={<Admin />}>
+        <Route element={<AdminMenu />}>
           {ROUTE_ADMIN_ARR.map((route) => (
             <Route
               key={route.path}
@@ -79,7 +79,7 @@ const App = () => {
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={['PARTNER']} />}>
-        <Route path="/partner" element={<Partner />}>
+        <Route element={<PartnerMenu />}>
           {ROUTE_PARTNER_ARR.map((route) => (
             <Route
               path={route.path}
