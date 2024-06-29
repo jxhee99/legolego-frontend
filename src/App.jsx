@@ -22,6 +22,9 @@ import LogIn from './components/Header/Authentication/LogIn';
 import Home from './pages/Home/Home';
 import { AuthContext } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import FindEmail from './pages/FindAccount/FindEmail';
+import FindPassword from './pages/FindAccount/FindPassword';
+import ResetPassword from './pages/ResetPassword/ResetPassword';
 
 const App = () => {
   const { isAuthenticated, role } = useContext(AuthContext);
@@ -59,6 +62,9 @@ const App = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/find-email" element={<FindEmail />} />
+      <Route path="/find-password" element={<FindPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
         <Route path="/admin" element={<Admin />}>

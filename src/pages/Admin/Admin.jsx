@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const Admin = () => {
 
-  const { role, handleLogout } = useContext(AuthContext);
+  const { role, logout } = useContext(AuthContext);
 
   if (role !== 'ADMIN') {
     return <div>권한이 없습니다.</div>;
@@ -32,7 +32,7 @@ const Admin = () => {
         <Link to="/admin/lists/members">회원 목록</Link>
       </li>
       <li>
-      <span onClick={handleLogout} style={{ cursor: 'pointer' }}>로그아웃</span>
+      <span onClick={logout} style={{ cursor: 'pointer' }}>로그아웃</span>
       </li>
     </ListMenu>
   );
