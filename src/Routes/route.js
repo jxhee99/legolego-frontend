@@ -221,15 +221,12 @@ export const ROUTE_ADMIN_LISTS = {
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
 
 //partner pages
-export const ROUTE_PARTNER = {
+export const ROUTE_PARTNER_LISTS = {
   PARTNER: {
     path: '/partner',
     link: '/partner',
     element: Partner,
   },
-};
-
-export const ROUTE_PARTNER_LISTS = {
   PARTNER_LISTS_PACKAGES: {
     path: '/partner/lists/packages',
     link: '/partenr/lists/packages',
