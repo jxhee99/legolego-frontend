@@ -7,7 +7,7 @@ const AdminMenu = () => {
   return (
     <>
       <HeaderAdmin />
-      <ListMenu title={<Link to="/admin">관리자 페이지</Link>}>
+      <ListMenu>
         <li>
           <Link to="/admin/profile">프로필 관리</Link>
         </li>
