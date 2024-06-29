@@ -1,3 +1,4 @@
+// 페이지
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
@@ -45,7 +46,6 @@ import Payment from '../pages/Payment/Payment';
 
 // 지난여행
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
-import NotFound from '../pages/NotFound/NotFound';
 
 export const ROUTE = {
   ABOUT: {

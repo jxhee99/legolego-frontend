@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import {
   ROUTE_ARR,
   ROUTE_DIY_CREATE_ARR,

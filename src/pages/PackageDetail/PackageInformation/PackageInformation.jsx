@@ -2,8 +2,6 @@ import styles from '../PackageDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkAuth } from '../../../_slices/authSlice';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -22,12 +20,6 @@ const PackageInformation = ({
   const [wishNum, setWishNum] = useState(0);
   const navigate = useNavigate();
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
 
   useEffect(() => {
     const fetchWishNum = async () => {
