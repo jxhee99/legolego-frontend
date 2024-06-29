@@ -107,10 +107,21 @@ const LogIn = ({ onClose }) => {
     navigate('/home'); // 로그아웃 후 홈 페이지로 리디렉션
   };
 
+  const handleFindEmail = () => {
+    onClose(); // 로그인 모달 닫기
+    navigate('/find-email'); // 아이디 찾기 페이지로 이동
+  };
+
+  const handleFindPassword = () => {
+    onClose();
+    navigate('/find-password');  // 비밀번호 찾기 페이지로 이동
+  }
+
   return (
     <>
       {!isAuthenticated ? (
-        <Modal title="로그인">
+        <>
+        <Modal title="로그인" onClose={onClose}>
           {errors.form && <p style={{ color: 'red' }}>{errors.form}</p>}
           <Form
             onSubmit={handleLogin}
@@ -137,11 +148,13 @@ const LogIn = ({ onClose }) => {
             submitButton={<SubmitButton text="로그인" />}
             findAccount={
               <p>
-                <span>아이디 찾기</span> / <span>비밀번호 찾기</span>
+                <span onClick={handleFindEmail} style={{ cursor: 'pointer' }}>아이디 찾기</span>
+                / <span onClick={handleFindPassword} style={{ cursor: 'pointer' }}>비밀번호 찾기</span>
               </p>
             }
           />
         </Modal>
+        </>
       ) : (
         <button onClick={handleLogout}>로그아웃</button>
       )}
