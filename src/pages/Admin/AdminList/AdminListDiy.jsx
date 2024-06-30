@@ -5,7 +5,7 @@ import PaginationComp from '../../../components/Pagination/PaginationComp';
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import useFetchData from '../../../hooks/useFetchDiyData';
-import handleDelete from '../../../utils/handleDelete';
+import { deleteList } from '../../../utils/handleDelete';
 
 import styles from '../../../components/List/List.module.css';
 
@@ -123,7 +123,7 @@ const AdminListDiy = () => {
             <div>
               <button
                 onClick={(e) =>
-                  handleDelete(
+                  deleteList(
                     e,
                     `/api/admin/packages/${selectedItem.packageNum}`,
                     refetch,

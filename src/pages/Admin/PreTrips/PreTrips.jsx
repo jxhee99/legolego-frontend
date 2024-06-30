@@ -6,7 +6,7 @@ import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 import useFetchData from '../../../hooks/useFetchDiyData';
 import { formatDateTime, getCurrentTime } from '../../../utils/DateTime';
-import handleDelete from '../../../utils/handleDelete';
+import { deleteList } from '../../../utils/handleDelete';
 
 import styles from '../../../components/List/List.module.css';
 
@@ -126,7 +126,7 @@ const PreTrips = () => {
             <div>
               <button
                 onClick={(e) =>
-                  handleDelete(
+                  deleteList(
                     e,
                     `/api/admin/pre-trip/${selectedItem.boardNum}/delete`,
                     refetch,

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const handleDelete = async (e, endpoint, refetch, closeModal) => {
+export const deleteList = async (e, endpoint, refetch, closeModal) => {
   e.preventDefault();
   try {
     const token = localStorage.getItem('token');
@@ -22,5 +22,3 @@ const handleDelete = async (e, endpoint, refetch, closeModal) => {
     console.error('삭제 중 오류:', err);
   }
 };
-
-export default handleDelete;
