@@ -7,6 +7,7 @@ import OrderList from '../Order/OrderList';
 import DiyPackage from './DiyPackage/DiyPackage';
 import SavedPackage from './SavedPackage/SavedPackage';
 import Metas from '../../components/common/Metas';
+import LikeDiyPackage from './LikeDiyPackage/LikeDiyPackage';
 
 const Mypage = () => {
   const [searchParams] = useSearchParams();
@@ -21,6 +22,7 @@ const Mypage = () => {
           {tab === 'profile-setting' && <ProfileSetting />}
           {tab === 'order-summary' && <OrderList />}
           {tab === 'my-diy-prices' && <DiyPriceList />}
+          {tab === 'like-diy-package' && <LikeDiyPackage />}
           {tab === 'my-diy-package' && <DiyPackage />}
           {tab === 'saved-packages' && <SavedPackage />}
         </div>

@@ -168,6 +168,11 @@ export const ROUTE_MY_PAGE = {
     link: '/mypage?tab=my-diy-package',
     element: DiyPackage,
   },
+  LIKE_DIY_PACKAGE: {
+    path: '/mypage?tab=like-diy-package',
+    link: '/mypage?tab=like-diy-package',
+    element: LikeDiyPackage,
+  },
   SAVED_PACKAGES: {
     path: '/mypage?tab=saved-packages',
     link: '/mypage?tab=saved-packages',
