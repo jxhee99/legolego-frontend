@@ -6,9 +6,7 @@ import styles from '../../../components/List/List.module.css';
 
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
-
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 //api함수, util 함수
 import useFetchData from '../../../hooks/useFetchDiyData';
@@ -34,19 +32,19 @@ const AdminListDiyPrice = () => {
 
   //get요청
   const endpoint = '/api/admin/diylists';
-  const { data, loading, refetch } = useFetchData(endpoint);
-
-  // 페이지 및 필터 변경 시 처리
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-    newQuery.set('page', page);
-    newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() }, { replace: true });
-  }, [page, filterApplied, navigate, location.search]);
+  const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 로딩 중일 때
   if (loading) {
     return <div>Loading...</div>;
+  }
+  // 에러 발생 시
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+  // 데이터가 없을 때
+  if (!data || data.length === 0) {
+    return <div>데이터가 없습니다.</div>;
   }
   // 필터된 데이터 설정
   const filteredData = filterApplied
@@ -229,13 +227,13 @@ const AdminListDiyPrice = () => {
       </ListModal>
       {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(filteredData.length / itemsPerPage)}
-            page={page}
-            onChange={(_, value) => setPage(value)}
-          />
-        </Stack>
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+          filterApplied={filterApplied}
+        />
       </div>
     </div>
   );

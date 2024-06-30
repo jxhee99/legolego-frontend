@@ -1,26 +1,24 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
+import PaginationComp from '../../../components/Pagination/PaginationComp';
 import useFetchData from '../../../hooks/useFetchDiyData';
-import { formatDateTime } from '../../../utils/DateTime';
+import { formatDateTime, getCurrentTime } from '../../../utils/DateTime';
+import handleDelete from '../../../utils/handleDelete';
 
 import styles from '../../../components/List/List.module.css';
 
 const PreTrips = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
   const initialFilter = query.get('filter') === 'true';
   const itemsPerPage = 10;
-  const endpoint = '/api/products';
+  const endpoint = '/api/pre-trip';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,24 +27,26 @@ const PreTrips = () => {
   const [page, setPage] = useState(initialPage);
 
   // 데이터 가져오기 훅
-  const { data, loading, refetch } = useFetchData(endpoint);
-
-  // 페이지 및 필터 변경 시 처리
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-    newQuery.set('page', page);
-    newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() });
-  }, [page, filterApplied, navigate, location.search]);
+  const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 로딩 중일 때
   if (loading) {
     return <div>로딩 중...</div>;
   }
 
+  // 에러 발생 시
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  // 데이터가 없을 때
+  if (!data || data.length === 0) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
   // 필터된 데이터 설정
   const filteredData = filterApplied
-    ? data.filter((item) => item.recruitmentConfirmed === true)
+    ? data.filter((item) => new Date(item.comingDate) > getCurrentTime())
     : data;
 
   // 현재 페이지에 맞는 데이터 계산
@@ -72,64 +72,39 @@ const PreTrips = () => {
     setModalOpen(false);
   };
 
-  // 삭제 처리 함수
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.delete(`/`);
-
-      if (response.status === 204) {
-        refetch();
-      } else {
-        console.error('삭제 실패:', response.status);
-      }
-      closeModal();
-    } catch (err) {
-      console.error('삭제 중 오류:', err);
-    }
-  };
-
   return (
     <div className={styles.box}>
       <h2>지난 여행 목록</h2>
-
       {/* 필터 버튼 */}
       <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '모집 확정'}
+        {filterApplied ? '전체 보기' : '여행 중'}
       </button>
-
-      {/* 목록 테이블 */}
       <ListTable>
         <thead>
           <tr>
-            <th>상품 번호</th>
+            <th>게시판 번호</th>
             <th>Name</th>
             <th>작성자</th>
-            <th>마감일</th>
-            <th>모집확정</th>
+            <th>출발일</th>
+            <th>도착일 </th>
             <th>삭제</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((item) => (
-            <tr key={item.productNum}>
-              <td>{item.productNum}</td>
+            <tr key={item.boardNum}>
+              <td>{item.boardNum}</td>
               <td>
-                <Link to={`/package-product/${item.productNum}`}>
+                <Link to={`/pretrip-detail/${item.boardNum}`}>
                   {item.productName}
                 </Link>
               </td>
               <td>{item.userNickname}</td>
               <td style={{ width: '15%' }}>
-                {formatDateTime(item.recruitmentDeadline)}
+                {formatDateTime(item.boardingDate)}
               </td>
-              {/* formatDateTime 함수 호출 수정 */}
-              <td>
-                {item.recruitmentConfirmed ? (
-                  <span>확정</span>
-                ) : (
-                  <span>모집중</span>
-                )}
+              <td style={{ width: '15%' }}>
+                {formatDateTime(item.comingDate)}
               </td>
               <td>
                 <button onClick={() => openModal(item)}>삭제</button>
@@ -149,22 +124,32 @@ const PreTrips = () => {
           <div className={styles.confirm_modal_inner}>
             <p>정말 삭제하시겠습니까?</p>
             <div>
-              <button onClick={handleSubmit}>삭제</button>
+              <button
+                onClick={(e) =>
+                  handleDelete(
+                    e,
+                    `/api/admin/pre-trip/${selectedItem.boardNum}/delete`,
+                    refetch,
+                    closeModal
+                  )
+                }
+              >
+                삭제
+              </button>
               <button onClick={closeModal}>취소</button>
             </div>
           </div>
         )}
       </ConfirmModal>
-
-      {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(filteredData.length / itemsPerPage)}
-            page={page}
-            onChange={(_, value) => setPage(value)}
-          />
-        </Stack>
+        {/* 페이지네이션 컴포넌트 */}
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+          filterApplied={filterApplied}
+        />
       </div>
     </div>
   );

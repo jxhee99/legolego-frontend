@@ -42,7 +42,7 @@ DiyCard.propTypes = {
   profileImg: PropTypes.string,
   packageName: PropTypes.string.isRequired,
   shortDescription: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
 export default DiyCard;
