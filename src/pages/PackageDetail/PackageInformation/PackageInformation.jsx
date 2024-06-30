@@ -2,8 +2,6 @@ import styles from '../PackageDetail.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { checkAuth } from '../../../_slices/authSlice';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -19,42 +17,69 @@ const PackageInformation = ({
   wishlistCount,
   necessaryPeople,
 }) => {
-  const [wishNum, setWishNum] = useState(0);
   const navigate = useNavigate();
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [isWished, setIsWished] = useState(false);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const fetchWishNum = async () => {
+    const fetchWishStatus = async () => {
       try {
-        const response = await axios.get(
-          `/api/products/${id}/wishlist?user_num=1`
-        );
-        setWishNum(response.data.wishNum);
+        const response = await axios.get(`/api/user/products/wishlist`, {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // setIsWished(response.data.isWished);
+        console.log(response.data);
       } catch (error) {
-        console.error('찜 불러오는 중 오류 발생:', error);
+        console.error('찜 상태 불러오는 중 오류 발생:', error);
       }
     };
 
-    fetchWishNum();
-  }, []);
+    fetchWishStatus();
+  }, [id, token]);
 
   const handleWishNum = async () => {
-    const isWish = confirm('상품을 찜하시겠습니까?');
-    if (isWish) {
-      try {
-        const response = await axios.post(
-          `/api/products/${id}/wishlist?user_num=1`
-        );
-        setWishNum(response.data.wishNum);
-      } catch (error) {
-        console.error('찜 업데이트 오류 발생:', error);
+    try {
+      const response = await axios.post(
+        `/api/user/products/${id}/wishlist`,
+        {},
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setIsWished(true);
+      } else {
+        console.error('찜하기 실패:', response.status);
       }
+    } catch (error) {
+      console.error('찜 업데이트 오류 발생:', error);
+    }
+  };
+
+  const handleCancelWish = async () => {
+    try {
+      const response = await axios.delete(`/api/user/products/${id}/wishlist`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 204) {
+        setIsWished(false);
+      } else {
+        console.error('찜 취소 실패:', response.status);
+      }
+    } catch (error) {
+      console.error('찜 취소 오류 발생:', error);
     }
   };
 
@@ -97,10 +122,14 @@ const PackageInformation = ({
           </div>
         </div>
         <div>
-          <button disabled={wishNum === 1} onClick={handleWishNum}>
-            상품 찜하기
+          {!isWished ? (
+            <button onClick={handleWishNum}>상품 찜하기</button>
+          ) : (
+            <button onClick={handleCancelWish}>찜 취소하기</button>
+          )}
+          <button onClick={() => navigate(`/order/${id}`)}>
+            레고! 결제하기
           </button>
-          <button onClick={() => navigate('/payment')}>레고! 결제하기</button>
         </div>
       </div>
     </section>

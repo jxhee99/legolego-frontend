@@ -12,11 +12,54 @@
 /* Menu */
 .Menu {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: 0;
+  gap: 2rem;
 }
 
-.Menu .menu_item {
-  cursor: pointer;
-  padding: 1rem 1.25rem;
+.menuItem {
+  position: relative;
+}
+
+.menuItem a {
+  text-decoration: none;
+  color: #5d3fd3;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.menuItem a:hover {
+  color: #9a73e8;
+}
+
+.menuItem a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #9a73e8;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menuItem a:hover::after {
+  width: 100%;
+}
+
+.active a {
+  color: #9a73e8;
+  font-weight: bold;
+}
+
+.active a::after {
+  width: 100%;
 }
 
 /* Authentication */

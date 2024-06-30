@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState(null);
   const [redirectPath, setRedirectPath] = useState('/');
+  const [userNum, setUserNum] = useState(null);
 
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const AuthProvider = ({ children }) => {
     setRole(userRole);
     localStorage.setItem('token', token);
     localStorage.setItem('role', userRole);
+    localStorage.setItem('num', userNum);
     console.log('로그인 후 role 값:', userRole);
     navigate(redirectPath); // 로그인 후 저장된 경로로 리디렉션
 
@@ -34,6 +36,7 @@ const AuthProvider = ({ children }) => {
     setRole(null);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('num');
     navigate('/home');
   };
 
@@ -47,6 +50,7 @@ const AuthProvider = ({ children }) => {
       });
       setIsAuthenticated(true);
       setRole(userRole);
+      setUserNum(userNum);
     } else {
       console.log('No token or role found');
     }
@@ -70,7 +74,5 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-// export default AuthContext;
 
 export { AuthContext, AuthProvider };

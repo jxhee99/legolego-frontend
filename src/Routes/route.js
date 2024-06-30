@@ -1,3 +1,4 @@
+// 페이지
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
@@ -7,7 +8,6 @@ import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import DiyForm from '../pages/DiyCreate/DiyForm/DiyForm';
-import Review from '../pages/Review/Review';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
 
 //마이페이지
@@ -45,8 +45,8 @@ import Order from '../pages/Order/Order';
 import Payment from '../pages/Payment/Payment';
 
 // 지난여행
+import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
-import NotFound from '../pages/NotFound/NotFound';
 
 export const ROUTE = {
   ABOUT: {
@@ -79,10 +79,10 @@ export const ROUTE = {
     link: '/diy/:id',
     element: DiyDetail,
   },
-  REVIEW: {
-    path: '/review',
-    link: '/review',
-    element: Review,
+  PRE_TRIP: {
+    path: '/pre-trip',
+    link: '/pre-trip',
+    element: PreTripList,
   },
   FIND_EMAIL: {
     path: '/find-email',
