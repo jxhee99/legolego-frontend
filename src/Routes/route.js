@@ -17,6 +17,7 @@ import OrderList from '../pages/Order/OrderList';
 import OrderDetail from '../pages/Order/OrderDetail';
 import DiyPackage from '../pages/Mypage/DiyPackage/DiyPackage';
 import SavedPackage from '../pages/Mypage/SavedPackage/SavedPackage';
+import LikeDiyPackage from '../pages/Mypage/LikeDiyPackage/LikeDiyPackage';
 
 //관리자
 import Admin from '../pages/Admin/Admin';
