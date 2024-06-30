@@ -24,9 +24,7 @@ const PackageInformation = ({
   useEffect(() => {
     const fetchWishNum = async () => {
       try {
-        const response = await axios.get(
-          `/api/products/${id}/wishlist?user_num=1`
-        );
+        const response = await axios.get(`/api/user/products/wishlist`);
         setWishNum(response.data.wishNum);
       } catch (error) {
         console.error('찜 불러오는 중 오류 발생:', error);
@@ -37,16 +35,13 @@ const PackageInformation = ({
   }, []);
 
   const handleWishNum = async () => {
-    const isWish = confirm('상품을 찜하시겠습니까?');
-    if (isWish) {
-      try {
-        const response = await axios.post(
-          `/api/products/${id}/wishlist?user_num=1`
-        );
-        setWishNum(response.data.wishNum);
-      } catch (error) {
-        console.error('찜 업데이트 오류 발생:', error);
-      }
+    try {
+      const response = await axios.post(
+        `/api/products/${id}/wishlist?user_num=26`
+      );
+      setWishNum(response.data.wishNum);
+    } catch (error) {
+      console.error('찜 업데이트 오류 발생:', error);
     }
   };
 
@@ -92,7 +87,9 @@ const PackageInformation = ({
           <button disabled={wishNum === 1} onClick={handleWishNum}>
             상품 찜하기
           </button>
-          <button onClick={() => navigate('/payment')}>레고! 결제하기</button>
+          <button onClick={() => navigate(`/order/${id}`)}>
+            레고! 결제하기
+          </button>
         </div>
       </div>
     </section>
