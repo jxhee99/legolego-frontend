@@ -1,3 +1,4 @@
+// 페이지
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
 import Package from '../pages/Package/Package';
@@ -7,7 +8,6 @@ import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
 import Schedule from '../pages/DiyCreate/Schedule/Schedule';
 import DiyForm from '../pages/DiyCreate/DiyForm/DiyForm';
-import Review from '../pages/Review/Review';
 import DiyDetail from '../pages/DiyDetail/DiyDetail';
 
 //마이페이지
@@ -37,15 +37,16 @@ import PartnerOrders from '../pages/Partner/PartnerOrders/PartnerOrders';
 
 // 아이디/비밀번호 찾기
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
-import FindAccount from '../pages/FindAccount/FindAccount';
+import FindEmail from '../pages/FindAccount/FindEmail';
+import FindPassword from '../pages/FindAccount/FindPassword';
 
 // 주문 및 결제
 import Order from '../pages/Order/Order';
 import Payment from '../pages/Payment/Payment';
 
 // 지난여행
+import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
-import NotFound from '../pages/NotFound/NotFound';
 
 export const ROUTE = {
   ABOUT: {
@@ -78,19 +79,24 @@ export const ROUTE = {
     link: '/diy/:id',
     element: DiyDetail,
   },
-  REVIEW: {
-    path: '/review',
-    link: '/review',
-    element: Review,
+  PRE_TRIP: {
+    path: '/pre-trip',
+    link: '/pre-trip',
+    element: PreTripList,
   },
-  FIND_ACCOUNT: {
-    path: 'find-account',
-    link: 'find-account',
-    element: FindAccount,
+  FIND_EMAIL: {
+    path: '/find-email',
+    link: '/find-email',
+    element: FindEmail,
+  },
+  FIND_PASSWORD: {
+    path: '/find-password',
+    link: '/find-password',
+    element: FindPassword,
   },
   RESET_PASSWORD: {
-    path: 'reset-password',
-    link: 'reset-password',
+    path: '/reset-password',
+    link: '/reset-password',
     element: ResetPassword,
   },
   // ORDER_DETAIL: {
@@ -162,6 +168,11 @@ export const ROUTE_MY_PAGE = {
     link: '/mypage?tab=my-diy-package',
     element: DiyPackage,
   },
+  LIKE_DIY_PACKAGE: {
+    path: '/mypage?tab=like-diy-package',
+    link: '/mypage?tab=like-diy-package',
+    element: LikeDiyPackage,
+  },
   SAVED_PACKAGES: {
     path: '/mypage?tab=saved-packages',
     link: '/mypage?tab=saved-packages',
@@ -172,15 +183,12 @@ export const ROUTE_MY_PAGE = {
 export const ROUTE_MY_PAGE_ARR = Object.values(ROUTE_MY_PAGE);
 
 //admin pages
-export const ROUTE_ADMIN = {
+export const ROUTE_ADMIN_LISTS = {
   ADMIN: {
     path: '/admin',
     link: '/admin',
     element: Admin,
   },
-};
-
-export const ROUTE_ADMIN_LISTS = {
   ADMIN_LISTS_DIY: {
     path: '/admin/lists/diy-packages',
     link: '/admin/lists/diy-packages',
@@ -221,15 +229,12 @@ export const ROUTE_ADMIN_LISTS = {
 export const ROUTE_ADMIN_ARR = Object.values(ROUTE_ADMIN_LISTS);
 
 //partner pages
-export const ROUTE_PARTNER = {
+export const ROUTE_PARTNER_LISTS = {
   PARTNER: {
     path: '/partner',
     link: '/partner',
     element: Partner,
   },
-};
-
-export const ROUTE_PARTNER_LISTS = {
   PARTNER_LISTS_PACKAGES: {
     path: '/partner/lists/packages',
     link: '/partenr/lists/packages',

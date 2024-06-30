@@ -18,6 +18,9 @@ const Sidebar = () => {
         <li className={currentTab === 'my-diy-package' ? styles.active : ''}>
           <Link to="/mypage?tab=my-diy-package">내가 만든 DIY 패키지</Link>
         </li>
+        <li className={currentTab === 'like-diy-package' ? styles.active : ''}>
+          <Link to="/mypage?tab=like-diy-package">내가 응원한 DIY 패키지</Link>
+        </li>
         <li className={currentTab === 'my-diy-prices' ? styles.active : ''}>
           <Link to="/mypage?tab=my-diy-prices">응원달성 DIY 패키지</Link>
         </li>
