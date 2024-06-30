@@ -23,7 +23,7 @@ const PackageInformation = ({
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const fetchWishNum = async () => {
+    const fetchWishStatus = async () => {
       try {
         const response = await axios.get(`/api/user/products/wishlist`, {
           headers: {
@@ -31,14 +31,15 @@ const PackageInformation = ({
             Authorization: `Bearer ${token}`,
           },
         });
+        // setIsWished(response.data.isWished);
         console.log(response.data);
       } catch (error) {
-        console.error('찜 불러오는 중 오류 발생:', error);
+        console.error('찜 상태 불러오는 중 오류 발생:', error);
       }
     };
 
-    fetchWishNum();
-  }, []);
+    fetchWishStatus();
+  }, [id, token]);
 
   const handleWishNum = async () => {
     try {
@@ -53,15 +54,32 @@ const PackageInformation = ({
         }
       );
 
-      if (response.status === 200) {
-        // 요청이 성공한 경우
-        console.log('성공');
-        setIsWished(true); // 응원 완료 상태로 설정
+      if (response.status === 201) {
+        setIsWished(true);
       } else {
-        console.error('승인 실패:', response.status);
+        console.error('찜하기 실패:', response.status);
       }
     } catch (error) {
       console.error('찜 업데이트 오류 발생:', error);
+    }
+  };
+
+  const handleCancelWish = async () => {
+    try {
+      const response = await axios.delete(`/api/user/products/${id}/wishlist`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 204) {
+        setIsWished(false);
+      } else {
+        console.error('찜 취소 실패:', response.status);
+      }
+    } catch (error) {
+      console.error('찜 취소 오류 발생:', error);
     }
   };
 
@@ -104,12 +122,11 @@ const PackageInformation = ({
           </div>
         </div>
         <div>
-          {isWished ? (
+          {!isWished ? (
             <button onClick={handleWishNum}>상품 찜하기</button>
           ) : (
-            <button>찜 취소하기</button>
+            <button onClick={handleCancelWish}>찜 취소하기</button>
           )}
-
           <button onClick={() => navigate(`/order/${id}`)}>
             레고! 결제하기
           </button>
