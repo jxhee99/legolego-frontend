@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import useFetchData from '../../../hooks/useFetchDiyData';
+import { deleteList } from '../../../utils/handleDelete';
 
 import styles from '../../../components/List/List.module.css';
 
@@ -29,14 +28,6 @@ const AdminListDiy = () => {
 
   // 데이터 가져오기 훅
   const { data, loading, error, refetch } = useFetchData(endpoint);
-
-  // 페이지 및 필터 변경 시 처리
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-    newQuery.set('page', page);
-    newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() }, { replace: true });
-  }, [page, filterApplied, navigate, location.search]);
 
   // 로딩 중일 때
   if (loading) {
@@ -79,25 +70,6 @@ const AdminListDiy = () => {
   const closeModal = () => {
     setSelectedItem(null);
     setModalOpen(false);
-  };
-
-  // 삭제 처리 함수
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.delete(
-        `/api/admin/packages/${selectedItem.packageNum}`
-      );
-
-      if (response.status === 204) {
-        refetch();
-      } else {
-        console.error('삭제 실패:', response.status);
-      }
-      closeModal();
-    } catch (err) {
-      console.error('삭제 중 오류:', err);
-    }
   };
 
   return (
@@ -149,7 +121,18 @@ const AdminListDiy = () => {
           <div className={styles.confirm_modal_inner}>
             <p>정말 삭제하시겠습니까?</p>
             <div>
-              <button onClick={handleSubmit}>삭제</button>
+              <button
+                onClick={(e) =>
+                  deleteList(
+                    e,
+                    `/api/admin/packages/${selectedItem.packageNum}`,
+                    refetch,
+                    closeModal
+                  )
+                }
+              >
+                삭제
+              </button>
               <button onClick={closeModal}>취소</button>
             </div>
           </div>
@@ -157,13 +140,13 @@ const AdminListDiy = () => {
       </ConfirmModal>
       <div className={styles.pagination_box}>
         {/* 페이지네이션 */}
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(filteredData.length / itemsPerPage)}
-            page={page}
-            onChange={(_, value) => setPage(value)}
-          />
-        </Stack>
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+          filterApplied={filterApplied}
+        />
       </div>
     </div>
   );

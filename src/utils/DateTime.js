@@ -27,3 +27,5 @@ export const formatTimeString = (timeString) => {
   const minutes = timeString.slice(2, 4);
   return `${hours}:${minutes}`;
 };
+
+export const getCurrentTime = () => new Date();
