@@ -13,7 +13,7 @@ import Metas from '../../components/common/Metas';
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
   const endpoint = `/api/packages/${id}`;
-  const { data, loading, refetch } = useFetchData(endpoint);
+  const { data, loading, error, refetch } = useFetchData(endpoint);
 
   const [airline, setAirline] = useState({});
   const [schedule, setSchedule] = useState([]);
@@ -70,6 +70,16 @@ const DiyDetail = () => {
   // 로딩 중일 때
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  // 에러 발생 시
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+
+  // 데이터가 없을 때
+  if (!data || data.length === 0) {
+    return <div>데이터가 없습니다.</div>;
   }
 
   return (
