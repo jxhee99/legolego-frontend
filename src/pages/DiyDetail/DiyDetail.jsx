@@ -19,6 +19,7 @@ const DiyDetail = () => {
   const [schedule, setSchedule] = useState([]);
   const [desc, setDesc] = useState({});
   const [writer, setWriter] = useState({});
+  const [likedNum, setLikedNum] = useState();
   const [isLiked, setIsLiked] = useState(false); //응원 여부 상태
   const [isWriter, setIsWriter] = useState(false);
 
@@ -28,6 +29,7 @@ const DiyDetail = () => {
       setSchedule(data.detailCourses);
       setDesc(data.packageForm);
       setWriter(data.user);
+      setLikedNum(data.likedNum);
       setIsLiked(data.isLiked); // 서버에서 받아온 응원 여부 설정
       setIsWriter(data.isWriter);
     }
@@ -55,6 +57,7 @@ const DiyDetail = () => {
         // 요청이 성공한 경우
         console.log('성공');
         //refetch();
+        setLikedNum(likedNum + 1);
         setIsLiked(true); // 응원 완료 상태로 설정
       } else {
         console.error('승인 실패:', response.status);
@@ -87,7 +90,7 @@ const DiyDetail = () => {
               </div>
               <div className={styles.like_view_box}>
                 <ThumbUpAltIcon />
-                <div>{data.likedNum}</div>
+                <div>{likedNum}</div>
                 <VisibilityIcon />
                 <div>{data.viewNum}</div>
               </div>

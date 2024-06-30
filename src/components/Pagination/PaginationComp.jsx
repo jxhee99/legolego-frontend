@@ -3,7 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-const PaginationComp = ({ page, setPage, totalItems, itemsPerPage }) => {
+const PaginationComp = ({
+  page,
+  setPage,
+  totalItems,
+  itemsPerPage,
+  filterApplied,
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -12,8 +18,11 @@ const PaginationComp = ({ page, setPage, totalItems, itemsPerPage }) => {
     console.log('페이지변경 및 url 업데이트');
     const newQuery = new URLSearchParams(location.search);
     newQuery.set('page', page);
+    if (filterApplied != undefined) {
+      newQuery.set('filter', filterApplied);
+    }
     navigate({ search: newQuery.toString() }, { replace: true });
-  }, [page, navigate, location.search]);
+  }, [page, filterApplied, navigate, location.search]);
 
   return (
     <Stack spacing={2}>
