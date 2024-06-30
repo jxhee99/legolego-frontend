@@ -46,7 +46,7 @@ const Header = () => {
     <header
       className={`${styles.Header} ${toggleAuthentication.logIn || toggleAuthentication.signUp ? styles.AuthOpen : ''}`}
     >
-      <Link to="/">
+      <Link to="/home">
         <Logo />
       </Link>
       <Menu />
@@ -57,8 +57,8 @@ const Header = () => {
         />
       ) : (
         <div>
-        <button onClick={moveToMypage}>마이페이지</button>
-        <button onClick={handleLogout}>로그아웃</button>
+          <button onClick={moveToMypage}>마이페이지</button>
+          <button onClick={handleLogout}>로그아웃</button>
         </div>
       )}
       {toggleAuthentication.logIn && <LogIn onClose={closeAuthentication} />}

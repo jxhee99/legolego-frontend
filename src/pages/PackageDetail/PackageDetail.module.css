@@ -59,6 +59,9 @@
   color: #007bff;
 }
 
+.wished {
+  background-color: grey;
+}
 /* Schedule */
 .Schedule {
   padding: 1.75rem;

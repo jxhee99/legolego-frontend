@@ -14,7 +14,7 @@ const Mypage = () => {
 
   return (
     <>
-      <Metas title="LEGOLEGO — 마이페이지" />
+      <Metas title="마이페이지" />
       <div className={styles.Mypage}>
         <Sidebar />
         <div className={styles.mypage_wrapper}>
