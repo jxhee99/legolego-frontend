@@ -1,49 +1,37 @@
 .About {
-  height: 100vh;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   padding: 20px;
   box-sizing: border-box;
-  display:flex;
 }
 
-.About .about_top{
-  display:block;
-  height: 100vh;
-}
-.About .about_bottom{
-  display:block;
-  height: 100vh;
-
+.About .about_top {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
 
-.About .about_package{
-  display:block;
+.About .about_package {
   height: 50vh;
 }
-.About .about_like{
-  display:block;
+.About .about_like {
   height: 50vh;
-
 }
 
 .About .about_intro {
   width: 906px;
   height: 10px;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 700;
   font-size: 30px;
   line-height: 110%;
   color: #000000;
   text-align: center;
-  margin-top: 3vh;
+  margin-top: 3rem;
 }
 
 .About .about_make_diy {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: flex-start;
   font-size: 35px;
   gap: 24px;
@@ -54,9 +42,8 @@
   line-height: 1.5;
 }
 
-
 .About .go_picture {
-  width: 300px; 
+  width: 300px;
   height: 500px;
   border-radius: 8px;
   display: flex;
@@ -64,13 +51,11 @@
   align-items: center;
 }
 
-
 .About .go_picture img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
 
 .About .diy_intro {
   display: flex;
@@ -81,33 +66,29 @@
   width: 577px;
   height: 402px;
   text-align: center;
-
 }
 
 .About .diy_intro h2 {
-margin-top: 2%;
- margin-left: 20%;
-
+  margin-top: 2%;
+  margin-left: 20%;
 }
 
 .About .make_lego {
   padding: 25px 35px;
   margin-top: 25px;
   margin-left: 160px;
-  background: #E71212;
+  background: #e71212;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   color: white;
   font-size: 22px;
   cursor: pointer;
-  
 }
 
 .About .join_lego {
   padding: 12px 26px;
   margin-top: 15px;
   margin-left: 140px;
-
   background: rgba(247, 226, 115, 0.5);
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
@@ -115,79 +96,63 @@ margin-top: 2%;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  
 }
-
-
 
 .About .about_package_intro {
   float: left;
-  width:50%;}
-  .About .about_package_intro p{
+  width: 50%;
+}
+.About .about_package_intro p {
   float: right;
   font-weight: 500;
   font-size: 24px;
   line-height: 150%;
   color: #000000;
-  padding-top: 25vh;
-  padding-left:15%;
+  padding-top: 4rem;
 }
 
-.About .about_package_button{
-  padding-top: 23vh;
-  padding-right:10%;
+.About .about_package_button {
+  padding-top: 4rem;
   float: right;
-  width:50%;
-  padding-left:3%;
-
+  width: 50%;
+  padding-left: 3%;
 }
-.About .about_package_button button{
-
+.About .about_package_button button {
   height: 100px;
   width: 280px;
   gap: 8px;
-  background: #FE7171;
+  background: #fe7171;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   font-size: 21px;
-  font-weight:500;
-  color:#ffffff;
-
+  font-weight: 500;
+  color: #ffffff;
 }
 
-.About .about_like_button{
-  padding-top: 10vh;
-  padding-right:3%;
+.About .about_like_button {
+  padding-right: 3%;
   float: left;
-  width:50%;
-
+  width: 50%;
 }
 
-.About .about_like_intro{
- 
+.About .about_like_intro {
   float: right;
-  width:50%;
+  width: 50%;
   font-weight: 500;
   font-size: 24px;
   line-height: 150%;
   color: black;
-  padding-top: 12vh;
-  padding-left:3%;
 }
 
-.About .about_like_button button{
-
+.About .about_like_button button {
   float: right;
   height: 100px;
   width: 280px;
   gap: 8px;
-  background: #93D1FF;
+  background: #93d1ff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   font-size: 21px;
-  font-weight:500;
-  color:#ffffff;
-
-
+  font-weight: 500;
+  color: #ffffff;
 }
-

@@ -25,12 +25,21 @@ const PackageInformation = ({
   useEffect(() => {
     const fetchWishStatus = async () => {
       try {
-        const response = await axios.get(`/api/user/products/wishlist`, {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `/api/user/products/${id}/wishlist/status`,
+          {
+            headers: {
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setIsWished(response.data);
+        } else {
+          console.error('찜 상태 불러오기 실패:', response.status);
+        }
       } catch (error) {
         console.error('찜 상태 불러오는 중 오류 발생:', error);
       }
