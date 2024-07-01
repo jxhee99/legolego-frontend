@@ -1,34 +1,33 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from '../../../components/List/List.module.css';
 
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
+import PriceDetail from '../../../components/List/PriceDetail/PriceDetail';
+import ProductRegisterModal from '../../../components/List/ProductRegister/ProductRegisterModal';
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 //api함수, util 함수
 import useFetchData from '../../../hooks/useFetchDiyData';
-import { combineDateTime } from '../../../utils/DateTime';
 
 const AdminListDiyPrice = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
 
   //상태관리
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [modalType, setModalType] = useState(null); // 모달 타입 상태 추가
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [deadlineDate, setDeadlineDate] = useState(null);
-  const [deadlineTime, setDeadlineTime] = useState(null);
 
   //get요청
   const endpoint = '/api/admin/diylists';
@@ -46,23 +45,32 @@ const AdminListDiyPrice = () => {
   if (!data || data.length === 0) {
     return <div>데이터가 없습니다.</div>;
   }
+
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter(
-        (item) => item.isSelected === true && item.isRegistered === false
-      )
-    : data;
+  let filteredData = [...data];
+  if (filter === 'register') {
+    filteredData = data.filter(
+      (item) => item.isSelected === true && item.isRegistered === false
+    );
+  }
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'register', label: '등록' }];
 
   // 모달 열기
   const openModal = (item, type) => {
@@ -75,57 +83,21 @@ const AdminListDiyPrice = () => {
   const closeModal = () => {
     setSelectedItem(null); // 선택된 아이템 초기화
     setModalType(null);
-    setDeadlineDate(null);
-    setDeadlineTime(null);
     setModalOpen(false); // 모달 닫기
-  };
-
-  const handleInputChange = (setValue) => (e) => {
-    const value = e.target.value;
-    setValue(value);
-    console.log(value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const combinedDateTime = combineDateTime(deadlineDate, deadlineTime);
-      if (!combinedDateTime) {
-        console.error('날짜와 시간을 선택해주세요');
-        return;
-      }
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        // 요청이 성공한 경우
-        console.log('승인');
-        refetch(); // 데이터 다시 가져오기
-      } else {
-        console.error('승인 실패:', response.status);
-      }
-      closeModal();
-    } catch (err) {
-      console.error('상품 등록 중 오류:', err);
-    }
   };
 
   return (
     <div className={styles.box}>
       <h2>응원 달성 Diy 목록</h2>
       {/* 필터 버튼 */}
-      <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '등록'}
-      </button>
+      <div className={styles.filter_box}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
 
       <ListTable>
         <thead>
@@ -180,49 +152,14 @@ const AdminListDiyPrice = () => {
         title={modalType}
       >
         {selectedItem && modalType === '상품 등록' && (
-          <div className={styles.modal_form}>
-            <p>{selectedItem.diyPackage.packageName}</p>
-            <br></br>
-            <form onSubmit={handleSubmit}>
-              <div>모집 마감기한</div>
-              <label>날짜</label>
-              <input
-                type="date"
-                value={deadlineDate}
-                onChange={handleInputChange(setDeadlineDate)}
-              />
-              <br />
-              <label>시간</label>
-              <input
-                type="time"
-                value={deadlineTime}
-                onChange={handleInputChange(setDeadlineTime)}
-              />
-              <div className={styles.button_box}>
-                <button type="submit">등록</button>
-              </div>
-            </form>
-          </div>
+          <ProductRegisterModal
+            selectedItem={selectedItem}
+            closeModal={closeModal}
+            refetch={refetch}
+          />
         )}
         {selectedItem && modalType === '제안 상세' && (
-          <div className={styles.modal_text_box}>
-            <div className={styles.detail}>
-              <span>패키지:</span>
-              <p>{selectedItem.diyPackage.packageName}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>가격:</span>
-              <p>{selectedItem.price}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>모집인원:</span>
-              <p>{selectedItem.necessaryPeople}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>스페셜혜택:</span>
-              <p>{selectedItem.specialBenefits}</p>
-            </div>
-          </div>
+          <PriceDetail selectedItem={selectedItem} />
         )}
       </ListModal>
       {/* 페이지네이션 */}
@@ -232,7 +169,7 @@ const AdminListDiyPrice = () => {
           setPage={setPage}
           totalItems={data.length}
           itemsPerPage={itemsPerPage}
-          filterApplied={filterApplied}
+          filterApplied={filter}
         />
       </div>
     </div>

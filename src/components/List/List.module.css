@@ -16,6 +16,10 @@ margin: 1rem;
   border-radius: 12px;
 }
 
+.filter_box {
+  margin: 1.5rem 0;
+}
+
 .box .back_button {
   margin: 1.5rem 0;
   width: 100px;
@@ -24,68 +28,6 @@ margin: 1rem;
   border-radius: 12px;
 }
 
-
-/* 모달창 내부 폼 스타일 */
-.modal_form{
-  width: 80%;
-  height: 80%;
-  margin-top: 1rem;
-}
-
-.modal_form label{
-  font-weight: bold;
-  text-align: center;
-}
-
-.modal_form p {
-  margin-top: 1rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.modal_form input {
-  width: 78%;
-  height: 40px;
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  border: 1px solid #E0E0E0;
-  border-radius: 12px;
-}
-
-.modal_form .button_box{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.modal_form button{
-  margin-top: 4rem;
-  width: 80px;
-  height: 40px;
-  border: 1px solid #E0E0E0;
-  border-radius: 12px;
-}
-
-/* 모달창 내부 텍스트 */
-.modal_text_box {
-  width: 80%;
-  height: 80%;
-  margin-top: 2rem;
-}
-
-.modal_text_box .detail {
-  display: flex;
-  margin-top: 2rem;
-  gap: 1rem;
-}
-
-.detail span {
-  height: 40px;
-  font-weight: bold;
-}
-
-.detail p {
-  height: 40px;
-}
 
 /* 확인 모달창 내부 */
 .confirm_modal_inner{

@@ -1,0 +1,51 @@
+.input_button{
+  margin: 0.5rem 0;
+  width: 100px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #000;
+  color: #fff;
+}
+
+/* 기한 입력 폼스타일 */
+.modal_form h4{
+  margin: 1rem 0;
+}
+.modal_form {
+  width: 80%;
+  margin-top: 1rem;
+}
+
+.modal_form label {
+  margin: 1rem 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal_form input {
+  margin: 1rem 0;
+  width: 80%;
+  height: 40px;
+  margin-left: 2rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}
+
+.modal_form .button_box {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal_form button {
+  margin-top: 4rem;
+  width: 80px;
+  height: 40px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}
+
+.submit_button{
+  background-color: #000;
+  color: #fff;
+}
