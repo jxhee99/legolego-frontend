@@ -1,0 +1,74 @@
+/* 모달창 내부 텍스트 */
+.modal_box {
+  width: 80%;
+  height: 80%;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  border: 1px solid #d7d5d5;
+  border-radius: 12px;
+}
+
+.modal_box h4 {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+.diy_box {
+  height: 200px;
+  display: flex;
+  margin-top: 2em;
+  gap: 1rem;
+  border-bottom: 1px solid #d7d5d5;
+}
+
+.diy_box img {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+}
+
+.text {
+  margin-top: 1rem;
+  width: 300px;
+  height: 160px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+}
+
+.text span {
+  font-weight: bold;
+}
+
+.text p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggest_box{
+  margin-top: 2rem;
+  height: 160px;
+  display: grid;
+  grid-template-columns: 1fr 3.5fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+}
+
+.suggest_box>p {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  /* 테두리 스타일과 색상 설정 */
+  padding: 10px;
+  /* 셀 안의 내용과 테두리 사이의 간격 설정 */
+}
+.suggest_box span {
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.suggest_box p {
+  margin: 0;
+}

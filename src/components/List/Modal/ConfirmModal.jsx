@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './ConfirmModal.module.css';
 
-const ComfirmModal = ({ isVisible, closeModal, children }) => {
+const ConfirmModal = ({ isVisible, closeModal, children }) => {
   if (!isVisible) return null;
 
   const handleBackgroundClick = (event) => {
@@ -25,4 +25,4 @@ const ComfirmModal = ({ isVisible, closeModal, children }) => {
   );
 };
 
-export default ComfirmModal;
+export default ConfirmModal;

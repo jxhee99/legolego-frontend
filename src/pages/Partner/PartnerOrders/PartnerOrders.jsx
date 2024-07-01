@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import PartnerOrderDetail from './PartnerOrderDetail';
 import ListTable from '../../../components/List/ListTable';
 import useFetchData from '../../../hooks/useFetchDiyData';
@@ -10,17 +11,16 @@ import styles from '../../../components/List/List.module.css';
 
 const PartnerOrders = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
   const endpoint = '/api/partner/products';
 
   // 상태 관리
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -43,20 +43,28 @@ const PartnerOrders = () => {
   }
 
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter((item) => item.recruitmentConfirmed === true)
-    : data;
+  const filteredData =
+    filter === 'confirm'
+      ? data.filter((item) => item.recruitmentConfirmed === true)
+      : data;
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'confirm', label: '여행 확정' }];
 
   // 주문 내역 상세보기 함수
   const handleViewOrderDetail = (order) => {
@@ -75,12 +83,14 @@ const PartnerOrders = () => {
       ) : (
         <>
           <h2>여행 상품</h2>
-
-          {/* 필터 버튼 */}
-          <button onClick={toggleFilter} className={styles.filter_button}>
-            {filterApplied ? '전체 보기' : '모집 확정'}
-          </button>
-
+          <div className={styles.filter_box}>
+            <ToggleFilter
+              filter={filter}
+              handleChange={handleChange}
+              setFilter={setFilter}
+              buttons={toggleButtons}
+            />
+          </div>
           {/* 목록 테이블 */}
           <ListTable>
             <thead>
@@ -91,7 +101,7 @@ const PartnerOrders = () => {
                 <th>모집 인원</th>
                 <th>마감일</th>
                 <th>주문 내역</th>
-                <th>모집확정</th>
+                <th>여행확정</th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +134,6 @@ const PartnerOrders = () => {
               ))}
             </tbody>
           </ListTable>
-
           {/* 페이지네이션 */}
           <div className={styles.pagination_box}>
             <PaginationComp
@@ -132,7 +141,7 @@ const PartnerOrders = () => {
               setPage={setPage}
               totalItems={data.length}
               itemsPerPage={itemsPerPage}
-              filterApplied={filterApplied}
+              filterApplied={filter}
             />
           </div>
         </>

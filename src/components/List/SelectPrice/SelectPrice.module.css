@@ -1,0 +1,25 @@
+/* 확인 모달창 내부 */
+.confirm_modal_inner {
+  width: 80%;
+  height: 80%;
+  margin-top: 5rem;
+}
+
+.confirm_modal_inner p {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.confirm_modal_inner div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.confirm_modal_inner button {
+  margin-top: 2rem;
+  width: 80px;
+  height: 40px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+}
