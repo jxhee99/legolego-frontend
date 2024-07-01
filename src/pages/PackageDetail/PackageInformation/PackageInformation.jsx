@@ -31,8 +31,6 @@ const PackageInformation = ({
             Authorization: `Bearer ${token}`,
           },
         });
-        // setIsWished(response.data.isWished);
-        console.log(response.data);
       } catch (error) {
         console.error('찜 상태 불러오는 중 오류 발생:', error);
       }
@@ -91,20 +89,14 @@ const PackageInformation = ({
       <div className={styles.right_box}>
         <h2>{productName}</h2>
         <p>{partnerName}</p>
-        <p>{price}</p>
-        <div>{necessaryPeople}</div>
+        <div>{necessaryPeople} 명을 모집하고 있어요~!</div>
+        <p>{price} ₩</p>
         <div className={styles.icon_information}>
           <div>
             <span>
               <CalendarMonthIcon />
             </span>
-            <span>
-              {formatDateTime(recruitmentDeadline).replace(
-                /\s\d{2}:\d{2}$/,
-                ''
-              )}{' '}
-              마감
-            </span>
+            <span>{formatDateTime(recruitmentDeadline)} 마감</span>
           </div>
           <div>
             <div>

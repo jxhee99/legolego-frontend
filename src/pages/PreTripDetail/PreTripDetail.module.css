@@ -1,109 +1,150 @@
+.PackageInformation {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #bebebe;
+}
 
-.preTripDetail_review_box{
-  width: 95%;
-  padding:3rem;
-  background-color: rgba(247, 188, 217, 0.041);
-  border-radius: 1%;
+.PackageInformation .left_box {
+  flex-basis: 50%;
+  width: 400px;
+  height: 400px;
+}
+
+.PackageInformation .left_box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.PackageInformation .right_box {
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 2rem;
+  padding: 1rem 0;
+}
+
+.PackageInformation .right_box button {
+  padding: 1rem;
+  color: var(--color-black);
+  background-color: #bebebe;
+  width: 100%;
+}
+
+.icon_information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon_information div {
+  display: flex;
+  align-items: center;
+}
+
+.icon_information span {
+  margin-left: 8px;
+  color: #555;
+}
+
+.icon_information .MuiSvgIcon-root {
+  color: #007bff;
+}
+
+.wished {
+  background-color: grey;
+}
+
+/* Schedule */
+.Schedule {
+  padding: 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.Schedule h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  color: #333;
+}
+
+.Schedule h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.Schedule ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.dailySchedule {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
   margin-bottom: 2rem;
-  }
-  
-  .preTripDetail_box{
-    width: 95%;
-    padding:3rem;
-    background-color: rgba(230, 233, 247, 0.116);
-    border-radius: 1%;
-    }
-    
-  
-  
-  /* PackageInformation */
-  .PackageInformation {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-  }
-  
-  .PackageInformation .left_box {
-    width: 400px;
-    height: 400px;
-  }
-  
-  .PackageInformation .left_box img {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-  }
-  
-  .PackageInformation .right_box {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-left: 2rem;
-  }
-  
-  .PackageInformation .right_box button {
-    padding: 1rem;
-    color: var(--color-white);
-    background-color: gray; 
-  }
-  
-  .PackageInformation #pretrip_price{
-  text-decoration: line-through;
-  }
-  
-  
-  /* AirplainInformation */
-  .AirplainInformation {
-    margin-top: 3rem;
-  
-  }
-  
-  
-  .AirplainInformation .airplain_information_cards {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 1.5rem;
-  }
-  
-  /* Schedule */
-  .Schedule {
-    margin-top: 3rem;
-    line-height: 2;
-  }
-  
-  .dailySchedule {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    border: 2px solid skyblue;
-    padding: 1rem;
-    border-radius: 1%;
-    background-color: white;
-  }
-  
-  .scheduleItem {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .Schedule img {
-    width: 18rem;
-    height: 18rem;
-    border-radius: 5%;
-    margin-left:0.8rem;
-  
-    margin-bottom: 0.5rem;
-  }
-  
-  .dailyDetail {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    margin-left:1.5rem;
-    margin-right:4rem;
-  }
-  
+  border: 2px solid skyblue;
+  padding: 1rem;
+  border-radius: 1%;
+}
+
+.scheduleItem {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.Schedule img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 5%;
+}
+
+.dailyDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.Schedule .CourseList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.Schedule .CourseList li {
+  background-color: var(--color-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.Schedule .CourseList li img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.Schedule .CourseList li div {
+  padding: 1.5rem;
+}
+
+.Schedule .CourseList li span {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.Schedule .CourseList li p {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0;
+}

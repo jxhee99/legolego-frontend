@@ -1,29 +1,25 @@
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 import styles from './PreTripComment.module.css';
-import Avatar from '../../../components/Avatar/Avatar';
+import { useState } from 'react';
 
 const PreTripComment = () => {
+  const [value, setValue] = useState(2);
+
   return (
-    <div className={styles.PreTripComment}>
-      <h2 className={styles.comment_header}>LEGOLEGO 여행 후기</h2>
-      <div className={styles.comment_container}>
-        <div className={styles.comment_box}>
-            <div className={styles.comment_profile}>
-              <p> 프로필</p> 
-                {/* <Avatar
-              nickname={packages.user.userName}
-              imageUrl={packages.profileImg}
-            /> */}
-            </div>
-            <hr></hr>
-            <div className={styles.comment_contents}>
-            <p>후기내용</p>
-            </div>
-
-
+    <div className={styles.PreTripCard}>
+      <h2>여행 후기</h2>
+      <div className={styles.comment}>
+        <div className={styles.authorDate}>
+          <p className={styles.author}>짱구</p>
+          <p className={styles.date}>2024-06-27</p>
         </div>
-
-        <div className={styles.comment_box}></div>
-        <div className={styles.comment_box}></div>
+        <div>
+          <p>가성비 여행최고!</p>
+          <Box>
+            <Rating name="read-only" value={value} readOnly />
+          </Box>
+        </div>
       </div>
     </div>
   );
