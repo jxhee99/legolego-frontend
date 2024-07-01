@@ -12,14 +12,25 @@ const OrderList = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const userNum = 1; // 로그인된 userNum 필요. 임시로 1 넣어둠 
-        const response = await axios.get(`/api/orders?user_num=${userNum}`);
+        const token = localStorage.getItem('token'); // 예시: 로컬 스토리지에서 토큰을 가져온다고 가정
+        if (!token) {
+          throw new Error('Token is not available');
+        }
+
+        const response = await axios.get(`/api/user/orders`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const ordersData = response.data;
 
-        // 각 주문의 상품 정보를 추가로 요청
         const updatedOrders = await Promise.all(
           ordersData.map(async (order) => {
-            const productResponse = await axios.get(`/api/products/${order.productNum}`);
+            const productResponse = await axios.get(`/api/products/${order.productNum}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
             return {
               ...order,
               productName: productResponse.data.productName,
