@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './OrderDetail.module.css';
 import axios from 'axios';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 
 const OrderDetail = () => {
   const navigate = useNavigate();
@@ -15,14 +13,22 @@ const OrderDetail = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { orderNum } = useParams(); // URL에서 orderNum 파라미터 가져오기
 
   useEffect(() => {
     const fetchOrderDetail = async () => {
       try {
+        const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
+        if (!token) {
+          throw new Error('Token is not available');
+        }
+
         // 주문 상세 정보를 가져오는 API 호출 (orderNum 기반)
-        const response = await axios.get(`/api/orders/${orderNum}`);
+        const response = await axios.get(`/api/user/orders/${orderNum}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const orderData = response.data;
         console.log('Fetched data', orderData);
 
@@ -95,12 +101,11 @@ const OrderDetail = () => {
         </div>
       </div>
 
-
       <div className={styles.orderDetail_buttons}>
-      <button className={styles.orderDetail_back}onClick={goToOrderList}>뒤로가기</button>
+        <button className={styles.orderDetail_back} onClick={goToOrderList}>뒤로가기</button>
         <button className={styles.orderDetail_refund}>결제취소</button>
       </div>
-  </div>
+    </div>
   );
 };
 

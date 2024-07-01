@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../Mypage.module.css';
-import { Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const LikeDiyPackage = () => {
   const [packages, setPackages] = useState([]); // 패키지 목록을 상태로 관리
@@ -12,9 +11,17 @@ const LikeDiyPackage = () => {
   useEffect(() => {
     const fetchLikedList = async () => {
       try {
-        const userNum = 1; // 로그인 정보로 변경 필요
+        const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
+        if (!token) {
+          throw new Error('Token is not available');
+        }
+
         // 좋아요한 패키지 목록
-        const response = await axios.get(`/api/my/likes/${userNum}`);
+        const response = await axios.get(`/api/my/likes`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const likedPackages = response.data;
         console.log('Fetched data', likedPackages);
 
@@ -53,10 +60,7 @@ const LikeDiyPackage = () => {
           {packages.map((item) => (
             <tr key={item.packageNum}>
               <td>{item.packageNum}</td>
-              <td>
-              <Link to={`/diy/${item.packageNum}`}>
-                    {item.packageName}
-                  </Link></td>
+              <td><Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link></td>
               <td className={styles.status}>
                 <span>{item.recruitmentConfirmed ? '승인 완료' : '승인 대기 중'}</span>
               </td>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../Mypage.module.css';
-import { Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const SavedPackage = () => {
   const [savedList, setSavedList] = useState([]);
@@ -12,24 +11,36 @@ const SavedPackage = () => {
   useEffect(() => {
     const fetchSavedList = async () => {
       try {
-        const userNum = 1; // 로그인 정보로 변경해야함!!!!!
-        const response = await axios.get(`/api/products/${userNum}/wishlist`);
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token is not available');
+        }
+
+        // 찜 목록 가져오기
+        const response = await axios.get(`/api/user/products/wishlist`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const wishlistItems = response.data;
 
-        // product정보 가져오기
-        const productPromises = wishlistItems.map(async (item) => {
-          const productResponse = await axios.get(`/api/products/${item.productNum}`);
-          return {
-            productNum: productResponse.data.productNum,
-            wishlistNum: item.wishlistNum,
-            productName: productResponse.data.productName,
-            price: productResponse.data.price,
-            recruitmentConfirmed: productResponse.data.recruitmentConfirmed,
-          };
-        });
+        // 각 상품에 대한 추가 정보 요청
+        const updatedOrders = await Promise.all(
+          wishlistItems.map(async (item) => {
+            const productResponse = await axios.get(`/api/products/${item.productNum}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            return {
+              ...item,
+              productName: productResponse.data.productName,
+              productPrice: productResponse.data.price,
+            };
+          })
+        );
 
-        const productList = await Promise.all(productPromises);
-        setSavedList(productList);
+        setSavedList(updatedOrders); // 상태 업데이트
         setLoading(false);
       } catch (error) {
         setError('Failed to load Saved List');
@@ -59,9 +70,9 @@ const SavedPackage = () => {
             <tr key={item.wishlistNum}>
               <td>{item.wishlistNum}</td>
               <td><Link to={`/package-product/${item.productNum}`}>
-              {item.productName}
-                  </Link></td>
-              <td>{item.price}</td>
+                {item.productName}
+              </Link></td>
+              <td>{item.productPrice}</td>
               <td className={styles.status}>
                 {item.recruitmentConfirmed ? '출발 확정' : '모집 중'}
               </td>
