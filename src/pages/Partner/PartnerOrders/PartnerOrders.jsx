@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 import PartnerOrderDetail from './PartnerOrderDetail';
 import ListTable from '../../../components/List/ListTable';
@@ -10,7 +10,6 @@ import styles from '../../../components/List/List.module.css';
 
 const PartnerOrders = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
@@ -124,7 +123,6 @@ const PartnerOrders = () => {
               ))}
             </tbody>
           </ListTable>
-
           {/* 페이지네이션 */}
           <div className={styles.pagination_box}>
             <PaginationComp

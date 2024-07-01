@@ -16,6 +16,10 @@ margin: 1rem;
   border-radius: 12px;
 }
 
+.filter_box {
+  margin: 1.5rem 0;
+}
+
 .box .back_button {
   margin: 1.5rem 0;
   width: 100px;
