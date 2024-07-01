@@ -5,9 +5,9 @@ import PriceDetail from '../PriceDetail/PriceDetail';
 import { combineDateTime } from '../../../utils/DateTime';
 
 const ProductRegisterModal = ({ selectedItem, closeModal, refetch }) => {
-  const [deadlineDate, setDeadlineDate] = useState(null);
-  const [deadlineTime, setDeadlineTime] = useState(null);
-  const [showForm, setShowForm] = useState(false); // State to manage view
+  const [deadlineDate, setDeadlineDate] = useState('');
+  const [deadlineTime, setDeadlineTime] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   const handleInputChange = (setValue) => (e) => {
     const value = e.target.value;

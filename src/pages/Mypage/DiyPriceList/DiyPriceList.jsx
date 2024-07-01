@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import styles from '../../../components/List/List.module.css';
 import style from '../Mypage.module.css';
 import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
-import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
+import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import PriceDetail from '../../../components/List/PriceDetail/PriceDetail';
+import SelectPrice from '../../../components/List/SelectPrice/SelectPrice';
 import useFetchData from '../../../hooks/useFetchDiyData';
 
 const DiyPriceList = () => {
@@ -21,6 +21,7 @@ const DiyPriceList = () => {
 
   // 상태관리
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [filter, setFilter] = useState(initialFilter); // filter 상태 추가
   const [page, setPage] = useState(initialPage);
@@ -57,14 +58,16 @@ const DiyPriceList = () => {
   const currentItems = filteredData.slice(startIndex, endIndex);
 
   // 모달 열기
-  const openModal = (item) => {
+  const openModal = (item, type) => {
     setSelectedItem(item);
+    setModalType(type);
     setModalOpen(true);
   };
 
   // 모달 닫기
   const closeModal = () => {
     setSelectedItem(null);
+    setModalType(null);
     setModalOpen(false);
   };
 
@@ -78,37 +81,12 @@ const DiyPriceList = () => {
       setPage(1);
     }
   };
-  //필터 토글 버튼
+
+  // 필터 토글 버튼
   const toggleButtons = [
     { value: 'suggest', label: '제안' },
     { value: 'product', label: '상품' },
   ];
-
-  // 승인 요청
-  const handleApprove = async (item) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/user/accept?list_num=${item.listNum}&package_num=${item.diyPackage.packageNum}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log('승인');
-        refetch();
-      } else {
-        console.error('승인 실패:', response.status);
-      }
-    } catch (error) {
-      console.error('에러 발생:', error);
-    }
-  };
 
   return (
     <>
@@ -124,7 +102,7 @@ const DiyPriceList = () => {
             <tr>
               <th>패키지 번호</th>
               <th>Name</th>
-              <th>partner</th>
+              <th>Partner</th>
               <th>가격</th>
               <th>상세</th>
               <th>제안받기</th>
@@ -142,14 +120,14 @@ const DiyPriceList = () => {
                 </td>
                 <td>{item.partner.companyName}</td>
                 <td>{item.price}</td>
-                <td onClick={() => openModal(item)}>
+                <td onClick={() => openModal(item, '제안 상세')}>
                   <button>보기</button>
                 </td>
                 <td>
                   {item.isSelected === null && (
-                    <span onClick={() => handleApprove(item)}>
-                      <button>받기</button>
-                    </span>
+                    <button onClick={() => openModal(item, '제안 받기')}>
+                      받기
+                    </button>
                   )}
                   {item.isSelected === true && <span>수락</span>}
                   {item.isSelected === false && <span>거절</span>}
@@ -167,13 +145,24 @@ const DiyPriceList = () => {
           </tbody>
         </table>
       </div>
-      <ListModal
-        isVisible={modalOpen}
-        closeModal={closeModal}
-        title="제안 상세"
-      >
-        {selectedItem && <PriceDetail selectedItem={selectedItem} />}
-      </ListModal>
+      {modalType === '제안 상세' && (
+        <ListModal
+          isVisible={modalOpen}
+          closeModal={closeModal}
+          title="제안 상세"
+        >
+          <PriceDetail selectedItem={selectedItem} />
+        </ListModal>
+      )}
+      {modalType === '제안 받기' && selectedItem && (
+        <ConfirmModal isVisible={modalOpen} closeModal={closeModal}>
+          <SelectPrice
+            selectedItem={selectedItem}
+            refetch={refetch}
+            closeModal={closeModal}
+          />
+        </ConfirmModal>
+      )}
       {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
         <PaginationComp
