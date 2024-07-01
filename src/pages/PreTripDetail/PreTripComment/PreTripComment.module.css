@@ -1,40 +1,35 @@
-.Comment {
-    background: rgba(235, 102, 43, 0.05);
-    padding: 2rem 2rem 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .comment_header {
-    width: 100%;
-    margin-bottom: 2rem;
-    
-  }
-  
-  .comment_container {
-    display: flex;
-    flex-wrap: wrap; /* 요소들을 줄 바꿈하도록 설정 */
-    gap: 40px; /* 요소들 사이의 간격 설정 */
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    justify-content: center; 
+.PreTripCard {
+  padding: 3rem;
+  margin-bottom: 20px;
+}
 
-  }
-  
-  .comment_box {
-    flex: 1 0 25%; /* Flexbox에서는 요소의 크기를 자유롭게 설정할 수 있습니다. */
-    max-width: calc(25% - 16px); /* 간격을 고려한 최대 너비 설정 */
-    min-width: 25%; /* 최소 너비 설정 */
-    height: 25rem;
-    background-color: rgba(204, 204, 204, 0.1);
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 5%;
-   
-  }
-  
-  .comment_box hr {
-    background: white;
-    height: 2px;
-    border: 0;
-  }
-  
+.PreTripCard h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+}
+
+.PreTripCard .comment {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  padding: 1.5rem;
+  max-width: 300px;
+}
+
+.PreTripCard .authorDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.PreTripCard .author {
+  font-weight: bold;
+}
+
+.PreTripCard .date {
+  color: #666;
+  font-size: 14px;
+}

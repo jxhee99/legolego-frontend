@@ -1,21 +1,52 @@
 import styles from '../PreTripDetail.module.css';
-import { useNavigate } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { formatDateTime } from '../../../utils/DateTime';
 
-const PackageInformation = () => {
-  const navigate = useNavigate();
-
+const PackageInformation = ({
+  productName,
+  partnerName,
+  price,
+  productImage,
+  recruitmentDeadline,
+  productViewNum,
+  wishlistCount,
+  necessaryPeople,
+}) => {
   return (
     <section className={styles.PackageInformation}>
       <div className={styles.left_box}>
-        <img src="https://picsum.photos/400 " alt="상품이미지" />
+        <img src={productImage} alt="상품 이미지" />
       </div>
       <div className={styles.right_box}>
-        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing.</h2>
-        <h3>하나투어</h3>
-        <h4>9박 10일</h4>
-        <p id={styles.pretrip_price}> ₩ 990,000</p>
-
-        <button>여행이 완료된 상품입니다.</button>
+        <h2>{productName}</h2>
+        <p>{partnerName}</p>
+        <div>{necessaryPeople} 명을 모집하고 있어요~!</div>
+        <p>{price} ₩</p>
+        <div className={styles.icon_information}>
+          <div>
+            <span>
+              <CalendarMonthIcon />
+            </span>
+            <span>{formatDateTime(recruitmentDeadline)} 마감</span>
+          </div>
+          <div>
+            <div>
+              <span>
+                <VisibilityIcon />
+              </span>
+              <span>{productViewNum}</span>
+            </div>
+            <div>
+              <span>
+                <CatchingPokemonIcon />
+              </span>
+              <span>{wishlistCount}</span>
+            </div>
+          </div>
+        </div>
+        <button>여행이 완료된 상품입니다</button>
       </div>
     </section>
   );

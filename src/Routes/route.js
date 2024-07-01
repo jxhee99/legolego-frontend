@@ -112,8 +112,8 @@ export const ROUTE = {
     element: OrderDetail,
   },
   PRETRIP_DETAIL: {
-    path: 'preTrip_detail',
-    link: 'preTrip_detail',
+    path: 'preTrip-detail/:id',
+    link: 'preTrip-detail/:id',
     element: PreTripDetail,
   },
 };
