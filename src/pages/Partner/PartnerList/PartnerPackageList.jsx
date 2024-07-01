@@ -6,6 +6,7 @@ import styles from '../../../components/List/List.module.css';
 import useFetchData from '../../../hooks/useFetchDiyData';
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
+import PriceRegister from '../../../components/List/PriceRegister/PriceRegister';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 const PartnerPackageList = () => {
@@ -21,10 +22,6 @@ const PartnerPackageList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [page, setPage] = useState(initialPage);
-  const [price, setPrice] = useState('');
-  const [necessaryPeople, setNecessaryPeople] = useState('');
-  const [specialBenefits, setSpecialBenefits] = useState('');
-
   // 데이터 가져오는 커스텀 훅 사용
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
@@ -51,48 +48,12 @@ const PartnerPackageList = () => {
   // 모달 닫기
   const closeModal = () => {
     setSelectedItem(null);
-    setPrice('');
-    setNecessaryPeople('');
-    setSpecialBenefits('');
     setModalOpen(false);
   };
 
   // 입력 값 변경 시 처리
   const handleInputChange = (setValue) => (e) => {
     setValue(e.target.value);
-  };
-
-  // 제출 처리
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = {
-      packageNum: selectedItem.diyPackage.packageNum,
-      price,
-      necessaryPeople,
-      specialBenefits,
-    };
-
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/partner/over-liked-packages/offer`,
-        formData,
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 201) {
-        closeModal();
-        refetch();
-      }
-    } catch (err) {
-      console.error('제안 등록 중 오류:', err);
-    }
   };
 
   // 현재 페이지에 해당하는 데이터 계산
@@ -138,41 +99,11 @@ const PartnerPackageList = () => {
         title="가격 등록"
       >
         {selectedItem && (
-          <div className={styles.modal_form}>
-            <p>{selectedItem.diyPackage.packageName}</p>
-            <form onSubmit={handleSubmit}>
-              <label>제안 가격:</label>
-              <input
-                type="text"
-                name="price"
-                value={price}
-                onChange={handleInputChange(setPrice)}
-                required
-              />
-              <br />
-              <label>모집 인원:</label>
-              <input
-                type="text"
-                name="necessaryPeople"
-                value={necessaryPeople}
-                onChange={handleInputChange(setNecessaryPeople)}
-                required
-              />
-              <br />
-              <label>특별 혜택:</label>
-              <input
-                type="text"
-                name="specialBenefits"
-                value={specialBenefits}
-                onChange={handleInputChange(setSpecialBenefits)}
-                required
-              />
-              <br />
-              <div className={styles.button_box}>
-                <button type="submit">등록하기</button>
-              </div>
-            </form>
-          </div>
+          <PriceRegister
+            selectedItem={selectedItem}
+            closeModal={closeModal}
+            refetch={refetch}
+          />
         )}
       </ListModal>
       {/* 페이지네이션 */}

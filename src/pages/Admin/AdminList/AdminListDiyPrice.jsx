@@ -1,17 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import styles from '../../../components/List/List.module.css';
 
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
+import PriceDetail from '../../../components/List/PriceDetail/PriceDetail';
+import ProductRegisterModal from '../../../components/List/ProductRegister/ProductRegisterModal';
 import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 //api함수, util 함수
 import useFetchData from '../../../hooks/useFetchDiyData';
-import { combineDateTime } from '../../../utils/DateTime';
 
 const AdminListDiyPrice = () => {
   const location = useLocation();
@@ -28,8 +28,6 @@ const AdminListDiyPrice = () => {
   const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [deadlineDate, setDeadlineDate] = useState(null);
-  const [deadlineTime, setDeadlineTime] = useState(null);
 
   //get요청
   const endpoint = '/api/admin/diylists';
@@ -85,48 +83,7 @@ const AdminListDiyPrice = () => {
   const closeModal = () => {
     setSelectedItem(null); // 선택된 아이템 초기화
     setModalType(null);
-    setDeadlineDate(null);
-    setDeadlineTime(null);
     setModalOpen(false); // 모달 닫기
-  };
-
-  const handleInputChange = (setValue) => (e) => {
-    const value = e.target.value;
-    setValue(value);
-    console.log(value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const combinedDateTime = combineDateTime(deadlineDate, deadlineTime);
-      if (!combinedDateTime) {
-        console.error('날짜와 시간을 선택해주세요');
-        return;
-      }
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        // 요청이 성공한 경우
-        console.log('승인');
-        refetch(); // 데이터 다시 가져오기
-      } else {
-        console.error('승인 실패:', response.status);
-      }
-      closeModal();
-    } catch (err) {
-      console.error('상품 등록 중 오류:', err);
-    }
   };
 
   return (
@@ -195,49 +152,14 @@ const AdminListDiyPrice = () => {
         title={modalType}
       >
         {selectedItem && modalType === '상품 등록' && (
-          <div className={styles.modal_form}>
-            <p>{selectedItem.diyPackage.packageName}</p>
-            <br></br>
-            <form onSubmit={handleSubmit}>
-              <div>모집 마감기한</div>
-              <label>날짜</label>
-              <input
-                type="date"
-                value={deadlineDate}
-                onChange={handleInputChange(setDeadlineDate)}
-              />
-              <br />
-              <label>시간</label>
-              <input
-                type="time"
-                value={deadlineTime}
-                onChange={handleInputChange(setDeadlineTime)}
-              />
-              <div className={styles.button_box}>
-                <button type="submit">등록</button>
-              </div>
-            </form>
-          </div>
+          <ProductRegisterModal
+            selectedItem={selectedItem}
+            closeModal={closeModal}
+            refetch={refetch}
+          />
         )}
         {selectedItem && modalType === '제안 상세' && (
-          <div className={styles.modal_text_box}>
-            <div className={styles.detail}>
-              <span>패키지:</span>
-              <p>{selectedItem.diyPackage.packageName}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>가격:</span>
-              <p>{selectedItem.price}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>모집인원:</span>
-              <p>{selectedItem.necessaryPeople}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>스페셜혜택:</span>
-              <p>{selectedItem.specialBenefits}</p>
-            </div>
-          </div>
+          <PriceDetail selectedItem={selectedItem} />
         )}
       </ListModal>
       {/* 페이지네이션 */}

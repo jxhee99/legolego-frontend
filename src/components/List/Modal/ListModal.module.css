@@ -17,10 +17,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 570px;
-  max-width: 550px;
-  max-height: 1200px;
+  height: 700px;
+  width: 700px;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -50,6 +48,5 @@
 }
 
 .Modal .modal_title h3 {
-  margin-top: 3rem;
   text-align: center;
 }

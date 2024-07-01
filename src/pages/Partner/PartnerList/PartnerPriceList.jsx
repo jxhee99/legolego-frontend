@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useFetchData from '../../../hooks/useFetchDiyData';
+import PriceDetail from '../../../components/List/PriceDetail/PriceDetail';
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
 
@@ -139,26 +140,7 @@ const PartnerPriceList = () => {
         closeModal={closeModal}
         title="제안 상세"
       >
-        {selectedItem && (
-          <div className={styles.modal_text_box}>
-            <div className={styles.detail}>
-              <span>패키지:</span>
-              <p>{selectedItem.diyPackage.packageName}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>가격:</span>
-              <p>{selectedItem.price}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>모집인원:</span>
-              <p>{selectedItem.necessaryPeople}</p>
-            </div>
-            <div className={styles.detail}>
-              <span>스페셜혜택:</span>
-              <p>{selectedItem.specialBenefits}</p>
-            </div>
-          </div>
-        )}
+        {selectedItem && <PriceDetail selectedItem={selectedItem} />}
       </ListModal>
       {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
