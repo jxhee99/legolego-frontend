@@ -12,7 +12,7 @@ const MembersList = () => {
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') || 'user';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
   const endpoint = '/api/admin/members';
 
@@ -51,8 +51,13 @@ const MembersList = () => {
 
   // 필터 설정
   const handleChange = (event, newFilter) => {
-    setFilter(newFilter);
-    setPage(1);
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
   //필터 토글 버튼
   const toggleButtons = [
@@ -67,6 +72,7 @@ const MembersList = () => {
         <ToggleFilter
           filter={filter}
           handleChange={handleChange}
+          setFilter={setFilter}
           buttons={toggleButtons}
         />
       </div>

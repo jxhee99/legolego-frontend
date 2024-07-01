@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import useFetchData from '../../../hooks/useFetchDiyData';
 import { formatDateTime, getCurrentTime } from '../../../utils/DateTime';
 import { deleteList } from '../../../utils/handleDelete';
@@ -16,14 +17,14 @@ const PreTrips = () => {
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
   const endpoint = '/api/pre-trip';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
 
   // 데이터 가져오기 훅
@@ -45,20 +46,28 @@ const PreTrips = () => {
   }
 
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter((item) => new Date(item.comingDate) > getCurrentTime())
-    : data;
+  let filteredData = [...data];
+  if (filter === 'ing') {
+    data.filter((item) => new Date(item.comingDate) > getCurrentTime());
+  }
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'ing', label: '여행중' }];
 
   // 모달 열기 함수
   const openModal = (item) => {
@@ -76,9 +85,14 @@ const PreTrips = () => {
     <div className={styles.box}>
       <h2>지난 여행 목록</h2>
       {/* 필터 버튼 */}
-      <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '여행 중'}
-      </button>
+      <div className={styles.filter_box}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
       <ListTable>
         <thead>
           <tr>
@@ -148,7 +162,7 @@ const PreTrips = () => {
           setPage={setPage}
           totalItems={data.length}
           itemsPerPage={itemsPerPage}
-          filterApplied={filterApplied}
+          filterApplied={filter}
         />
       </div>
     </div>

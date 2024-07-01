@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 
+import PaginationComp from '../../../components/Pagination/PaginationComp';
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
+
 import useFetchData from '../../../hooks/useFetchDiyData';
 import { formatDateTime } from '../../../utils/DateTime'; // formatDateTime import 수정
 
@@ -13,52 +14,60 @@ import styles from '../../../components/List/List.module.css';
 
 const AdminListProduct = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
   const endpoint = '/api/products';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
 
   // 데이터 가져오기 훅
-  const { data, loading, refetch } = useFetchData(endpoint);
-
-  // 페이지 및 필터 변경 시 처리
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-    newQuery.set('page', page);
-    newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() }, { replace: true });
-  }, [page, filterApplied, navigate, location.search]);
+  const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 로딩 중일 때
   if (loading) {
     return <div>로딩 중...</div>;
   }
 
+  // 에러 발생 시
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+  // 데이터가 없을 때
+  if (!data || data.length === 0) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter((item) => item.recruitmentConfirmed === true)
-    : data;
+  let filteredData = [...data];
+  if (filter === 'confirm') {
+    filteredData = data.filter((item) => item.recruitmentConfirmed === true);
+  }
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'confirm', label: '여행 확정' }];
 
   // 모달 열기 함수
   const openModal = (item) => {
@@ -94,9 +103,14 @@ const AdminListProduct = () => {
       <h2>상품 목록</h2>
 
       {/* 필터 버튼 */}
-      <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '모집 확정'}
-      </button>
+      <div className={styles.filter_box}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
 
       {/* 목록 테이블 */}
       <ListTable>
@@ -106,7 +120,7 @@ const AdminListProduct = () => {
             <th>Name</th>
             <th>작성자</th>
             <th>마감일</th>
-            <th>모집확정</th>
+            <th>여행확정</th>
             <th>삭제</th>
           </tr>
         </thead>
@@ -155,16 +169,15 @@ const AdminListProduct = () => {
           </div>
         )}
       </ConfirmModal>
-
       {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(filteredData.length / itemsPerPage)}
-            page={page}
-            onChange={(_, value) => setPage(value)}
-          />
-        </Stack>
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+          filterApplied={filter}
+        />
       </div>
     </div>
   );

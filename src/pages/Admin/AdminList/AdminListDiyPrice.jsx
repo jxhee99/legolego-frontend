@@ -1,11 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../../../components/List/List.module.css';
 
 import ListTable from '../../../components/List/ListTable';
 import ListModal from '../../../components/List/Modal/ListModal';
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 
 //api함수, util 함수
@@ -14,17 +15,17 @@ import { combineDateTime } from '../../../utils/DateTime';
 
 const AdminListDiyPrice = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
 
   //상태관리
   const [modalOpen, setModalOpen] = useState(false); // 모달 상태 추가
   const [modalType, setModalType] = useState(null); // 모달 타입 상태 추가
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
   const [selectedItem, setSelectedItem] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
@@ -46,23 +47,32 @@ const AdminListDiyPrice = () => {
   if (!data || data.length === 0) {
     return <div>데이터가 없습니다.</div>;
   }
+
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter(
-        (item) => item.isSelected === true && item.isRegistered === false
-      )
-    : data;
+  let filteredData = [...data];
+  if (filter === 'register') {
+    filteredData = data.filter(
+      (item) => item.isSelected === true && item.isRegistered === false
+    );
+  }
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'register', label: '등록' }];
 
   // 모달 열기
   const openModal = (item, type) => {
@@ -123,9 +133,14 @@ const AdminListDiyPrice = () => {
     <div className={styles.box}>
       <h2>응원 달성 Diy 목록</h2>
       {/* 필터 버튼 */}
-      <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '등록'}
-      </button>
+      <div className={styles.filter_box}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
 
       <ListTable>
         <thead>
@@ -232,7 +247,7 @@ const AdminListDiyPrice = () => {
           setPage={setPage}
           totalItems={data.length}
           itemsPerPage={itemsPerPage}
-          filterApplied={filterApplied}
+          filterApplied={filter}
         />
       </div>
     </div>
