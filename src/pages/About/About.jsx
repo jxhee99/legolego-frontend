@@ -1,45 +1,18 @@
 import styles from './About.module.css';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Metas from '../../components/common/Metas';
+import { SectionsContainer, Section } from 'react-fullpage';
 
 const About = () => {
-  useEffect(() => {
-    const animationMove = (selector) => {
-      const targetEl = document.querySelector(selector);
-      if (targetEl) {
-        const browserScrollY = window.pageYOffset;
-        const targetScrollY =
-          targetEl.getBoundingClientRect().top + browserScrollY;
-        window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
-      } else {
-        console.error(`Element with selector '${selector}' not found.`);
-      }
-    };
-
-    const scrollMoveEl = document.querySelectorAll(
-      "[data-animation-scroll='true']"
-    );
-    for (let i = 0; i < scrollMoveEl.length; i++) {
-      scrollMoveEl[i].addEventListener('click', function (e) {
-        const target = this.dataset.target;
-        animationMove(target);
-      });
-    }
-
-    // Clean up event listeners on component unmount
-    return () => {
-      for (let i = 0; i < scrollMoveEl.length; i++) {
-        scrollMoveEl[i].removeEventListener('click', animationMove);
-      }
-    };
-  }, []);
+  let options = {
+    anchors: ['legolego', 'links'],
+  };
 
   return (
     <>
       <Metas title="내가 만드는 패키지 여행" />
-      <div className={styles.About}>
-        <section className={styles.about_top}>
+      <SectionsContainer {...options} className={styles.About}>
+        <Section className={styles.about_top}>
           <div className={styles.about_intro}>
             <p>응원을 많이 받아 정식 상품이 되면 함께 떠날 수 있어요!</p>
           </div>
@@ -69,9 +42,9 @@ const About = () => {
               />
             </div>
           </div>
-        </section>
+        </Section>
 
-        <section>
+        <Section>
           <div className={styles.about_bottom} id="scrollhere">
             <div className={styles.about_package}>
               <div className={styles.about_package_intro}>
@@ -103,8 +76,8 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </Section>
+      </SectionsContainer>
     </>
   );
 };
