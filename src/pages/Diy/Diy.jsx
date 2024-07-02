@@ -12,7 +12,7 @@ const Diy = () => {
   const initialPage = parseInt(query.get('page')) || 1;
   const [page, setPage] = useState(initialPage);
   const itemsPerPage = 12;
-  const endpoint = '/api/packages';
+  const endpoint = '/packages';
 
   // 데이터 훅을 이용해 API 호출
   const { data, loading } = useFetchData(endpoint);
