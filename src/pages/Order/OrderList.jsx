@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../../api/apiClient';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -9,28 +10,57 @@ const OrderList = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const fetchOrders = async () => {
+  //     try {
+  //       const token = localStorage.getItem('token'); // 예시: 로컬 스토리지에서 토큰을 가져온다고 가정
+  //       if (!token) {
+  //         throw new Error('Token is not available');
+  //       }
+
+  //       const response = await axios.get(`/api/user/orders`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       });
+  //       const ordersData = response.data;
+
+  //       const updatedOrders = await Promise.all(
+  //         ordersData.map(async (order) => {
+  //           const productResponse = await axios.get(`/api/products/${order.productNum}`, {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`
+  //             }
+  //           });
+  //           return {
+  //             ...order,
+  //             productName: productResponse.data.productName,
+  //             productPrice: productResponse.data.price,
+  //           };
+  //         })
+  //       );
+
+  //       setOrders(updatedOrders);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setError('주문 목록을 불러오는 중 오류가 발생했습니다.');
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchOrders();
+  // }, []);
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('토큰이 없습니다.');
-        }
 
-        const response = await axios.get(`/api/user/orders`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await apiClient.get(`/user/orders`);
         const ordersData = response.data;
 
         const updatedOrders = await Promise.all(
           ordersData.map(async (order) => {
-            const productResponse = await axios.get(`/api/products/${order.productNum}`, {
-              headers: {
-                Authorization: `Bearer ${token}`
-              }
-            });
+            const productResponse = await apiClient.get(`/products/${order.productNum}`);
             return {
               ...order,
               productName: productResponse.data.productName,

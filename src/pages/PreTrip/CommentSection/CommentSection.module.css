@@ -12,7 +12,8 @@
   position: relative;
   display: inline-block;
   padding: 1.5rem;
-  max-width: 380px;
+  width: 332px;
+  height: 328px;
   background: #fff;
   border: 1px solid #eee;
   border-radius: 10px;
@@ -23,14 +24,14 @@
 .comment_contents {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 200px;
   margin-bottom: 15px;
   overflow: hidden;
 }
 
 .comment_contents img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

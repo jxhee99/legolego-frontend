@@ -1,6 +1,7 @@
 import styles from './CommentSection.module.css';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
+import none from '../../../assets/images/none.jpg';
 
 const Comment = ({
   boardNum,
@@ -19,7 +20,7 @@ const Comment = ({
         onClick={() => navigate(`/preTrip-detail/${boardNum}`)}
       >
         <div className={styles.comment_contents}>
-          <img src={productImage} alt="" />
+          <img src={productImage || none} alt="썸네일" />
         </div>
         <div>
           <h3 className={styles.comment_text}>{productName}</h3>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../../contexts/AuthContext';
@@ -6,6 +6,7 @@ import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
 import InputField from '../../Form/InputField';
 import SubmitButton from '../../Form/SubmitButton';
+import apiClient from '../../../api/apiClient';
 
 const LogIn = ({ onClose }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -70,18 +71,11 @@ const LogIn = ({ onClose }) => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/auth/login',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      const { token, role } = response.data;
-      login(token, role); // AuthContext의 login 메서드 호출
-      console.log('로그인 성공:', token);
+      const response = await apiClient.post('/auth/login', formData);
+      const { accessToken, role } = response.data;
+      login(accessToken, role); // AuthContext의 login 메서드 호출
+      console.log('로그인 성공:', accessToken);
+
       if (role === 'PARTNER') {
         navigate('/partner'); // /partner 페이지로 리디렉션
       } else if (role === 'USER') {
@@ -116,6 +110,25 @@ const LogIn = ({ onClose }) => {
     onClose();
     navigate('/find-password');  // 비밀번호 찾기 페이지로 이동
   }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const intervalId = setInterval(() => {
+        apiClient.post('/auth/refresh-token', {}, { withCredentials: true })
+          .then(response => {
+            const { accessToken } = response.data;
+            login(accessToken, role);  // 새로운 엑세스 토큰으로 로그인 상태 갱신
+            console.log('New Access Token:', accessToken);
+          })
+          .catch(error => {
+            console.log('토큰 갱신 에러:', error);
+          });
+      }, 30 * 60 * 1000); // 30분마다 갱신
+
+      return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 인터벌 클리어
+    }
+  }, [isAuthenticated]);
+
 
   return (
     <>
@@ -156,7 +169,7 @@ const LogIn = ({ onClose }) => {
         </Modal>
         </>
       ) : (
-        <button onClick={handleLogout}>로그아웃</button>
+        <button onClick={handleLogout}>로그아웃ndndndndnd</button>
       )}
     </>
   );

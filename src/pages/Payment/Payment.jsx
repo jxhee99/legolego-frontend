@@ -47,7 +47,7 @@ const PaymentPage = () => {
                               });
 
                               alert('결제가 완료되었습니다.');
-                              navigate(`/order-Detail/${orderData.orderNum}`);  // 주문 상세 페이지로 이동
+                              navigate(`/order-detail/${orderData.orderNum}`);  // 주문 상세 페이지로 이동
                               //{state : {orderNum : orderData.orderNum}}
                          
                           } catch (error) {

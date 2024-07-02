@@ -132,7 +132,7 @@
 }
 
 .Schedule .CourseList li div {
-  padding: 1.5rem;
+  padding: 0.75rem;
 }
 
 .Schedule .CourseList li span {
@@ -147,4 +147,9 @@
   font-size: 0.875rem;
   color: #666;
   margin-bottom: 0;
+}
+
+.CourseList .course_top {
+  display: flex;
+  justify-content: space-between;
 }

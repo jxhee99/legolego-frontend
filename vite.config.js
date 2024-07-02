@@ -12,12 +12,8 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false,
-        ws: true
-      }
+        ws: true,
+      },
     },
-  //   hmr: {
-  //     overlay: false // HMR overlay 비활성화
-  // }
-  }
+  },
 });
-

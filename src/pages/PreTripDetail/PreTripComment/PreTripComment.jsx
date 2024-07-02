@@ -4,7 +4,7 @@ import styles from './PreTripComment.module.css';
 import { useState } from 'react';
 
 const PreTripComment = () => {
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(4);
 
   return (
     <div className={styles.PreTripCard}>
@@ -14,7 +14,7 @@ const PreTripComment = () => {
           <p className={styles.author}>짱구</p>
           <p className={styles.date}>2024-06-27</p>
         </div>
-        <div>
+        <div className={styles.content}>
           <p>가성비 여행최고!</p>
           <Box>
             <Rating name="read-only" value={value} readOnly />
