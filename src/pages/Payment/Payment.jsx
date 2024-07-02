@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import styles from './Payment.module.css';
 import axios from 'axios';
+import apiClient from '../../api/apiClient';
 
 const PaymentPage = () => {
     const { state } = useLocation();
@@ -30,20 +31,10 @@ const PaymentPage = () => {
                           console.log("결제 성공 - Imp UID: " + rsp.imp_uid);
 
                           try {
-                                const token = localStorage.getItem('token');
-                                if(!token) {
-                                    console.error("토큰을 찾지 못했습니다.");
-                                    return;
-                                }
                               // 결제 성공 시 결제 정보 저장
-                              await axios.post('/api/user/payments/complete', {
+                              await apiClient.post('/user/payments/complete', {
                                   impUid: rsp.imp_uid,
                                   merchantUid: merchantUid
-                              }, {
-                                headers : {
-                                    'Content-Type' : 'application/json',
-                                    Authorization : `Bearer ${token}`,
-                                }
                               });
 
                               alert('결제가 완료되었습니다.');

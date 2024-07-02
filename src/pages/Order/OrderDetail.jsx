@@ -3,6 +3,7 @@ import styles from './OrderDetail.module.css';
 import axios from 'axios';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
 import { useParams, useNavigate } from 'react-router-dom';
+import apiClient from '../../api/apiClient';
 
 const OrderDetail = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const OrderDetail = () => {
 
   useEffect(() => {  const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/products`);
+      const response = await apiClient.get(`/products`);
       console.log(response.data);
       setPackageData(response.data);
       console.log(packageData);
@@ -34,17 +35,13 @@ const OrderDetail = () => {
   useEffect(() => {
     const fetchOrderDetail = async () => {
       try {
-        const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
-        if (!token) {
-          throw new Error('Token is not available');
-        }
+        // const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
+        // if (!token) {
+        //   throw new Error('Token is not available');
+        // }
 
         // 주문 상세 정보를 가져오는 API 호출 (orderNum 기반)
-        const response = await axios.get(`/api/user/orders/${orderNum}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await apiClient.get(`/user/orders/${orderNum}`);
         const orderData = response.data;
         console.log('Fetched data', orderData);
 

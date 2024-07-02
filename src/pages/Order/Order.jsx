@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Order.module.css';
 import axios from 'axios';
+import apiClient from '../../api/apiClient';
 
 
 const Order = () => {
@@ -18,12 +19,7 @@ const Order = () => {
         const fetchProductDetail = async () => {
             try {
                 console.log("Fetching product for productNum:", productNum);
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`/api/products/${productNum}`, {
-                    headers : {
-                        Authorization: `Bearer ${token}`
-                    }
-                }); // 백에서 상품 상세 정보 가져오기
+                const response = await apiClient.get(`products/${productNum}`); // 백에서 상품 상세 정보 가져오기
                 if(response.data) {
                     setProduct(response.data);
                     console.log("Product details fetched : ", response.data);
@@ -59,26 +55,12 @@ const Order = () => {
         const totalPrice = count * product.price;
         
         try {
-            const token = localStorage.getItem('token');
-            if(!token) {
-                console.error("토큰을 찾을 수 없습니다.");
-                return;
-            }
-            console.log("토큰 발급 : ", token);
-
-            const orderResponse = await axios.post('/api/user/orders', {
+            const orderResponse = await apiClient.post('/user/orders', {
                 productNum : product.productNum,
                 quantity : count,
                 totalPrice : totalPrice
-            }, {
-                headers : {
-                    'Content-Type' : 'application/json',
-                    Authorization : `Bearer ${token}`,
-                },
-                // withCredentials: true
             });
             if(orderResponse.status === 201) {
-                // const { orderNumber } = orderResponse.data;
                 const orderData = orderResponse.data;
                 const merchantUid = orderData.orderNumber;
                 console.log("주문 생성 성공 - Merchant UID: " + merchantUid);
