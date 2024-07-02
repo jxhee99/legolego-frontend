@@ -1,14 +1,16 @@
 import styles from './DiyCreate.module.css';
+import { useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import TouristSpot from './TouristSpot/TouristSpot';
 import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
 import PackageForm from './DiyForm/DiyForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectAirline,
   selectRoute,
   selectDetailCourses,
+  resetForm,
 } from '../../_slices/diySlice';
 import {
   createDateRange,
@@ -26,6 +28,11 @@ const DiyCreate = () => {
       ? createDateRange(route.startDate, route.lastDate)
       : [];
   const isAllSelected = checkAllCoursesNotEmpty(detailCourses);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetForm());
+  }, []);
 
   return (
     <div className={`${styles.DiyCreate} layout`}>

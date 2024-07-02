@@ -1,6 +1,6 @@
 // DiyForm.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './DiyForm.module.css';
@@ -10,19 +10,20 @@ import DiySchedule from '../../../components/Diy/DiySchedule';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectAirline,
-  selectRoute,
   selectDetailCourses,
+  selectPackageForm,
   resetForm,
 } from '../../../_slices/diySlice';
 
 const DiyForm = () => {
-  const [packageName, setPackageName] = useState('');
-  const [shortDesc, setShortDesc] = useState('');
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const airline = useSelector(selectAirline);
-  const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
+  const packageForm = useSelector(selectPackageForm);
+  const [packageName, setPackageName] = useState(packageForm.packageName);
+  const [shortDesc, setShortDesc] = useState(packageForm.shortDescription);
 
   const handlePackageNameChange = (e) => {
     setPackageName(e.target.value);
@@ -35,8 +36,6 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: airline,
-      route: route,
       detailCourses: detailCourses,
       packageForm: {
         packageName: packageName,
@@ -47,7 +46,7 @@ const DiyForm = () => {
     console.log(formData);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`/api/user/packages`, formData, {
+      const response = await axios.put(`/api/user/packages/${id}`, formData, {
         headers: {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`,

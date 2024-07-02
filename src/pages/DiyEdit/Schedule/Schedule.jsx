@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Schedule.module.css';
 import {
-  selectAirline,
   selectRoute,
   selectDetailCourses,
   resetDetailCoursesForDate,
@@ -19,7 +18,7 @@ import PlaceIcon from '@mui/icons-material/Place';
 const Schedule = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const airline = useSelector(selectAirline);
+  const { id } = useParams();
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
@@ -65,18 +64,8 @@ const Schedule = () => {
 
   // DIY 만들기 페이지로 이동하는 핸들러
   const handleMove = () => {
-    navigate('/diy-create?step=diy-form');
+    navigate(`/diy-edit/${id}?step=diy-form`);
   };
-
-  // route 정보가 없을 때 안내 메시지 표시
-  if (
-    !route ||
-    !route.startDate ||
-    !route.lastDate ||
-    !airline.comeAirlineName
-  ) {
-    return <div>항공편을 먼저 선택해주세요</div>;
-  }
 
   return (
     <div className={styles.Schedule}>
