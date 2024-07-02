@@ -39,3 +39,6 @@
 .ProfileInformation button {
   padding: 0;
 }
+.readOnlyInput input {
+  color: red; /* 글자색을 빨간색으로 변경 */
+}

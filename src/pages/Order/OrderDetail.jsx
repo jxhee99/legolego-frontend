@@ -14,6 +14,22 @@ const OrderDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { orderNum } = useParams(); // URL에서 orderNum 파라미터 가져오기
+  const [packageData, setPackageData] = useState([]);
+
+
+
+  useEffect(() => {  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/products`);
+      console.log(response.data);
+      setPackageData(response.data);
+      console.log(packageData);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const fetchOrderDetail = async () => {
@@ -56,9 +72,11 @@ const OrderDetail = () => {
   return (
     <div className={styles.OrderDetail}>
       <h2>결제내역</h2>
-      <div className={`${styles.ProductInformation} ${styles.box_style}`}>
+      <div className={`${styles.PackageInformation} ${styles.box_style}`}>
         <div className={styles.orderDetail_packageCard}>
-          <PackageCard />
+        {packageData.map((packageItem) => (
+            <PackageCard key={packageItem.productNum} {...packageItem} />
+          ))}
         </div>
       </div>
 

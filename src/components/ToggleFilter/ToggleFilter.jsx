@@ -12,7 +12,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ['Magun Gothic', 'Arial', 'san-serif'].join(','),
-    fontSize: '16',
+    fontSize: 16,
   },
 });
 
