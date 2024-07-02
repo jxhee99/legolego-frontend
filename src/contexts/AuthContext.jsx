@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [role, setRole] = useState(null);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [role, setRole] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem('token')
+  );
+  const [role, setRole] = useState(localStorage.getItem('role'));
   const [redirectPath, setRedirectPath] = useState('/');
   const [userNum, setUserNum] = useState(null);
-
   const navigate = useNavigate();
 
   const login = (token, userRole) => {
@@ -56,15 +59,15 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log('role 변경:', role);
-    if (role === 'PARTNER') {
-      navigate('/partner');
-    }
-    if (role === 'ADMIN') {
-      navigate('/admin');
-    }
-  }, [role]);
+  // useEffect(() => {
+  //   console.log('role 변경:', role);
+  //   if (role === 'PARTNER') {
+  //     navigate('/partner');
+  //   }
+  //   if (role === 'ADMIN') {
+  //     navigate('/admin');
+  //   }
+  // }, [role]);
 
   return (
     <AuthContext.Provider
