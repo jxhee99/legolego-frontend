@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from '../PreTripDetail.module.css';
+import noneWhite from '../../../assets/images/none-white.png';
 
 const ScheduleInformation = ({ detailCourse }) => {
   return (
@@ -14,8 +15,14 @@ const ScheduleInformation = ({ detailCourse }) => {
                 {course.courses.map((item, index) => (
                   <li key={`${course.detailCourseNum}-${index}`}>
                     <div>
-                      <span>{item}</span>
-                      <img src={course.fileUrls[index]} alt="이미지" />
+                      <div className={styles.course_top}>
+                        <span className={styles.days}>{index + 1} .</span>
+                        <span>{item}</span>
+                      </div>
+                      <img
+                        src={course.fileUrls[index] || noneWhite}
+                        alt="이미지"
+                      />
                     </div>
                   </li>
                 ))}

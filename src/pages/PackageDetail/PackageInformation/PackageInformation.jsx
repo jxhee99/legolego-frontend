@@ -148,6 +148,8 @@ import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { formatDateTime } from '../../../utils/DateTime';
 import apiClient from '../../../api/apiClient';
+import noneWhite from '../../../assets/images/none-white.png';
+
 
 const PackageInformation = ({
   productName,
@@ -212,7 +214,7 @@ const PackageInformation = ({
   return (
     <section className={styles.PackageInformation}>
       <div className={styles.left_box}>
-        <img src={productImage} alt="상품 이미지" />
+        <img src={productImage || noneWhite} alt="상품 이미지" />
       </div>
       <div className={styles.right_box}>
         <h2>{productName}</h2>
