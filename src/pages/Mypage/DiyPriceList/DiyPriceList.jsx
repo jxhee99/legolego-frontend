@@ -27,7 +27,7 @@ const DiyPriceList = () => {
   const [page, setPage] = useState(initialPage);
 
   // get 요청
-  const endpoint = '/api/user/diylists';
+  const endpoint = '/user/diylists';
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 로딩 중일 때

@@ -18,6 +18,7 @@ const PreTripDetail = () => {
       try {
         const response = await axios.get(`/api/pre-trip/${id}`);
         setData(response.data);
+      } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
@@ -45,18 +46,9 @@ const PreTripDetail = () => {
   return (
     <div className={`${styles.PreTripDetail} layout`}>
       <PackageInformation {...packageData} />
-      {reviews.length > 0 && (
-        <div className={styles.preTripDetail_review_box}>
-          <PreTripComment reviews={reviews} />
-        </div>
-      )}
-      <div className={styles.preTripDetail_review_box}>
-        <PreTripComment reviews={reviews} />
-      </div>
-      <div className={styles.preTripDetail_box}>
-        <AirplaneInformation {...airline} />
-        <Schedule detailCourse={detailCourse} />
-      </div>
+      {reviews.length > 0 && <PreTripComment reviews={reviews} />}
+      <AirplaneInformation {...airline} />
+      <Schedule detailCourse={detailCourse} />
     </div>
   );
 };

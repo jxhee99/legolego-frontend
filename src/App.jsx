@@ -25,6 +25,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import FindEmail from './pages/FindAccount/FindEmail';
 import FindPassword from './pages/FindAccount/FindPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+import OrderList from './pages/Order/OrderList';
 
 const App = () => {
   const { isAuthenticated, role } = useContext(AuthContext);
