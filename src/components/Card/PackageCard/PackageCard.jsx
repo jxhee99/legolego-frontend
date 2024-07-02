@@ -5,6 +5,7 @@ import { formatDateTime } from '../../../utils/DateTime';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import noneLego from '../../../assets/images/none.jpg';
 
 const PackageCard = ({
   productNum,
@@ -23,11 +24,11 @@ const PackageCard = ({
   return (
     <div className={styles.PackageCard} onClick={handlePackageCard}>
       <div className={styles.package_card_thumbnail}>
-        <img src={productImage} alt="패키지 썸네일" />
+        <img src={productImage || noneLego} alt="패키지 썸네일" />
       </div>
       <div className={styles.package_card_body}>
         <h3>{productName}</h3>
-        <span>₩ {price}</span>
+        <span>{price} ₩</span>
       </div>
       <div className={styles.package_card_bottom}>
         <div className={styles.package_card_icon}>
