@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -77,6 +77,10 @@ const DiyDetail = () => {
     <>
       <Metas title={desc.packageName} />
       <div className={styles.DiyDetail}>
+        <button>
+          <Link to={`/diy-edit/${id}`}>수정</Link>
+        </button>
+        <button>삭제</button>
         <div>
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
