@@ -3,7 +3,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 328px;
-  height: 320px;
+  height: 340px;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-height: 200px;
+  height: 220px;
 }
 
 .PackageCard .package_card_thumbnail img {
@@ -40,11 +40,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .PackageCard .package_card_icon {
   display: flex;
-  align-items: center;
   gap: 0.25rem;
+}
+
+.PackageCard .package_card_icon span {
+  line-height: 24px;
 }
