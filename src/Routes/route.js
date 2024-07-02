@@ -100,15 +100,9 @@ export const ROUTE = {
     link: '/reset-password',
     element: ResetPassword,
   },
-  // ORDER_DETAIL: {
-  //   path: 'order-detail',
-  //   link: 'order-detail',
-  //   element: OrderDetail,
-  // },
-
   ORDER_DETAIL: {
-    path: 'order-detail/:orderNum',
-    link: 'order-detail/:orderNum',
+    path: 'order-detail',
+    link: 'order-detail',
     element: OrderDetail,
   },
   PRETRIP_DETAIL: {

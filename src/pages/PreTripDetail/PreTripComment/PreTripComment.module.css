@@ -1,43 +1,47 @@
-.PreTripCard {
+.PreTripComment {
   padding: 3rem;
   margin-bottom: 20px;
 }
 
-.PreTripCard h2 {
+.PreTripComment h2 {
   color: #333;
   font-size: 24px;
   margin-bottom: 1.5rem;
 }
 
-.PreTripCard .comment {
+.PreTripCards {
+  display: flex;
+}
+
+.PreTripCards .comment {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 15px;
   padding: 1.5rem;
-  max-width: 300px;
+  width: 300px;
 }
 
-.PreTripCard .authorDate {
+.PreTripCards .authorDate {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.625rem;
 }
 
-.PreTripCard .author {
+.PreTripCards .author {
   font-weight: bold;
 }
 
-.PreTripCard .date {
+.PreTripCards .date {
   color: #666;
   font-size: 14px;
 }
 
-.PreTripCard .content p {
+.PreTripCards .content p {
   padding: 0.625rem 0;
 }
 
-.PreTripCard .content div {
+.PreTripCards .content div {
   margin-top: 0.625rem;
 }
