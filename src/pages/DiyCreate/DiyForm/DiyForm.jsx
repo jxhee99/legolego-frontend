@@ -1,11 +1,10 @@
-// DiyForm.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from './DiyForm.module.css';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
+import apiClient from '../../../api/apiClient';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -35,7 +34,16 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: airline,
+      airline: {
+        startAirlineName: airline.startAirlineName,
+        startingPoint: airline.startingPoint,
+        destination: airline.destination,
+        startFlightNum: airline.startFlightNum,
+        boardingDate: airline.boardingDate,
+        comeAirlineName: airline.comeAirlineName,
+        comeFlightNum: airline.comeFlightNum,
+        comingDate: airline.comingDate,
+      },
       route: route,
       detailCourses: detailCourses,
       packageForm: {
@@ -46,13 +54,7 @@ const DiyForm = () => {
 
     console.log(formData);
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(`/api/user/packages`, formData, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await apiClient.post(`/user/packages`, formData);
 
       if (response.status === 201) {
         // 요청이 성공한 경우
@@ -68,6 +70,9 @@ const DiyForm = () => {
       }
     } catch (err) {
       console.error('등록 중 오류:', err);
+      if (err.response) {
+        console.error('응답 데이터:', err.response.data);
+      }
     }
   };
 

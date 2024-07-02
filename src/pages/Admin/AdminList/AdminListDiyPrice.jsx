@@ -30,7 +30,7 @@ const AdminListDiyPrice = () => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   //get요청
-  const endpoint = '/api/admin/diylists';
+  const endpoint = '/admin/diylists';
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
   // 로딩 중일 때

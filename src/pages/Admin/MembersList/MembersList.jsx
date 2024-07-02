@@ -14,7 +14,7 @@ const MembersList = () => {
   const initialPage = parseInt(query.get('page')) || 1;
   const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
-  const endpoint = '/api/admin/members';
+  const endpoint = '/admin/members';
 
   // 상태 관리
   const [filter, setFilter] = useState(initialFilter);
