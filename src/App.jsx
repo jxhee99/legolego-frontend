@@ -90,14 +90,16 @@ const App = () => {
           ))}
         </Route>
       </Route>
-      <Route path="/order" element={<Order />}>
-        {ROUTE_ORDER_ARR.map((route) => (
-          <Route
-            path={route.path}
-            element={<route.element />}
-            key={route.path}
-          />
-        ))}
+      <Route element={<ProtectedRoute allowedRoles={['USER']} />}>
+        <Route path="/order" element={<Order />}>
+          {ROUTE_ORDER_ARR.map((route) => (
+            <Route
+              path={route.path}
+              element={<route.element />}
+              key={route.path}
+            />
+          ))}
+        </Route>
       </Route>
       <Route path="/payment" element={<Payment />}>
         {ROUTE_PAYMENT_ARR.map((route) => (
