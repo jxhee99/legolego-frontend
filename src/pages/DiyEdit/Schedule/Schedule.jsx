@@ -27,21 +27,14 @@ const Schedule = () => {
     route.startDate && route.lastDate
       ? createDateRange(route.startDate, route.lastDate)
       : [];
-  console.log(routeRange);
 
   // 날짜 범위에 따라 세부 코스 정보 생성
   const newDetaileCourses = createDetailedCourses(routeRange, detailCourses);
-  console.log(newDetaileCourses);
 
   // 모달의 가시성 상태를 관리하는 state
   const [modalVisibilities, setModalVisibilities] = useState(
     new Array(routeRange.length).fill(false)
   );
-
-  // detailCourses가 변경될 때마다 실행
-  useEffect(() => {
-    console.log('Initial detailCourses state:', detailCourses);
-  }, [detailCourses]);
 
   // 장소 추가 버튼 클릭 핸들러
   const handleAddPlace = (detailIndex) => {

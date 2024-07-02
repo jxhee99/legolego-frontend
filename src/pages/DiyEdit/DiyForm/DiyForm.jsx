@@ -12,6 +12,7 @@ import {
   selectAirline,
   selectDetailCourses,
   selectPackageForm,
+  selectRoute,
   resetForm,
 } from '../../../_slices/diySlice';
 
@@ -21,6 +22,7 @@ const DiyForm = () => {
   const dispatch = useDispatch();
   const airline = useSelector(selectAirline);
   const detailCourses = useSelector(selectDetailCourses);
+  const route = useSelector(selectRoute);
   const packageForm = useSelector(selectPackageForm);
   const [packageName, setPackageName] = useState(packageForm.packageName);
   const [shortDesc, setShortDesc] = useState(packageForm.shortDescription);
@@ -53,11 +55,10 @@ const DiyForm = () => {
         },
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('승인');
-        const packageNum = response.data;
-        navigate(`/diy/${packageNum}`);
+        navigate(`/diy/${id}`);
         // 폼 초기화
         setPackageName('');
         setShortDesc('');

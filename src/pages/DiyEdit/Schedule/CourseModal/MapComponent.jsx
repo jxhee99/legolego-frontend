@@ -63,11 +63,8 @@ function MapComponent({ date, closeModal }) {
         place.photos && place.photos.length > 0
           ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 400 })
           : null;
-
-      // const name = place.structured_formatting
-      //   ? place.structured_formatting.main_text
-      //   : place.name;
-
+      console.log(place.photos);
+      console.log(place.photos[0].getUrl());
       setSelectedCourse({
         name: place.name,
         address: place.formatted_address,
@@ -86,8 +83,6 @@ function MapComponent({ date, closeModal }) {
 
   const handleUpdateCourses = () => {
     if (!selectedCourse) return;
-    console.log(selectedCourse);
-    console.log(date);
     const course = {
       dayNum: date,
       courses: [selectedCourse.name],
