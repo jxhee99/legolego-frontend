@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../../../api/apiClient';
 import styles from './DiyForm.module.css';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
@@ -48,12 +48,7 @@ const DiyForm = () => {
     console.log(formData);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`/api/user/packages/${id}`, formData, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await apiClient.put(`/user/packages/${id}`, formData);
 
       if (response.status === 200) {
         // 요청이 성공한 경우
