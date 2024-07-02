@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .PreTripCard .author {
@@ -32,4 +32,12 @@
 .PreTripCard .date {
   color: #666;
   font-size: 14px;
+}
+
+.PreTripCard .content p {
+  padding: 0.625rem 0;
+}
+
+.PreTripCard .content div {
+  margin-top: 0.625rem;
 }

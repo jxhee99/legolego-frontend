@@ -2,7 +2,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  max-width: 328px;
+  width: 328px;
+  height: 340px;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -18,11 +19,12 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 220px;
 }
 
 .PackageCard .package_card_thumbnail img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -38,11 +40,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
 }
 
 .PackageCard .package_card_icon {
   display: flex;
-  align-items: center;
   gap: 0.25rem;
+}
+
+.PackageCard .package_card_icon span {
+  line-height: 24px;
 }
