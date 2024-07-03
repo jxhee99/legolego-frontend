@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -7,16 +7,14 @@ import styles from './DiyDetail.module.css';
 import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
 import useFetchData from '../../hooks/useFetchDiyData';
-import { handleDelete } from '../../utils/handleDelete';
-
 import Metas from '../../components/common/Metas';
-import apiClient from '../../api/apiClient';
+import WriterControls from './DetailButton/WriterControls';
+import CheerButton from './DetailButton/CheerButton';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
-  const navigate = useNavigate();
   const endpoint = `/packages/${id}`;
-  const { data, loading, error, refetch } = useFetchData(endpoint);
+  const { data, loading, error } = useFetchData(endpoint);
 
   const [airline, setAirline] = useState({});
   const [schedule, setSchedule] = useState([]);
@@ -37,28 +35,6 @@ const DiyDetail = () => {
       setIsWriter(data.isWriter);
     }
   }, [data]);
-
-  const handleLike = async () => {
-    const userRole = localStorage.getItem('role');
-    if (userRole !== 'USER') {
-      window.alert('로그인한 유저만 가능합니다.');
-      return;
-    }
-    try {
-      const response = await apiClient.post(`/user/packages/likes/${id}`);
-      if (response.status === 200) {
-        // 요청이 성공한 경우
-        console.log('성공');
-        //refetch();
-        setLikedNum(likedNum + 1);
-        setIsLiked(true); // 응원 완료 상태로 설정
-      } else {
-        console.error('승인 실패:', response.status);
-      }
-    } catch (err) {
-      console.error('등록 중 오류:', err);
-    }
-  };
 
   // 로딩 중일 때
   if (loading) {
@@ -85,22 +61,7 @@ const DiyDetail = () => {
               <img src={desc.profileImg} alt="" />
             </div>
             <div className={styles.cheer_user_box}>
-              {isWriter && (
-                <div className={styles.writer_button}>
-                  <button>
-                    <Link to={`/diy-edit/${id}`}>수정</Link>
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleDelete(`/user/packages/${id}`, () =>
-                        navigate('/diy')
-                      )
-                    }
-                  >
-                    삭제
-                  </button>
-                </div>
-              )}
+              {isWriter && <WriterControls id={id} />}
               <p>{data.regDate}</p>
               <h2>{desc.packageName}</h2>
               <div className={styles.user}>
@@ -116,18 +77,14 @@ const DiyDetail = () => {
               <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
               {isWriter ? ( // 작성자일 경우 렌더링
                 <button className={styles.cheer_button}>응원 받는 중!</button>
-              ) : !isLiked ? ( // 응원하지 않은 경우 버튼 렌더링
-                <button className={styles.cheer_button} onClick={handleLike}>
-                  응원하기
-                </button>
               ) : (
-                // 응원 완료한 경우 버튼 렌더링
-                <button
-                  className={styles.cheer_button}
-                  style={{ cursor: 'default' }}
-                >
-                  응원 완료!
-                </button>
+                <CheerButton
+                  id={id}
+                  likedNum={likedNum}
+                  isLiked={isLiked}
+                  setLikedNum={setLikedNum}
+                  setIsLiked={setIsLiked}
+                />
               )}
             </div>
           </div>

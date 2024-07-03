@@ -6,7 +6,7 @@ import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
 import PackageForm from './DiyForm/DiyForm';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import apiClient from '../../api/apiClient';
 import {
   selectRoute,
   selectDetailCourses,
@@ -27,21 +27,14 @@ const DiyEdit = () => {
   const dispatch = useDispatch();
   const detailCourses = useSelector(selectDetailCourses);
   const isAllSelected = checkAllCoursesNotEmpty(detailCourses);
-  const endpoint = `/api/packages/${id}`;
+  const endpoint = `/packages/${id}`;
 
   const fetchData = async (endpoint) => {
     try {
-      console.log('Sending request to:', endpoint); // Log the request URL
-      const token = localStorage.getItem('token');
-      const response = await axios.get(endpoint, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log('Fetched data:', response.data); // Log the response data
-
-      // Dispatch actions to update Redux state with fetched data
+      const response = await apiClient.get(endpoint);
+      if (!response.data.isWriter) {
+        return;
+      }
       const { airline, detailCourses, packageForm } = response.data;
       const route = {
         startDate: response.data.route.startDate,
