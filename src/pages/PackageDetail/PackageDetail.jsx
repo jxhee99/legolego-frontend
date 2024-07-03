@@ -2,6 +2,7 @@ import styles from './PackageDetail.module.css';
 import PackageInformation from './PackageInformation/PackageInformation';
 import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
 import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
+import RecommendProduct from './RecommendProduct/RecommendProduct';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -9,6 +10,7 @@ import Metas from '../../components/common/Metas';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});
+  const [destination, setDestination] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,12 +18,13 @@ const PackageDetail = () => {
       try {
         const response = await axios.get(`/api/products/${id}`);
         setPackageData(response.data);
+        setDestination(response.data.airline.destination);
       } catch (error) {
         console.error('Error', error);
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -30,6 +33,7 @@ const PackageDetail = () => {
         <PackageInformation {...packageData} />
         <AirplaneInfomation {...packageData.airline} />
         <ScheduleInformation detailCourse={packageData.detailCourse} />
+        <RecommendProduct destination={destination} />
       </div>
     </>
   );

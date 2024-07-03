@@ -85,7 +85,9 @@ const AdminListProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiClient.delete(`/admin/products/${selectedItem.productNum}/delete`);
+      const response = await apiClient.delete(
+        `/admin/products/${selectedItem.productNum}/delete`
+      );
 
       if (response.status === 204) {
         refetch();
@@ -121,7 +123,7 @@ const AdminListProduct = () => {
             <th>작성자</th>
             <th>마감일</th>
             <th>여행확정</th>
-            <th>삭제</th>
+            {/* <th>삭제</th> */}
           </tr>
         </thead>
         <tbody>
@@ -145,16 +147,16 @@ const AdminListProduct = () => {
                   <span>모집중</span>
                 )}
               </td>
-              <td>
+              {/* <td>
                 <button onClick={() => openModal(item)}>삭제</button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
       </ListTable>
 
       {/* 확인 모달 */}
-      <ConfirmModal
+      {/* <ConfirmModal
         isVisible={modalOpen}
         closeModal={closeModal}
         title={'주의'}
@@ -168,7 +170,7 @@ const AdminListProduct = () => {
             </div>
           </div>
         )}
-      </ConfirmModal>
+      </ConfirmModal> */}
       {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
         <PaginationComp
