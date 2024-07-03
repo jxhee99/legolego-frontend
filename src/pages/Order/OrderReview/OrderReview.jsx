@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './OrderReview.module.css';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Modal from '@mui/material/Modal';
-import axios from 'axios';
+import apiClient from '../../../api/apiClient';
 
 const style = {
   position: 'absolute',
@@ -17,10 +17,26 @@ const style = {
   p: 4,
 };
 
-const OrderReview = ({ open, handleClose, orderNum }) => {
+const OrderReview = ({ open, handleClose, orderNum, reviewNum }) => {
   const [reviewText, setReviewText] = useState('');
   const [value, setValue] = useState(0);
-  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    const fetchReview = async () => {
+      try {
+        if (reviewNum) {
+          const response = await apiClient.get(
+            `/user/reviews/${reviewNum}/orders/${orderNum}`
+          );
+          setReviewText(response.data.content);
+          setValue(response.data.rating);
+        }
+      } catch (error) {
+        console.error('리뷰를 불러오는 중 오류가 발생했습니다:', error);
+      }
+    };
+    fetchReview();
+  }, [reviewNum, orderNum]);
 
   const handleSave = async () => {
     if (reviewText.trim() === '') {
@@ -28,26 +44,45 @@ const OrderReview = ({ open, handleClose, orderNum }) => {
       return;
     }
     try {
-      const response = await axios.post(
-        `/api/user/reviews/${orderNum}`,
-        {
-          content: reviewText,
-          rating: value,
-        },
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      console.log('Review saved:', reviewText);
+      const response = await apiClient.post(`/user/reviews/${orderNum}`, {
+        content: reviewText,
+        rating: value,
+      });
+      console.log('Review saved:', response.data);
+      handleClose();
     } catch (error) {
-      console.log(error);
+      console.error('리뷰 저장 중 오류가 발생했습니다:', error);
     }
+  };
 
-    handleClose();
+  const handleEdit = async () => {
+    if (reviewText.trim() === '') {
+      alert('리뷰 내용을 입력하세요');
+      return;
+    }
+    try {
+      const response = await apiClient.post(`/user/reviews/${reviewNum}/edit`, {
+        content: reviewText,
+        rating: value,
+      });
+      console.log('Review edited:', response.data);
+      handleClose();
+    } catch (error) {
+      console.error('리뷰 수정 중 오류가 발생했습니다:', error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm('리뷰를 삭제하시겠습니까?')) {
+      return;
+    }
+    try {
+      await apiClient.delete(`/user/reviews/${reviewNum}/delete`);
+      console.log('Review deleted');
+      handleClose();
+    } catch (error) {
+      console.error('리뷰 삭제 중 오류가 발생했습니다:', error);
+    }
   };
 
   return (
@@ -61,14 +96,8 @@ const OrderReview = ({ open, handleClose, orderNum }) => {
         <h2 id="modal-modal-title" className={styles.modalTitle}>
           리뷰 작성
         </h2>
-        {/* <p id="modal-modal-description" className={styles.modalDescription}>
-          주문번호: {orderNum}
-        </p> */}
         <Rating
           name="simple-controlled"
-          sx={{
-            '& > legend': { mt: 2 },
-          }}
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
@@ -87,15 +116,29 @@ const OrderReview = ({ open, handleClose, orderNum }) => {
           >
             닫기
           </button>
-          <button className={`${styles.button} ${styles.buttonEdit}`}>
-            수정
-          </button>
-          <button
-            onClick={handleSave}
-            className={`${styles.button} ${styles.buttonSave}`}
-          >
-            저장
-          </button>
+          {reviewNum ? (
+            <>
+              <button
+                onClick={handleEdit}
+                className={`${styles.button} ${styles.buttonSave}`}
+              >
+                저장
+              </button>
+              <button
+                onClick={handleDelete}
+                className={`${styles.button} ${styles.buttonDelete}`}
+              >
+                삭제
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={handleSave}
+              className={`${styles.button} ${styles.buttonSave}`}
+            >
+              저장
+            </button>
+          )}
         </div>
       </Box>
     </Modal>

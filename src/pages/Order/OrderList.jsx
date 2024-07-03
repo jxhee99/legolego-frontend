@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
+import OrderReview from './OrderReview/OrderReview';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +20,9 @@ const OrderList = () => {
 
         const updatedOrders = await Promise.all(
           ordersData.map(async (order) => {
-            const productResponse = await apiClient.get(`/products/${order.productNum}`);
+            const productResponse = await apiClient.get(
+              `/products/${order.productNum}`
+            );
             return {
               ...order,
               productName: productResponse.data.productName,
@@ -51,12 +56,14 @@ const OrderList = () => {
 
     try {
       await apiClient.delete(`/user/orders/${orderNum}`);
-       
+
       // 환불 후 주문 목록 갱신
       const response = await apiClient.get(`/user/orders`);
       const updatedOrders = await Promise.all(
         response.data.map(async (order) => {
-          const productResponse = await apiClient.get(`/products/${order.productNum}`);
+          const productResponse = await apiClient.get(
+            `/products/${order.productNum}`
+          );
           return {
             ...order,
             productName: productResponse.data.productName,
@@ -80,6 +87,16 @@ const OrderList = () => {
     const maskedPart = merchantUid.substring(0, visibleChars);
     const maskedUid = maskedPart + '...';
     return maskedUid;
+  };
+
+  const handleOpen = (order) => {
+    setCurrentOrder(order);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setCurrentOrder(null);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -113,38 +130,46 @@ const OrderList = () => {
               {order.refundStatus
                 ? '환불완료'
                 : order.paymentStatus
-                ? '결제완료'
-                : '결제실패'}
+                  ? '결제완료'
+                  : '결제실패'}
             </td>
             <td>
-              {order.review ? (
-                '작성완료'
-              ) : (
-                <button
-                  className={styles.status}
-                  onClick={() => navigate(`/review/${order.orderNum}`)}
-                >
-                  리뷰쓰기
-                </button>
+              <button
+                className={styles.status}
+                onClick={() => handleOpen(order)}
+              >
+                {order.reviewNum ? '작성완료' : '작성하기'}
+              </button>
+              {open && currentOrder?.orderNum === order.orderNum && (
+                <OrderReview
+                  open={open}
+                  handleClose={handleClose}
+                  orderNum={order.orderNum}
+                  reviewNum={order.reviewNum}
+                />
               )}
             </td>
             <td>
-              {order.paymentStatus ? order.refundStatus ? (
-                '환불완료'
+              {order.paymentStatus ? (
+                order.refundStatus ? (
+                  '환불완료'
+                ) : (
+                  <button
+                    className={styles.refund_button}
+                    onClick={() =>
+                      handleRefund(
+                        order.orderNum,
+                        order.productName,
+                        order.totalPrice
+                      )
+                    }
+                  >
+                    환불하기
+                  </button>
+                )
               ) : (
-                <button
-                  className={styles.refund_button}
-                  onClick={() =>
-                    handleRefund(
-                      order.orderNum,
-                      order.productName,
-                      order.totalPrice
-                    )
-                  }
-                >
-                  환불하기
-                </button>
-              ): ' '}
+                ' '
+              )}
             </td>
           </tr>
         ))}

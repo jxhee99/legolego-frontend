@@ -23,7 +23,12 @@ const OrderDetail = () => {
         const orderData = response.data;
         console.log('Fetched data', orderData);
 
-        if (!orderData.orderNum || !orderData.price || !orderData.quantity || !orderData.totalPrice) {
+        if (
+          !orderData.orderNum ||
+          !orderData.price ||
+          !orderData.quantity ||
+          !orderData.totalPrice
+        ) {
           throw new Error('주문 상세 정보가 올바르지 않습니다.');
         }
 
@@ -41,7 +46,9 @@ const OrderDetail = () => {
   useEffect(() => {
     const fetchPackageCard = async () => {
       try {
-        const productResponse = await apiClient.get(`/products/${order.productNum}`);
+        const productResponse = await apiClient.get(
+          `/products/${order.productNum}`
+        );
         const packageCardData = productResponse.data;
         console.log('Fetched package card data', packageCardData);
 
@@ -58,7 +65,9 @@ const OrderDetail = () => {
   }, [order]); // order 값이 변경될 때마다 useEffect 재실행
 
   const handleRefund = async () => {
-    const confirmRefund = window.confirm(`환불하시겠습니까?  \n\n  상품명: ${order.productName}  \n  환불 금액은 ${order.totalPrice} 원입니다.`);
+    const confirmRefund = window.confirm(
+      `환불하시겠습니까?  \n\n  상품명: ${order.productName}  \n  환불 금액은 ${order.totalPrice} 원입니다.`
+    );
     if (!confirmRefund) {
       return;
     }
@@ -70,7 +79,9 @@ const OrderDetail = () => {
       const response = await apiClient.get(`/user/orders`);
       const updatedOrders = await Promise.all(
         response.data.map(async (order) => {
-          const productResponse = await api.get(`/products/${order.productNum}`);
+          const productResponse = await apiClient.get(
+            `/products/${order.productNum}`
+          );
           return {
             ...order,
             productName: productResponse.data.productName,
@@ -79,7 +90,7 @@ const OrderDetail = () => {
         })
       );
 
-      setOrders(updatedOrders); // OrderList 컴포넌트에서 사용하는 state 업데이트
+      setOrder(updatedOrders); // OrderList 컴포넌트에서 사용하는 state 업데이트
 
       alert('환불이 완료되었습니다.');
     } catch (error) {
@@ -113,7 +124,9 @@ const OrderDetail = () => {
           </div>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>상품가격</span>
-            <span className={styles.OrderDetailValue}>{order.price.toLocaleString()}원</span>
+            <span className={styles.OrderDetailValue}>
+              {order.price.toLocaleString()}원
+            </span>
           </div>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>주문수량</span>
@@ -121,7 +134,9 @@ const OrderDetail = () => {
           </div>
           <div className={`${styles.OrderDetailItem} ${styles.totalPriceItem}`}>
             <span className={styles.OrderDetailLabel}>총금액</span>
-            <span className={styles.OrderDetailValue}>{order.totalPrice.toLocaleString()}원</span>
+            <span className={styles.OrderDetailValue}>
+              {order.totalPrice.toLocaleString()}원
+            </span>
           </div>
         </div>
       </div>
@@ -144,8 +159,12 @@ const OrderDetail = () => {
       </div>
 
       <div className={styles.orderDetail_buttons}>
-        <button className={styles.orderDetail_back} onClick={goToOrderList}>뒤로가기</button>
-        <button className={styles.orderDetail_refund} onClick={handleRefund}>결제취소</button>
+        <button className={styles.orderDetail_back} onClick={goToOrderList}>
+          뒤로가기
+        </button>
+        <button className={styles.orderDetail_refund} onClick={handleRefund}>
+          결제취소
+        </button>
       </div>
     </div>
   );
