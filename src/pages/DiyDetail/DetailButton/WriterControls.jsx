@@ -21,7 +21,7 @@ const deleteDetail = async (endpoint, navigate) => {
   }
 };
 
-const WriterControls = ({ id }) => {
+const WriterControls = ({ id, likedNum }) => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   // 모달 열기 함수
@@ -34,6 +34,15 @@ const WriterControls = ({ id }) => {
     setModalOpen(false);
   };
 
+  //수정 가능한지 검사
+  const handleEdit = () => {
+    if (likedNum >= 2) {
+      window.alert('응원 달성한 패키지는 수정할 수 없습니다.');
+      return;
+    }
+    navigate(`/diy-edit/${id}`);
+  };
+
   const handleDelete = () => {
     deleteDetail(`/user/packages/${id}`, () => navigate('/diy'));
   };
@@ -41,9 +50,7 @@ const WriterControls = ({ id }) => {
   return (
     <>
       <div className={styles.writer_button}>
-        <button>
-          <Link to={`/diy-edit/${id}`}>수정</Link>
-        </button>
+        <button onClick={handleEdit}>수정</button>
         <button onClick={openModal}>삭제</button>
       </div>
       <ConfirmModal

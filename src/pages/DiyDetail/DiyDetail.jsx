@@ -61,7 +61,7 @@ const DiyDetail = () => {
               <img src={desc.profileImg} alt="" />
             </div>
             <div className={styles.cheer_user_box}>
-              {isWriter && <WriterControls id={id} />}
+              {isWriter && <WriterControls id={id} likedNum={likedNum} />}
               <p>{data.regDate}</p>
               <h2>{desc.packageName}</h2>
               <div className={styles.user}>
