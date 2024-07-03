@@ -24,6 +24,9 @@ const AdminMenu = () => {
           <Link to="/admin/lists/pre-trips">지난 여행 목록</Link>
         </li>
         <li>
+          <Link to="/admin/lists/user-reviews">회원 리뷰 목록</Link>
+        </li>
+        <li>
           <Link to="/admin/lists/members">회원 목록</Link>
         </li>
       </ListMenu>

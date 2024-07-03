@@ -1,4 +1,10 @@
-.PackageCard {
+.PackageCard .user_nickname {
+  width: 328px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.package_card {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -10,11 +16,11 @@
     box-shadow 0.2s ease;
 }
 
-.PackageCard:hover {
+.package_card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.PackageCard .package_card_thumbnail {
+.package_card .package_card_thumbnail {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,13 +28,13 @@
   height: 220px;
 }
 
-.PackageCard .package_card_thumbnail img {
+.package_card .package_card_thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.PackageCard .package_card_body {
+.package_card .package_card_body {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,18 +42,18 @@
   margin-top: 0.5rem;
 }
 
-.PackageCard .package_card_bottom {
+.package_card .package_card_bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1.25rem;
 }
 
-.PackageCard .package_card_icon {
+.package_card .package_card_icon {
   display: flex;
   gap: 0.25rem;
 }
 
-.PackageCard .package_card_icon span {
+.package_card.package_card_icon span {
   line-height: 24px;
 }

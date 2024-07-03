@@ -1,14 +1,15 @@
 import styles from './Package.module.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
 import Metas from '../../components/common/Metas';
 import { useInView } from 'react-intersection-observer';
+import apiClient from '../../api/apiClient';
 
 const Package = () => {
   const [allPackageData, setAllPackageData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [itemsToShow, setItemsToShow] = useState(10);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const { ref, inView } = useInView({
     threshold: 1.0,
@@ -16,7 +17,7 @@ const Package = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/products`);
+      const response = await apiClient.get(`/products`);
       setAllPackageData(response.data);
       setDisplayedData(response.data.slice(0, 10));
     } catch (error) {
@@ -35,14 +36,29 @@ const Package = () => {
   }, [inView]);
 
   useEffect(() => {
-    setDisplayedData(allPackageData.slice(0, itemsToShow));
-  }, [itemsToShow, allPackageData]);
+    const filteredData = allPackageData.filter((packageItem) =>
+      packageItem.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setDisplayedData(filteredData.slice(0, itemsToShow));
+  }, [itemsToShow, allPackageData, searchTerm]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <>
       <Metas title="패키지 상품" />
       <section className={`${styles.Package} layout`}>
-        <h2>어떤 여행을 함께 해볼까요?</h2>
+        <div>
+          <h2>어떤 여행을 함께 해볼까요?</h2>
+          <input
+            type="text"
+            placeholder="패키지 상품을 검색하세요 "
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
         <div className={styles.package_cards}>
           {displayedData.map((packageItem) => (
             <PackageCard key={packageItem.productNum} {...packageItem} />

@@ -4,10 +4,6 @@
 }
 
 /* CommentSection.module.css */
-.comment_container {
-  margin-bottom: 20px;
-}
-
 .comment_box {
   position: relative;
   display: inline-block;
@@ -44,4 +40,9 @@
 
 .comment_details {
   color: #666;
+}
+
+.comments {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
