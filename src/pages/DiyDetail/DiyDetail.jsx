@@ -7,12 +7,12 @@ import styles from './DiyDetail.module.css';
 import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
 import useFetchData from '../../hooks/useFetchDiyData';
-import axios from 'axios';
 import Metas from '../../components/common/Metas';
+import apiClient from '../../api/apiClient';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
-  const endpoint = `/api/packages/${id}`;
+  const endpoint = `/packages/${id}`;
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
   const [airline, setAirline] = useState({});
@@ -37,22 +37,13 @@ const DiyDetail = () => {
 
   const handleLike = async () => {
     const userRole = localStorage.getItem('role');
-    const token = localStorage.getItem('token');
-    if (!token || userRole != 'USER') {
+    if (userRole !== 'USER') {
       window.alert('로그인한 유저만 가능합니다.');
       return;
     }
     try {
-      const response = await axios.post(
-        `/api/user/packages/likes/${id}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await apiClient.post(
+        `/user/packages/likes/${id}`);
       if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('성공');

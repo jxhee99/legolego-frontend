@@ -17,7 +17,7 @@ const PartnerOrders = () => {
   const initialPage = parseInt(query.get('page')) || 1;
   const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
-  const endpoint = '/api/partner/products';
+  const endpoint = '/partner/products';
 
   // 상태 관리
   const [filter, setFilter] = useState(initialFilter);

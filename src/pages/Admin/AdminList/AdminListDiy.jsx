@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
@@ -9,6 +8,7 @@ import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import useFetchData from '../../../hooks/useFetchDiyData';
 
 import styles from '../../../components/List/List.module.css';
+import apiClient from '../../../api/apiClient';
 
 const AdminListDiy = () => {
   const location = useLocation();
@@ -75,8 +75,8 @@ const AdminListDiy = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.delete(
-        `/api/admin/packages/${selectedItem.packageNum}`
+      const response = await apiClient.delete(
+        `/admin/packages/${selectedItem.packageNum}`
       );
 
       if (response.status === 204) {
