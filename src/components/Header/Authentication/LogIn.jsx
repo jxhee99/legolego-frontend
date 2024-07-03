@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../../../contexts/AuthContext';
 import Modal from '../../Modal/Modal';
 import Form from '../../Form/Form';
@@ -169,7 +168,7 @@ const LogIn = ({ onClose }) => {
         </Modal>
         </>
       ) : (
-        <button onClick={handleLogout}>로그아웃ndndndndnd</button>
+        <button onClick={handleLogout}>로그아웃</button>
       )}
     </>
   );
