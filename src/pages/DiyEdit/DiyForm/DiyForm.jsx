@@ -1,27 +1,31 @@
+// DiyForm.jsx
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import apiClient from '../../../api/apiClient';
 import styles from './DiyForm.module.css';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
-import apiClient from '../../../api/apiClient';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectAirline,
-  selectRoute,
   selectDetailCourses,
+  selectPackageForm,
+  selectRoute,
   resetForm,
 } from '../../../_slices/diySlice';
 
 const DiyForm = () => {
-  const [packageName, setPackageName] = useState('');
-  const [shortDesc, setShortDesc] = useState('');
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const airline = useSelector(selectAirline);
-  const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
+  const route = useSelector(selectRoute);
+  const packageForm = useSelector(selectPackageForm);
+  const [packageName, setPackageName] = useState(packageForm.packageName);
+  const [shortDesc, setShortDesc] = useState(packageForm.shortDescription);
 
   const handlePackageNameChange = (e) => {
     setPackageName(e.target.value);
@@ -34,17 +38,6 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: {
-        startAirlineName: airline.startAirlineName,
-        startingPoint: airline.startingPoint,
-        destination: airline.destination,
-        startFlightNum: airline.startFlightNum,
-        boardingDate: airline.boardingDate,
-        comeAirlineName: airline.comeAirlineName,
-        comeFlightNum: airline.comeFlightNum,
-        comingDate: airline.comingDate,
-      },
-      route: route,
       detailCourses: detailCourses,
       packageForm: {
         packageName: packageName,
@@ -54,13 +47,13 @@ const DiyForm = () => {
 
     console.log(formData);
     try {
-      const response = await apiClient.post(`/user/packages`, formData);
+      const token = localStorage.getItem('token');
+      const response = await apiClient.put(`/user/packages/${id}`, formData);
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('승인');
-        const packageNum = response.data;
-        navigate(`/diy/${packageNum}`);
+        navigate(`/diy/${id}`);
         // 폼 초기화
         setPackageName('');
         setShortDesc('');
@@ -70,9 +63,6 @@ const DiyForm = () => {
       }
     } catch (err) {
       console.error('등록 중 오류:', err);
-      if (err.response) {
-        console.error('응답 데이터:', err.response.data);
-      }
     }
   };
 

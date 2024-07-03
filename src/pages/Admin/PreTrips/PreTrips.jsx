@@ -19,7 +19,7 @@ const PreTrips = () => {
   const initialPage = parseInt(query.get('page')) || 1;
   const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
-  const endpoint = '/api/pre-trip';
+  const endpoint = '/pre-trip';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);

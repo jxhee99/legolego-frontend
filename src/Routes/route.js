@@ -145,6 +145,29 @@ export const ROUTE_DIY_CREATE = {
 
 export const ROUTE_DIY_CREATE_ARR = Object.values(ROUTE_DIY_CREATE);
 
+//DiyEdit tabs
+export const ROUTE_DIY_EDIT = {
+  DIY_CREATE_AIRPLANE: {
+    path: '/diy-edit/:id?step=airplane',
+    link: '/diy-edit/:id??step=airplane',
+    element: Airplane,
+  },
+  DIY_CREATE_SCHEDULE: {
+    path: '/diy-edit/:id?step=schedule',
+    link: '/diy-edit/:id??step=schedule',
+    element: Schedule,
+  },
+  DIY_CREATE_PACKAGEFORM: {
+    path: '/diy-edit/:id?step=diy-form',
+    link: '/diy-edit/:id?step=diy-form',
+    element: DiyForm,
+  },
+};
+
+export const ROUTE_DIY_EDIT_ARR = Object.values(ROUTE_DIY_EDIT);
+
+
+
 // MyPage Tabs
 export const ROUTE_MY_PAGE = {
   PROFILE_SETTING: {

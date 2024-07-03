@@ -2,11 +2,14 @@ import { useState } from 'react';
 import styles from './Modal.module.css';
 import Logo from '../Logo/Logo';
 
-const Modal = ({ children }) => {
+const Modal = ({ children, onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const closeModal = () => {
     setIsVisible(false);
+    if (onClose) {
+      onClose();
+    }
   };
 
   if (!isVisible) return null;

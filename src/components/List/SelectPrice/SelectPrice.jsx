@@ -1,21 +1,13 @@
 import React from 'react';
-import axios from 'axios';
 import styles from './SelectPrice.module.css';
+import apiClient from '../../../api/apiClient';
+
 const SelectPrice = ({ selectedItem, refetch, closeModal }) => {
   // 승인 요청
   const handleApprove = async (item) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/user/accept?list_num=${item.listNum}&package_num=${selectedItem.diyPackage.packageNum}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await apiClient.post(
+        `/user/accept?list_num=${item.listNum}&package_num=${selectedItem.diyPackage.packageNum}`);
 
       if (response.status === 200) {
         console.log('승인');

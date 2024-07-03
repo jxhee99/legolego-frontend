@@ -1,7 +1,7 @@
 import styles from '../DiyDetail.module.css';
-import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import apiClient from '../../../api/apiClient';
 
 const Description = () => {
   const [diyData, setDiyData] = useState({});
@@ -10,7 +10,7 @@ const Description = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/packages/${id}`);
+      const response = await apiClient.get(`/packages/${id}`);
       setDiyData(response.data);
     } catch (error) {
       console.log(`에러 발생: ${error}`);
@@ -19,7 +19,7 @@ const Description = () => {
 
   const postData = async () => {
     try {
-      const response = await axios.post(`/api/packages/likes/${id}`, {
+      const response = await apiClient.post(`/packages/likes/${id}`, {
         userNum: id,
       });
       console.log(response.data);

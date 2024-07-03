@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import {
   ROUTE_ARR,
   ROUTE_DIY_CREATE_ARR,
+  ROUTE_DIY_EDIT_ARR,
   ROUTE_MY_PAGE_ARR,
   ROUTE_ADMIN_ARR,
   ROUTE_PARTNER_ARR,
@@ -11,6 +12,7 @@ import {
 } from './Routes/route';
 import Layout from './components/Layout/Layout';
 import DiyCreate from './pages/DiyCreate/DiyCreate';
+import DiyEdit from './pages/DiyEdit/DiyEdit';
 import Mypage from './pages/Mypage/Mypage';
 import AdminMenu from './pages/Admin/AdminMenu';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
@@ -42,6 +44,15 @@ const App = () => {
         ))}
         <Route path="/diy-create" element={<DiyCreate />}>
           {ROUTE_DIY_CREATE_ARR.map((route) => (
+            <Route
+              path={route.path}
+              element={<route.element />}
+              key={route.path}
+            />
+          ))}
+        </Route>
+        <Route path="/diy-edit/:id" element={<DiyEdit />}>
+          {ROUTE_DIY_EDIT_ARR.map((route) => (
             <Route
               path={route.path}
               element={<route.element />}

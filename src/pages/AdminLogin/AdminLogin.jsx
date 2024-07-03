@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../../contexts/AuthContext';
 import Modal from '../../components/Modal/Modal';
 import Form from '../../components/Form/Form';
 import InputField from '../../components/Form/InputField';
 import SubmitButton from '../../components/Form/SubmitButton';
+import apiClient from '../../api/apiClient';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -70,18 +70,11 @@ const AdminLogin = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/auth/login?role=ADMIN',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      const { token, role } = response.data;
-      login(token, role); // AuthContext의 login 메서드 호출
-      console.log('로그인 성공:', token);
+      const response = await apiClient.post(
+        'http://localhost:8080/auth/login?role=ADMIN', formData);
+      const { accessToken, role } = response.data;
+      login(accessToken, role); // AuthContext의 login 메서드 호출
+      console.log('로그인 성공:', accessToken);
       if (role === 'ADMIN') {
         navigate('/admin'); // /admin 페이지로 리디렉션
       } else {
