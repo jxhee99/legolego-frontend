@@ -134,12 +134,15 @@ const OrderList = () => {
                   : '결제실패'}
             </td>
             <td>
-              <button
-                className={styles.status}
-                onClick={() => handleOpen(order)}
-              >
-                {order.reviewNum ? '작성완료' : '작성하기'}
-              </button>
+              {order.reviewNum !== null && (
+                <button
+                  className={styles.status}
+                  onClick={() => handleOpen(order)}
+                >
+                  {order.reviewNum ? '작성완료' : '작성하기'}
+                </button>
+              )}
+
               {open && currentOrder?.orderNum === order.orderNum && (
                 <OrderReview
                   open={open}
