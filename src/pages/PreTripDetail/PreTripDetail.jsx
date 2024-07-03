@@ -4,8 +4,8 @@ import AirplaneInformation from './AirplaneInformation/AirplaneInformation';
 import Schedule from './ScheduleInformation/ScheduleInformation';
 import PreTripComment from './PreTripComment/PreTripComment';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import apiClient from '../../api/apiClient';
 
 const PreTripDetail = () => {
   const [data, setData] = useState(null);
@@ -16,7 +16,7 @@ const PreTripDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/pre-trip/${id}`);
+        const response = await apiClient.get(`/pre-trip/${id}`);
         setData(response.data);
       } catch (error) {
         setError(error);
