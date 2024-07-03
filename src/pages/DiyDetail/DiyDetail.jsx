@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -7,11 +7,14 @@ import styles from './DiyDetail.module.css';
 import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
 import useFetchData from '../../hooks/useFetchDiyData';
+import { handleDelete } from '../../utils/handleDelete';
+
 import Metas from '../../components/common/Metas';
 import apiClient from '../../api/apiClient';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
+  const navigate = useNavigate();
   const endpoint = `/packages/${id}`;
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
@@ -42,8 +45,7 @@ const DiyDetail = () => {
       return;
     }
     try {
-      const response = await apiClient.post(
-        `/user/packages/likes/${id}`);
+      const response = await apiClient.post(`/user/packages/likes/${id}`);
       if (response.status === 200) {
         // 요청이 성공한 경우
         console.log('성공');
@@ -77,16 +79,28 @@ const DiyDetail = () => {
     <>
       <Metas title={desc.packageName} />
       <div className={styles.DiyDetail}>
-        <button>
-          <Link to={`/diy-edit/${id}`}>수정</Link>
-        </button>
-        <button>삭제</button>
         <div>
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
               <img src={desc.profileImg} alt="" />
             </div>
             <div className={styles.cheer_user_box}>
+              {isWriter && (
+                <div className={styles.writer_button}>
+                  <button>
+                    <Link to={`/diy-edit/${id}`}>수정</Link>
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleDelete(`/user/packages/${id}`, () =>
+                        navigate('/diy')
+                      )
+                    }
+                  >
+                    삭제
+                  </button>
+                </div>
+              )}
               <p>{data.regDate}</p>
               <h2>{desc.packageName}</h2>
               <div className={styles.user}>

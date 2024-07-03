@@ -29,6 +29,7 @@
   border-radius: 12px;
 }
 
+
 /* 응원하기 */
 .DiyDetail .cheer_user_box {
   max-width: 40%;
@@ -37,6 +38,10 @@
   gap: 1rem;
   flex-direction: column;
   justify-content: space-between;
+  align-self: flex-end;
+}
+/* 수정 삭제 버튼 */
+.DiyDetail .writer_button {
   align-self: flex-end;
 }
 
