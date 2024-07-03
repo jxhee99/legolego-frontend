@@ -27,7 +27,8 @@ const SavedPackage = () => {
               productName: productResponse.data.productName,
               productPrice: productResponse.data.price,
               boardingDate: productResponse.data.airline.boardingDate,
-              recruitmentDeadline: productResponse.data.recruitmentDeadline
+              recruitmentDeadline: productResponse.data.recruitmentDeadline,
+              recruitmentConfirmed: productResponse.data.recruitmentConfirmed
 
             };
           })
