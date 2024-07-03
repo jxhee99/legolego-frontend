@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import styles from './OrderDetail.module.css';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
@@ -95,7 +96,16 @@ const OrderDetail = () => {
       alert('환불이 완료되었습니다.');
     } catch (error) {
       console.error('환불 처리 중 오류가 발생했습니다.', error);
-      alert('환불에 실패하였습니다.'); // 환불 실패시 경고창 추가
+      
+      const currentTimestamp = new Date();
+      const recruitmentDeadline = new Date(packageData[0]?.recruitmentDeadline);
+      console.log(recruitmentDeadline, currentTimestamp)
+      
+      if (recruitmentDeadline < currentTimestamp) {
+        alert('주문 취소 기간이 지났습니다.');
+      } else {
+        alert('환불에 실패하였습니다.');
+      }
     }
   };
 
@@ -107,7 +117,7 @@ const OrderDetail = () => {
   return (
     <div className={styles.OrderDetail}>
       <h2>결제내역</h2>
-      <div className={`${styles.PackageInformation} ${styles.box_style}`}>
+      <div className={`${styles.PackageInformation}`}>
         <div className={styles.orderDetail_packageCard}>
           {packageData.map((packageItem) => (
             <PackageCard key={packageItem.productNum} {...packageItem} />
@@ -121,6 +131,15 @@ const OrderDetail = () => {
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>주문번호</span>
             <span className={styles.OrderDetailValue}>{order.merchantUid}</span>
+          </div>
+          <div className={styles.OrderDetailItem}>
+            <span className={styles.OrderDetailLabel}>결제상태</span>
+            <span className={styles.OrderDetailValue}>
+            {order.refundStatus
+                ? '환불완료'
+                : order.paymentStatus
+                  ? '결제완료'
+                  : '결제실패'}</span>
           </div>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>상품가격</span>
@@ -162,9 +181,19 @@ const OrderDetail = () => {
         <button className={styles.orderDetail_back} onClick={goToOrderList}>
           뒤로가기
         </button>
-        <button className={styles.orderDetail_refund} onClick={handleRefund}>
-          결제취소
+<div>
+{order.paymentStatus ? (
+                order.refundStatus ? (
+                  ' '
+                ) : (
+           <button className={styles.orderDetail_refund} onClick={handleRefund}>
+          환불요청
         </button>
+                )
+              ) : (
+                ' '
+              )}
+</div>
       </div>
     </div>
   );
