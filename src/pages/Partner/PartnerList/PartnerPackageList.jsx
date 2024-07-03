@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
-
 import styles from '../../../components/List/List.module.css';
 import useFetchData from '../../../hooks/useFetchDiyData';
 import ListTable from '../../../components/List/ListTable';
@@ -16,7 +14,7 @@ const PartnerPackageList = () => {
   const itemsPerPage = 10; // 필요에 따라 조정 가능
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const endpoint = '/api/partner/over-liked-packages';
+  const endpoint = '/partner/over-liked-packages';
 
   // 상태 관리
   const [modalOpen, setModalOpen] = useState(false);

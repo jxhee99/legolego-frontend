@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 import PaginationComp from '../../../components/Pagination/PaginationComp';
 import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
@@ -11,6 +10,7 @@ import useFetchData from '../../../hooks/useFetchDiyData';
 import { formatDateTime } from '../../../utils/DateTime'; // formatDateTime import 수정
 
 import styles from '../../../components/List/List.module.css';
+import apiClient from '../../../api/apiClient';
 
 const AdminListProduct = () => {
   const location = useLocation();
@@ -85,7 +85,7 @@ const AdminListProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.delete(`/`);
+      const response = await apiClient.delete(`/admin/products/${selectedItem.productNum}/delete`);
 
       if (response.status === 204) {
         refetch();

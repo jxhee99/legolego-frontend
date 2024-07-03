@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from './PriceRegister.module.css';
-import axios from 'axios';
+import apiClient from '../../../api/apiClient';
 
 const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
   const [price, setPrice] = useState('');
@@ -25,16 +25,9 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
     };
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/partner/over-liked-packages/offer`,
+      const response = await apiClient.post(
+        `/partner/over-liked-packages/offer`,
         formData,
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
       );
 
       if (response.status === 201) {

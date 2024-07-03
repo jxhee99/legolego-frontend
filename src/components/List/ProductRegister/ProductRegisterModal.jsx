@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './ProductRegisterModal.module.css';
 import PriceDetail from '../PriceDetail/PriceDetail';
 import { combineDateTime } from '../../../utils/DateTime';
+import apiClient from '../../../api/apiClient';
 
 const ProductRegisterModal = ({ selectedItem, closeModal, refetch }) => {
   const [deadlineDate, setDeadlineDate] = useState('');
@@ -23,17 +23,8 @@ const ProductRegisterModal = ({ selectedItem, closeModal, refetch }) => {
         return;
       }
 
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `/api/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`,
-        {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await apiClient.post(
+        `/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`);
 
       if (response.status === 200) {
         console.log('승인');
