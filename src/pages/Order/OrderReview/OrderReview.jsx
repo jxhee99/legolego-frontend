@@ -61,10 +61,13 @@ const OrderReview = ({ open, handleClose, orderNum, reviewNum }) => {
       return;
     }
     try {
-      const response = await apiClient.post(`/user/reviews/${reviewNum}/edit`, {
-        content: reviewText,
-        rating: value,
-      });
+      const response = await apiClient.patch(
+        `/user/reviews/${reviewNum}/edit`,
+        {
+          content: reviewText,
+          rating: value,
+        }
+      );
       console.log('Review edited:', response.data);
       handleClose();
     } catch (error) {
