@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
@@ -10,7 +12,6 @@ const OrderList = () => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
-  const [filter, setFilter] = useState('all');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,17 +19,28 @@ const OrderList = () => {
       try {
         const response = await apiClient.get(`/user/orders`);
         const ordersData = response.data;
+        console.log('Fetched orders data:', ordersData); 
 
         const updatedOrders = await Promise.all(
           ordersData.map(async (order) => {
-            const productResponse = await apiClient.get(
-              `/products/${order.productNum}`
-            );
-            return {
-              ...order,
-              productName: productResponse.data.productName,
-              productPrice: productResponse.data.price,
-            };
+            try {
+              const productResponse = await apiClient.get(`/products/${order.productNum}`);
+              console.log('Fetched product data for order:', order.orderNum, productResponse.data); // 제품 데이터 확인
+
+              const updatedOrder = {
+                ...order,
+                productName: productResponse.data.productName,
+                productPrice: productResponse.data.price,
+                productDate: productResponse.data.recruitmentDeadline,
+                productBoardingDate: productResponse.data.airline.boardingDate
+              };
+
+              console.log('추가한 데이터:', updatedOrder.productBoardingDate); // 추가한 데이터 확인
+              return updatedOrder;
+            } catch (error) {
+              console.error('제품 데이터를 불러오는 중 오류가 발생했습니다.', error);
+              throw error;
+            }
           })
         );
 
@@ -41,13 +53,13 @@ const OrderList = () => {
     };
 
     fetchOrders();
-  }, []);
+  }, []); // 빈 배열을 useEffect 의존성 배열로 사용하여 한 번만 실행되도록 설정
 
   const goToOrderDetail = (orderNum) => {
     navigate(`/order-detail/${orderNum}`);
   };
 
-  const handleRefund = async (orderNum, productName, totalPrice) => {
+  const handleRefund = async (orderNum, productName, totalPrice, productDate) => {
     const confirmRefund = window.confirm(
       `환불하시겠습니까?  \n\n  상품명: ${productName}  \n  환불 금액은 ${totalPrice} 원입니다.`
     );
@@ -62,13 +74,13 @@ const OrderList = () => {
       const response = await apiClient.get(`/user/orders`);
       const updatedOrders = await Promise.all(
         response.data.map(async (order) => {
-          const productResponse = await apiClient.get(
-            `/products/${order.productNum}`
-          );
+          const productResponse = await apiClient.get(`/products/${order.productNum}`);
           return {
             ...order,
             productName: productResponse.data.productName,
             productPrice: productResponse.data.price,
+            productDate: productResponse.data.recruitmentDeadline,
+            productBoardingDate: productResponse.data.airline.boardingDate,
           };
         })
       );
@@ -78,11 +90,19 @@ const OrderList = () => {
       alert('환불이 완료되었습니다.');
     } catch (error) {
       console.error('환불 처리 중 오류가 발생했습니다.', error);
-      alert('환불에 실패하였습니다.'); // 환불 실패시 경고창 추가
+      
+      const currentTimestamp = new Date();
+      const recruitmentDeadline = new Date(productDate);
+      console.log(recruitmentDeadline, currentTimestamp);
+      
+      if (recruitmentDeadline < currentTimestamp) {
+        alert('주문 취소 기간이 지났습니다.');
+      } else {
+        alert('환불에 실패하였습니다.');
+      }
     }
   };
 
-  // merchantUid 일부만 보여주는 함수
   const maskMerchantUid = (merchantUid) => {
     const visibleChars = 10; // 보여질 문자열 길이
     const maskedPart = merchantUid.substring(0, visibleChars);
@@ -100,62 +120,41 @@ const OrderList = () => {
     setCurrentOrder(null);
   };
 
-  const filteredOrders = orders.filter((order) => {
-    if (filter === 'all') return true;
-    if (filter === 'written') return order.reviewNum;
-    if (filter === 'unwritten') return !order.reviewNum;
-  });
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
-      <div className={styles.filterContainer}>
-        <label htmlFor="filter">리뷰 상태 필터: </label>
-        <select
-          id="filter"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="all">모두</option>
-          <option value="written">작성완료</option>
-          <option value="unwritten">작성하기</option>
-        </select>
-      </div>
-
-      <table className={styles.OrderList}>
-        <thead>
-          <tr>
-            <th>주문번호</th>
-            <th>상품명</th>
-            <th>상품가격</th>
-            <th>주문수량</th>
-            <th>총금액</th>
-            <th>결제상태</th>
-            <th>리뷰</th>
-            <th>환불</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredOrders.map((order) => (
-            <tr key={order.merchantUid}>
-              <td>{maskMerchantUid(order.merchantUid)}</td>
-              <td onClick={() => goToOrderDetail(order.orderNum)}>
-                {order.productName}
-              </td>
-              <td>{order.productPrice.toLocaleString()}원</td>
-              <td>{order.quantity}</td>
-              <td>{order.totalPrice.toLocaleString()}원</td>
-              <td>
-                {order.refundStatus
-                  ? '환불완료'
-                  : order.paymentStatus
-                    ? '결제완료'
-                    : '결제실패'}
-              </td>
-              <td>
-                <button
+    <table className={styles.OrderList}>
+      <thead>
+        <tr>
+          <th>주문번호</th>
+          <th>상품명</th>
+          <th>상품가격</th>
+          <th>주문수량</th>
+          <th>총금액</th>
+          <th>결제상태</th>
+          <th>리뷰</th>
+          <th>환불</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => (
+          <tr key={order.merchantUid}>
+            <td>{maskMerchantUid(order.merchantUid)}</td>
+            <td onClick={() => goToOrderDetail(order.orderNum)}>
+              {order.productName}
+            </td>
+            <td>{order.productPrice.toLocaleString()}원</td>
+            <td>{order.quantity}</td>
+            <td>{order.totalPrice.toLocaleString()}원</td>
+            <td>
+              {order.refundStatus
+                ? '환불완료'
+                : order.paymentStatus
+                  ? '결제완료'
+                  : '결제실패'}
+            </td>
+            <td> <button
                   className={styles.status}
                   onClick={() => handleOpen(order)}
                 >
@@ -170,34 +169,34 @@ const OrderList = () => {
                     reviewNum={order.reviewNum}
                   />
                 )}
-              </td>
-              <td>
-                {order.paymentStatus ? (
-                  order.refundStatus ? (
-                    '환불완료'
-                  ) : (
-                    <button
-                      className={styles.refund_button}
-                      onClick={() =>
-                        handleRefund(
-                          order.orderNum,
-                          order.productName,
-                          order.totalPrice
-                        )
-                      }
-                    >
-                      환불하기
-                    </button>
-                  )
+            </td>
+            <td>
+              {order.paymentStatus ? (
+                order.refundStatus ? (
+                  '환불완료'
                 ) : (
-                  ' '
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                  <button
+                    className={styles.refund_button}
+                    onClick={() =>
+                      handleRefund(
+                        order.orderNum,
+                        order.productName,
+                        order.totalPrice,
+                        order.productDate
+                      )
+                    }
+                  >
+                    환불하기
+                  </button>
+                )
+              ) : (
+                ' '
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

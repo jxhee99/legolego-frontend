@@ -1,7 +1,7 @@
-import styles from '../Mypage.module.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import apiClient from '../../../api/apiClient';
+import styles from '../Mypage.module.css'; // Mypage 모듈의 스타일 시트 가져오기
 
 const DiyPackage = () => {
   const [diyLists, setDiyLists] = useState([]);
@@ -11,14 +11,12 @@ const DiyPackage = () => {
   useEffect(() => {
     const fetchDiyLists = async () => {
       try {
-
-        // 사용자의 패키지 목록을 가져옴
-        const response = await apiClient.get(`/user/diylists`);
+        const response = await apiClient.get(`/my/packages`); // 엔드포인트를 /my/packages로 수정
         console.log('Fetched data:', response.data); 
         setDiyLists(response.data);
         setLoading(false);
       } catch (error) {
-        setError('Failed to load DIY packages');
+        setError('DIY 패키지를 불러오는 중 오류가 발생했습니다.');
         setLoading(false);
       }
     };
@@ -44,10 +42,10 @@ const DiyPackage = () => {
         </thead>
         <tbody>
           {diyLists.map((diy) => (
-            <tr key={diy.listNum}>
-              <td>{diy.productNum}</td>
-              <td><Link to={`/diy/${diy.diyPackage.packageNum}`}>
-                {diy.diyPackage.packageName}</Link>
+            <tr key={diy.packageNum}>
+              <td>{diy.packageNum}</td>
+              <td><Link to={`/diy/${diy.packageNum}`}>
+                {diy.packageName}</Link>
               </td>
               <td className={styles.status}>
               <span>
@@ -57,9 +55,9 @@ const DiyPackage = () => {
                   ? '여행사 제안 완료'
                   : '응원 받는 중'}
               </span></td>
-              <td> <span style={{ fontWeight: 'bold' }}>{diy.diyPackage.packageLikedNum}</span> / 25
+              <td> <span style={{ fontWeight: 'bold' }}>{diy.packageLikedNum}</span> / 25
               </td>
-             <td>{new Date(diy.diyPackage.airline.boardingDate).toLocaleDateString()}</td> 
+             <td>{new Date(diy.airline.boardingDate).toLocaleDateString()}</td> 
               <td>{new Date(diy.regDate).toLocaleDateString()}</td>
             </tr>
           ))}
@@ -70,3 +68,4 @@ const DiyPackage = () => {
 };
 
 export default DiyPackage;
+
