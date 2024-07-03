@@ -1,15 +1,10 @@
-import axios from 'axios';
+import apiClient from '../api/apiClient';
 
 export const deleteList = async (e, endpoint, refetch, closeModal) => {
   e.preventDefault();
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.delete(endpoint, {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await apiClient.delete(endpoint);
 
     if (response.status === 204) {
       closeModal();
@@ -22,3 +17,4 @@ export const deleteList = async (e, endpoint, refetch, closeModal) => {
     console.error('삭제 중 오류:', err);
   }
 };
+
