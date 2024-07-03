@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './OrderDetail.module.css';
-import axios from 'axios';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
@@ -17,35 +16,13 @@ const OrderDetail = () => {
   const { orderNum } = useParams(); // URL에서 orderNum 파라미터 가져오기
   const [packageData, setPackageData] = useState([]);
 
-
-
-  useEffect(() => {  const fetchData = async () => {
-    try {
-      const response = await apiClient.get(`/products`);
-      console.log(response.data);
-      setPackageData(response.data);
-      console.log(packageData);
-    } catch (error) {
-      console.error('Error', error);
-    }
-  };
-    fetchData();
-  }, []);
-
   useEffect(() => {
     const fetchOrderDetail = async () => {
       try {
-        // const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
-        // if (!token) {
-        //   throw new Error('Token is not available');
-        // }
-
-        // 주문 상세 정보를 가져오는 API 호출 (orderNum 기반)
         const response = await apiClient.get(`/user/orders/${orderNum}`);
         const orderData = response.data;
         console.log('Fetched data', orderData);
 
-        // 필수 필드가 있는지 검사
         if (!orderData.orderNum || !orderData.price || !orderData.quantity || !orderData.totalPrice) {
           throw new Error('주문 상세 정보가 올바르지 않습니다.');
         }
@@ -61,6 +38,56 @@ const OrderDetail = () => {
     fetchOrderDetail(); // useEffect 내에서 함수 호출
   }, [orderNum]); // orderNum 값이 변경될 때마다 useEffect 재실행
 
+  useEffect(() => {
+    const fetchPackageCard = async () => {
+      try {
+        const productResponse = await apiClient.get(`/products/${order.productNum}`);
+        const packageCardData = productResponse.data;
+        console.log('Fetched package card data', packageCardData);
+
+        // packageCardData를 배열로 변환하여 setPackageData에 설정
+        setPackageData([packageCardData]);
+      } catch (error) {
+        console.error('Error fetching package card data', error);
+      }
+    };
+
+    if (order) {
+      fetchPackageCard(); // order 상태가 변경될 때마다 패키지 카드 데이터 다시 불러오기
+    }
+  }, [order]); // order 값이 변경될 때마다 useEffect 재실행
+
+  const handleRefund = async () => {
+    const confirmRefund = window.confirm(`환불하시겠습니까?  \n\n  상품명: ${order.productName}  \n  환불 금액은 ${order.totalPrice} 원입니다.`);
+    if (!confirmRefund) {
+      return;
+    }
+
+    try {
+      await apiClient.delete(`/user/orders/${order.orderNum}`);
+
+      // 환불 후 주문 목록 갱신
+      const response = await apiClient.get(`/user/orders`);
+      const updatedOrders = await Promise.all(
+        response.data.map(async (order) => {
+          const productResponse = await api.get(`/products/${order.productNum}`);
+          return {
+            ...order,
+            productName: productResponse.data.productName,
+            productPrice: productResponse.data.price,
+          };
+        })
+      );
+
+      setOrders(updatedOrders); // OrderList 컴포넌트에서 사용하는 state 업데이트
+
+      alert('환불이 완료되었습니다.');
+    } catch (error) {
+      console.error('환불 처리 중 오류가 발생했습니다.', error);
+      alert('환불에 실패하였습니다.'); // 환불 실패시 경고창 추가
+    }
+  };
+
   if (loading) return <div>Loading...</div>; // 로딩 중일 때 표시될 화면
   if (error) return <div>{error}</div>; // 오류 발생 시 표시될 화면
   if (!order) return null; // 주문 정보가 없을 경우
@@ -71,7 +98,7 @@ const OrderDetail = () => {
       <h2>결제내역</h2>
       <div className={`${styles.PackageInformation} ${styles.box_style}`}>
         <div className={styles.orderDetail_packageCard}>
-        {packageData.map((packageItem) => (
+          {packageData.map((packageItem) => (
             <PackageCard key={packageItem.productNum} {...packageItem} />
           ))}
         </div>
@@ -82,7 +109,7 @@ const OrderDetail = () => {
         <div className={styles.OrderDetailList}>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>주문번호</span>
-            <span className={styles.OrderDetailValue}>{order.orderNum}</span>
+            <span className={styles.OrderDetailValue}>{order.merchantUid}</span>
           </div>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>상품가격</span>
@@ -97,8 +124,8 @@ const OrderDetail = () => {
             <span className={styles.OrderDetailValue}>{order.totalPrice.toLocaleString()}원</span>
           </div>
         </div>
-        </div>
-        <div className={`${styles.Orderer} ${styles.box_style}`}>
+      </div>
+      <div className={`${styles.Orderer} ${styles.box_style}`}>
         <h3>여행자 정보</h3>
         <div className={styles.OrderDetailList}>
           <div className={styles.OrderDetailItem}>
@@ -118,7 +145,7 @@ const OrderDetail = () => {
 
       <div className={styles.orderDetail_buttons}>
         <button className={styles.orderDetail_back} onClick={goToOrderList}>뒤로가기</button>
-        <button className={styles.orderDetail_refund}>결제취소</button>
+        <button className={styles.orderDetail_refund} onClick={handleRefund}>결제취소</button>
       </div>
     </div>
   );

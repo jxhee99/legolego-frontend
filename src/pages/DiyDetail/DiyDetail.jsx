@@ -7,12 +7,12 @@ import styles from './DiyDetail.module.css';
 import DiyDetailAirplane from './DiyDetailAirplane/DiyDetailAirplane';
 import DiyDetailSchedule from './DiyDetailSchedule/DiyDetailSchedule';
 import useFetchData from '../../hooks/useFetchDiyData';
-import axios from 'axios';
+import apiClient from '../../api/apiClient';
 import Metas from '../../components/common/Metas';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
-  const endpoint = `/api/packages/${id}`;
+  const endpoint = `/packages/${id}`;
   const { data, loading, error, refetch } = useFetchData(endpoint);
 
   const [airline, setAirline] = useState({});
@@ -43,15 +43,9 @@ const DiyDetail = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        `/api/user/packages/likes/${id}`,
+      const response = await apiClient.post(
+        `/user/packages/likes/${id}`,
         {},
-        {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
       );
       if (response.status === 200) {
         // 요청이 성공한 경우

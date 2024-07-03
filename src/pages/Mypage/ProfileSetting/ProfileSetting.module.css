@@ -1,3 +1,5 @@
+
+
 .ProfileSetting .wrapper {
   display: flex;
   gap: 3rem;
@@ -28,17 +30,33 @@
   width: 80%;
 }
 
-.ProfileInformation div {
-  margin-bottom: 1rem;
+.ProfileInformation .formGroup {
+  margin-bottom: 2rem; /* 폼 그룹 간의 간격을 넓힘 */
 }
 
 .ProfileInformation input {
   padding: 0.5rem;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.ProfileInformation input.redText {
+  color: rgb(50, 42, 142); /* input 안의 텍스트를 빨간색으로 변경 */
+  font-weight: 600;}
+
+.readOnlyInput {
+  color: initial; /* 읽기 전용 input의 텍스트 색상은 기본값으로 유지 */
 }
 
 .ProfileInformation button {
-  padding: 0;
-}
-.readOnlyInput input {
-  color: red; /* 글자색을 빨간색으로 변경 */
-}
+  paddig: 0px;}
+
+  .profile_edit{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #312d2f3a;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 600;}
+
