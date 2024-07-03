@@ -8,6 +8,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import noneLego from '../../../assets/images/none.jpg';
 
 const PackageCard = ({
+  userNickname,
   productNum,
   productImage,
   recruitmentDeadline,
@@ -22,29 +23,37 @@ const PackageCard = ({
   };
 
   return (
-    <div className={styles.PackageCard} onClick={handlePackageCard}>
-      <div className={styles.package_card_thumbnail}>
-        <img src={productImage || noneLego} alt="패키지 썸네일" />
-      </div>
-      <div className={styles.package_card_body}>
-        <h3>{productName}</h3>
-        <span>{price} ₩</span>
-      </div>
-      <div className={styles.package_card_bottom}>
-        <div className={styles.package_card_icon}>
-          <CalendarMonthIcon />
-          <span>
-            ~{' '}
-            {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
-          </span>
+    <div className={styles.PackageCard}>
+      <h4 className={styles.user_nickname}>
+        {userNickname}님이 만든 패키지 상품
+      </h4>
+      <div className={styles.package_card} onClick={handlePackageCard}>
+        <div className={styles.package_card_thumbnail}>
+          <img src={productImage || noneLego} alt="패키지 썸네일" />
         </div>
-        <div className={styles.package_card_icon}>
-          <VisibilityIcon />
-          <span>{productViewNum}</span>
+        <div className={styles.package_card_body}>
+          <h3>{productName}</h3>
+          <span>{price} ₩</span>
         </div>
-        <div className={styles.package_card_icon}>
-          <CatchingPokemonIcon />
-          <span>{wishlistCount}</span>
+        <div className={styles.package_card_bottom}>
+          <div className={styles.package_card_icon}>
+            <CalendarMonthIcon />
+            <span>
+              ~{' '}
+              {formatDateTime(recruitmentDeadline).replace(
+                /\s\d{2}:\d{2}$/,
+                ''
+              )}
+            </span>
+          </div>
+          <div className={styles.package_card_icon}>
+            <VisibilityIcon />
+            <span>{productViewNum}</span>
+          </div>
+          <div className={styles.package_card_icon}>
+            <CatchingPokemonIcon />
+            <span>{wishlistCount}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -54,7 +63,6 @@ const PackageCard = ({
 PackageCard.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
-  partnerName: PropTypes.string.isRequired,
 };
 
 export default PackageCard;

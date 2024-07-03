@@ -13,18 +13,19 @@ const ScheduleInformation = ({ detailCourse }) => {
               <h4>{course.dayNum}</h4>
               <ul className={styles.CourseList}>
                 {course.courses.map((item, index) => (
-                  <li key={`${course.detailCourseNum}-${index}`}>
-                    <div>
-                      <div className={styles.course_top}>
-                        <span className={styles.days}>{index + 1} .</span>
-                        <span>{item}</span>
+                  <div key={`${course.detailCourseNum}-${index}`}>
+                    <p>
+                      {index + 1}. {item}
+                    </p>
+                    <li>
+                      <div>
+                        <img
+                          src={course.fileUrls[index] || noneWhite}
+                          alt="이미지"
+                        />
                       </div>
-                      <img
-                        src={course.fileUrls[index] || noneWhite}
-                        alt="이미지"
-                      />
-                    </div>
-                  </li>
+                    </li>
+                  </div>
                 ))}
               </ul>
             </div>

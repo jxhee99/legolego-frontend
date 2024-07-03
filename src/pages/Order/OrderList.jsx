@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
@@ -10,6 +10,7 @@ const OrderList = () => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
+  const [filter, setFilter] = useState('all');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const OrderList = () => {
     };
 
     fetchOrders();
-  }, []); // 빈 배열을 useEffect 의존성 배열로 사용하여 한 번만 실행되도록 설정
+  }, []);
 
   const goToOrderDetail = (orderNum) => {
     navigate(`/order-detail/${orderNum}`);
@@ -99,85 +100,104 @@ const OrderList = () => {
     setCurrentOrder(null);
   };
 
+  const filteredOrders = orders.filter((order) => {
+    if (filter === 'all') return true;
+    if (filter === 'written') return order.reviewNum;
+    if (filter === 'unwritten') return !order.reviewNum;
+  });
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <table className={styles.OrderList}>
-      <thead>
-        <tr>
-          <th>주문번호</th>
-          <th>상품명</th>
-          <th>상품가격</th>
-          <th>주문수량</th>
-          <th>총금액</th>
-          <th>결제상태</th>
-          <th>리뷰</th>
-          <th>환불</th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.map((order) => (
-          <tr key={order.merchantUid}>
-            <td>{maskMerchantUid(order.merchantUid)}</td>
-            <td onClick={() => goToOrderDetail(order.orderNum)}>
-              {order.productName}
-            </td>
-            <td>{order.productPrice.toLocaleString()}원</td>
-            <td>{order.quantity}</td>
-            <td>{order.totalPrice.toLocaleString()}원</td>
-            <td>
-              {order.refundStatus
-                ? '환불완료'
-                : order.paymentStatus
-                  ? '결제완료'
-                  : '결제실패'}
-            </td>
-            <td>
-              {order.reviewNum !== null && (
+    <div>
+      <div className={styles.filterContainer}>
+        <label htmlFor="filter">리뷰 상태 필터: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="all">모두</option>
+          <option value="written">작성완료</option>
+          <option value="unwritten">작성하기</option>
+        </select>
+      </div>
+
+      <table className={styles.OrderList}>
+        <thead>
+          <tr>
+            <th>주문번호</th>
+            <th>상품명</th>
+            <th>상품가격</th>
+            <th>주문수량</th>
+            <th>총금액</th>
+            <th>결제상태</th>
+            <th>리뷰</th>
+            <th>환불</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredOrders.map((order) => (
+            <tr key={order.merchantUid}>
+              <td>{maskMerchantUid(order.merchantUid)}</td>
+              <td onClick={() => goToOrderDetail(order.orderNum)}>
+                {order.productName}
+              </td>
+              <td>{order.productPrice.toLocaleString()}원</td>
+              <td>{order.quantity}</td>
+              <td>{order.totalPrice.toLocaleString()}원</td>
+              <td>
+                {order.refundStatus
+                  ? '환불완료'
+                  : order.paymentStatus
+                    ? '결제완료'
+                    : '결제실패'}
+              </td>
+              <td>
                 <button
                   className={styles.status}
                   onClick={() => handleOpen(order)}
                 >
                   {order.reviewNum ? '작성완료' : '작성하기'}
                 </button>
-              )}
 
-              {open && currentOrder?.orderNum === order.orderNum && (
-                <OrderReview
-                  open={open}
-                  handleClose={handleClose}
-                  orderNum={order.orderNum}
-                  reviewNum={order.reviewNum}
-                />
-              )}
-            </td>
-            <td>
-              {order.paymentStatus ? (
-                order.refundStatus ? (
-                  '환불완료'
+                {open && currentOrder?.orderNum === order.orderNum && (
+                  <OrderReview
+                    open={open}
+                    handleClose={handleClose}
+                    orderNum={order.orderNum}
+                    reviewNum={order.reviewNum}
+                  />
+                )}
+              </td>
+              <td>
+                {order.paymentStatus ? (
+                  order.refundStatus ? (
+                    '환불완료'
+                  ) : (
+                    <button
+                      className={styles.refund_button}
+                      onClick={() =>
+                        handleRefund(
+                          order.orderNum,
+                          order.productName,
+                          order.totalPrice
+                        )
+                      }
+                    >
+                      환불하기
+                    </button>
+                  )
                 ) : (
-                  <button
-                    className={styles.refund_button}
-                    onClick={() =>
-                      handleRefund(
-                        order.orderNum,
-                        order.productName,
-                        order.totalPrice
-                      )
-                    }
-                  >
-                    환불하기
-                  </button>
-                )
-              ) : (
-                ' '
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                  ' '
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
