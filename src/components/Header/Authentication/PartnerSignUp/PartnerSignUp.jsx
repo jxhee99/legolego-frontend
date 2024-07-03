@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from './PartnerSignUp.module.css';
 import Modal from '../../../../components/Modal/Modal';
 import Form from '../../../../components/Form/Form';
 import InputField from '../../../../components/Form/InputField';
 import SubmitButton from '../../../../components/Form/SubmitButton';
 import LogIn from '../LogIn';
+import apiClient from '../../../../api/apiClient';
 
 const inputFieldsData = [
   {
@@ -60,7 +60,7 @@ const createInputFields = (fieldsData, handleChange, checkEmail, errors) => {
   ));
 };
 
-const PartnerSignUp = () => {
+const PartnerSignUp = ({ onClose }) => {
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',
@@ -180,7 +180,7 @@ const PartnerSignUp = () => {
   const checkEmail = async (e) => {
     const email = e.target.value;
     try {
-      const response = await axios.get(
+      const response = await apiClient.get(
         `http://localhost:8080/auth/check-email?email=${email}`
       );
       if (!response.data) {
@@ -205,17 +205,11 @@ const PartnerSignUp = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/auth/signup?role=PARTNER',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await apiClient.post(
+        'http://localhost:8080/auth/signup?role=PARTNER', formData);
 
       console.log('회원가입 성공:', response.data);
+      onClose();
     } catch (error) {
       console.error('회원가입 실패:', error);
     }
@@ -224,7 +218,7 @@ const PartnerSignUp = () => {
   return (
     <div className={styles.SignUp}>
       {!showLogin ? (
-        <Modal title="여행사 회원가입">
+        <Modal title="여행사 회원가입" onClose={onClose}>
           <Form
             onSubmit={handleSignUp}
             fields={createInputFields(

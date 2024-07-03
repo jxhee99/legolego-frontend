@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import styles from '../Header.module.css';
 import Modal from '../../../components/Modal/Modal';
 import Form from '../../../components/Form/Form';
@@ -7,6 +6,7 @@ import InputField from '../../../components/Form/InputField';
 import SubmitButton from '../../../components/Form/SubmitButton';
 import PartnerSignUp from './PartnerSignUp/PartnerSignUp';
 import LogIn from './LogIn';
+import apiClient from '../../../api/apiClient';
 
 const inputFieldsData = [
   { key: 'field-1', type: 'text', text: '이름', name: 'name', maxLength: 50 },
@@ -74,7 +74,7 @@ const createInputFields = (
   ));
 };
 
-const SignUp = () => {
+const SignUp = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     nickname: '',
@@ -212,7 +212,7 @@ const SignUp = () => {
   const checkNickname = async (e) => {
     const nickname = e.target.value;
     try {
-      const response = await axios.get(
+      const response = await apiClient.get(
         `http://localhost:8080/auth/check-nickname?nickname=${nickname}`
       );
       if (!response.data) {
@@ -232,7 +232,7 @@ const SignUp = () => {
   const checkEmail = async (e) => {
     const email = e.target.value;
     try {
-      const response = await axios.get(
+      const response = await apiClient.get(
         `http://localhost:8080/auth/check-email?email=${email}`
       );
       if (!response.data) {
@@ -257,17 +257,11 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:8080/auth/signup?role=USER',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await apiClient.post(
+        'http://localhost:8080/auth/signup?role=USER', formData);
 
       console.log('회원가입 성공:', response.data);
+      onClose();
     } catch (error) {
       console.error('회원가입 실패:', error);
     }
@@ -276,7 +270,7 @@ const SignUp = () => {
   return (
     <div className={styles.SignUp}>
       {!showPartnerSignUp && !showLogin && (
-        <Modal title="회원가입">
+        <Modal title="회원가입" onClose={onClose}>
           <Form
             onSubmit={handleSignUp}
             fields={createInputFields(
@@ -301,7 +295,7 @@ const SignUp = () => {
           </button>
         </Modal>
       )}
-      {showPartnerSignUp && <PartnerSignUp />}
+      {showPartnerSignUp && <PartnerSignUp onClose={onClose} />}
       {showLogin && <LogIn />}
     </div>
   );
