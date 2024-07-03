@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import apiClient from '../../../api/apiClient';
 import styles from '../Mypage.module.css';
 import { Link } from 'react-router-dom';
 
@@ -11,17 +11,8 @@ const LikeDiyPackage = () => {
   useEffect(() => {
     const fetchLikedList = async () => {
       try {
-        const token = localStorage.getItem('token'); // 로컬 스토리지에서 토큰을 가져옴
-        if (!token) {
-          throw new Error('Token is not available');
-        }
-
         // 좋아요한 패키지 목록
-        const response = await axios.get(`/api/my/likes`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await apiClient.get(`/my/likes`);
         const likedPackages = response.data;
         console.log('Fetched data', likedPackages);
 
@@ -29,7 +20,8 @@ const LikeDiyPackage = () => {
         const detailedPackages = likedPackages.map(item => ({
           packageNum: item.packageNum,
           packageName: item.packageName,
-          recruitmentConfirmed: item.recruitmentConfirmed,
+          airline: item.airline,
+          packageLikedNum: item.packageLikedNum,
         }));
 
         setPackages(detailedPackages);
@@ -53,7 +45,8 @@ const LikeDiyPackage = () => {
           <tr>
             <th>상품번호</th>
             <th>제목</th>
-            <th>진행 상태</th>
+            <th>여행출발일자</th>
+            <th>받은 좋아요</th>
           </tr>
         </thead>
         <tbody>
@@ -61,8 +54,9 @@ const LikeDiyPackage = () => {
             <tr key={item.packageNum}>
               <td>{item.packageNum}</td>
               <td><Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link></td>
-              <td className={styles.status}>
-                <span>{item.recruitmentConfirmed ? '승인 완료' : '승인 대기 중'}</span>
+              <td>{new Date(item.airline.boardingDate).toLocaleDateString()}</td>
+              <td>
+              <span style={{ fontWeight: 'bold' }}>{item.packageLikedNum}</span> / 25
               </td>
             </tr>
           ))}

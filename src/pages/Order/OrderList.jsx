@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styles from './OrderList.module.css';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
@@ -18,9 +17,7 @@ const OrderList = () => {
 
         const updatedOrders = await Promise.all(
           ordersData.map(async (order) => {
-            const productResponse = await apiClient.get(
-              `/products/${order.productNum}`
-            );
+            const productResponse = await apiClient.get(`/products/${order.productNum}`);
             return {
               ...order,
               productName: productResponse.data.productName,
@@ -53,33 +50,13 @@ const OrderList = () => {
     }
 
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('토큰이 없습니다.');
-      }
-
-      await axios.delete(`/api/user/orders/${orderNum}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      await apiClient.delete(`/user/orders/${orderNum}`);
+       
       // 환불 후 주문 목록 갱신
-      const response = await axios.get(`/api/user/orders`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await apiClient.get(`/user/orders`);
       const updatedOrders = await Promise.all(
         response.data.map(async (order) => {
-          const productResponse = await axios.get(
-            `/api/products/${order.productNum}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const productResponse = await apiClient.get(`/products/${order.productNum}`);
           return {
             ...order,
             productName: productResponse.data.productName,
@@ -95,6 +72,14 @@ const OrderList = () => {
       console.error('환불 처리 중 오류가 발생했습니다.', error);
       alert('환불에 실패하였습니다.'); // 환불 실패시 경고창 추가
     }
+  };
+
+  // merchantUid 일부만 보여주는 함수
+  const maskMerchantUid = (merchantUid) => {
+    const visibleChars = 10; // 보여질 문자열 길이
+    const maskedPart = merchantUid.substring(0, visibleChars);
+    const maskedUid = maskedPart + '...';
+    return maskedUid;
   };
 
   if (loading) return <div>Loading...</div>;
@@ -117,14 +102,20 @@ const OrderList = () => {
       <tbody>
         {orders.map((order) => (
           <tr key={order.merchantUid}>
-            <td>{order.merchantUid}</td>
+            <td>{maskMerchantUid(order.merchantUid)}</td>
             <td onClick={() => goToOrderDetail(order.orderNum)}>
               {order.productName}
             </td>
             <td>{order.productPrice.toLocaleString()}원</td>
             <td>{order.quantity}</td>
             <td>{order.totalPrice.toLocaleString()}원</td>
-            <td>{order.paymentStatus ? '결제완료' : '결제대기'}</td>
+            <td>
+              {order.refundStatus
+                ? '환불완료'
+                : order.paymentStatus
+                ? '결제완료'
+                : '결제실패'}
+            </td>
             <td>
               {order.review ? (
                 '작성완료'
@@ -133,13 +124,13 @@ const OrderList = () => {
                   className={styles.status}
                   onClick={() => navigate(`/review/${order.orderNum}`)}
                 >
-                  리뷰 작성하기
+                  리뷰쓰기
                 </button>
               )}
             </td>
             <td>
-              {order.refundStatus ? (
-                ' 환불완료'
+              {order.paymentStatus ? order.refundStatus ? (
+                '환불완료'
               ) : (
                 <button
                   className={styles.refund_button}
@@ -153,7 +144,7 @@ const OrderList = () => {
                 >
                   환불하기
                 </button>
-              )}
+              ): ' '}
             </td>
           </tr>
         ))}
