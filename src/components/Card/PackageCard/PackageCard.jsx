@@ -25,7 +25,7 @@ const PackageCard = ({
   return (
     <div className={styles.PackageCard}>
       <h4 className={styles.user_nickname}>
-        {userNickname}님이 만든 패키지 상품
+       <strong>{userNickname}</strong>님이 만든 패키지 상품
       </h4>
       <div className={styles.package_card} onClick={handlePackageCard}>
         <div className={styles.package_card_thumbnail}>

@@ -8,6 +8,7 @@ const About = () => {
     anchors: ['legolego', 'links'],
   };
 
+
   return (
     <>
       <Metas title="내가 만드는 패키지 여행" />
@@ -27,13 +28,12 @@ const About = () => {
               <Link to="/home">
                 <button className={styles.make_lego}>레고레고 보러가기!</button>
               </Link>
-              <button
-                data-animation-scroll="true"
-                data-target="#scrollhere"
-                className={styles.join_lego}
-              >
-                다른 사람이 만든 여행에 참여하시겠어요?
-              </button>
+              <Link to="#links">
+                <button data-animation-scroll="true"
+              data-target="#scrollhere" className={styles.join_lego}>
+                  다른 사람이 만든 여행에 참여하시겠어요?
+                </button>
+              </Link>
             </div>
             <div className={styles.go_picture}>
               <img
@@ -45,18 +45,18 @@ const About = () => {
         </Section>
 
         <Section>
-          <div className={styles.about_bottom} id="scrollhere">
+          <div className={styles.about_bottom } id="scrollhere">
             <div className={styles.about_package}>
               <div className={styles.about_package_intro}>
                 <p>
-                  빨리 출발하고 싶다면 ! <br /> 패키지 상품을 이용해 당장
-                  떠나보세요
+                  빨리 출발하고 싶다면 ! <br/> 
+                  패키지 상품을 이용해 당장 떠나보세요
                 </p>
               </div>
               <div className={styles.about_package_button}>
                 <Link to="/package-product">
                   <button className={styles.package_lego}>
-                    패키지 상품 보러 레고~
+                    패키지 상품 보러 레고 ~
                   </button>
                 </Link>
               </div>
@@ -64,13 +64,12 @@ const About = () => {
             <div className={styles.about_like}>
               <div className={styles.about_like_button}>
                 <Link to="/diy">
-                  <button className={styles.like_lego}>응원하러 레고~</button>
+                  <button className={styles.like_lego}>응원하러 레고 ~</button>
                 </Link>
               </div>
               <div className={styles.about_like_intro}>
                 <p>
-                  다른사람이 만든 패키지를 응원하면
-                  <br />
+                  다른사람이 만든 패키지를 응원하면 <br/>
                   정식 상품이 되어 함께 떠날 수 있어요!
                 </p>
               </div>

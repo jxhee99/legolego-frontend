@@ -1,6 +1,15 @@
 /*  */
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .Comment h2 {
   margin-bottom: 3rem;
+  font-family: 'DungGeunMo';
 }
 
 /* CommentSection.module.css */
@@ -15,6 +24,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  font-family: 'DungGeunMo';
 }
 
 .comment_contents {
