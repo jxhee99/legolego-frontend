@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Sidebar.module.css';
+import DeleteMember from '../../../components/Profile/DeleteMember/DeleteMember';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -28,7 +29,7 @@ const Sidebar = () => {
           <Link to="/mypage?tab=saved-packages">찜한 패키지</Link>
         </li>
         <li>
-          <button>회원탈퇴</button>
+          <DeleteMember endpoint={'/my/profile/delete'} />
         </li>
       </ul>
     </aside>
