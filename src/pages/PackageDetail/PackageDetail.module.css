@@ -7,8 +7,8 @@
 
 .PackageInformation .left_box {
   flex-basis: 50%;
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
 }
 
 .PackageInformation .left_box img {
@@ -21,15 +21,23 @@
   display: flex;
   flex-basis: 50%;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   margin-left: 2rem;
   padding: 1rem 0;
+}
+
+.PackageInformation .right_box h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #111111;
+  line-height: 36px;
+  letter-spacing: -1px;
 }
 
 .PackageInformation .right_box button:first-child {
   padding: 1rem;
   color: var(--color-white);
-  background-color: var(--color-orange);
+  background-color: #e71212;
   width: 50%;
 }
 
@@ -73,7 +81,7 @@
 
 .PackageInformation .progressBar {
   height: 10px;
-  background-color: #76c7c0;
+  background-color: #93d1ff;
   border-radius: 4px 0 0 4px;
 }
 
@@ -96,10 +104,25 @@
 }
 
 .Schedule h4 {
+  position: relative;
+  margin: 0.5rem;
+  padding-left: 2.75rem;
   font-size: 1.25rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
   color: #555;
+}
+
+.Schedule h4::before {
+  background-image: url('../../assets/images/location-dot-solid.png');
+  background-size: 14px auto;
+  background-position: 6px 2px;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  right: 94%;
+  margin-right: 16px;
+  content: '';
 }
 
 .Schedule ul {
@@ -112,7 +135,7 @@
   flex-direction: row;
   gap: 1rem;
   margin-bottom: 2rem;
-  border: 2px solid skyblue;
+  border: 2px solid #93d1ff;
   padding: 1rem;
   border-radius: 1%;
 }
@@ -136,46 +159,43 @@
   flex: 1;
 }
 
-.Schedule .CourseList {
+.Schedule .course_cards {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
   margin: 0;
   padding: 36px 0 36px 48px;
 }
 
-.Schedule .CourseList ::before {
+.Schedule .course_cards::before {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   margin-left: 23px;
-  border-right: solid 1px #7772d8;
+  border-right: solid 1px #93d1ff;
   content: '';
 }
 
-.Schedule .CourseList li {
+.Schedule .course_cards li {
   background-color: var(--color-white);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.Schedule .CourseList li div {
+.Schedule .course_cards li div {
   width: 100%;
   height: 100%;
   padding: 0.75rem;
 }
 
-.Schedule .CourseList li img {
+.Schedule .course_cards li img {
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
 
-.Schedule .CourseList li span {
+.Schedule .course_cards li span {
   display: block;
   font-size: 1.25rem;
   font-weight: bold;
@@ -183,7 +203,7 @@
   margin-bottom: 0.5rem;
 }
 
-.Schedule .CourseList li p {
+.Schedule .course_cards li p {
   font-size: 0.875rem;
   color: #666;
   margin-bottom: 0;

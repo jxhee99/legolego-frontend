@@ -7,29 +7,36 @@ const ScheduleInformation = ({ detailCourse }) => {
     <section className={styles.Schedule}>
       <h3>여행 일정</h3>
       <div>
-        {detailCourse &&
-          detailCourse.map((course) => (
-            <div key={course.detailCourseNum}>
-              <h4>{course.dayNum}</h4>
-              <ul className={styles.CourseList}>
-                {course.courses.map((item, index) => (
-                  <div key={`${course.detailCourseNum}-${index}`}>
-                    <p>
-                      {index + 1}. {item}
-                    </p>
-                    <li>
-                      <div>
-                        <img
-                          src={course.fileUrls[index] || noneWhite}
-                          alt="이미지"
-                        />
-                      </div>
-                    </li>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div>
+          {detailCourse &&
+            detailCourse.map((course, idx) => (
+              <div key={course.detailCourseNum} className={styles.CourseList}>
+                <h4>
+                  {idx + 1}일차 ({course.dayNum})
+                </h4>
+                <ul className={styles.course_cards}>
+                  {course.courses.map((item, index) => (
+                    <div
+                      key={`${course.detailCourseNum}-${index}`}
+                      className={styles.course_card}
+                    >
+                      <p>
+                        {index + 1}. {item}
+                      </p>
+                      <li>
+                        <div>
+                          <img
+                            src={course.fileUrls[index] || noneWhite}
+                            alt="이미지"
+                          />
+                        </div>
+                      </li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            ))}
+        </div>
       </div>
     </section>
   );

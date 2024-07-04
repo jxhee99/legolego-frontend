@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; /* 이미지의 아랫부분을 보여줌 */
-    height: 50vh;
+  height: 50vh;
   color: white;
   display: flex;
   justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
@@ -24,7 +24,7 @@
   position: absolute; /* 절대 위치 지정 */
   bottom: 45px; /* 아래쪽 여백 50px */
   right: 150px; /* 오른쪽 여백 100px */
-  font-size: 1,5rem;
+  font-size: 1, 5rem;
   padding: 0.8rem 4rem 0.8rem 1.5rem; /* 약간의 내부 여백 */
   border: none; /* 테두리 제거 */
   border-radius: 8px; /* 모서리 둥글게 */
@@ -32,10 +32,9 @@
   color: #000; /* 글씨 색상 */
 }
 
-p{
-font-size: 1.3rem;
-text-shadow: 3px;
-position: absolute; /* 절대 위치 지정 */
-bottom: 105px; /* 아래쪽 여백 50px */
-right: 155px; /* 오른쪽 여백 100px */
+.packageBackground p {
+  font-size: 1.3rem;
+  text-shadow: 3px;
+  bottom: 105px; /* 아래쪽 여백 50px */
+  right: 155px; /* 오른쪽 여백 100px */
 }

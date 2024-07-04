@@ -9,54 +9,89 @@
   color: #333;
 }
 
-.AirplaneInformation .airline_card {
-  display: flex;
-  justify-content: space-between;
-  padding: 2.5rem;
-  background-color: #fff;
-  border: 1px solid var(--color-gray);
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.start_airline,
-.comming_airline {
-  flex: 1;
-  margin-right: 20px;
-}
-
-.start_airline:last-child,
-.comming_airline:last-child {
-  margin-right: 0;
-}
-
-.start_airline h4,
-.comming_airline h4 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.airline_card div {
+.flight {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
-.airline_card div div {
+.flight_box {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  width: 614px;
+  margin: 0 auto;
+  padding: 15px;
 }
 
-.airline_card span {
+.flight_departure,
+.flight_arrive {
+  flex: 1;
+  text-align: center;
+}
+
+.flight_departure span,
+.flight_arrive span {
   display: block;
-  font-size: 1.25rem;
-  color: #777;
 }
 
-.airline_card p {
-  margin-top: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #555;
+.airplane {
+  margin-top: 1rem;
+}
+
+.time {
+  font-size: 1.4em;
+  color: #2d3748;
+}
+
+.date {
+  font-size: 0.9em;
+  color: #718096;
+}
+
+.country {
+  font-size: 1.1em;
+  color: #1a202c;
+  margin-top: 8px;
+}
+
+.flight_time::after {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  width: 380px;
+  height: 5px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background: #ddd;
+  content: '';
+}
+
+.flight_departure::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: -10px;
+  left: 153px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #fe7171;
+  border-radius: 100%;
+  background: #fff;
+  z-index: 9;
+}
+
+.flight_arrive::before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: -10px;
+  right: 150px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #fe7171;
+  border-radius: 100%;
+  background: #fff;
+  z-index: 9;
 }
