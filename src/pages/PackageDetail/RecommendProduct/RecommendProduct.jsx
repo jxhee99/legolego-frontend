@@ -17,7 +17,7 @@ const RecommendProduct = ({ destination }) => {
         if (response.status === 200) {
           setData(response.data);
         } else {
-          console.error('추천 상품 불러오기 실패:', response.status);
+          console.log('추천 상품 없음', response.status);
         }
       } catch (error) {
         console.error('추천 상품 불러오는 중 오류 발생:', error);

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ListMenu from '../../components/List/ListMenu';
 import HeaderPartner from '../../components/Header/HeaderPartner';
+import DeleteMember from '../../components/Profile/DeleteMember/DeleteMember';
 
 const Partner = () => {
   return (
@@ -19,6 +20,9 @@ const Partner = () => {
         </li>
         <li>
           <Link to="/partner/lists/orders">여행 상품</Link>
+        </li>
+        <li>
+          <DeleteMember endpoint={'/partner/profile/delete'} />
         </li>
       </ListMenu>
     </>

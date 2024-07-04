@@ -1,0 +1,85 @@
+.formContainer {
+  flex: 1;
+  max-width: 700px;
+  height: 50%;
+  /* margin: 2rem 0 0 3rem; */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.formContainer h4 {
+  margin-top: 1rem;
+}
+
+.formContainer form{
+  margin-top: 1.75rem;
+}
+
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+
+.Input label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.Input input {
+  padding: 10px;
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.Input div {
+  padding: 10px;
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.Input input:focus {
+  border-color: none;
+  outline: none;
+}
+
+.button {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* 수정모드 일 때 */
+.Input .active {
+  background-color: #fff;
+}
+
+.Input .active:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 에러 일 때 */
+.error {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: -10px;
+}

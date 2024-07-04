@@ -1,18 +1,51 @@
-import styles from './AdminAccount.module.css';
-import Input from '../../../components/Form/Input/Input';
+import styles from '../../../components/Profile/Profile.module.css';
+import { useState, useEffect } from 'react';
+import apiClient from '../../../api/apiClient';
+import PasswordChange from '../../../components/Profile/PasswordChange';
 
 const AdminAccount = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [phone, setPhone] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiClient.get('/admin/profile');
+        setData(response.data);
+        setPhone(response.data.partnerPhone); // 전화번호 초기값 설정
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  console.log(data);
+
   return (
     <div className={styles.formContainer}>
-      <h2>프로필 관리</h2>
+      <h4>프로필 관리</h4>
       <form>
-        <Input id="name" text="이름" type="text" />
-        <Input id="email" text="이메일" type="email" />
-        <Input id="password" text="기존 비밀번호" type="password" />
-        <Input id="newPassword" text="새로운 비밀번호" type="password" />
-        <Input id="checkPassword" text="비밀번호 재확인" type="password" />
-        <button className={styles.button}>비밀번호 변경</button>
+        <div className={styles.Input}>
+          <label htmlFor="name">이름</label>
+          <div>{data.adminName}</div>
+        </div>
+        <div className={styles.Input}>
+          <label htmlFor="email">이메일</label>
+          <div>{data.adminEmail}</div>
+        </div>
       </form>
+      <br></br>
+      <h4>비밀번호 변경</h4>
+      <PasswordChange endpoint={'/admin/profile/password'} />
     </div>
   );
 };
