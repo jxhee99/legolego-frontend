@@ -71,6 +71,7 @@ const PartnerSignUp = ({ onClose }) => {
 
   const [showLogin, setShowLogin] = useState(false);
   const [errors, setErrors] = useState({});
+  const [showVerificationMessage, setShowVerificationMessage] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -209,7 +210,8 @@ const PartnerSignUp = ({ onClose }) => {
         'http://localhost:8080/auth/signup?role=PARTNER', formData);
 
       console.log('회원가입 성공:', response.data);
-      onClose();
+      // onClose();
+      setShowVerificationMessage(true);
     } catch (error) {
       console.error('회원가입 실패:', error);
     }
@@ -219,30 +221,35 @@ const PartnerSignUp = ({ onClose }) => {
     <div className={styles.SignUp}>
       {!showLogin ? (
         <Modal title="여행사 회원가입" onClose={onClose}>
-          <Form
-            onSubmit={handleSignUp}
-            fields={createInputFields(
-              inputFieldsData,
-              handleChange,
-              checkEmail,
-              errors
-            )}
-            submitButton={<SubmitButton text="회원가입" />}
-            findAccount={
-              <p
-                onClick={() => setShowLogin(true)}
-                style={{ cursor: 'pointer' }}
-              >
-                이미 회원이신가요? 로그인하기
-              </p>
-            }
-          />
+          {showVerificationMessage ? (
+            <p>이메일 인증 링크가 발송되었습니다. 이메일을 확인해주세요.</p>
+          ) : (
+            <Form
+              onSubmit={handleSignUp}
+              fields={createInputFields(
+                inputFieldsData,
+                handleChange,
+                checkEmail,
+                errors
+              )}
+              submitButton={<SubmitButton text="회원가입" />}
+              findAccount={
+                <p
+                  onClick={() => setShowLogin(true)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  이미 회원이신가요? 로그인하기
+                </p>
+              }
+            />
+          )}
         </Modal>
       ) : (
         <LogIn />
       )}
     </div>
   );
+
 };
 
 export default PartnerSignUp;
