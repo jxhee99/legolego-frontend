@@ -28,7 +28,6 @@ import AdminLogin from '../pages/AdminLogin/AdminLogin';
 import AdminAccount from '../pages/Admin/AdminAccount/AdminAccount';
 import PreTrips from '../pages/Admin/PreTrips/PreTrips';
 import MembersList from '../pages/Admin/MembersList/MembersList';
-import UserReviews from '../pages/Admin/UserReviews/UserReviews';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
@@ -42,6 +41,9 @@ import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import FindEmail from '../pages/FindAccount/FindEmail';
 import FindPassword from '../pages/FindAccount/FindPassword';
 
+// 회원가입 - 이메일 인증
+import EmailVerification from '../components/Header/Authentication/EmailVerification';
+
 // 주문 및 결제
 import Order from '../pages/Order/Order';
 import Payment from '../pages/Payment/Payment';
@@ -49,6 +51,7 @@ import Payment from '../pages/Payment/Payment';
 // 지난여행
 import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
+import { element } from 'prop-types';
 
 export const ROUTE = {
   ABOUT: {
@@ -101,9 +104,14 @@ export const ROUTE = {
     link: '/reset-password',
     element: ResetPassword,
   },
+  VERIFY_EMAIL: {
+    path: '/verify-email',
+    link: '/verify-email',
+    element: EmailVerification,
+  },
   ORDER_DETAIL: {
-    path: '/order-detail/:orderNum',
-    link: '/order-detail/:orderNum',
+    path: 'order-detail',
+    link: 'order-detail',
     element: OrderDetail,
   },
   PRETRIP_DETAIL: {
@@ -161,6 +169,8 @@ export const ROUTE_DIY_EDIT = {
 };
 
 export const ROUTE_DIY_EDIT_ARR = Object.values(ROUTE_DIY_EDIT);
+
+
 
 // MyPage Tabs
 export const ROUTE_MY_PAGE = {
@@ -240,11 +250,6 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/lists/members',
     link: '/admin/lists/members',
     element: MembersList,
-  },
-  ADMIN_LISTS_REVIEWS: {
-    path: '/admin/lists/user-reviews',
-    link: '/admin/lists/user-reviews',
-    element: UserReviews,
   },
 };
 

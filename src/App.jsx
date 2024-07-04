@@ -28,6 +28,7 @@ import FindEmail from './pages/FindAccount/FindEmail';
 import FindPassword from './pages/FindAccount/FindPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import OrderList from './pages/Order/OrderList';
+import EmailVerification from './components/Header/Authentication/EmailVerification';
 
 const App = () => {
   const { isAuthenticated, role } = useContext(AuthContext);
@@ -77,6 +78,7 @@ const App = () => {
       <Route path="/find-email" element={<FindEmail />} />
       <Route path="/find-password" element={<FindPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/auth/verify-email" element={<EmailVerification />} />
 
       <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
         <Route element={<AdminMenu />}>
