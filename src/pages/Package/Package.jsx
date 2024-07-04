@@ -49,15 +49,19 @@ const Package = () => {
   return (
     <>
       <Metas title="패키지 상품" />
+      <div className={styles.packageBackground}>
+        <p>다른 사람이 만든 패키지 여행을 함께 떠나보세요!</p>
+        <input
+          type="text"
+          className={styles.searchInput}
+          placeholder="패키지 상품을 검색하세요.     "
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
       <section className={`${styles.Package} layout`}>
         <div>
           <h2>어떤 여행을 함께 해볼까요?</h2>
-          <input
-            type="text"
-            placeholder="패키지 상품을 검색하세요 "
-            value={searchTerm}
-            onChange={handleSearch}
-          />
         </div>
         <div className={styles.package_cards}>
           {displayedData.map((packageItem) => (

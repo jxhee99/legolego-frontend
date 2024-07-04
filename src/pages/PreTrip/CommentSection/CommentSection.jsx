@@ -19,6 +19,9 @@ const CommentSection = () => {
   }, []);
 
   return (
+
+
+    
     <div className={`${styles.Comment} layout`}>
       <h2>지난 여행을 둘러보세요!</h2>
       <div className={styles.comments}>

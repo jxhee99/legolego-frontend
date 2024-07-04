@@ -4,15 +4,31 @@
   gap: 1.5rem;
 }
 
-.create_button{
-  align-self: flex-end;
-  width: 120px;
-  height: 40px;
+.diyBackground {
+  background-image: url('https://cdn.pixabay.com/photo/2021/08/24/21/05/lego-6571821_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  color: white;
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
+  align-items: flex-end; /* 버튼을 아래로 정렬 */
+  padding: 0; /* 내부 여백 제거 */
+  margin-top: 0; /* 상단 여백 제거 */
+  position: relative;
+}
+
+.create_button {
+  width: 180px;
+  height: 60px;
   border-radius: 12px;
   background-color: #000;
   color: #fff;
+  position: absolute; /* 버튼을 이미지 안에서 절대 위치로 배치 */
+  bottom: 40px; /* 아래쪽 여백 */
+  right: 100px; /* 오른쪽 여백 */
 }
-
 .create_button>a{
   color: #fff;
 }
@@ -29,4 +45,11 @@
 .pagination_box{
   display: flex;
   justify-content: center;
+}
+
+.diy_cards strong {
+  font-size: 1.05em;  /* 글자 크기 */
+  font-weight: bold;  /* 글자 굵기 */
+  color: #93d1ff;  /* 글자 색상 */
+  margin-right: 0.1rem;
 }

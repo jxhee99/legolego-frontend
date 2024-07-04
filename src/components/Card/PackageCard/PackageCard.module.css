@@ -57,3 +57,9 @@
 .package_card.package_card_icon span {
   line-height: 24px;
 }
+.user_nickname strong {
+  font-size: 1.1em;  /* 글자 크기 */
+  font-weight: bold;  /* 글자 굵기 */
+  color: red;  /* 글자 색상 */
+  margin-right: 0.1rem;
+}

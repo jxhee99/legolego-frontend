@@ -29,18 +29,20 @@ const Diy = () => {
   return (
     <>
       <Metas title="DIY" />
-      <section className={`${styles.Diy} layout`}>
+        <div className={styles.diyBackground}>
         {userRole === 'USER' && (
           <button className={styles.create_button}>
             <Link to="/diy-create">패키지 만들기</Link>
           </button>
         )}
+        </div>
+      <section className={`${styles.Diy} layout`}>
         <h2>DIY 패키지를 응원해주세요!</h2>
         <div className={styles.diy_cards}>
           {currentItems.map((packages) => (
             <div key={packages.packageNum}>
               <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
-                {packages.user.userName}님의 여행 둘러보세요!
+                <strong>{packages.user.userName}</strong>님의 여행 둘러보세요!
               </h4>
               <DiyCard {...packages} page={true} />
             </div>
