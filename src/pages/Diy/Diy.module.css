@@ -1,3 +1,4 @@
+
 .Diy {
   display: flex;
   flex-direction: column;
@@ -5,24 +6,40 @@
 }
 
 .diyBackground {
-  background-image: url('https://cdn.pixabay.com/photo/2021/08/24/21/05/lego-6571821_1280.jpg');
+  background-image: url('../../assets/images/legoMountain.jpeg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 90rem;
   background-position: center;
   height: 50vh;
   color: white;
   display: flex;
-  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
-  align-items: flex-end; /* 버튼을 아래로 정렬 */
-  padding: 0; /* 내부 여백 제거 */
-  margin-top: 0; /* 상단 여백 제거 */
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  border-radius: 2.5rem;
   position: relative;
+  transition: background-size 0.3s ease; /* 크기 변경 시 부드러운 전환 */
 }
-.diyBackground p{
+
+.diyBackground.scrolled {
+  margin:0;
+  border-radius: 0rem;
+  background-size: 120%; /* 스크롤 후 배경 크기 100% */
+  height: 70vh;
+}
+
+.Diy.scrolledBackground{
+  background: linear-gradient(180deg, rgba(169, 197, 226, 0.3), rgba(164, 137, 121, 0.3)),
+              url('/mnt/data/diyBackground.JPG');  
+}
+.diyBackground p {
   position: absolute;
   font-size: 1.3rem;
   text-shadow: 3px;
-  bottom: 113px; 
+  bottom: 115px; 
   right: 100px;
 }
 
@@ -32,13 +49,14 @@
   border-radius: 12px;
   background-color:#93d1ff; 
   color: #fff;
-  position: absolute; /* 버튼을 이미지 안에서 절대 위치로 배치 */
-  bottom: 40px; /* 아래쪽 여백 */
-  right: 100px; /* 오른쪽 여백 */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* 버튼 그림자 */
-
+  position: absolute;
+  bottom: 40px;
+  right: 100px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
 }
-.create_button>a{
+
+.create_button > a {
   color: #fff;
 }
 
@@ -49,18 +67,19 @@
   gap: 20px;
   width: 100%;
   max-width: var(--size-max-width);
+
 }
 
-.pagination_box{
+.pagination_box {
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .diy_cards strong {
-  font-size: 1.05em;  /* 글자 크기 */
-  font-weight: bold;  /* 글자 굵기 */
-  color: #93d1ff;  /* 글자 색상 */
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #000000;
   margin-right: 0.1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 글자 그림자 */
-
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

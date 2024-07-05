@@ -1,6 +1,6 @@
-import styles from './Diy.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Diy.module.css';
 import useFetchData from '../../hooks/useFetchDiyData';
 import DiyCard from '../../components/Diy/DiyCard';
 import Metas from '../../components/common/Metas';
@@ -14,14 +14,27 @@ const Diy = () => {
   const itemsPerPage = 12;
   const endpoint = '/packages';
 
-  // 데이터 훅을 이용해 API 호출
   const { data, loading } = useFetchData(endpoint);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (loading) {
     return <p>로딩 중...</p>;
   }
 
-  // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = data.slice(startIndex, endIndex);
@@ -29,15 +42,18 @@ const Diy = () => {
   return (
     <>
       <Metas title="DIY" />
-        <div className={styles.diyBackground}>
+      <div
+        className={`${styles.diyBackground} ${isScrolled ? styles.scrolled : ''}`}
+      >
         {userRole === 'USER' && (
           <button className={styles.create_button}>
             <Link to="/diy-create">패키지 만들기</Link>
           </button>
         )}
         <p>내 맘대로 떠나는 DIY 패키지 만들러 레고 ~</p>
-        </div>
-      <section className={`${styles.Diy} layout`}>
+      </div>
+      <section className={`${styles.Diy} ${isScrolled ? styles.scrolledBackground : ''}`}>
+        <div className={`layout`}>
         <h2>DIY 패키지를 응원해주세요!</h2>
         <div className={styles.diy_cards}>
           {currentItems.map((packages) => (
@@ -49,9 +65,8 @@ const Diy = () => {
             </div>
           ))}
         </div>
-      </section>
+        </div>
       <div className={styles.pagination_box}>
-        {/* 페이지네이션 컴포넌트 */}
         <PaginationComp
           page={page}
           setPage={setPage}
@@ -59,8 +74,76 @@ const Diy = () => {
           itemsPerPage={itemsPerPage}
         />
       </div>
+      </section>
     </>
   );
 };
 
 export default Diy;
+
+// import styles from './Diy.module.css';
+// import { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import useFetchData from '../../hooks/useFetchDiyData';
+// import DiyCard from '../../components/Diy/DiyCard';
+// import Metas from '../../components/common/Metas';
+// import PaginationComp from '../../components/Pagination/PaginationComp';
+
+// const Diy = () => {
+//   const userRole = localStorage.getItem('role');
+//   const query = new URLSearchParams(location.search);
+//   const initialPage = parseInt(query.get('page')) || 1;
+//   const [page, setPage] = useState(initialPage);
+//   const itemsPerPage = 12;
+//   const endpoint = '/packages';
+
+//   // 데이터 훅을 이용해 API 호출
+//   const { data, loading } = useFetchData(endpoint);
+
+//   if (loading) {
+//     return <p>로딩 중...</p>;
+//   }
+
+//   // 현재 페이지에 맞는 데이터 계산
+//   const startIndex = (page - 1) * itemsPerPage;
+//   const endIndex = startIndex + itemsPerPage;
+//   const currentItems = data.slice(startIndex, endIndex);
+
+//   return (
+//     <>
+//       <Metas title="DIY" />
+//         <div className={styles.diyBackground}>
+//         {userRole === 'USER' && (
+//           <button className={styles.create_button}>
+//             <Link to="/diy-create">패키지 만들기</Link>
+//           </button>
+//         )}
+//         <p>내 맘대로 떠나는 DIY 패키지 만들러 레고 ~</p>
+//         </div>
+//       <section className={`${styles.Diy} layout`}>
+//         <h2>DIY 패키지를 응원해주세요!</h2>
+//         <div className={styles.diy_cards}>
+//           {currentItems.map((packages) => (
+//             <div key={packages.packageNum}>
+//               <h4 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+//                 <strong>{packages.user.userName}</strong>님의 여행 둘러보세요!
+//               </h4>
+//               <DiyCard {...packages} page={true} />
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+//       <div className={styles.pagination_box}>
+//         {/* 페이지네이션 컴포넌트 */}
+//         <PaginationComp
+//           page={page}
+//           setPage={setPage}
+//           totalItems={data.length}
+//           itemsPerPage={itemsPerPage}
+//         />
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Diy;

@@ -36,7 +36,8 @@ const DiySection = () => {
     return <p>{error}</p>;
   }
 
-  const limitedDiyData = diyData.slice(0, 6);
+  // 최근에 올라온 DIY 패키지 4개 선택
+  const limitedDiyData = diyData.slice(0, 4);
 
   return (
     <section className={styles.DiySection}>

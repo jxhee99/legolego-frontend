@@ -22,7 +22,10 @@ const PackageSection = () => {
     fetchData();
   }, []);
 
-  const limitedPackageData = packageData.slice(0, 6);
+  // recruitmentDeadline이 임박한 순으로 정렬하고 상위 3개 항목만 선택
+  const sortedPackageData = packageData
+    .sort((a, b) => new Date(a.recruitmentDeadline) - new Date(b.recruitmentDeadline))
+    .slice(0, 3);
 
   return (
     <section className={styles.PackageSection}>
@@ -36,7 +39,7 @@ const PackageSection = () => {
         </button>
       </div>
       <div className={styles.package_section_cards}>
-        {limitedPackageData.map((packageItem) => (
+        {sortedPackageData.map((packageItem) => (
           <PackageCard key={packageItem.productNum} {...packageItem} />
         ))}
       </div>

@@ -2,26 +2,26 @@
 .IntroSection {
   padding: 8rem;
   /* background-color: #d79ef3; */
-  background-image: url(https://cdn.pixabay.com/photo/2016/11/21/17/44/arches-national-park-1846759_960_720.jpg);
+  /* background-image: url(https://cdn.pixabay.com/photo/2016/11/21/17/44/arches-national-park-1846759_960_720.jpg); */
+  background-image: url('../../assets/images/yellowTruck.jpeg');
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; /* 필요에 따라 이미지 중심을 맞춤 */
-  height:70vh;
-  color:white;
+  height: 70vh;
+  color: white;
   font-size: 1.1rem;
 }
-
-
 
 /* PackageSection */
 .PackageSection {
   padding: 3.5rem 3rem 3rem;
 }
 
-
-.PackageSection h2{
-  margin-left:13%;
+.PackageSection h2 {
+  margin-left: 13%;
 }
+
 .PackageSection .package_section_cards {
   display: flex;
   justify-content: center;
@@ -38,15 +38,25 @@
   padding: 3.5rem 3rem 3rem;
 }
 
-.DiySection h2{
-  margin-left:13%;
+.DiySection h2 {
+  margin-left: 13%;
 }
+
 .DiySection .diy_section_cards {
   display: flex;
-  justify-content: center;
-  gap: 1.75rem;
+  justify-content: center; /* 컨테이너를 가운데 정렬 */
+  flex-wrap: wrap; /* 여러 줄로 감싸기 허용 */
+  gap: 1rem; /* 간격 줄임 */
   margin-top: 3rem;
+}
 
+.DiySection .diy_section_cards > div {
+  flex: 1 1 calc(25% - 1rem); /* 각 카드의 크기를 25%로 설정하고 간격을 뺌 */
+  max-width: 17rem; /* 카드 최대 너비 설정 */
+  box-sizing: border-box; /* 패딩과 보더를 포함한 크기 계산 */
+  display: flex;
+  flex-direction: column; /* 카드 내부의 콘텐츠를 수직으로 정렬 */
+  align-items: flex-start; /* 카드 내부의 콘텐츠를 왼쪽 정렬 */
 }
 
 .DiySection .diy_title {
@@ -57,7 +67,7 @@
   position: absolute;
   top: 0;
   right: 10px;
-  background-color: #fe7171;
+  background-color: #FFBE0B;
   /* background-color: #cc70f0; */
   border: none;
   color: white;

@@ -11,6 +11,7 @@
   width: 328px;
   height: 340px;
   cursor: pointer;
+  background-color: white;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -40,6 +41,7 @@
   align-items: center;
   padding: 1rem 1.25rem;
   margin-top: 0.5rem;
+
 }
 
 .package_card .package_card_bottom {
