@@ -19,6 +19,7 @@
 .orderDetail_packageCard {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .OrderDetail h2 {

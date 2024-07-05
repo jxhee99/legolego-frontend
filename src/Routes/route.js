@@ -110,8 +110,8 @@ export const ROUTE = {
     element: EmailVerification,
   },
   ORDER_DETAIL: {
-    path: 'order-detail',
-    link: 'order-detail',
+    path: '/order-detail/:orderNum',
+    link: '/order-detail/:orderNum',
     element: OrderDetail,
   },
   PRETRIP_DETAIL: {

@@ -7,6 +7,32 @@
 }
 
 
+.commentBackground {
+  background-image: url('../../../assets/images/legoHiker.jpg');
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
+  background-position: 0px -1300px;
+  height: 50vh;
+  color: white;
+  display: flex;
+  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
+  align-items: flex-end; /* 버튼을 아래로 정렬 */
+  padding: 0; /* 내부 여백 제거 */
+  margin-top: 0; /* 상단 여백 제거 */
+  position: relative;
+}
+
+.commentText{
+  position: absolute;
+  font-size: 1.3rem;
+  text-shadow: 3px;
+  bottom: 80px; 
+  left: 520px;
+}
+
+
 .Comment h2 {
   margin-bottom: 3rem;
   font-family: 'DungGeunMo';
