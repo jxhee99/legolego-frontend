@@ -23,7 +23,9 @@ const DiySteps = ({
         </Link>
       </li>
       <li className={step === 'schedule' ? styles.active : ''}>
-        {route.startDate ? (
+        {route.startDate &&
+        airline.comeAirlineName &&
+        airline.startAirlineName ? (
           <Link
             to="/diy-create?step=schedule"
             className={step === 'airplane' ? styles.blink : ''}

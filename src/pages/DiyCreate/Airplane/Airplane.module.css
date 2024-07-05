@@ -6,6 +6,14 @@
   gap: 4rem;
 }
 
+.airplane_box button {
+  background-color: #3a86ff;
+}
+
+.airplane_box button:hover {
+  background-color: #0056b3;
+}
+
 .Airplane {
   display: flex;
   justify-content: center;
@@ -14,7 +22,6 @@
 
 .Airplane > input {
   border: 1px solid #bebebe;
-
   border-radius: 4px;
 }
 
@@ -26,7 +33,7 @@
 .date_search > input {
   width: 150px;
   height: 56px;
-  padding: 0.5rem;
+  padding: 9px;
   text-align: center;
   border: 1px solid #bebebe;
   border-radius: 4px;
@@ -34,8 +41,6 @@
 
 .date_search button {
   width: 60px;
-  background-color: #3fa2f6;
-  color: #fff;
   border-radius: 4px;
 }
 
@@ -54,9 +59,9 @@
   top: 70px;
   bottom: 0;
   left: calc(50%);
-  width: 1px;
-
+  width: 0.1px;
   background-color: #eef3f7;
+  border-left: 1px dashed #e3e3e3;
 }
 
 .airplane_information .searched {
@@ -64,6 +69,12 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+}
+
+.searched h4 {
+  font-size: 1.5rem;
+  font-family: 'yg-jalnan';
+  color: #3e3e3e;
 }
 
 /* 선택된 항공편 표시 */
@@ -84,7 +95,6 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  border-top: 1px solid #eef3f7;
 }
 
 .selected_box .selected_flightbox {
@@ -101,15 +111,13 @@
   bottom: 0;
   top: 10px;
   left: calc(50%);
-  width: 1px;
+  width: 0.1px;
   height: 180px;
-  background-color: #eef3f7;
+  border-left: 1px dashed #e3e3e3;
 }
 
 /* 일정 링크 버튼 */
 .link_schedule {
-  background-color: #3fa2f6;
-  color: #fff;
   width: 100px;
   height: 40px;
   border-radius: 12px;

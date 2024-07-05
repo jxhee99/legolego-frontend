@@ -56,6 +56,13 @@ const Airplane = () => {
         boardingDate: flight.date,
       })
     );
+    // 스크롤 하단으로 이동
+    if (selectedReturn !== -1) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth', // 부드러운 스크롤 효과
+      });
+    }
   };
 
   const handleSelectedReturn = (flight, index) => {
@@ -68,6 +75,13 @@ const Airplane = () => {
       })
     );
     dispatch(updateRoute({ startDate, endDate }));
+    // 스크롤 하단으로 이동
+    if (selectedStart !== -1) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth', // 부드러운 스크롤 효과
+      });
+    }
   };
 
   return (

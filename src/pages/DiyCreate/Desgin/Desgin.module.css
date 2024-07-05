@@ -18,11 +18,11 @@
 .lego_box p {
   font-family: 'Bowlby One', sans-serif;
   font-size: 3rem;
-  color: #9a73e8;
+  color: #8338ec;
 }
 
 .lego_box .span2 {
-  color: #a7f9bb;
+  color: #ffbe0b;
 }
 
 @keyframes bounce {

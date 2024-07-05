@@ -118,7 +118,7 @@ function MapComponent({ date, closeModal }) {
             onCloseClick={() => setInfoWindowVisible(false)}
           >
             <div>
-              <h3>{selectedCourse.name}</h3>
+              <h5>{selectedCourse.name}</h5>
               <p>{selectedCourse.address}</p>
               {selectedCourse.photoUrl && (
                 <img
@@ -149,7 +149,7 @@ function MapComponent({ date, closeModal }) {
         >
           <input type="search" />
         </Autocomplete>
-        <button onClick={handleUpdateCourses}>일정추가</button>
+        <button onClick={handleUpdateCourses}>추가</button>
       </div>
     </>
   ) : (
