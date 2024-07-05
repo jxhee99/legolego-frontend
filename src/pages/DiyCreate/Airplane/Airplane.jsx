@@ -147,7 +147,7 @@ const Airplane = () => {
             )}
           </>
         )}
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div className={styles.selected_flightbox}>
           {airline.startAirlineName && (
             <DiyFlightCard
               flight={{
