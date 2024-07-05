@@ -1,4 +1,4 @@
-import styles from '../PackageDetail.module.css';
+import styles from './PackageInformation.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -86,9 +86,20 @@ const PackageInformation = ({
       </div>
       <div className={styles.right_box}>
         <h2>{productName}</h2>
-        <p>{partnerName}</p>
-        <div>{necessaryPeople} 명을 모집하고 있어요~!</div>
-        <p>{price} ₩</p>
+        <p className={styles.partner}>{partnerName}</p>
+        <p>{price} 원</p>
+        <div className={styles.progress}>
+          <div
+            className={styles.progressBar}
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
+        <div className={styles.progressText}>
+          <span>{necessaryPeople}명 모집</span>{' '}
+          <span>
+            {orderCount} / {necessaryPeople} 명 참여
+          </span>
+        </div>
         <div className={styles.icon_information}>
           <div>
             <span>
@@ -111,22 +122,21 @@ const PackageInformation = ({
             </div>
           </div>
         </div>
-        <div className={styles.progress}>
-          <div
-            className={styles.progressBar}
-            style={{ width: `${progressPercentage}%` }}
-          ></div>
-        </div>
-        <div className={styles.progressText}>
-          {orderCount} / {necessaryPeople} 명 참여
-        </div>
+
         <div>
           {!isWished ? (
-            <button onClick={handleWishNum}>상품 찜하기</button>
+            <button onClick={handleWishNum} className={styles.wish_button}>
+              상품 찜하기
+            </button>
           ) : (
-            <button onClick={handleCancelWish}>찜 취소하기</button>
+            <button onClick={handleCancelWish} className={styles.wish_button}>
+              찜 취소하기
+            </button>
           )}
-          <button onClick={() => navigate(`/order/${id}`)}>
+          <button
+            onClick={() => navigate(`/order/${id}`)}
+            className={styles.payment_button}
+          >
             레고! 결제하기
           </button>
         </div>

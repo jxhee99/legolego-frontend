@@ -1,0 +1,86 @@
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.PackageInformation {
+  display: flex;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  animation: slideDown 0.5s ease-out;
+}
+
+.left_box {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.left_box img {
+  width: 352px;
+  height: 352px;
+  border-radius: 8px;
+  object-fit: cover;
+  animation: slideDown 0.7s ease-out;
+}
+
+.right_box {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: slideDown 0.9s ease-out;
+}
+
+.right_box h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.partner {
+  color: #555;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  position: relative;
+  height: 10px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #fe7171;
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.icon_information {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.icon_information > div {
+  display: flex;
+  align-items: center;
+}
+
+.icon_information span {
+  margin-left: 0.5rem;
+}

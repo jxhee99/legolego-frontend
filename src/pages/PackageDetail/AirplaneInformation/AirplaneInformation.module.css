@@ -1,6 +1,19 @@
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .AirplaneInformation {
-  padding: 3.5rem 0 5rem 0;
+  margin-top: 3rem;
+  padding: 3.5rem 0 10rem 0;
   border-bottom: 1px solid #bebebe;
+  animation: slideDown 0.5s ease-out;
 }
 
 .AirplaneInformation h3 {
@@ -13,6 +26,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  animation: slideDown 0.7s ease-out;
 }
 
 .flight_box {
@@ -27,7 +41,6 @@
 .flight_departure,
 .flight_arrive {
   flex: 1;
-  text-align: center;
 }
 
 .flight_departure span,
@@ -35,32 +48,44 @@
   display: block;
 }
 
+.flight_departure {
+  position: absolute;
+  top: 30px;
+  left: -30px;
+}
+
+.flight_arrive {
+  position: absolute;
+  top: 30px;
+  right: -70px;
+}
+
 .airplane {
   margin-top: 1rem;
+  animation: slideDown 1s ease-out;
 }
 
 .time {
-  font-size: 1.4em;
+  font-size: 1.75rem;
   color: #2d3748;
 }
 
 .date {
-  font-size: 0.9em;
+  font-size: 1.25rem;
   color: #718096;
 }
 
 .country {
-  font-size: 1.1em;
+  font-size: 1;
   color: #1a202c;
   margin-top: 8px;
 }
 
 .flight_time::after {
   position: absolute;
-  top: -4px;
-  left: 0;
-  right: 0;
-  width: 380px;
+  top: 0;
+  left: 8px;
+  width: 580px;
   height: 5px;
   margin: 0 auto;
   border-radius: 5px;
@@ -72,11 +97,11 @@
   content: '';
   display: inline-block;
   position: absolute;
-  top: -10px;
-  left: 153px;
+  top: -36px;
+  left: 30px;
   width: 14px;
   height: 14px;
-  border: 1px solid #fe7171;
+  border: 2px solid #fe7171;
   border-radius: 100%;
   background: #fff;
   z-index: 9;
@@ -86,11 +111,11 @@
   content: '';
   display: inline-block;
   position: absolute;
-  top: -10px;
-  right: 150px;
+  top: -36px;
+  right: 88px;
   width: 14px;
   height: 14px;
-  border: 1px solid #fe7171;
+  border: 2px solid #fe7171;
   border-radius: 100%;
   background: #fff;
   z-index: 9;
