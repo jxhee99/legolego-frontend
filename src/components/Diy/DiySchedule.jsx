@@ -14,7 +14,7 @@ const CourseList = ({ detaileCourses }) => {
             {detail.courses.map((course, i) => (
               <li key={`course-${i}`}>
                 <div className={styles.detail}>
-                  <p>{`course ${i + 1}`}</p>
+                  <p>{`코스 ${i + 1}`}</p>
                   {detail.fileUrls[i] ? (
                     <img src={detail.fileUrls[i]} alt="코스 이미지" />
                   ) : (

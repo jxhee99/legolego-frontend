@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './Schedule.module.css';
+import styles from '../../DiyCreate/Schedule/Schedule.module.css';
 import {
   selectRoute,
   selectDetailCourses,
@@ -12,8 +12,9 @@ import {
   createDetailedCourses,
   checkAllCoursesNotEmpty,
 } from './scheduleUtil';
-import CourseModal from './CourseModal/CourseModal';
+import CourseModal from '../../DiyCreate/Schedule/CourseModal/CourseModal';
 import PlaceIcon from '@mui/icons-material/Place';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const Schedule = () => {
   const navigate = useNavigate();
@@ -62,30 +63,31 @@ const Schedule = () => {
 
   return (
     <div className={styles.Schedule}>
-      <h3>관광지와 맛집을 검색하여 일정을 추가해보세요!</h3>
+      <h4>관광지와 맛집을 검색하여 일정을 추가해보세요!</h4>
       <ul>
         {newDetaileCourses.map((detail, index) => (
           <li key={index} className={styles.course_box}>
             <div className={styles.date_and_button}>
-              <span>{detail.date}</span>
+              <h4>{detail.date}</h4>
               <div className={styles.add_reset_button}>
                 <button onClick={() => handleAddPlace(index)}>장소추가</button>
-                <button onClick={() => handleResetCourses(detail.date)}>
-                  reset
-                </button>
+                <RestartAltIcon
+                  onClick={() => handleResetCourses(detail.date)}
+                  className={styles.reset}
+                />
               </div>
             </div>
             <ul className={styles.courses}>
               {detail.courses.map((course, i) => (
                 <li key={`course-${i}`}>
                   <div className={styles.detail}>
-                    <div>{`course ${i + 1}`}</div>
+                    <p>{`course ${i + 1}`}</p>
                     {detail.fileUrls[i] ? (
                       <img src={detail.fileUrls[i]} alt="코스 이미지" />
                     ) : (
                       <PlaceIcon sx={{ m: 2 }} />
                     )}
-                    <div>{course}</div>
+                    <p>{course}</p>
                   </div>
                 </li>
               ))}
@@ -103,7 +105,9 @@ const Schedule = () => {
       ))}
       {checkAllCoursesNotEmpty(detailCourses) &&
         detailCourses.length === routeRange.length && (
-          <button onClick={handleMove}>레고 만들기</button>
+          <button onClick={handleMove} className={styles.go_lego}>
+            레고 만들기
+          </button>
         )}
     </div>
   );

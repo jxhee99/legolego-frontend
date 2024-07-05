@@ -79,7 +79,12 @@ const DiyEdit = () => {
   return (
     <div className={`${styles.DiyCreate} layout`}>
       <div>
-        <h2>DIY 패키지 수정하기</h2>
+        <h3>
+          <span>D </span>
+          <span>I </span>
+          <span>Y </span>
+          레고 수정하기
+        </h3>
         <ol className={styles.diy_create_steps}>
           <li className={step === 'airplane' ? styles.active : ''}>
             <Link to={`/diy-edit/${id}?step=airplane`}>항공편</Link>

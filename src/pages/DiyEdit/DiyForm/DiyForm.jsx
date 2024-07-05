@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import apiClient from '../../../api/apiClient';
-import styles from './DiyForm.module.css';
+import styles from '../../DiyCreate/DiyForm/DiyForm.module.css';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
 
@@ -72,7 +72,7 @@ const DiyForm = () => {
 
   return (
     <div className={styles.container}>
-      <h3>항공편</h3>
+      <h4>항공편</h4>
       <div className={styles.flight_box}>
         <DiyFlightCard
           flight={{
@@ -94,11 +94,11 @@ const DiyForm = () => {
           }}
         />
       </div>
-      <h3>일정</h3>
+      <h4>일정</h4>
       <div className={styles.schedule_box}>
         <DiySchedule detaileCourses={detailCourses} />
       </div>
-      <h3>레고 만들기</h3>
+      <h4>레고 만들기</h4>
       <div className={styles.form_box}>
         <form onSubmit={handleSubmit}>
           <div className={styles.form_group_}>

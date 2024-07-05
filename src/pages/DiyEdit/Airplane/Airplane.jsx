@@ -1,4 +1,4 @@
-import styles from './Airplane.module.css';
+import styles from '../../DiyCreate/Airplane/Airplane.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -15,19 +15,11 @@ const Airplane = () => {
   const airline = useSelector(selectAirline);
 
   return (
-    <>
+    <div className={styles.airplane_box} style={{ margin: '2rem 0' }}>
       <div className={styles.selected_box}>
         <h3>선택한 항공권</h3>
         <p>항공편 수정은 삭제 후 새로 작성!</p>
-        {airline.startAirlineName && airline.comeAirlineName && (
-          <button
-            onClick={() => navigate(`/diy-edit/${id}?step=schedule`)}
-            className={styles.link_schedule}
-          >
-            일정 수정
-          </button>
-        )}
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div className={styles.selected_flightbox}>
           {airline.startAirlineName && (
             <DiyFlightCard
               flight={{
@@ -52,8 +44,16 @@ const Airplane = () => {
             />
           )}
         </div>
+        {airline.startAirlineName && airline.comeAirlineName && (
+          <button
+            onClick={() => navigate(`/diy-edit/${id}?step=schedule`)}
+            className={styles.link_schedule}
+          >
+            일정 수정
+          </button>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
