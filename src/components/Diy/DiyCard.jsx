@@ -11,8 +11,7 @@
     packageName,
     shortDescription,
     packageLikedNum,
-    startDate,
-    lastDate
+    airline
   }) => {
     const navigate = useNavigate();
 
@@ -32,7 +31,9 @@
           <div className={styles.desc}>{shortDescription}</div>
         </div>
         <div className={styles.grayDetail}>
-          <div>여행기간 | {startDate}~{lastDate}</div>
+          <div>여행기간 | {new Date(airline.boardingDate).toLocaleDateString()}~{new Date(airline.comingDate).toLocaleDateString()}</div>
+        
+
           <div className={styles.likes}>
           <ThumbUpIcon fontSize='0.1rem' className={styles.thumb_icon} />
           <span>{packageLikedNum}</span>

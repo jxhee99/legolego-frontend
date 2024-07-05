@@ -1,5 +1,6 @@
 .DiyCard {
   padding-bottom: 0.5rem;
+  width:17rem;
   height: 360px;
   display: flex;
   flex-direction: column;
@@ -8,6 +9,7 @@
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  background-color: white;
 
 }
 
