@@ -1,34 +1,45 @@
 /* DiyForm.module.css */
-.container{
+.container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3rem;
 }
 
-.container h3 {
+.container > h4 {
   margin: 1.5rem 0;
-  padding-top: 1rem;
-  border-top: 1px solid #f1eeee;;
 }
 
-.flight_box{
-  width: 80%;
+.flight_box {
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
+  position: relative;
 }
 
-.schedule_box{
-  width: 80%;
+/* 가운데 선 */
+.flight_box::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: 10px;
+  left: calc(50%);
+  width: 0.1px;
+  height: 180px;
+  border-left: 1px dashed #e3e3e3;
+}
+
+.schedule_box {
+  width: 100%;
   padding: 1rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
 }
+
 .form_box {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -45,12 +56,12 @@
   font-weight: bold;
 }
 
-.form_group_ input[type="text"],
+.form_group_ input[type='text'],
 .form_group_ textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  border: 1px solid #f1eeee;
+  border: 1px solid #e3e3e3;
   border-radius: 4px;
 }
 
@@ -61,7 +72,7 @@
 }
 
 .submit_btn_ {
-  background-color: #0c0c0c;
+  background-color: #ff006e;
   color: white;
   padding: 10px 20px;
   cursor: pointer;
@@ -69,5 +80,5 @@
 }
 
 .submit_btn_:hover {
-  background-color: #393d39;
+  background-color: #ff0037;
 }

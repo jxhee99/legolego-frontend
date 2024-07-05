@@ -22,7 +22,9 @@ export default function ControllableStates({ labelName, setLocation }) {
       }}
       id="controllable-states-demo"
       options={OPTIONS}
-      sx={{ width: 300 }}
+      sx={{
+        width: 300,
+      }}
       renderInput={(params) => <TextField {...params} label={labelName} />}
     />
   );

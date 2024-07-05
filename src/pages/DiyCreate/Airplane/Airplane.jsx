@@ -56,6 +56,13 @@ const Airplane = () => {
         boardingDate: flight.date,
       })
     );
+    // 스크롤 하단으로 이동
+    if (selectedReturn !== -1) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth', // 부드러운 스크롤 효과
+      });
+    }
   };
 
   const handleSelectedReturn = (flight, index) => {
@@ -68,6 +75,13 @@ const Airplane = () => {
       })
     );
     dispatch(updateRoute({ startDate, endDate }));
+    // 스크롤 하단으로 이동
+    if (selectedStart !== -1) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth', // 부드러운 스크롤 효과
+      });
+    }
   };
 
   return (
@@ -75,26 +89,28 @@ const Airplane = () => {
       <form className={styles.Airplane} onSubmit={handleInputValues}>
         <ControllableStates labelName="출발지" setLocation={setStartLocation} />
         <ControllableStates labelName="도착지" setLocation={setEndLocation} />
-        <input
-          id="startDate"
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          id="endDate"
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-        <button type="submit" className={styles.button}>
-          검색
-        </button>
+        <div className={styles.date_search}>
+          <input
+            id="startDate"
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+          <input
+            id="endDate"
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+          <button type="submit" className={styles.button}>
+            검색
+          </button>
+        </div>
       </form>
       {/* 출발편 정보 */}
-      <div className={styles.airplane_information}>
-        <div className={styles.searched}>
-          {startFlight && startFlight.length > 0 && (
+      {startFlight && startFlight.length > 0 && (
+        <div className={styles.airplane_information}>
+          <div className={styles.searched}>
             <>
               <h4>출발편</h4>
               {startFlight.map((flight, index) => (
@@ -109,70 +125,71 @@ const Airplane = () => {
                 </div>
               ))}
             </>
-          )}
-        </div>
-        {/* 도착편 정보 */}
-        <div className={styles.searched}>
-          {returnFlight && returnFlight.length > 0 && (
-            <>
-              <h4>도착편</h4>
-              {returnFlight.map((flight, index) => (
-                <div
-                  key={`return-${index}`}
-                  onClick={() => handleSelectedReturn(flight, index)}
-                  className={
-                    selectedReturn === index ? styles.selectedFlight : ''
-                  }
-                >
-                  <DiyFlightCard flight={flight} />
-                </div>
-              ))}
-            </>
-          )}
-        </div>
-      </div>
-      {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
-      <div className={airline.startAirlineName ? styles.selected_box : ''}>
-        {airline.startAirlineName && (
-          <>
-            <h3>선택한 항공권</h3>
-            <p>다른 항공편을 보려면 재검색 해주세요</p>
-            {airline.startAirlineName && airline.comeAirlineName && (
-              <button
-                onClick={() => navigate('/diy-create?step=schedule')}
-                className={styles.link_schedule}
-              >
-                일정 만들기
-              </button>
+          </div>
+          {/* 도착편 정보 */}
+          <div className={styles.searched}>
+            {returnFlight && returnFlight.length > 0 && (
+              <>
+                <h4>도착편</h4>
+                {returnFlight.map((flight, index) => (
+                  <div
+                    key={`return-${index}`}
+                    onClick={() => handleSelectedReturn(flight, index)}
+                    className={
+                      selectedReturn === index ? styles.selectedFlight : ''
+                    }
+                  >
+                    <DiyFlightCard flight={flight} />
+                  </div>
+                ))}
+              </>
             )}
+          </div>
+        </div>
+      )}
+      {/*리덕스 스토어에 항공편 정보 있을 때 조건부 렌더링 */}
+      {airline.startAirlineName && (
+        <div className={airline.startAirlineName ? styles.selected_box : ''}>
+          <>
+            <h3>선택한 항공편</h3>
+            <p>다른 항공편을 보려면 재검색 해주세요</p>
           </>
-        )}
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          {airline.startAirlineName && (
-            <DiyFlightCard
-              flight={{
-                flightNum: airline.startFlightNum,
-                date: airline.boardingDate,
-                airlineName: airline.startAirlineName,
-                startingPoint: airline.startingPoint,
-                destination: airline.destination,
-              }}
-              type={'departure'}
-            />
-          )}
-          {airline.comeAirlineName && (
-            <DiyFlightCard
-              flight={{
-                flightNum: airline.comeFlightNum,
-                date: airline.comingDate,
-                airlineName: airline.comeAirlineName,
-                startingPoint: airline.destination,
-                destination: airline.startingPoint,
-              }}
-            />
+
+          <div className={styles.selected_flightbox}>
+            {airline.startAirlineName && (
+              <DiyFlightCard
+                flight={{
+                  flightNum: airline.startFlightNum,
+                  date: airline.boardingDate,
+                  airlineName: airline.startAirlineName,
+                  startingPoint: airline.startingPoint,
+                  destination: airline.destination,
+                }}
+                type={'departure'}
+              />
+            )}
+            {airline.comeAirlineName && (
+              <DiyFlightCard
+                flight={{
+                  flightNum: airline.comeFlightNum,
+                  date: airline.comingDate,
+                  airlineName: airline.comeAirlineName,
+                  startingPoint: airline.destination,
+                  destination: airline.startingPoint,
+                }}
+              />
+            )}
+          </div>
+          {airline.startAirlineName && airline.comeAirlineName && (
+            <button
+              onClick={() => navigate('/diy-create?step=schedule')}
+              className={styles.link_schedule}
+            >
+              일정 만들기
+            </button>
           )}
         </div>
-      </div>
+      )}
     </div>
   );
 };
