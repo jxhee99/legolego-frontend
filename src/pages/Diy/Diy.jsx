@@ -35,6 +35,7 @@ const Diy = () => {
             <Link to="/diy-create">패키지 만들기</Link>
           </button>
         )}
+        <p>내 맘대로 떠나는 DIY 패키지 만들러 레고 ~</p>
         </div>
       <section className={`${styles.Diy} layout`}>
         <h2>DIY 패키지를 응원해주세요!</h2>

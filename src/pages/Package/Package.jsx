@@ -47,10 +47,13 @@ const Package = () => {
   };
 
   return (
-    <>
+    
+    <div className={styles.PacakgeAll}>
       <Metas title="패키지 상품" />
-      <div className={styles.packageBackground}>
-        <p>다른 사람이 만든 패키지 여행을 함께 떠나보세요!</p>
+
+          <div className={styles.packageBackground}>
+            <div className={styles.packageText}>
+        <p>다른 사람이 만든 패키지 여행을 함께 떠나보세요!</p></div>
         <input
           type="text"
           className={styles.searchInput}
@@ -69,8 +72,8 @@ const Package = () => {
           ))}
         </div>
         <div ref={ref} className={styles.infiniteScrollTrigger}></div>
-      </section>
-    </>
+      </section></div>
+    
   );
 };
 

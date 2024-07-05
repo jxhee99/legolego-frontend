@@ -18,16 +18,25 @@
   margin-top: 0; /* 상단 여백 제거 */
   position: relative;
 }
+.diyBackground p{
+  position: absolute;
+  font-size: 1.3rem;
+  text-shadow: 3px;
+  bottom: 113px; 
+  right: 100px;
+}
 
 .create_button {
   width: 180px;
   height: 60px;
   border-radius: 12px;
-  background-color: #000;
+  background-color:#93d1ff; 
   color: #fff;
   position: absolute; /* 버튼을 이미지 안에서 절대 위치로 배치 */
   bottom: 40px; /* 아래쪽 여백 */
   right: 100px; /* 오른쪽 여백 */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* 버튼 그림자 */
+
 }
 .create_button>a{
   color: #fff;
@@ -52,4 +61,6 @@
   font-weight: bold;  /* 글자 굵기 */
   color: #93d1ff;  /* 글자 색상 */
   margin-right: 0.1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* 글자 그림자 */
+
 }

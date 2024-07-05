@@ -29,7 +29,7 @@ const Comment = ({
               {formatDateTime(boardingDate).replace(/\s\d{2}:\d{2}$/, '')} ~{' '}
               {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}
             </p>
-            <p>{price}₩</p>
+            <p>₩ {price}</p>
           </div>
         </div>
       </div>
