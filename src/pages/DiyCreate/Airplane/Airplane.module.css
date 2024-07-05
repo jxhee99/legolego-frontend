@@ -3,32 +3,47 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .Airplane {
   display: flex;
   justify-content: center;
-  gap: 4px;
-}
-
-.Airplane .button {
-  width: 60px;
-  background-color: #9a73e8;
-  color: #fff;
-  border-radius: 4px;
+  gap: 1rem;
 }
 
 .Airplane > input {
   border: 1px solid #bebebe;
+
+  border-radius: 4px;
+}
+
+.date_search {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.date_search > input {
+  width: 150px;
+  height: 56px;
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid #bebebe;
+  border-radius: 4px;
+}
+
+.date_search button {
+  width: 60px;
+  background-color: #3fa2f6;
+  color: #fff;
   border-radius: 4px;
 }
 
 .airplane_information {
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 5rem;
+  gap: 6rem;
   cursor: pointer;
   position: relative;
 }
@@ -36,19 +51,19 @@
 .airplane_information::before {
   content: '';
   position: absolute;
-  top: 48px;
+  top: 70px;
   bottom: 0;
   left: calc(50%);
   width: 1px;
 
-  background-color: #f6f6f6;
+  background-color: #eef3f7;
 }
 
 .airplane_information .searched {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 /* 선택된 항공편 표시 */
@@ -58,19 +73,18 @@
 }
 
 .selectedFlight {
-  border: 2px solid #ebe1ff;
+  border: 2px solid #d3e7f8;
 }
 
 /* 하단 선택된 항공편 박스 */
 .selected_box {
-  width: 85%;
+  width: 90%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  border: 1px solid #ebe1ff;
-  border-radius: 12px;
+  border-top: 1px solid #eef3f7;
 }
 
 .selected_box .selected_flightbox {
@@ -89,12 +103,12 @@
   left: calc(50%);
   width: 1px;
   height: 180px;
-  background-color: #f6f6f6;
+  background-color: #eef3f7;
 }
 
 /* 일정 링크 버튼 */
 .link_schedule {
-  background-color: #9a73e8;
+  background-color: #3fa2f6;
   color: #fff;
   width: 100px;
   height: 40px;
