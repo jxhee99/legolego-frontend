@@ -5,7 +5,7 @@ import noneWhite from '../../../assets/images/none-white.png';
 
 const ScheduleInformation = ({ detailCourse }) => {
   const [currentSlide, setCurrentSlide] = useState({});
-  const [itemsPerSlide] = useState(3);
+  const itemsPerSlide = 3;
 
   useEffect(() => {
     if (detailCourse) {
@@ -17,7 +17,7 @@ const ScheduleInformation = ({ detailCourse }) => {
     }
   }, [detailCourse]);
 
-  const handlePrevSlide = (courseNum, totalItems) => {
+  const handlePrevSlide = (courseNum) => {
     setCurrentSlide((prev) => ({
       ...prev,
       [courseNum]: Math.max(prev[courseNum] - itemsPerSlide, 0),
@@ -29,7 +29,7 @@ const ScheduleInformation = ({ detailCourse }) => {
       ...prev,
       [courseNum]: Math.min(
         prev[courseNum] + itemsPerSlide,
-        totalItems - itemsPerSlide
+        Math.max(0, totalItems - itemsPerSlide)
       ),
     }));
   };
@@ -47,12 +47,7 @@ const ScheduleInformation = ({ detailCourse }) => {
                 </h4>
                 <div className={styles.sliderControls}>
                   <button
-                    onClick={() =>
-                      handlePrevSlide(
-                        course.detailCourseNum,
-                        course.courses.length
-                      )
-                    }
+                    onClick={() => handlePrevSlide(course.detailCourseNum)}
                     disabled={currentSlide[course.detailCourseNum] === 0}
                   >
                     이전
@@ -74,24 +69,24 @@ const ScheduleInformation = ({ detailCourse }) => {
                 </div>
               </div>
               <div className={styles.scrollWrapper}>
-                <ul className={styles.course_cards}>
+                <ul
+                  className={styles.course_cards}
+                  style={{
+                    transform: `translateX(-${currentSlide[course.detailCourseNum] * (100 / itemsPerSlide)}%)`,
+                    transition: 'transform 0.5s ease',
+                  }}
+                >
                   {course.courses.map((item, index) => (
-                    <li
-                      key={`${course.detailCourseNum}-${index}`}
-                      style={{
-                        transform: `translateX(-${currentSlide[course.detailCourseNum] * (100 / itemsPerSlide)}%)`,
-                        transition: 'transform 0.5s ease',
-                      }}
-                    >
+                    <li key={`${course.detailCourseNum}-${index}`}>
                       <div>
-                        <p className={styles.course}>
-                          <span>{index + 1}</span>
-                          <span>{item}</span>
-                        </p>
                         <img
                           src={course.fileUrls[index] || noneWhite}
                           alt="이미지"
                         />
+                        <p className={styles.course}>
+                          <span>{index + 1}</span>
+                          <span>{item}</span>
+                        </p>
                       </div>
                     </li>
                   ))}
