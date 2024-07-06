@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleInformation.module.css';
 import noneWhite from '../../../assets/images/none-white.png';
 
 const ScheduleInformation = ({ detailCourse }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState({});
+  const [itemsPerSlide] = useState(3);
 
-  const nextSlide = () => {
-    setCurrentSlide((currentSlide + 1) % detailCourse.length);
+  useEffect(() => {
+    const initialSlideState = {};
+    detailCourse.forEach((course) => {
+      initialSlideState[course.detailCourseNum] = 0;
+    });
+    setCurrentSlide(initialSlideState);
+  }, [detailCourse]);
+
+  const handlePrevSlide = (courseNum, totalItems) => {
+    setCurrentSlide((prev) => ({
+      ...prev,
+      [courseNum]: Math.max(prev[courseNum] - itemsPerSlide, 0),
+    }));
   };
 
-  const prevSlide = () => {
-    setCurrentSlide(
-      (currentSlide - 1 + detailCourse.length) % detailCourse.length
-    );
+  const handleNextSlide = (courseNum, totalItems) => {
+    setCurrentSlide((prev) => ({
+      ...prev,
+      [courseNum]: Math.min(
+        prev[courseNum] + itemsPerSlide,
+        totalItems - itemsPerSlide
+      ),
+    }));
   };
 
   return (
@@ -23,17 +39,47 @@ const ScheduleInformation = ({ detailCourse }) => {
         {detailCourse &&
           detailCourse.map((course, idx) => (
             <div key={course.detailCourseNum} className={styles.CourseList}>
-              <h4>
-                {idx + 1}일차 ({course.dayNum})
-              </h4>
+              <div className={styles.courseHeader}>
+                <h4>
+                  {idx + 1}일차 ({course.dayNum})
+                </h4>
+                <div className={styles.sliderControls}>
+                  <button
+                    onClick={() =>
+                      handlePrevSlide(
+                        course.detailCourseNum,
+                        course.courses.length
+                      )
+                    }
+                    disabled={currentSlide[course.detailCourseNum] === 0}
+                  >
+                    이전
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleNextSlide(
+                        course.detailCourseNum,
+                        course.courses.length
+                      )
+                    }
+                    disabled={
+                      currentSlide[course.detailCourseNum] >=
+                      course.courses.length - itemsPerSlide
+                    }
+                  >
+                    다음
+                  </button>
+                </div>
+              </div>
               <div className={styles.scrollWrapper}>
-                <ul
-                  className={`${styles.course_cards} ${styles.horizontalScroll}`}
-                >
+                <ul className={styles.course_cards}>
                   {course.courses.map((item, index) => (
                     <li
                       key={`${course.detailCourseNum}-${index}`}
-                      className={index === currentSlide ? styles.active : ''}
+                      style={{
+                        transform: `translateX(-${currentSlide[course.detailCourseNum] * (100 / itemsPerSlide)}%)`,
+                        transition: 'transform 0.5s ease',
+                      }}
                     >
                       <div>
                         <p className={styles.course}>
@@ -52,8 +98,6 @@ const ScheduleInformation = ({ detailCourse }) => {
             </div>
           ))}
       </div>
-      <button onClick={prevSlide}>이전</button>
-      <button onClick={nextSlide}>다음</button>
     </section>
   );
 };

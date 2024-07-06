@@ -49,6 +49,11 @@
   margin-bottom: 1rem;
 }
 
+.right_box p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
 .progress {
   position: relative;
   height: 10px;
@@ -61,6 +66,7 @@
 .progressBar {
   height: 100%;
   background-color: #fe7171;
+  transition: width 0.3s ease-in-out;
 }
 
 .progressText {
@@ -68,6 +74,7 @@
   justify-content: space-between;
   font-size: 0.9rem;
   color: #333;
+  margin-bottom: 1rem;
 }
 
 .icon_information {
@@ -81,10 +88,53 @@
   align-items: center;
 }
 
+.icon_information > div > div {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
 .icon_information span {
   margin-left: 0.5rem;
 }
 
 .wish_button,
 .payment_button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.1s;
+}
+
+.wish_button {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-right: 1rem;
+}
+
+.wish_button:hover {
+  background-color: #e0e0e0;
+}
+
+.payment_button {
+  background-color: #fe7171;
+  color: white;
+}
+
+.payment_button:hover {
+  background-color: #ff5555;
+}
+
+.payment_button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.wish_button:active,
+.payment_button:active {
+  transform: scale(0.98);
 }

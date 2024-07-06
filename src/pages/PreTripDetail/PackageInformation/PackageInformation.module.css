@@ -1,0 +1,110 @@
+.packageInformation {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.imageContainer {
+  flex: 1;
+  max-width: 40%;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infoContainer {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productName {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.partnerName {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.recruitmentInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recruitment {
+  font-size: 16px;
+  color: #444;
+}
+
+.highlightText {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff6b6b;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 16px;
+}
+
+.deadlineInfo {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.icon {
+  margin-right: 8px;
+  color: #3498db;
+}
+
+.completedButton {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: not-allowed;
+  transition: background-color 0.3s ease;
+}
+
+.completedButton:hover {
+  background-color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+  .packageInformation {
+    flex-direction: column;
+  }
+
+  .imageContainer {
+    max-width: 100%;
+  }
+
+  .productImage {
+    height: 200px;
+  }
+
+  .infoContainer {
+    padding: 20px;
+  }
+}
