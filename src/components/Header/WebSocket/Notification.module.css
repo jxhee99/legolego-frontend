@@ -1,0 +1,50 @@
+.notificationContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.notificationButton {
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+.newNotificationDot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.notificationDropdown {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0; /* 오른쪽 정렬 */
+}
+
+.notificationItem {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.notificationItem:hover {
+    background-color: #f1f1f1;
+}
+
+.noNotifications {
+    padding: 12px 16px;
+    color: black;
+    text-align: center;
+}
