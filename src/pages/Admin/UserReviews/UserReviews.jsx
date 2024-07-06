@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import PaginationComp from '../../../components/Pagination/PaginationComp';
-import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
 import useFetchData from '../../../hooks/useFetchDiyData';
 import { formatDateTime, getCurrentTime } from '../../../utils/DateTime';
 import { deleteList } from '../../../utils/handleDelete';

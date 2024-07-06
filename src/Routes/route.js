@@ -28,6 +28,7 @@ import AdminLogin from '../pages/AdminLogin/AdminLogin';
 import AdminAccount from '../pages/Admin/AdminAccount/AdminAccount';
 import PreTrips from '../pages/Admin/PreTrips/PreTrips';
 import MembersList from '../pages/Admin/MembersList/MembersList';
+import UserReviews from '../pages/Admin/UserReviews/UserReviews';
 
 //파트너(여행사)
 import Partner from '../pages/Partner/Partner';
@@ -51,7 +52,6 @@ import Payment from '../pages/Payment/Payment';
 // 지난여행
 import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
-import { element } from 'prop-types';
 
 export const ROUTE = {
   ABOUT: {
@@ -170,8 +170,6 @@ export const ROUTE_DIY_EDIT = {
 
 export const ROUTE_DIY_EDIT_ARR = Object.values(ROUTE_DIY_EDIT);
 
-
-
 // MyPage Tabs
 export const ROUTE_MY_PAGE = {
   PROFILE_SETTING: {
@@ -250,6 +248,11 @@ export const ROUTE_ADMIN_LISTS = {
     path: '/admin/lists/members',
     link: '/admin/lists/members',
     element: MembersList,
+  },
+  ADMIN_USER_REVIEWS: {
+    path: '/admin/lists/user-reviews',
+    link: '/admin/lists/user-reviews',
+    element: UserReviews,
   },
 };
 
