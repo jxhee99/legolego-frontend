@@ -23,12 +23,18 @@
   align-items: center;
 }
 
+.date_box h4 {
+  font-family: 'SpoqaHanSansNeo-Regular', Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  color: #3e3e3e;
+}
+
 .date_box > p {
   padding: 0.5rem;
   font-weight: 500;
   background-color: #8338ec;
   color: #fff;
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .courses {
@@ -90,6 +96,7 @@
   height: 200px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  object-fit: cover;
 }
 
 .line {

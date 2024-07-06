@@ -8,7 +8,7 @@ const CourseList = ({ detaileCourses }) => {
       {detaileCourses.map((detail, index) => (
         <li key={index} className={styles.course_box}>
           <div className={styles.date_box}>
-            <h4>{detail.dayNum}</h4>
+            <h4 className={styles.day_num}>{detail.dayNum}</h4>
             <p>{index + 1}일 차</p>
           </div>
           <ul className={styles.courses}>

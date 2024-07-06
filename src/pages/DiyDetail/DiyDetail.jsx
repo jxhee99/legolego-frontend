@@ -58,11 +58,13 @@ const DiyDetail = () => {
         <div>
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
-              <img src={desc.profileImg} alt="" />
+              <img src={desc.profileImg} alt="썸네일" />
             </div>
             <div className={styles.cheer_user_box}>
-              {isWriter && <WriterControls id={id} likedNum={likedNum} />}
-              <p>{data.regDate}</p>
+              <div className={styles.date_edit_box}>
+                <p>{data.regDate}</p>
+                {isWriter && <WriterControls id={id} likedNum={likedNum} />}
+              </div>
               <h2>{desc.packageName}</h2>
               <div className={styles.user}>
                 <span>{writer.userNickname}</span>
@@ -74,7 +76,7 @@ const DiyDetail = () => {
                 <VisibilityIcon />
                 <div>{data.viewNum}</div>
               </div>
-              <h3>응원하기를 눌러 같이 여행 떠나요!</h3>
+              <h4>응원하기를 눌러 같이 여행 떠나요!</h4>
               {isWriter ? ( // 작성자일 경우 렌더링
                 <button className={styles.cheer_button}>응원 받는 중!</button>
               ) : (
