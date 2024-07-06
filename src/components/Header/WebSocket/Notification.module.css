@@ -10,6 +10,7 @@
     border: none;
     cursor: pointer;
     background: none;
+    position: relative;
 }
 
 .newNotificationDot {
@@ -25,18 +26,35 @@
 .notificationDropdown {
     display: block;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: #FFFFFF;
+    min-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 0; /* 오른쪽 정렬 */
+    border-radius: 5px;
+    max-height: 400px; /* 최대 높이 설정 */
+    overflow-y: hidden; /* 스크롤 숨기기 */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    cursor: pointer;
+}
+
+.notificationDropdown:hover {
+    overflow-y: auto; /* 마우스 호버 시 스크롤 표시 */
+}
+
+.notificationDropdown::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .notificationItem {
-    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 아이템 내용과 버튼 모두 수평 가운데 정렬 */
     padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
 }
 
 .notificationItem:hover {
@@ -47,4 +65,19 @@
     padding: 12px 16px;
     color: black;
     text-align: center;
+}
+
+.checkbox {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 8px; /* 버튼을 내용 아래에 배치 */
+}
+
+.checkbox:hover {
+    color: red;
+    background-color: #f9f9f9;
 }
