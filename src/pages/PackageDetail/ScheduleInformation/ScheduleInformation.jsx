@@ -8,11 +8,13 @@ const ScheduleInformation = ({ detailCourse }) => {
   const [itemsPerSlide] = useState(3);
 
   useEffect(() => {
-    const initialSlideState = {};
-    detailCourse.forEach((course) => {
-      initialSlideState[course.detailCourseNum] = 0;
-    });
-    setCurrentSlide(initialSlideState);
+    if (detailCourse) {
+      const initialSlideState = {};
+      detailCourse.forEach((course) => {
+        initialSlideState[course.detailCourseNum] = 0;
+      });
+      setCurrentSlide(initialSlideState);
+    }
   }, [detailCourse]);
 
   const handlePrevSlide = (courseNum, totalItems) => {
