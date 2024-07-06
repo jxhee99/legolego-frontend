@@ -106,7 +106,7 @@ const Schedule = () => {
       {checkAllCoursesNotEmpty(detailCourses) &&
         detailCourses.length === routeRange.length && (
           <button onClick={handleMove} className={styles.go_lego}>
-            레고 만들기
+            만들기
           </button>
         )}
     </div>

@@ -53,11 +53,24 @@
   margin: 4rem 0;
 }
 
+.lego1,
+.lego2,
+.lego3 {
+  width: 48px;
+  height: 16px;
+  margin: 0 auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .diy_create_steps li {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   display: inline-block;
-  width: 120px;
+  width: 80px;
   height: 80px;
   text-align: center;
   line-height: 80px;
@@ -67,38 +80,38 @@
 }
 
 /* 각 li 요소의 색상 */
-.DiyCreate li:nth-child(1) > a {
+.DiyCreate .lego_box1 a {
   color: #3a86ff;
 }
 
-.DiyCreate li:nth-child(2) > a {
+.DiyCreate .lego_box2 a {
   color: #8338ec;
 }
 
-.DiyCreate li:nth-child(3) > a {
+.DiyCreate .lego_box3 a {
   color: #ff006e;
 }
 
-.diy_create_steps li:nth-child(2) {
+.diy_create_steps .lego_box2 li {
   color: #8338ec;
 }
 
-.diy_create_steps li:nth-child(3) {
+.diy_create_steps .lego_box3 li {
   color: #ff006e;
 }
 
 /* 각 li 요소가 active일 때의 색상 */
-.diy_create_steps li:nth-child(1).active {
+.diy_create_steps .lego_box1 .active {
   background-color: #3a86ff;
   color: white;
 }
 
-.diy_create_steps li:nth-child(2).active {
+.diy_create_steps .lego_box2 .active {
   background-color: #8338ec;
   color: white;
 }
 
-.diy_create_steps li:nth-child(3).active {
+.diy_create_steps .lego_box3 .active {
   background-color: #ff006e;
   color: white;
 }
@@ -115,17 +128,17 @@
 }
 
 /* 구체적인 선택자로 우선순위 높이기 */
-.diy_create_steps li:nth-child(1) > a.blink {
+.diy_create_steps .lego_box1 li a.blink {
   animation: blink-effect 1s step-end infinite;
   color: #3a86ff;
 }
 
-.diy_create_steps li:nth-child(2) > a.blink {
+.diy_create_steps .lego_box2 li a.blink {
   animation: blink-effect 1s step-end infinite;
   color: #8338ec;
 }
 
-.diy_create_steps li:nth-child(3) > a.blink {
+.diy_create_steps .lego_box3 li a.blink {
   animation: blink-effect 1s step-end infinite;
   color: #ff006e;
 }
