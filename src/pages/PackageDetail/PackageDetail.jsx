@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Metas from '../../components/common/Metas';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import PackageMenu from './PackageMenu/PackageMenu';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});
@@ -31,6 +32,7 @@ const PackageDetail = () => {
     <>
       <Metas title={packageData.productName} />
       <ScrollToTop />
+      <PackageMenu />
       <div className={`${styles.PackageDetail} layout`}>
         <PackageInformation {...packageData} />
         <AirplaneInfomation {...packageData.airline} />

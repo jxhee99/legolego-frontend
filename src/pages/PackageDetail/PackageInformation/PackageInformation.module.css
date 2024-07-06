@@ -19,12 +19,12 @@
 
 .left_box {
   flex: 1;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .left_box img {
-  width: 352px;
-  height: 352px;
+  width: 420px;
+  height: 350px;
   border-radius: 8px;
   object-fit: cover;
   animation: slideDown 0.7s ease-out;
@@ -83,4 +83,8 @@
 
 .icon_information span {
   margin-left: 0.5rem;
+}
+
+.wish_button,
+.payment_button {
 }

@@ -29,14 +29,13 @@ const PackageInformation = ({
         const response = await apiClient.get(
           `/user/products/${id}/wishlist/status`
         );
-
         if (response.status === 200) {
           setIsWished(response.data);
         } else {
-          console.error('찜 상태 불러오기 실패:', response.status);
+          console.error('Failed to load wishlist status:', response.status);
         }
       } catch (error) {
-        console.error('찜 상태 불러오는 중 오류 발생:', error);
+        console.error('Error loading wishlist status:', error);
       }
     };
 
@@ -49,28 +48,26 @@ const PackageInformation = ({
         `/user/products/${id}/wishlist`,
         {}
       );
-
       if (response.status === 201) {
         setIsWished(true);
       } else {
-        console.error('찜하기 실패:', response.status);
+        console.error('Failed to add to wishlist:', response.status);
       }
     } catch (error) {
-      console.error('찜 업데이트 오류 발생:', error);
+      console.error('Error updating wishlist:', error);
     }
   };
 
   const handleCancelWish = async () => {
     try {
       const response = await apiClient.delete(`/user/products/${id}/wishlist`);
-
       if (response.status === 204) {
         setIsWished(false);
       } else {
-        console.error('찜 취소 실패:', response.status);
+        console.error('Failed to cancel wishlist:', response.status);
       }
     } catch (error) {
-      console.error('찜 취소 오류 발생:', error);
+      console.error('Error canceling wishlist:', error);
     }
   };
 
@@ -82,7 +79,7 @@ const PackageInformation = ({
   return (
     <section className={styles.PackageInformation}>
       <div className={styles.left_box}>
-        <img src={productImage || noneWhite} alt="상품 이미지" />
+        <img src={productImage || noneWhite} alt="Product Image" />
       </div>
       <div className={styles.right_box}>
         <h2>{productName}</h2>
@@ -95,7 +92,7 @@ const PackageInformation = ({
           ></div>
         </div>
         <div className={styles.progressText}>
-          <span>{necessaryPeople}명 모집</span>{' '}
+          <span>{necessaryPeople}명 모집</span>
           <span>
             {orderCount} / {necessaryPeople} 명 참여
           </span>
@@ -122,7 +119,6 @@ const PackageInformation = ({
             </div>
           </div>
         </div>
-
         <div>
           {!isWished ? (
             <button onClick={handleWishNum} className={styles.wish_button}>
@@ -133,12 +129,18 @@ const PackageInformation = ({
               찜 취소하기
             </button>
           )}
-          <button
-            onClick={() => navigate(`/order/${id}`)}
-            className={styles.payment_button}
-          >
-            레고! 결제하기
-          </button>
+          {orderCount === necessaryPeople ? (
+            <button className={styles.payment_button} disabled>
+              모집이 완료된 상품입니다.
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate(`/order/${id}`)}
+              className={styles.payment_button}
+            >
+              레고! 결제하기
+            </button>
+          )}
         </div>
       </div>
     </section>
