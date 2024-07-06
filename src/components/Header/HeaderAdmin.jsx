@@ -7,8 +7,10 @@ import styles from './Header.module.css';
 import Logo from '../Logo/Logo';
 import { AuthContext } from '../../contexts/AuthContext';
 
+import Notification from './WebSocket/Notification';
+
 const HeaderAdmin = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, userNum, role } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const moveToPartner = () => {
@@ -27,6 +29,7 @@ const HeaderAdmin = () => {
       </Link>
       <Menu />
       <div>
+        <Notification role={role} userNum={userNum} /> {/* Notification 컴포넌트에 role과 userNum 전달 */}
         <button onClick={moveToPartner}>관리자</button>
         <button onClick={handleLogout}>로그아웃</button>
       </div>
