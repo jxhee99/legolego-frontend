@@ -1,0 +1,78 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* 처음에는 모든 슬라이드를 숨김 */
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.active {
+  opacity: 1; /* active 클래스가 적용되면 해당 슬라이드를 보이게 함 */
+}
+
+.go_diy,
+.go_price,
+.go_order {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+}
+
+.go_diy {
+  background-image: url('/src/assets/images/legoMountain.jpeg');
+}
+
+.go_price {
+  background-image: url('/src/assets/images/legoRiver.jpeg');
+}
+
+.go_order {
+  background-image: url('/src/assets/images/legoTrip.jpg');
+}
+
+.go_button_box {
+  cursor: pointer;
+}
+
+.go_diy button,
+.go_price button,
+.go_order button {
+  margin-top: 2rem;
+  opacity: 0; /* 처음에는 모든 버튼을 숨김 */
+  transition: opacity 0.3s ease-in-out;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2e2e2e;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.go_diy .go_button_box:hover button {
+  opacity: 1; /* 호버 시 버튼을 보이게 함 */
+}
+
+.go_price .go_button_box:hover button {
+  opacity: 1; /* 호버 시 버튼을 보이게 함 */
+}
+
+.go_order .go_button_box:hover button {
+  opacity: 1; /* 호버 시 버튼을 보이게 함 */
+}

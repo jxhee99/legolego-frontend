@@ -1,0 +1,42 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.process {
+  display: flex;
+}
+
+.process_box {
+  position: relative;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.process_box:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  right: -95px;
+  width: 190px;
+  height: 2px;
+  background-color: #ccc;
+  transform: translateY(-50%);
+}
+
+.number {
+  width: 60px;
+  height: 60px;
+  background-color: #5fa8d6;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;
+}
