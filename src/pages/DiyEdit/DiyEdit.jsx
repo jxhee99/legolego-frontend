@@ -85,21 +85,38 @@ const DiyEdit = () => {
           <span>Y </span>
           레고 수정하기
         </h3>
-        <ol className={styles.diy_create_steps}>
-          <li className={step === 'airplane' ? styles.active : ''}>
-            <Link to={`/diy-edit/${id}?step=airplane`}>항공편</Link>
-          </li>
-          <li className={step === 'schedule' ? styles.active : ''}>
-            <Link to={`/diy-edit/${id}?step=schedule`}>일정</Link>
-          </li>
-          <li className={step === 'diy-form' ? styles.active : ''}>
-            {isAllSelected ? (
-              <Link to={`/diy-edit/${id}?step=diy-form`}>레고 만들기</Link>
-            ) : (
-              <span>레고 만들기</span>
-            )}
-          </li>
-        </ol>
+        <ul className={styles.diy_create_steps}>
+          <div className={styles.lego_box1}>
+            <div
+              className={`${styles.lego1} ${step === 'airplane' ? styles.active : ''}`}
+            ></div>
+            <li className={step === 'airplane' ? styles.active : ''}>
+              <Link to={`/diy-edit/${id}?step=airplane`}>항공편</Link>
+            </li>
+          </div>
+          <div className={styles.lego_box2}>
+            <div
+              className={`${styles.lego2} ${step === 'schedule' ? styles.active : ''}`}
+            ></div>
+            <li className={step === 'schedule' ? styles.active : ''}>
+              {route.startDate && (
+                <Link to={`/diy-edit/${id}?step=schedule`}>일정</Link>
+              )}
+            </li>
+          </div>
+          <div className={styles.lego_box3}>
+            <div
+              className={`${styles.lego3} ${step === 'diy-form' ? styles.active : ''}`}
+            ></div>
+            <li className={step === 'diy-form' ? styles.active : ''}>
+              {isAllSelected ? (
+                <Link to={`/diy-edit/${id}?step=diy-form`}>만들기</Link>
+              ) : (
+                <span>만들기</span>
+              )}
+            </li>
+          </div>
+        </ul>
       </div>
 
       {step === 'airplane' && <AirPlane />}

@@ -16,7 +16,8 @@
 }
 
 .lego_box p {
-  font-family: 'yg-jalnan', sans-serif;
+  font-weight: 600;
+  font-family: 'DungGeunMo', sans-serif;
   font-size: 3rem;
   color: #8338ec;
 }
