@@ -41,6 +41,7 @@
   margin: 0;
   padding: 36px 0 36px 48px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .Schedule .course_cards::before {
@@ -49,7 +50,7 @@
   bottom: 0;
   left: 0;
   margin-left: 23px;
-  border-right: solid 1px #93d1ff;
+  border-right: solid 1px #ff006e;
   content: '';
 }
 
@@ -57,9 +58,14 @@
   background-color: var(--color-white);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow: hidden;
-  flex: 0 0 calc(30% - 0.5rem);
-  max-width: calc(30% - 0.5rem);
+  flex: 0 0 auto;
+  width: 300px; /* 슬라이드 너비 */
+  margin-right: 20px; /* 슬라이드 간 간격 */
+  transition: transform 0.5s ease;
+}
+
+.course_cards li.active {
+  transform: scale(1.1); /* 활성 슬라이드 크기 조정 예시 */
 }
 
 .Schedule .course_cards li div {

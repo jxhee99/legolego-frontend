@@ -1,8 +1,21 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleInformation.module.css';
 import noneWhite from '../../../assets/images/none-white.png';
 
 const ScheduleInformation = ({ detailCourse }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((currentSlide + 1) % detailCourse.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (currentSlide - 1 + detailCourse.length) % detailCourse.length
+    );
+  };
+
   return (
     <section className={styles.Schedule}>
       <h3>여행 일정</h3>
@@ -18,7 +31,10 @@ const ScheduleInformation = ({ detailCourse }) => {
                   className={`${styles.course_cards} ${styles.horizontalScroll}`}
                 >
                   {course.courses.map((item, index) => (
-                    <li key={`${course.detailCourseNum}-${index}`}>
+                    <li
+                      key={`${course.detailCourseNum}-${index}`}
+                      className={index === currentSlide ? styles.active : ''}
+                    >
                       <div>
                         <p className={styles.course}>
                           <span>{index + 1}</span>
@@ -36,6 +52,8 @@ const ScheduleInformation = ({ detailCourse }) => {
             </div>
           ))}
       </div>
+      <button onClick={prevSlide}>이전</button>
+      <button onClick={nextSlide}>다음</button>
     </section>
   );
 };
