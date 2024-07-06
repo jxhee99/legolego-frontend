@@ -1,87 +1,143 @@
-.section {
-  background-color: #f8f9fa;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.Schedule {
+  padding: 1.75rem;
+  margin-top: 0.5rem;
 }
 
-.title {
-  font-size: 24px;
+.Schedule h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
   color: #333;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
-.airlineCard {
+.Schedule .courseHeader {
   display: flex;
   justify-content: space-between;
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.airlineInfo {
-  flex: 1;
-}
-
-.subtitle {
-  font-size: 18px;
+.Schedule h4 {
+  position: relative;
+  margin: 0;
+  padding-left: 2.75rem;
+  font-size: 1.25rem;
   color: #555;
-  margin-bottom: 12px;
+}
+
+.Schedule h4::before {
+  background-image: url('../../../assets/images/location-dot-solid.png');
+  background-size: 14px auto;
+  background-position: 6px 2px;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.Schedule .scrollWrapper {
+  overflow: hidden;
+}
+
+.Schedule .course_cards {
+  display: flex;
+  padding: 36px 0 36px 48px;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.Schedule .course_cards::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin-left: 23px;
+  border-right: solid 1px #ff006e;
+  content: '';
+}
+
+.Schedule .course_cards li {
+  flex: 0 0 calc(33.333% - 20px);
+  margin-right: 20px;
+  transition: transform 0.5s ease;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.Schedule .course_cards li div {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+}
+
+.Schedule .course_cards li img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.Schedule .course_cards li span {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.Schedule .course_cards .course {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.Schedule .course_cards .course span {
+  display: inline-block;
+}
+
+.course span:first-child {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  color: var(--color-gray);
+  text-align: center;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.Schedule .sliderControls {
   display: flex;
   align-items: center;
 }
 
-.icon {
-  margin-right: 8px;
-  color: #3498db;
-}
-
-.flightDetails {
-  margin-bottom: 12px;
-}
-
-.airlineName {
+.Schedule .sliderControls button {
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.25rem;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: #2c3e50;
-  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.flightNumber {
-  color: #7f8c8d;
+.Schedule .sliderControls button:hover {
+  background-color: #ff006e;
+  color: #fff;
 }
 
-.tripInfo {
-  border-top: 1px solid #ecf0f1;
-  padding-top: 12px;
-}
-
-.location {
-  font-size: 16px;
-  color: #34495e;
-  margin-bottom: 4px;
-}
-
-.dateTime {
-  font-size: 14px;
-  color: #95a5a6;
-}
-
-.separator {
-  width: 1px;
-  background-color: #ecf0f1;
-  margin: 0 20px;
-}
-
-@media (max-width: 768px) {
-  .airlineCard {
-    flex-direction: column;
-  }
-
-  .separator {
-    width: 100%;
-    height: 1px;
-    margin: 20px 0;
-  }
+.Schedule .sliderControls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e0e0e0;
+  color: #999;
 }
