@@ -24,6 +24,11 @@ const Schedule = () => {
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
+  //스크롤 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // route의 시작 날짜와 종료 날짜로 날짜 범위 생성
   const routeRange =
     route.startDate && route.lastDate
@@ -124,7 +129,7 @@ const Schedule = () => {
       {checkAllCoursesNotEmpty(detailCourses) &&
         detailCourses.length === routeRange.length && (
           <button onClick={handleMove} className={styles.go_lego}>
-            레고 만들기
+            만들기
           </button>
         )}
     </div>

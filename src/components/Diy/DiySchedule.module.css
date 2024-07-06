@@ -16,14 +16,36 @@
   border-radius: 12px;
 }
 
+.date_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date_box h4 {
+  font-family: 'SpoqaHanSansNeo-Regular', Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  color: #3e3e3e;
+}
+
+.date_box > p {
+  padding: 0.5rem;
+  font-weight: 500;
+  background-color: #8338ec;
+  color: #fff;
+  border-radius: 4px;
+}
+
 .courses {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 0.625rem;
   width: 100%;
 }
 
 .courses li {
+  margin-top: 1rem;
   display: flex;
   justify-content: start;
 }
@@ -33,6 +55,7 @@
 }
 
 .courses .detail {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,14 +64,51 @@
 }
 
 .detail p {
-  font-family: 'yg-jalnan';
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
   color: #3e3e3e;
   font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail p:hover::after {
+  /* width: 300px; */
+  content: attr(data-full-text);
+  position: absolute;
+  top: 100%; /* 부모 요소의 아래쪽 */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f9f9f9;
+  border: 1px solid #bebebe;
+  padding: 5px;
+  white-space: nowrap;
+  z-index: 1;
+  font-size: 1rem; /* 툴팁 텍스트 크기 */
+  color: #3e3e3e;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .courses img {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  object-fit: cover;
+}
+
+.line {
+  /* 각 이미지 연결 선 */
+  left: 0;
+  width: 200px;
+  height: 150px;
+}
+
+.line line {
+  stroke: #5a5a5a;
+  stroke-width: 1;
+  stroke-dasharray: 5, 5;
+  stroke-linecap: round;
 }

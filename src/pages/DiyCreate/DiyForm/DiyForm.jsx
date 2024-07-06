@@ -23,6 +23,10 @@ const DiyForm = () => {
   const route = useSelector(selectRoute);
   const detailCourses = useSelector(selectDetailCourses);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handlePackageNameChange = (e) => {
     setPackageName(e.target.value);
   };

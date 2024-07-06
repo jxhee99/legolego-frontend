@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from '../DiyDetail.module.css';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import apiClient from '../../../api/apiClient';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const deleteDetail = async (endpoint, navigate) => {
   try {
@@ -50,8 +52,10 @@ const WriterControls = ({ id, likedNum }) => {
   return (
     <>
       <div className={styles.writer_button}>
-        <button onClick={handleEdit}>수정</button>
-        <button onClick={openModal}>삭제</button>
+        {/* <button onClick={handleEdit}>수정</button> */}
+        {/* <button onClick={openModal}>삭제</button> */}
+        <EditIcon onClick={handleEdit} className={styles.edit_delete_button} />
+        <DeleteIcon onClick={openModal} className={styles.edit_delete_button} />
       </div>
       <ConfirmModal
         isVisible={modalOpen}
