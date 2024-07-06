@@ -1,19 +1,7 @@
-@keyframes slideDown {
-  0% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .AirplaneInformation {
-  margin-top: 3rem;
+  margin-top: 1.75rem;
   padding: 3.5rem 0 10rem 0;
   border-bottom: 1px solid #bebebe;
-  animation: slideDown 0.5s ease-out;
 }
 
 .AirplaneInformation h3 {

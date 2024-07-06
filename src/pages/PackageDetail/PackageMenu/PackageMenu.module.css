@@ -1,0 +1,32 @@
+.packageMenu {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  margin-top: 2rem;
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.navLinks li {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.navLinks span {
+  color: black;
+  font-size: 18px;
+  padding: 1.5rem 0;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.active span {
+  color: #3a86ff;
+}

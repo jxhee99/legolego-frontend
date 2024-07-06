@@ -1,5 +1,7 @@
 import styles from './AirplaneInformation.module.css';
 import { formatDateTime } from '../../../utils/DateTime';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
 
 const AirplaneInformation = ({
   startAirlineName,
@@ -12,29 +14,34 @@ const AirplaneInformation = ({
   comingDate,
 }) => {
   return (
-    <section className={styles.AirplaneInformation}>
-      <h3>항공편</h3>
-      <div className={styles.airline_card}>
-        <div className={styles.start_airline}>
-          <h4>가는날</h4>
-          <div>
-            <span>{startAirlineName}</span>
-            <span>{startFlightNum}</span>
+    <section className={styles.section}>
+      <h3 className={styles.title}>항공편 정보</h3>
+      <div className={styles.airlineCard}>
+        <div className={styles.airlineInfo}>
+          <h4 className={styles.subtitle}>
+            <FlightTakeoffIcon className={styles.icon} /> 출발
+          </h4>
+          <div className={styles.flightDetails}>
+            <span className={styles.airlineName}>{startAirlineName}</span>
+            <span className={styles.flightNumber}>{startFlightNum}</span>
           </div>
-          <div>
-            <p>{startingPoint}</p>
-            <p>{formatDateTime(boardingDate)}</p>
+          <div className={styles.tripInfo}>
+            <p className={styles.location}>{startingPoint}</p>
+            <p className={styles.dateTime}>{formatDateTime(boardingDate)}</p>
           </div>
         </div>
-        <div className={styles.comming_airline}>
-          <h4>오는날</h4>
-          <div>
-            <span>{comeAirlineName}</span>
-            <span>{comeFlightNum}</span>
+        <div className={styles.separator}></div>
+        <div className={styles.airlineInfo}>
+          <h4 className={styles.subtitle}>
+            <FlightLandIcon className={styles.icon} /> 도착
+          </h4>
+          <div className={styles.flightDetails}>
+            <span className={styles.airlineName}>{comeAirlineName}</span>
+            <span className={styles.flightNumber}>{comeFlightNum}</span>
           </div>
-          <div>
-            <p>{destination}</p>
-            <p>{formatDateTime(comingDate)}</p>
+          <div className={styles.tripInfo}>
+            <p className={styles.location}>{destination}</p>
+            <p className={styles.dateTime}>{formatDateTime(comingDate)}</p>
           </div>
         </div>
       </div>
