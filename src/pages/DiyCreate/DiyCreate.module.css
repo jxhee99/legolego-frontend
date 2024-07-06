@@ -1,14 +1,22 @@
 /* 기본 스타일 */
-@font-face {
+/* @font-face {
   font-family: 'yg-jalnan';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
     format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 .DiyCreate h3 {
-  font-family: 'yg-jalnan';
+  font-family: 'DungGeunMo';
   font-size: 2.5rem;
   color: #3e3e3e;
 }
@@ -26,13 +34,13 @@
 }
 
 .DiyCreate h4 {
-  font-family: 'yg-jalnan';
+  font-family: 'DungGeunMo';
   font-size: 1.5rem;
   color: #3e3e3e;
 }
 
 .DiyCreate button {
-  font-family: 'yg-jalnan';
+  font-family: 'DungGeunMo';
   color: white;
   text-align: center;
   border-radius: 12px;
@@ -53,7 +61,8 @@
   height: 80px;
   text-align: center;
   line-height: 80px;
-  font-family: 'yg-jalnan', sans-serif;
+  font-family: 'DungGeunMo', sans-serif;
+  font-weight: 400;
   font-size: 1.2rem;
 }
 
