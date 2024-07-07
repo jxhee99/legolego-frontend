@@ -1,18 +1,17 @@
-.box{
-width: 100%;
-margin: 1rem;
-
+.box {
+  width: 100%;
+  margin: 3rem 1rem;
 }
 
 .box h2 {
-  margin-top: 1.5rem
+  margin-top: 2rem;
 }
 
-.box .filter_button{
+.box .filter_button {
   margin: 1.5rem 0;
   width: 100px;
   height: 32px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
 }
 
@@ -23,17 +22,16 @@ margin: 1rem;
 .box .back_button {
   margin: 1.5rem 0;
   width: 100px;
-  height: 32px;
-  border: 1px solid #E0E0E0;
-  border-radius: 12px;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
 }
 
-
 /* 확인 모달창 내부 */
-.confirm_modal_inner{
-    width: 80%;
-      height: 80%;
-      margin-top: 5rem;
+.confirm_modal_inner {
+  width: 80%;
+  height: 80%;
+  margin-top: 5rem;
 }
 
 .confirm_modal_inner p {
@@ -47,15 +45,15 @@ margin: 1rem;
   gap: 1rem;
 }
 .confirm_modal_inner button {
-      margin-top: 2rem;
-      width: 80px;
-      height: 40px;
-      border: 1px solid #E0E0E0;
-      border-radius: 12px;
+  margin-top: 2rem;
+  width: 80px;
+  height: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
 }
 
 /* 페이지네이션 위치 */
-.pagination_box{
+.pagination_box {
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;

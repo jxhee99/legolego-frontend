@@ -1,45 +1,75 @@
 .modal_box {
-  width: 80%;
-  height: 80%;
-  margin-top: 1rem;
-  padding: 1rem;
-  border: 1px solid #d7d5d5;
-  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 부제목 */
+.subtitle {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .diy_box {
-  height: 200px;
+  padding: 0 2rem;
+  height: 216px;
   display: flex;
-  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-  border-bottom: 1px solid #d7d5d5;
-}
-
-.diy_box img {
-  width: 160px;
-  height: 160px;
   border-radius: 12px;
 }
 
-.text {
-  margin-top: 1rem;
-  width: 300px;
-  height: 160px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto auto auto;
-  gap: 10px;
+.diy_box img {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
 }
 
-.text span {
-  font-weight: bold;
+.text_box {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;
+  height: 180px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #f0f4f8;
 }
 
-.text p {
+.date_user {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e3e8ec;
+  padding-bottom: 0.5rem;
+}
+
+.text_box > h3,
+.text_box > p {
+  width: 100%;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
+}
+/* 가운데 선 */
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #a9a8a8;
+}
+
+.form_box {
+  width: 588px;
+  margin: 0 auto;
 }
 
 .form_box label {
@@ -48,11 +78,12 @@
 }
 
 .form_box input {
-  width: 78%;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  width: 86%;
   height: 40px;
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  border: 1px solid #E0E0E0;
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
 }
 
@@ -65,6 +96,11 @@
   margin-top: 1.5rem;
   width: 80px;
   height: 40px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
+}
+
+.form_box button:hover {
+  background-color: #140041;
+  color: #fff;
 }
