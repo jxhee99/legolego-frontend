@@ -51,8 +51,8 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
           <h4>패키지명: {selectedItem.diyPackage.packageName}</h4>
           <p>설명: {selectedItem.diyPackage.shortDescription}</p>
           <p>목적지: {selectedItem.diyPackage.airline.destination}</p>
-          <div>
-            여행기간 |{' '}
+          <p>
+            여행기간 |
             {new Date(
               selectedItem.diyPackage.airline.boardingDate
             ).toLocaleDateString()}
@@ -60,7 +60,7 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
             {new Date(
               selectedItem.diyPackage.airline.comingDate
             ).toLocaleDateString()}
-          </div>
+          </p>
         </div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form_box}>

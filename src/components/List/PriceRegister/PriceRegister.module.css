@@ -31,6 +31,7 @@
 }
 
 .text_box {
+  font-size: 0.9rem;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
