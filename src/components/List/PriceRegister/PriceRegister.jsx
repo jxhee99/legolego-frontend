@@ -2,8 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import styles from './PriceRegister.module.css';
 import apiClient from '../../../api/apiClient';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import ArticleIcon from '@mui/icons-material/Article';
 
 const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
   const [price, setPrice] = useState('');
@@ -43,10 +41,6 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
 
   return (
     <div className={styles.modal_box}>
-      <div className={styles.subtitle}>
-        <SmartToyIcon />
-        <h3>패키지</h3>
-      </div>
       <div className={styles.diy_box}>
         <img src={selectedItem.diyPackage.profileImg}></img>
         <div className={styles.text_box}>
@@ -67,11 +61,6 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
             ).toLocaleDateString()}
           </div>
         </div>
-      </div>
-      <div className={styles.line}></div>
-      <div className={styles.subtitle}>
-        <ArticleIcon />
-        <h3>제안</h3>
       </div>
       <form onSubmit={handleSubmit} className={styles.form_box}>
         <label>제안 가격:</label>

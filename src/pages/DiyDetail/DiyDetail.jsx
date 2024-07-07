@@ -59,6 +59,7 @@ const DiyDetail = () => {
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
               <img src={desc.profileImg} alt="썸네일" />
+              <p>LEGOLEGO</p>
             </div>
             <div className={styles.cheer_user_box}>
               <div className={styles.date_edit_box}>
@@ -70,13 +71,19 @@ const DiyDetail = () => {
                 <span>{writer.userNickname}</span>
                 <AccountCircleIcon />
               </div>
+              <h4>응원하기를 눌러 같이 여행 떠나요!</h4>
+              <p>응원 수 25개 넘으면 정식 상품으로 레고! 레고!</p>
+              <div className={styles.lego_img}>
+                <img src="/src/assets/images/lego_yellow.png" />
+                <img src="/src/assets/images/lego_blue.png" />
+                <img src="/src/assets/images/lego_red.png" />
+              </div>
               <div className={styles.like_view_box}>
                 <ThumbUpAltIcon />
                 <div>{likedNum}</div>
                 <VisibilityIcon />
                 <div>{data.viewNum}</div>
               </div>
-              <h4>응원하기를 눌러 같이 여행 떠나요!</h4>
               {isWriter ? ( // 작성자일 경우 렌더링
                 <button className={styles.cheer_button}>응원 받는 중!</button>
               ) : (

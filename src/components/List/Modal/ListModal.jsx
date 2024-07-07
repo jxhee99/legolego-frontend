@@ -1,7 +1,6 @@
 // Modal.js
 import React from 'react';
 import styles from './ListModal.module.css';
-import Logo from '../../Logo/Logo';
 
 const ListModal = ({ isVisible, closeModal, title, children }) => {
   if (!isVisible) return null;
@@ -17,10 +16,9 @@ const ListModal = ({ isVisible, closeModal, title, children }) => {
     <div className={styles.Modal} onClick={handleBackgroundClick}>
       <div className={styles.modal_layout} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modal_title}>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
         </div>
         {children}
-        <Logo />
       </div>
     </div>
   );
