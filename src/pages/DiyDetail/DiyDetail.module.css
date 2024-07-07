@@ -21,31 +21,41 @@
   color: #3e3e3e;
 }
 
-/* .DiyDetail h4 {
-  font-family: 'DungGeunMo';
-  color: #3e3e3e;
-  font-size: 1.5rem;
-} */
-
 /* 썸네일, 유저, 응원하기 */
 .thumbnail_cheer_box {
   margin-top: 1.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1.5rem;
 }
 
 .DiyDetail .diy_thumbnail {
   width: 50%;
   height: 400px;
+  background-color: #fefcf9;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .DiyDetail .diy_thumbnail img {
-  width: 100%;
-  height: 100%;
+  margin-top: 2rem;
+  width: 400px;
+  height: 300px;
   object-fit: cover;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border-radius: 4px;
+}
+
+.DiyDetail .diy_thumbnail p {
+  font-family: 'DungGeunMo';
+  color: #3e3e3e;
+  font-weight: bold;
 }
 
 /* 응원하기 */
@@ -60,6 +70,7 @@
   border: 1px solid #f1eded;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  text-align: center;
 }
 /* 날짜, 수정 삭제 버튼 */
 .date_edit_box {
@@ -102,15 +113,10 @@
 }
 
 .cheer_user_box h2 {
-  text-align: center;
   font-size: 2rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.cheer_user_box h4 {
-  text-align: center;
 }
 
 /* 좋아요, 조회수 */
@@ -119,7 +125,6 @@
   gap: 1rem;
   justify-content: end;
 }
-
 .DiyDetail .user {
   display: flex;
   align-items: center;
@@ -128,12 +133,11 @@
   width: 120x;
   height: 60px;
 }
-
-.user img {
-  width: 40px;
-  height: 40px;
+/* 레고이미지 */
+.lego_img img {
+  width: 30px;
+  height: 30px;
 }
-
 .DiyDetail .cheer_button {
   background-color: #ffbe0b;
   color: white;

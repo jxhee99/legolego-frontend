@@ -27,7 +27,7 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
     try {
       const response = await apiClient.post(
         `/partner/over-liked-packages/offer`,
-        formData,
+        formData
       );
 
       if (response.status === 201) {
@@ -43,13 +43,24 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
     <div className={styles.modal_box}>
       <div className={styles.diy_box}>
         <img src={selectedItem.diyPackage.profileImg}></img>
-        <div className={styles.text}>
-          <span>name :</span>
-          <p>{selectedItem.diyPackage.packageName}</p>
-          <span>설명 :</span>
-          <p>{selectedItem.diyPackage.shortDescription}</p>
-          <span>작성자 :</span>
-          <p>{selectedItem.diyPackage.user.userNickname}</p>
+        <div className={styles.text_box}>
+          <div className={styles.date_user}>
+            <p>{selectedItem.diyPackage.regDate}</p>
+            <p>{selectedItem.diyPackage.user.userNickname}</p>
+          </div>
+          <h4>패키지명: {selectedItem.diyPackage.packageName}</h4>
+          <p>설명: {selectedItem.diyPackage.shortDescription}</p>
+          <p>목적지: {selectedItem.diyPackage.airline.destination}</p>
+          <p>
+            여행기간 |
+            {new Date(
+              selectedItem.diyPackage.airline.boardingDate
+            ).toLocaleDateString()}
+            ~
+            {new Date(
+              selectedItem.diyPackage.airline.comingDate
+            ).toLocaleDateString()}
+          </p>
         </div>
       </div>
       <form onSubmit={handleSubmit} className={styles.form_box}>
