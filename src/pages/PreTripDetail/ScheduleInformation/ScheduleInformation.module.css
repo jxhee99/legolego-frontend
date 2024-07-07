@@ -1,143 +1,164 @@
-.Schedule {
-  padding: 1.75rem;
-  margin-top: 0.5rem;
+.schedule {
+  padding: 3rem 1rem;
+  background-color: #f7f7f7;
 }
 
-.Schedule h3 {
-  font-size: 1.5rem;
-  margin-bottom: 2.5rem;
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
   color: #333;
 }
 
-.Schedule .courseHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #3498db;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.timelineItem {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+.timelineItem::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #3498db;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timelineItem:nth-child(even) {
+  left: 50%;
+}
+
+.timelineItem:nth-child(odd)::after {
+  left: -16px;
+}
+
+.timelineContent {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dayTitle {
+  font-size: 1.8rem;
+  color: #3498db;
   margin-bottom: 1rem;
 }
 
-.Schedule h4 {
-  position: relative;
-  margin: 0;
-  padding-left: 2.75rem;
-  font-size: 1.25rem;
-  color: #555;
-}
-
-.Schedule h4::before {
-  background-image: url('../../../assets/images/location-dot-solid.png');
-  background-size: 14px auto;
-  background-position: 6px 2px;
-  background-repeat: no-repeat;
-  width: 45px;
-  height: 28px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-}
-
-.Schedule .scrollWrapper {
-  overflow: hidden;
-}
-
-.Schedule .course_cards {
-  display: flex;
-  padding: 36px 0 36px 48px;
-  margin: 0;
+.courseList {
   list-style-type: none;
-  position: relative;
+  padding: 0;
 }
 
-.Schedule .course_cards::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  margin-left: 23px;
-  border-right: solid 1px #ff006e;
-  content: '';
+.courseItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
 }
 
-.Schedule .course_cards li {
-  flex: 0 0 calc(33.333% - 20px);
-  margin-right: 20px;
-  transition: transform 0.5s ease;
-  background-color: var(--color-white);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+.courseItem:hover {
+  transform: translateY(-5px);
 }
 
-.Schedule .course_cards li div {
-  width: 100%;
-  height: 100%;
-  padding: 0.75rem;
-}
-
-.Schedule .course_cards li img {
-  width: 100%;
-  height: 250px;
+.courseImage {
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 8px 8px 0 0;
+  border-radius: 50%;
+  margin-right: 1rem;
 }
 
-.Schedule .course_cards li span {
-  display: block;
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 0.5rem;
+.courseInfo {
+  display: flex;
+  align-items: center;
 }
 
-.Schedule .course_cards .course {
-  font-size: 0.875rem;
-  color: #666;
-  margin-bottom: 0;
-}
-
-.Schedule .course_cards .course span {
-  display: inline-block;
-}
-
-.course span:first-child {
-  display: inline-block;
+.courseNumber {
   width: 30px;
   height: 30px;
   line-height: 30px;
   border-radius: 50%;
-  background-color: #f0f0f0;
-  color: var(--color-gray);
+  background-color: #3498db;
+  color: white;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 1rem;
   font-weight: bold;
 }
 
-.Schedule .sliderControls {
-  display: flex;
-  align-items: center;
-}
-
-.Schedule .sliderControls button {
-  padding: 0.4rem 0.8rem;
-  margin: 0 0.25rem;
-  background-color: #f0f0f0;
+.courseName {
+  font-size: 1rem;
   color: #333;
-  border: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin: 0;
 }
 
-.Schedule .sliderControls button:hover {
-  background-color: #ff006e;
-  color: #fff;
+.imageOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
 }
 
-.Schedule .sliderControls button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: #e0e0e0;
-  color: #999;
+.enlargedImage {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: contain;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timelineItem {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timelineItem::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+  .timelineItem::after {
+    left: 15px;
+  }
+
+  .timelineItem:nth-child(even) {
+    left: 0%;
+  }
 }

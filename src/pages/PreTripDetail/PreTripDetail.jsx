@@ -44,7 +44,7 @@ const PreTripDetail = () => {
   const { airline, detailCourse, ...packageData } = productDetail;
 
   return (
-    <div className={`${styles.PreTripDetail} layout`}>
+    <div className="layout">
       <PackageInformation {...packageData} />
       {reviews.length > 0 && <PreTripComment reviews={reviews} />}
       <AirplaneInformation {...airline} />
