@@ -15,38 +15,22 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 700px;
+  height: 500px;
   width: 700px;
-  padding: 20px;
   background-color: #ffffff;
-  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  padding-bottom: 0.5rem;
+  border-radius: 12px;
 }
 
-.Modal .modal_close_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.Modal .modal_button:hover {
-  color: red;
-}
-
-.Modal .modal_close_button img {
+.modal_title {
+  padding: 0 1rem;
   width: 100%;
-  height: 100%;
-}
-
-.Modal .modal_title h3 {
-  text-align: center;
+  height: 50px;
+  background-color: #140041;
+  color: #fff;
+  line-height: 50px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }

@@ -49,11 +49,6 @@ const PartnerPackageList = () => {
     setModalOpen(false);
   };
 
-  // 입력 값 변경 시 처리
-  const handleInputChange = (setValue) => (e) => {
-    setValue(e.target.value);
-  };
-
   // 현재 페이지에 해당하는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -62,7 +57,7 @@ const PartnerPackageList = () => {
   // 화면 렌더링
   return (
     <div className={styles.box}>
-      <h2 style={{ margin: '1.5rem 0' }}>Diy 목록</h2>
+      <h2 style={{ margin: '2rem 0' }}>Diy 목록</h2>
       <ListTable>
         <thead>
           <tr>

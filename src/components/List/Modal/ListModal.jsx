@@ -15,11 +15,8 @@ const ListModal = ({ isVisible, closeModal, title, children }) => {
   return (
     <div className={styles.Modal} onClick={handleBackgroundClick}>
       <div className={styles.modal_layout} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.modal_close_button} onClick={closeModal}>
-          x
-        </button>
         <div className={styles.modal_title}>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
         </div>
         {children}
       </div>

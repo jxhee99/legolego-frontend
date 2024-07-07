@@ -24,7 +24,8 @@ const ProductRegisterModal = ({ selectedItem, closeModal, refetch }) => {
       }
 
       const response = await apiClient.post(
-        `/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`);
+        `/admin/register?list_num=${selectedItem.listNum}&recruitment_dead_line=${combinedDateTime}`
+      );
 
       if (response.status === 200) {
         console.log('승인');
@@ -41,30 +42,33 @@ const ProductRegisterModal = ({ selectedItem, closeModal, refetch }) => {
   return (
     <>
       {showForm ? (
-        <form onSubmit={handleSubmit} className={styles.modal_form}>
-          <h4>모집 마감기한</h4>
-          <label>날짜</label>
-          <input
-            type="date"
-            value={deadlineDate}
-            onChange={handleInputChange(setDeadlineDate)}
-          />
-          <br />
-          <label>시간</label>
-          <input
-            type="time"
-            value={deadlineTime}
-            onChange={handleInputChange(setDeadlineTime)}
-          />
-          <div className={styles.button_box}>
-            <button type="submit" className={styles.submit_button}>
-              등록
-            </button>
-            <button type="button" onClick={() => setShowForm(false)}>
-              뒤로가기
-            </button>
-          </div>
-        </form>
+        <div className={styles.box}>
+          <p>모집 마감 기한을 입력해 정식 상품으로 등록하세요!</p>
+          <form onSubmit={handleSubmit} className={styles.modal_form}>
+            <h3>모집 마감기한</h3>
+            <label>날짜 :</label>
+            <input
+              type="date"
+              value={deadlineDate}
+              onChange={handleInputChange(setDeadlineDate)}
+            />
+            <br />
+            <label>시간 :</label>
+            <input
+              type="time"
+              value={deadlineTime}
+              onChange={handleInputChange(setDeadlineTime)}
+            />
+            <div className={styles.button_box}>
+              <button type="submit" className={styles.submit_button}>
+                등록
+              </button>
+              <button type="button" onClick={() => setShowForm(false)}>
+                뒤로가기
+              </button>
+            </div>
+          </form>
+        </div>
       ) : (
         <>
           <PriceDetail selectedItem={selectedItem} />
