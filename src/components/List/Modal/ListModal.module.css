@@ -21,7 +21,7 @@
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding-bottom: 0.5rem;
-  border-radius: 4px;
+  border-radius: 12px;
 }
 
 .modal_title {
@@ -31,6 +31,6 @@
   background-color: #140041;
   color: #fff;
   line-height: 50px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }

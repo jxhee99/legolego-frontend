@@ -48,8 +48,9 @@ const PriceRegister = ({ selectedItem, closeModal, refetch }) => {
             <p>{selectedItem.diyPackage.regDate}</p>
             <p>{selectedItem.diyPackage.user.userNickname}</p>
           </div>
-          <h3>{selectedItem.diyPackage.packageName}</h3>
-          <p>{selectedItem.diyPackage.shortDescription}</p>
+          <h4>패키지명: {selectedItem.diyPackage.packageName}</h4>
+          <p>설명: {selectedItem.diyPackage.shortDescription}</p>
+          <p>목적지: {selectedItem.diyPackage.airline.destination}</p>
           <div>
             여행기간 |{' '}
             {new Date(

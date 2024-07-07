@@ -14,8 +14,9 @@ const PriceDetail = ({ selectedItem }) => {
             <p>{selectedItem.diyPackage.regDate}</p>
             <p>{selectedItem.diyPackage.user.userNickname}</p>
           </div>
-          <h4>{selectedItem.diyPackage.packageName}</h4>
-          <p>{selectedItem.diyPackage.shortDescription}</p>
+          <h4>패키지명: {selectedItem.diyPackage.packageName}</h4>
+          <p>설명: {selectedItem.diyPackage.shortDescription}</p>
+          <p>목적지: {selectedItem.diyPackage.airline.destination}</p>
           <div>
             여행기간 |{' '}
             {new Date(
