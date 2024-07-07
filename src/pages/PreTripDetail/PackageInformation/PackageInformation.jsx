@@ -1,6 +1,6 @@
+import React from 'react';
 import styles from './PackageInformation.module.css';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import PersonIcon from '@mui/icons-material/Person';
+import { CalendarMonth, Person, LocationOn, Star } from '@mui/icons-material';
 import { formatDateTime } from '../../../utils/DateTime';
 
 const PackageInformation = ({
@@ -10,36 +10,43 @@ const PackageInformation = ({
   productImage,
   recruitmentDeadline,
   necessaryPeople,
+  rating,
 }) => {
   return (
-    <section className={styles.packageInformation}>
-      <div className={styles.imageContainer}>
+    <div className={styles.productContainer}>
+      <div className={styles.imageSection}>
         <img
           src={productImage}
           alt={productName}
           className={styles.productImage}
         />
+        <span className={styles.badge}>여행 완료</span>
       </div>
-      <div className={styles.infoContainer}>
-        <h2 className={styles.productName}>{productName}</h2>
+      <div className={styles.infoSection}>
+        <h1 className={styles.productName}>{productName}</h1>
+        <div className={styles.ratingContainer}>
+          <Star className={styles.starIcon} />
+          <span className={styles.rating}>{rating}</span>
+          <span className={styles.reviews}>(32 리뷰)</span>
+        </div>
         <p className={styles.partnerName}>{partnerName}</p>
-        <div className={styles.recruitmentInfo}>
-          <PersonIcon className={styles.icon} />
-          <p className={styles.recruitment}>
-            <span className={styles.highlightText}>{necessaryPeople}</span> 명을
-            모집하고 있어요!
-          </p>
+
+        <div className={styles.detailsContainer}>
+          <div className={styles.detail}>
+            <Person className={styles.icon} />
+            <span>필요 인원: {necessaryPeople}명</span>
+          </div>
+          <div className={styles.detail}>
+            <CalendarMonth className={styles.icon} />
+            <span>마감일: {formatDateTime(recruitmentDeadline)}</span>
+          </div>
+          <div className={styles.priceContainer}>
+            <span className={styles.price}>{price.toLocaleString()}원</span>
+            <span className={styles.perPerson}>/ 1인</span>
+          </div>
         </div>
-        <p className={styles.price}>{price.toLocaleString()} ₩</p>
-        <div className={styles.deadlineInfo}>
-          <CalendarMonthIcon className={styles.icon} />
-          <span>{formatDateTime(recruitmentDeadline)} 마감</span>
-        </div>
-        <button className={styles.completedButton}>
-          여행이 완료된 상품입니다
-        </button>
       </div>
-    </section>
+    </div>
   );
 };
 

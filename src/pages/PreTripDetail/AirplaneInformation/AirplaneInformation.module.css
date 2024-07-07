@@ -1,56 +1,94 @@
-.section {
-  margin: 20px 0;
+.flightInfo {
+  max-width: 800px;
+  margin: 4.5rem auto;
+  padding: 0 1rem;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.airlineCard {
+.flightCard {
   display: flex;
-  justify-content: space-between;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.airlineInfo {
-  flex: 1;
-  padding: 0 10px;
+.flightLeg {
+  padding: 3rem;
 }
 
-.subtitle {
-  font-size: 18px;
-  margin-bottom: 10px;
+.flightLeg:first-child {
+  border-right: 1px dashed #e0e0e0;
+  width: 50%;
+}
+
+.flightLeg:nth-child(2) {
+  border-right: 1px dashed #e0e0e0;
+  width: 50%;
+}
+
+.flightHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #3498db;
+  margin-right: 0.5rem;
+}
+
+.legTitle {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin: 0;
 }
 
 .flightDetails {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.airlineName {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.flightNumber {
-  color: #666;
-}
-
-.tripInfo {
+.airline {
   display: flex;
   flex-direction: column;
 }
 
+.airlineName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.flightNumber {
+  font-size: 1rem;
+  color: #7f8c8d;
+  background-color: #ecf0f1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.route {
+  text-align: right;
+}
+
 .location {
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
 }
 
 .dateTime {
-  font-size: 14px;
-  color: #666;
+  font-size: 0.9rem;
+  color: #7f8c8d;
 }

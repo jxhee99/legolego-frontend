@@ -1,47 +1,76 @@
-.PreTripComment {
-  padding: 3rem;
-  margin-bottom: 20px;
+.reviewSection {
+  margin: 3rem auto;
+  padding: 4rem 2rem;
 }
 
-.PreTripComment h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 1.5rem;
+.reviewTitle {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 700;
 }
 
-.PreTripCards {
-  display: flex;
+.reviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.PreTripCards .comment {
+.reviewCard {
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 15px;
-  padding: 1.5rem;
-  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.PreTripCards .authorDate {
+.reviewCard.hovered {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.reviewHeader {
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.625rem;
 }
 
-.PreTripCards .author {
-  font-weight: bold;
+.reviewAuthor {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
 }
 
-.PreTripCards .date {
-  color: #666;
-  font-size: 14px;
+.reviewDate {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-.PreTripCards .content p {
-  padding: 0.625rem 0;
+.reviewContent {
+  padding: 1.5rem;
+  color: #34495e;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-.PreTripCards .content div {
-  margin-top: 0.625rem;
+@media (max-width: 768px) {
+  .reviewSection {
+    padding: 3rem 1rem;
+  }
+
+  .reviewTitle {
+    font-size: 2rem;
+  }
+
+  .reviewGrid {
+    grid-template-columns: 1fr;
+  }
 }

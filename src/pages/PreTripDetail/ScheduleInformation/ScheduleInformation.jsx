@@ -1,92 +1,40 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ScheduleInformation.module.css';
 import noneWhite from '../../../assets/images/none-white.png';
 
 const ScheduleInformation = ({ detailCourse }) => {
-  const [currentSlide, setCurrentSlide] = useState({});
-  const itemsPerSlide = 3;
-
-  useEffect(() => {
-    if (detailCourse) {
-      const initialSlideState = {};
-      detailCourse.forEach((course) => {
-        initialSlideState[course.detailCourseNum] = 0;
-      });
-      setCurrentSlide(initialSlideState);
-    }
-  }, [detailCourse]);
-
-  const handlePrevSlide = (courseNum) => {
-    setCurrentSlide((prev) => ({
-      ...prev,
-      [courseNum]: Math.max(prev[courseNum] - itemsPerSlide, 0),
-    }));
-  };
-
-  const handleNextSlide = (courseNum, totalItems) => {
-    setCurrentSlide((prev) => ({
-      ...prev,
-      [courseNum]: Math.min(
-        prev[courseNum] + itemsPerSlide,
-        Math.max(0, totalItems - itemsPerSlide)
-      ),
-    }));
-  };
+  const [hoveredImage, setHoveredImage] = useState(null);
 
   return (
-    <section className={styles.Schedule}>
-      <h3>여행 일정</h3>
-      <div>
+    <section className={styles.schedule}>
+      <h2 className={styles.title}>지난 여행 일정</h2>
+      <div className={styles.timeline}>
         {detailCourse &&
           detailCourse.map((course, idx) => (
-            <div key={course.detailCourseNum} className={styles.CourseList}>
-              <div className={styles.courseHeader}>
-                <h4>
+            <div key={course.detailCourseNum} className={styles.timelineItem}>
+              <div className={styles.timelineContent}>
+                <h3 className={styles.dayTitle}>
                   {idx + 1}일차 ({course.dayNum})
-                </h4>
-                <div className={styles.sliderControls}>
-                  <button
-                    onClick={() => handlePrevSlide(course.detailCourseNum)}
-                    disabled={currentSlide[course.detailCourseNum] === 0}
-                  >
-                    이전
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleNextSlide(
-                        course.detailCourseNum,
-                        course.courses.length
-                      )
-                    }
-                    disabled={
-                      currentSlide[course.detailCourseNum] >=
-                      course.courses.length - itemsPerSlide
-                    }
-                  >
-                    다음
-                  </button>
-                </div>
-              </div>
-              <div className={styles.scrollWrapper}>
-                <ul
-                  className={styles.course_cards}
-                  style={{
-                    transform: `translateX(-${currentSlide[course.detailCourseNum] * (100 / itemsPerSlide)}%)`,
-                    transition: 'transform 0.5s ease',
-                  }}
-                >
+                </h3>
+                <ul className={styles.courseList}>
                   {course.courses.map((item, index) => (
-                    <li key={`${course.detailCourseNum}-${index}`}>
-                      <div>
-                        <img
-                          src={course.fileUrls[index] || noneWhite}
-                          alt="이미지"
-                        />
-                        <p className={styles.course}>
-                          <span>{index + 1}</span>
-                          <span>{item}</span>
-                        </p>
+                    <li
+                      key={`${course.detailCourseNum}-${index}`}
+                      className={styles.courseItem}
+                      onMouseEnter={() =>
+                        setHoveredImage(course.fileUrls[index] || noneWhite)
+                      }
+                      onMouseLeave={() => setHoveredImage(null)}
+                    >
+                      <img
+                        src={course.fileUrls[index] || noneWhite}
+                        alt={`Day ${idx + 1} - Location ${index + 1}`}
+                        className={styles.courseImage}
+                      />
+                      <div className={styles.courseInfo}>
+                        <span className={styles.courseNumber}>{index + 1}</span>
+                        <p className={styles.courseName}>{item}</p>
                       </div>
                     </li>
                   ))}
@@ -95,6 +43,15 @@ const ScheduleInformation = ({ detailCourse }) => {
             </div>
           ))}
       </div>
+      {hoveredImage && (
+        <div className={styles.imageOverlay}>
+          <img
+            src={hoveredImage}
+            alt="Enlarged view"
+            className={styles.enlargedImage}
+          />
+        </div>
+      )}
     </section>
   );
 };
