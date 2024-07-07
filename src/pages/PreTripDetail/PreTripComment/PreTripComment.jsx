@@ -28,11 +28,11 @@ const PreTripComment = ({ reviews }) => {
               </time>
             </header>
             <div className={styles.reviewContent}>
+              <Box>
+                <Rating name="read-only" value={review.rating} readOnly />
+              </Box>
               <p>{review.content}</p>
             </div>
-            <footer className={styles.reviewFooter}>
-              <Rating name="read-only" value={review.rating} readOnly />
-            </footer>
           </article>
         ))}
       </div>

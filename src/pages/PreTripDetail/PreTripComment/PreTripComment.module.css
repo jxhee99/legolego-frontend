@@ -1,6 +1,6 @@
 .reviewSection {
+  margin: 3rem auto;
   padding: 4rem 2rem;
-  background-color: #f8f9fa;
 }
 
 .reviewTitle {
@@ -59,13 +59,6 @@
   color: #34495e;
   font-size: 1rem;
   line-height: 1.6;
-}
-
-.reviewFooter {
-  padding: 1rem 1.5rem;
-  background-color: #ecf0f1;
-  display: flex;
-  justify-content: flex-end;
 }
 
 @media (max-width: 768px) {

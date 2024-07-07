@@ -1,6 +1,5 @@
 .schedule {
   padding: 3rem 1rem;
-  background-color: #f7f7f7;
 }
 
 .title {
@@ -129,8 +128,8 @@
 }
 
 .enlargedImage {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 500px;
+  max-height: 500px;
   object-fit: contain;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
