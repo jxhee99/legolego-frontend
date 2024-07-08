@@ -1,7 +1,7 @@
 // 페이지
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
-import Package from '../pages/Package/Package';
+import Product from '../pages/Product/Product';
 import PackageDetail from '../pages/PackageDetail/PackageDetail';
 import Diy from '../pages/Diy/Diy';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
@@ -67,7 +67,7 @@ export const ROUTE = {
   PACKAGE: {
     path: '/package-product',
     link: '/package-product',
-    element: Package,
+    element: Product,
   },
   PACKAGE_DETAIL: {
     path: '/package-product/:id',

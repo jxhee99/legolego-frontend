@@ -1,0 +1,65 @@
+.ProductCard {
+  width: 21.875rem;
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: 17.5rem;
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.625rem 0;
+}
+
+.content .content_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.content .content_body {
+  display: flex;
+  align-items: center;
+}
+
+.content .content_body p::before {
+  content: '|';
+  margin: 0 0.25rem;
+}
+
+.date {
+  color: #666;
+  margin: 0.3125rem 0;
+}
+
+.price {
+  font-size: 1.5rem;
+  margin: 0.3125rem 0;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.likes span {
+  margin-right: 0.25rem;
+}
+
+.heartIcon {
+  color: #ff6b6b;
+  font-size: 1rem;
+  margin-right: 0.3125rem;
+}
