@@ -1,17 +1,17 @@
-.package_cards {
+.product_cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 3rem;
   margin-top: 3rem;
 }
-.packageText {
+.productText {
   position: absolute;
   font-size: 1.3rem;
   text-shadow: 3px;
   bottom: 105px;
   right: 155px;
 }
-.packageBackground {
+.productBackground {
   background-image: url('../../assets/images/legoRiver.jpeg');
   background-repeat: no-repeat;
   background-size: 90rem;

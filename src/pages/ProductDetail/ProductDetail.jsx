@@ -1,5 +1,5 @@
-import styles from './PackageDetail.module.css';
-import PackageInformation from './PackageInformation/PackageInformation';
+import styles from './ProductDetail.module.css';
+import PackageInformation from './ProductInformation/ProductInformation';
 import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
 import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
 import RecommendProduct from './RecommendProduct/RecommendProduct';
@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Metas from '../../components/common/Metas';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-import PackageMenu from './PackageMenu/PackageMenu';
+import ProductMenu from './ProductMenu/ProductMenu';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});
@@ -62,12 +62,15 @@ const PackageDetail = () => {
           {...packageData}
           detailCourse={packageData.detailCourse}
         />
-        <PackageMenu activeSection={activeSection} />
+        <ProductMenu activeSection={activeSection} />
         <section id="airplane-info" className={`${styles.section}`}>
           <AirplaneInfomation {...packageData.airline} />
         </section>
         <section id="schedule-info" className={`${styles.section}`}>
           <ScheduleInformation detailCourse={packageData.detailCourse} />
+        </section>
+        <section id="recomment-info" className={`${styles.section}`}>
+          <RecommendProduct />
         </section>
       </div>
     </>

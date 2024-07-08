@@ -2,7 +2,7 @@
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
 import Product from '../pages/Product/Product';
-import PackageDetail from '../pages/PackageDetail/PackageDetail';
+import ProductDetail from '../pages/ProductDetail/ProductDetail';
 import Diy from '../pages/Diy/Diy';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
@@ -72,7 +72,7 @@ export const ROUTE = {
   PACKAGE_DETAIL: {
     path: '/package-product/:id',
     link: '/package-product/:id',
-    element: PackageDetail,
+    element: ProductDetail,
   },
   DIY: {
     path: '/diy',

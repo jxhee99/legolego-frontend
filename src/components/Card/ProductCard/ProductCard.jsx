@@ -1,8 +1,18 @@
 import React from 'react';
 import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
+
+const confirmBadge = () => {
+  return (
+    <div>
+      <BookmarkIcon className={styles.bookmarkIcon} />
+      <span>모집확정</span>
+    </div>
+  );
+};
 
 const ProductCard = ({
   productNum,
