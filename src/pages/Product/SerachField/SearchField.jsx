@@ -22,6 +22,7 @@ const SearchField = ({ onChange, value }) => {
         ),
         notchedOutline: styles.searchInputFieldset,
       }}
+      style={{ width: '100%' }}
     />
   );
 };
