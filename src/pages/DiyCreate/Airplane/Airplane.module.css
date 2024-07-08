@@ -7,11 +7,11 @@
 }
 
 .airplane_box button {
-  background-color: #3a86ff;
+  background-color: #7cc6ff;
 }
 
 .airplane_box button:hover {
-  background-color: #0056b3;
+  background-color: #033fff;
 }
 
 .Airplane {
@@ -89,7 +89,7 @@
 }
 
 .selectedFlight {
-  border: 2px solid #d3e7f8;
+  border: 2px solid #7cc6ff;
 }
 
 /* 하단 선택된 항공편 박스 */

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styles from '../DiyCreate/DiyCreate.module.css';
 import { useState } from 'react';
 import { Link, useSearchParams, useParams } from 'react-router-dom';
+import LegoHead from '../../pages/DiyCreate/Desgin/LegoHead';
 import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
 import PackageForm from './DiyForm/DiyForm';
@@ -86,28 +87,22 @@ const DiyEdit = () => {
           레고 수정하기
         </h3>
         <ul className={styles.diy_create_steps}>
-          <div className={styles.lego_box1}>
-            <div
-              className={`${styles.lego1} ${step === 'airplane' ? styles.active : ''}`}
-            ></div>
+          <div className={styles.lego_box}>
+            <LegoHead step={step === 'airplane'} />
             <li className={step === 'airplane' ? styles.active : ''}>
               <Link to={`/diy-edit/${id}?step=airplane`}>항공편</Link>
             </li>
           </div>
-          <div className={styles.lego_box2}>
-            <div
-              className={`${styles.lego2} ${step === 'schedule' ? styles.active : ''}`}
-            ></div>
+          <div className={styles.lego_box}>
+            <LegoHead step={step === 'schedule'} />
             <li className={step === 'schedule' ? styles.active : ''}>
               {route.startDate && (
                 <Link to={`/diy-edit/${id}?step=schedule`}>일정</Link>
               )}
             </li>
           </div>
-          <div className={styles.lego_box3}>
-            <div
-              className={`${styles.lego3} ${step === 'diy-form' ? styles.active : ''}`}
-            ></div>
+          <div className={styles.lego_box}>
+            <LegoHead step={step === 'diy-form'} />
             <li className={step === 'diy-form' ? styles.active : ''}>
               {isAllSelected ? (
                 <Link to={`/diy-edit/${id}?step=diy-form`}>만들기</Link>

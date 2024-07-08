@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './DiyForm.module.css';
+import DraftButton from '../Draft/DraftButton';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
 import apiClient from '../../../api/apiClient';
@@ -38,17 +39,8 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: {
-        startAirlineName: airline.startAirlineName,
-        startingPoint: airline.startingPoint,
-        destination: airline.destination,
-        startFlightNum: airline.startFlightNum,
-        boardingDate: airline.boardingDate,
-        comeAirlineName: airline.comeAirlineName,
-        comeFlightNum: airline.comeFlightNum,
-        comingDate: airline.comingDate,
-      },
-      route: route,
+      airline,
+      route,
       detailCourses: detailCourses,
       packageForm: {
         packageName: packageName,
@@ -115,7 +107,7 @@ const DiyForm = () => {
       <h4>레고 만들기</h4>
       <div className={styles.form_box}>
         <form onSubmit={handleSubmit}>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>패키지 이름</label>
             <input
               type="text"
@@ -123,7 +115,7 @@ const DiyForm = () => {
               onChange={handlePackageNameChange}
             />
           </div>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>짧은 설명</label>
             <textarea
               value={shortDesc}
@@ -131,9 +123,12 @@ const DiyForm = () => {
               rows={4}
             />
           </div>
-          <button type="submit" className={styles.submit_btn_}>
-            제출
-          </button>
+          <div className={styles.button_box}>
+            <button type="submit" className={styles.submit_btn}>
+              제출
+            </button>
+            <DraftButton packageName={packageName} shortDesc={shortDesc} />
+          </div>
         </form>
       </div>
     </div>

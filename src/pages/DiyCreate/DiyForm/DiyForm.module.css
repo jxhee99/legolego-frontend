@@ -46,18 +46,18 @@
   border-radius: 12px;
 }
 
-.form_group_ {
+.form_group {
   margin-bottom: 1rem;
 }
 
-.form_group_ label {
+.form_group label {
   margin-bottom: 1.5rem;
   display: block;
   font-weight: bold;
 }
 
-.form_group_ input[type='text'],
-.form_group_ textarea {
+.form_group input[type='text'],
+.form_group textarea {
   width: 100%;
   padding: 8px;
   font-size: 16px;
@@ -65,20 +65,25 @@
   border-radius: 4px;
 }
 
-.form_group_ textarea {
+.form_group textarea {
   height: 100px;
   resize: none;
   line-height: 1.5rem;
 }
 
-.submit_btn_ {
-  background-color: #ff006e;
+.button_box {
+  display: flex;
+  gap: 1rem;
+}
+
+.form_box .submit_btn {
+  background-color: #ff0000;
   color: white;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 12px;
 }
 
-.submit_btn_:hover {
-  background-color: #ff0037;
+.form_box .submit_btn:hover {
+  background-color: #ff0060;
 }

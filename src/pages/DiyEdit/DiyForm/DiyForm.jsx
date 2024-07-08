@@ -101,7 +101,7 @@ const DiyForm = () => {
       <h4>레고 만들기</h4>
       <div className={styles.form_box}>
         <form onSubmit={handleSubmit}>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>패키지 이름</label>
             <input
               type="text"
@@ -109,7 +109,7 @@ const DiyForm = () => {
               onChange={handlePackageNameChange}
             />
           </div>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>짧은 설명</label>
             <textarea
               value={shortDesc}
@@ -117,7 +117,7 @@ const DiyForm = () => {
               rows={4}
             />
           </div>
-          <button type="submit" className={styles.submit_btn_}>
+          <button type="submit" className={styles.submit_btn}>
             제출
           </button>
         </form>

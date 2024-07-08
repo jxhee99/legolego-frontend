@@ -2,6 +2,7 @@ import styles from './DiyCreate.module.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import LegoBox from './Desgin/LegoBox';
+import Draft from './Draft/Draft';
 import DiySteps from './DiySteps';
 import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
@@ -51,12 +52,7 @@ const DiyCreate = () => {
         <LegoBox />
       ) : (
         <div className={isAnimated ? styles.diyStepsEnter : ''}>
-          <h3>
-            <span>D </span>
-            <span>I </span>
-            <span>Y </span>
-            레고 만들기
-          </h3>
+          <h3>DIY 레고 만들기</h3>
           <DiySteps
             step={step}
             airline={airline}
@@ -67,6 +63,7 @@ const DiyCreate = () => {
           />
         </div>
       )}
+      {!showLegoBox && step === null && <Draft />}
       {step === 'airplane' && <AirPlane />}
       {step === 'schedule' && <Schedule />}
       {step === 'diy-form' && <PackageForm />}
