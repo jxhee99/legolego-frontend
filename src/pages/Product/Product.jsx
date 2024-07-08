@@ -56,11 +56,9 @@ const Product = () => {
         </div>
       </div>
       <section className={`${styles.product}`}>
+        {/* <ProductProcessCard price="10000" /> */}
         <SearchField onChange={handleSearch} value={searchTerm} />
         <div className={`layout`}>
-          <div>
-            <h2>어떤 여행을 함께 해볼까요?</h2>
-          </div>
           <div className={styles.product_cards}>
             {displayedData.map((productItem) => (
               <ProductCard key={productItem.productNum} {...productItem} />

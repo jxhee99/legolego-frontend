@@ -22,6 +22,11 @@
   padding: 20px;
 }
 
+.content .content_top {
+  display: flex;
+  justify-content: space-between;
+}
+
 .title {
   margin: 0 0 10px 0;
   font-size: 24px;
@@ -55,6 +60,7 @@
 .progressText {
   font-size: 14px;
   color: #666;
+  text-align: right;
 }
 
 .button {
