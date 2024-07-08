@@ -6,6 +6,9 @@
   font-style: normal;
 }
 
+.Comment{
+  font-family: 'DungGeunMo';  
+}
 
 .commentBackground {
   background-image: url('../../../assets/images/legoHiker.jpg');
@@ -79,6 +82,8 @@
   color: #666;
   margin: auto 1.75rem auto auto; 
   text-align: right;
+  font-size: 0.8rem;
+  line-height: 1rem;
 
 }
 
@@ -86,6 +91,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+
 
 .hover_box {
   position: absolute;
@@ -107,6 +113,17 @@
   opacity: 1;
 }
 
-.hover_text {
+.hover_textTitle {
   margin: 5px 0;
+  font-size:1.5rem;
+}
+
+.hover_text {
+  margin: 0.5rem 1rem 0 1rem;
+}
+
+
+.hover_textDetail {
+  margin: 0.5rem 1rem 1rem 1rem;
+  color: lightgray;
 }
