@@ -1,5 +1,5 @@
 import styles from './ProductDetail.module.css';
-import PackageInformation from './ProductInformation/ProductInformation';
+import ProductInformation from './ProductInformation/ProductInformation';
 import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
 import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
 import RecommendProduct from './RecommendProduct/RecommendProduct';
@@ -58,7 +58,7 @@ const PackageDetail = () => {
       <Metas title={packageData.productName} />
       <ScrollToTop />
       <div className={`${styles.PackageDetail} layout`}>
-        <PackageInformation
+        <ProductInformation
           {...packageData}
           detailCourse={packageData.detailCourse}
         />
@@ -69,9 +69,7 @@ const PackageDetail = () => {
         <section id="schedule-info" className={`${styles.section}`}>
           <ScheduleInformation detailCourse={packageData.detailCourse} />
         </section>
-        <section id="recomment-info" className={`${styles.section}`}>
-          <RecommendProduct />
-        </section>
+        <RecommendProduct />
       </div>
     </>
   );

@@ -48,27 +48,19 @@ const Product = () => {
   };
 
   return (
-    <div className={styles.Product}>
+    <>
       <Metas title="패키지 상품" />
       <div className={`${styles.productBackground}`}>
         <div className={styles.productText}>
           <p>다른 사람이 만든 패키지 여행을 함께 떠나보세요!</p>
         </div>
       </div>
-      <SearchField onChange={handleSearch} value={searchTerm} />
       <section className={`${styles.product}`}>
+        <SearchField onChange={handleSearch} value={searchTerm} />
         <div className={`layout`}>
           <div>
             <h2>어떤 여행을 함께 해볼까요?</h2>
           </div>
-          <ProductProcessCard
-            image="/path/to/image.jpg"
-            title="프랑스에서 아침을"
-            category="모두투어"
-            price={1250000}
-            date="모집 기간: 2024-08-20 00:00:00 까지"
-            progress={12}
-          />
           <div className={styles.product_cards}>
             {displayedData.map((productItem) => (
               <ProductCard key={productItem.productNum} {...productItem} />
@@ -89,7 +81,7 @@ const Product = () => {
           </Stack>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
