@@ -1,0 +1,28 @@
+.searchInputRoot {
+  border-radius: 20px;
+  background-color: #eaeaea;
+}
+
+.searchInputFieldset {
+  border-color: transparent;
+}
+
+.searchInputRoot:hover .searchInputFieldset {
+  border-color: transparent;
+}
+
+.searchInputRoot.Mui-focused .searchInputFieldset {
+  border-color: transparent;
+}
+
+.searchInput {
+  padding: 10px 14px;
+}
+
+.inputAdornment {
+  margin-right: 8px;
+}
+
+.searchIcon {
+  color: #666;
+}

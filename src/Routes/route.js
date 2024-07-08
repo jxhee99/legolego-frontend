@@ -1,8 +1,8 @@
 // 페이지
 import About from '../pages/About/About';
 import Home from '../pages/Home/Home';
-import Package from '../pages/Package/Package';
-import PackageDetail from '../pages/PackageDetail/PackageDetail';
+import Product from '../pages/Product/Product';
+import ProductDetail from '../pages/ProductDetail/ProductDetail';
 import Diy from '../pages/Diy/Diy';
 import TouristSpot from '../pages/DiyCreate//TouristSpot/TouristSpot';
 import Airplane from '../pages/DiyCreate/Airplane/Airplane';
@@ -67,12 +67,12 @@ export const ROUTE = {
   PACKAGE: {
     path: '/package-product',
     link: '/package-product',
-    element: Package,
+    element: Product,
   },
   PACKAGE_DETAIL: {
     path: '/package-product/:id',
     link: '/package-product/:id',
-    element: PackageDetail,
+    element: ProductDetail,
   },
   DIY: {
     path: '/diy',

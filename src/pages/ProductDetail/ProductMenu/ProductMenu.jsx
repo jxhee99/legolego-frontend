@@ -1,6 +1,6 @@
-import styles from './PackageMenu.module.css';
+import styles from './ProductMenu.module.css';
 
-const PackageMenu = ({ activeSection }) => {
+const ProductMenu = ({ activeSection }) => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -9,7 +9,7 @@ const PackageMenu = ({ activeSection }) => {
   };
 
   return (
-    <nav className={styles.packageMenu}>
+    <nav className={styles.ProductMenu}>
       <ul className={styles.navLinks}>
         <li
           className={activeSection === 'airplane-info' ? styles.active : ''}
@@ -28,4 +28,4 @@ const PackageMenu = ({ activeSection }) => {
   );
 };
 
-export default PackageMenu;
+export default ProductMenu;

@@ -1,4 +1,4 @@
-import styles from './PackageInformation.module.css';
+import styles from './ProductInformation.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -8,7 +8,7 @@ import { formatDateTime } from '../../../utils/DateTime';
 import apiClient from '../../../api/apiClient';
 import noneWhite from '../../../assets/images/none-white.png';
 
-const PackageInformation = ({
+const ProductInformation = ({
   productName,
   partnerName,
   price,
@@ -77,7 +77,7 @@ const PackageInformation = ({
   );
 
   return (
-    <section className={styles.PackageInformation}>
+    <section className={styles.ProductInformation}>
       <div className={styles.left_box}>
         <img src={productImage || noneWhite} alt="Product Image" />
       </div>
@@ -147,4 +147,4 @@ const PackageInformation = ({
   );
 };
 
-export default PackageInformation;
+export default ProductInformation;
