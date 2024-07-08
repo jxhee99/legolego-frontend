@@ -1,0 +1,20 @@
+.go_draft_box {
+  text-align: center;
+  line-height: 2rem;
+}
+
+.go_draft_box button {
+  color: #000;
+}
+
+.go_draft_box button:hover {
+  color: #2605f8;
+}
+
+.save_draft button {
+  color: #000;
+}
+
+.save_draft button:hover {
+  color: #2809f7;
+}

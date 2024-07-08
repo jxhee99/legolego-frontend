@@ -2,6 +2,7 @@ import styles from './DiyCreate.module.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import LegoBox from './Desgin/LegoBox';
+import Draft from './Draft/Draft';
 import DiySteps from './DiySteps';
 import AirPlane from './Airplane/Airplane';
 import Schedule from './Schedule/Schedule';
@@ -67,6 +68,7 @@ const DiyCreate = () => {
           />
         </div>
       )}
+      {!showLegoBox && step === null && <Draft />}
       {step === 'airplane' && <AirPlane />}
       {step === 'schedule' && <Schedule />}
       {step === 'diy-form' && <PackageForm />}

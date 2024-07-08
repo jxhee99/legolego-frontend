@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './DiyForm.module.css';
+import DraftButton from '../Draft/DraftButton';
 import DiyFlightCard from '../../../components/Diy/DiyFlightCard';
 import DiySchedule from '../../../components/Diy/DiySchedule';
 import apiClient from '../../../api/apiClient';
@@ -38,17 +39,8 @@ const DiyForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      airline: {
-        startAirlineName: airline.startAirlineName,
-        startingPoint: airline.startingPoint,
-        destination: airline.destination,
-        startFlightNum: airline.startFlightNum,
-        boardingDate: airline.boardingDate,
-        comeAirlineName: airline.comeAirlineName,
-        comeFlightNum: airline.comeFlightNum,
-        comingDate: airline.comingDate,
-      },
-      route: route,
+      airline,
+      route,
       detailCourses: detailCourses,
       packageForm: {
         packageName: packageName,
@@ -86,6 +78,7 @@ const DiyForm = () => {
 
   return (
     <div className={styles.container}>
+      <DraftButton packageName={packageName} shortDesc={shortDesc} />
       <h4>항공편</h4>
       <div className={styles.flight_box}>
         <DiyFlightCard
