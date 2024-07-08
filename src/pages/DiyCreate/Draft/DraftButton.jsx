@@ -52,7 +52,9 @@ const DraftButton = ({ packageName, shortDesc }) => {
   };
   return (
     <div className={styls.save_draft}>
-      <button onClick={handleSubmit}>임시 저장</button>
+      <button className={styls.save_button} onClick={handleSubmit}>
+        임시 저장
+      </button>
     </div>
   );
 };

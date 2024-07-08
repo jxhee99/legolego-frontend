@@ -84,3 +84,24 @@
 .lego_box span:nth-child(10) {
   animation-delay: 0.9s;
 }
+
+/* 레고 머리 */
+.lego_head {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.lego_head > div {
+  width: 28px;
+  height: 16px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.lego_head > .active {
+  background-color: #033fff;
+}

@@ -54,8 +54,12 @@ const Draft = () => {
     data && (
       <div className={styles.go_draft_box}>
         <p>임시 저장된 글이 있습니다.</p>
-        <button onClick={goEdit}>보러 가기</button>
-        <button onClick={handleDelete}>삭제</button>
+        <button className={styles.go_button} onClick={goEdit}>
+          보러 가기
+        </button>
+        <button className={styles.delete_button} onClick={handleDelete}>
+          삭제
+        </button>
       </div>
     )
   );

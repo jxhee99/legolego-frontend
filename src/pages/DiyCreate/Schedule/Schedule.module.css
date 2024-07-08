@@ -16,13 +16,13 @@
   gap: 4rem;
 }
 
-.Schedule button {
-  background-color: #8338ec;
+/* .Schedule button {
+  background-color: #ffdd00;
 }
 
 .Schedule button:hover {
-  background-color: #b338ec;
-}
+  background-color: #ff9d00;
+} */
 
 .Schedule .course_box {
   display: flex;
@@ -112,6 +112,7 @@
   width: 100px;
   height: 40px;
   align-self: flex-end;
+  margin-right: 2rem;
 }
 
 /* .map_info{

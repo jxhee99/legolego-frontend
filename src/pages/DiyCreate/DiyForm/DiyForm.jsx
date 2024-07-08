@@ -78,7 +78,6 @@ const DiyForm = () => {
 
   return (
     <div className={styles.container}>
-      <DraftButton packageName={packageName} shortDesc={shortDesc} />
       <h4>항공편</h4>
       <div className={styles.flight_box}>
         <DiyFlightCard
@@ -108,7 +107,7 @@ const DiyForm = () => {
       <h4>레고 만들기</h4>
       <div className={styles.form_box}>
         <form onSubmit={handleSubmit}>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>패키지 이름</label>
             <input
               type="text"
@@ -116,7 +115,7 @@ const DiyForm = () => {
               onChange={handlePackageNameChange}
             />
           </div>
-          <div className={styles.form_group_}>
+          <div className={styles.form_group}>
             <label>짧은 설명</label>
             <textarea
               value={shortDesc}
@@ -124,9 +123,12 @@ const DiyForm = () => {
               rows={4}
             />
           </div>
-          <button type="submit" className={styles.submit_btn_}>
-            제출
-          </button>
+          <div className={styles.button_box}>
+            <button type="submit" className={styles.submit_btn}>
+              제출
+            </button>
+            <DraftButton packageName={packageName} shortDesc={shortDesc} />
+          </div>
         </form>
       </div>
     </div>

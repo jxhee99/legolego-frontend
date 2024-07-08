@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Desgin.module.css';
+import styles from './Design.module.css';
 
 const LegoBox = () => {
   return (

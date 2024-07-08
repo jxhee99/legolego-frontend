@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './DiyCreate.module.css';
+import LegoHead from './Desgin/LegoHead';
 
 const DiySteps = ({
   step,
@@ -26,10 +27,8 @@ const DiySteps = ({
 
   return (
     <ul className={styles.diy_create_steps}>
-      <div className={styles.lego_box1}>
-        <div
-          className={`${styles.lego1} ${isAirplaneStep ? styles.active : ''}`}
-        ></div>
+      <div className={styles.lego_box}>
+        <LegoHead step={isAirplaneStep} />
         <li className={isAirplaneStep ? styles.active : ''}>
           <Link
             to="/diy-create?step=airplane"
@@ -39,10 +38,8 @@ const DiySteps = ({
           </Link>
         </li>
       </div>
-      <div className={styles.lego_box2}>
-        <div
-          className={`${styles.lego2} ${isScheduleStep ? styles.active : ''}`}
-        ></div>
+      <div className={styles.lego_box}>
+        <LegoHead step={isScheduleStep} />
         <li className={isScheduleStep ? styles.active : ''}>
           {isScheduleLinkActive ? (
             <Link
@@ -56,10 +53,8 @@ const DiySteps = ({
           )}
         </li>
       </div>
-      <div className={styles.lego_box3}>
-        <div
-          className={`${styles.lego3} ${isDiyFormStep ? styles.active : ''}`}
-        ></div>
+      <div className={styles.lego_box}>
+        <LegoHead step={isDiyFormStep} />
         <li className={isDiyFormStep ? styles.active : ''}>
           {isDiyFormLinkActive ? (
             <Link
