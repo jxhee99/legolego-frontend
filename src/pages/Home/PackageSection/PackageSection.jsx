@@ -22,10 +22,19 @@ const PackageSection = () => {
     fetchData();
   }, []);
 
-  // recruitmentDeadline이 임박한 순으로 정렬하고 상위 3개 항목만 선택
-  const sortedPackageData = packageData
-    .sort((a, b) => new Date(a.recruitmentDeadline) - new Date(b.recruitmentDeadline))
-    .slice(0, 3);
+  // recruitmentDeadline이 임박한 순으로 정렬하고 상위 4개 항목만 선택
+  // const sortedPackageData = packageData
+  // .sort((a, b) => new Date(a.recruitmentDeadline) - new Date(b.recruitmentDeadline))
+  // .slice(0, 4); // 배열의 처음에서 4개의 항목 선택
+
+
+  //  (새 사진 사용하려고 만든거임!!!! 위에거가 맞음)
+// recruitmentDeadline이 임박한 순으로 정렬하고 최하위 3개 항목만 선택
+const sortedPackageData = packageData
+  .sort((a, b) => new Date(b.recruitmentDeadline) - new Date(a.recruitmentDeadline))
+  .slice(0, 4);
+
+
 
   return (
     <section className={styles.PackageSection}>
@@ -38,10 +47,17 @@ const PackageSection = () => {
           더보러가기
         </button>
       </div>
-      <div className={styles.package_section_cards}>
-        {sortedPackageData.map((packageItem) => (
-          <PackageCard key={packageItem.productNum} {...packageItem} />
-        ))}
+      <div className={styles.blank}/>
+      <div className={styles.container}>
+        <ul id="cards">
+          {sortedPackageData.map((packageItem, index) => (
+            <li className={styles.card} key={index} id={`card${index + 1}`}>
+              <div className={styles['card-body']}>
+                <PackageCard key={packageItem.productNum} {...packageItem} />
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
