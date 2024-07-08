@@ -1,4 +1,4 @@
-import styles from './ProductInformation.module.css';
+import styles from './ProductSummary.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { formatDateTime } from '../../../utils/DateTime';
 import apiClient from '../../../api/apiClient';
 
-const ProductInformation = ({
+const ProductSummary = ({
   productName,
   partnerName,
   price,
@@ -76,7 +76,7 @@ const ProductInformation = ({
   );
 
   return (
-    <div className={styles.ProductInformation}>
+    <div className={styles.ProductSummary}>
       <div className={styles.imageContainer}>
         <img src={productImage} alt={productName} className={styles.image} />
       </div>
@@ -150,4 +150,4 @@ const ProductInformation = ({
   );
 };
 
-export default ProductInformation;
+export default ProductSummary;

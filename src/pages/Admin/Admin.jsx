@@ -8,7 +8,7 @@ const Admin = () => {
     return <div>권한이 없습니다.</div>;
   }
 
-  return <div></div>;
+  return <div>sdfds</div>;
 };
 
 export default Admin;

@@ -127,37 +127,9 @@
   pointer-events: none;
 }
 
-.enlargedImage {
-  max-width: 500px;
-  max-height: 500px;
-  object-fit: contain;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-}
-
-@media screen and (max-width: 600px) {
-  .timeline::after {
-    left: 31px;
-  }
-
-  .timelineItem {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-
-  .timelineItem::before {
-    left: 60px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-  }
-
-  .timelineItem::after {
-    left: 15px;
-  }
-
-  .timelineItem:nth-child(even) {
-    left: 0%;
-  }
+.imageOverlay .enlargedImage {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
