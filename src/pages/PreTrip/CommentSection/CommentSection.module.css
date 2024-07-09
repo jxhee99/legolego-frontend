@@ -6,48 +6,40 @@
   font-style: normal;
 }
 
-.Comment{
-  font-family: 'DungGeunMo';  
+.Comment {
+  font-family: 'DungGeunMo';
 }
 
 .commentBackground {
   background-image: url('../../../assets/images/legoHiker.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-position: center; */
   background-position: 0px -1300px;
   height: 50vh;
   color: white;
   display: flex;
-  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
-  align-items: flex-end; /* 버튼을 아래로 정렬 */
-  padding: 0; /* 내부 여백 제거 */
-  margin-top: 0; /* 상단 여백 제거 */
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0;
+  margin-top: 0;
   position: relative;
 }
 
-.commentText{
+.commentText {
   position: absolute;
   font-size: 1.3rem;
   text-shadow: 3px;
-  bottom: 80px; 
+  bottom: 80px;
   left: 520px;
 }
 
-/* 
-.Comment h2 {
-  margin-bottom: 3rem;
-  font-family: 'DungGeunMo';
-} */
-
-/* CommentSection.module.css */
 .comment_box {
   margin-top: 2rem;
   position: relative;
   display: inline-block;
   padding: 0rem;
   width: 22.25rem;
-  height:25.5rem;
+  height: 25.5rem;
   background: #fff;
   border: 1px solid #eee;
   border-radius: 1px;
@@ -55,13 +47,20 @@
   cursor: pointer;
   font-family: 'DungGeunMo';
   margin-bottom: 2rem;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.comment_box:hover {
+  transform: rotateY(180deg);
 }
 
 .comment_contents {
   position: relative;
   width: 18.75rem;
   height: 18.75rem;
-  margin:1.75rem auto 0.938rem auto;
+  margin: 1.75rem auto 0.938rem auto;
   overflow: hidden;
 }
 
@@ -74,17 +73,16 @@
 
 .comment_text {
   font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   color: #333;
 }
 
 .comment_details {
   color: #666;
-  margin: auto 1.75rem auto auto; 
+  margin: auto 1.75rem auto auto;
   text-align: right;
   font-size: 0.8rem;
   line-height: 1rem;
-
 }
 
 .comments {
@@ -92,38 +90,63 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-
-.hover_box {
+.card_face {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  backface-visibility: hidden;
+  border-radius: 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  /* justify-content: center; */
 }
 
-.comment_contents:hover .hover_box {
-  opacity: 1;
+.front {
+  background-color: #fff;
+  z-index: 2;
+}
+
+.back {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+.black{
+  width: 18.75rem;
+  height: 18.75rem;
+  margin: 1.75rem 1.75rem 0 1.75rem;
+  position: relative;
+  display: inline-block;
+  padding: 0rem;
+  background:black;
+  border: 1px solid #eee;
+  border-radius: 1px;
+  cursor: pointer;
+  font-family: 'DungGeunMo';
+  margin-bottom: 2rem;
+  color: white;
 }
 
 .hover_textTitle {
-  margin: 5px 0;
-  font-size:1.5rem;
+  margin: 3rem 0 5px 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.hover_textStar{
+  text-align: center;
+  margin-bottom:1rem;
+  
 }
 
 .hover_text {
   margin: 0.5rem 1rem 0 1rem;
-}
+  text-align: center;
 
+}
 
 .hover_textDetail {
   margin: 0.5rem 1rem 1rem 1rem;
-  color: lightgray;
+  color: rgb(204, 201, 201);
+  font-size: 0.8rem;
+
 }

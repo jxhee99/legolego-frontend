@@ -1,5 +1,5 @@
 import styles from './CommentSection.module.css';
-import Comment from './Coment';
+import Comment from './Comment';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
