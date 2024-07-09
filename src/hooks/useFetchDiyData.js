@@ -29,7 +29,7 @@ const useFetchData = (endpoint) => {
     }
   }, [endpoint]);
 
-  return { data, loading, error, refetch: () => fetchData(endpoint) };
+  return { data, loading, error, refetch: () => fetchData(endpoint), setData };
 };
 
 export default useFetchData;
