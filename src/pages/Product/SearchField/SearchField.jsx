@@ -14,14 +14,15 @@ const SearchField = ({ onChange, value }) => {
         classes: {
           root: styles.searchInputRoot,
           input: styles.searchInput,
+          notchedOutline: styles.searchInputFieldset, // Corrected placement
         },
         startAdornment: (
           <InputAdornment position="start" className={styles.inputAdornment}>
             <SearchIcon className={styles.searchIcon} />
           </InputAdornment>
         ),
-        notchedOutline: styles.searchInputFieldset,
       }}
+      style={{ width: '100%' }}
     />
   );
 };

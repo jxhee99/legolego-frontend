@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import Metas from '../../components/common/Metas';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import ProductMenu from './ProductMenu/ProductMenu';
+import ProductSummary from '../../components/Card/ProductSummary/ProductSummary';
 
 const PackageDetail = () => {
   const [packageData, setPackageData] = useState({});

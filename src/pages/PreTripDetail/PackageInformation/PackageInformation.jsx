@@ -23,10 +23,11 @@ const PackageInformation = ({
         <span className={styles.badge}>여행 완료</span>
       </div>
       <div className={styles.infoSection}>
-        <h1 className={styles.productName}>{productName}</h1>
+        <h2 className={styles.productName}>{productName}</h2>
         <div className={styles.ratingContainer}>
           <Star className={styles.starIcon} />
           <span className={styles.rating}>{rating}</span>
+          {/* TODO 동적으로 데이터 받아오기 */}
           <span className={styles.reviews}>(32 리뷰)</span>
         </div>
         <p className={styles.partnerName}>{partnerName}</p>

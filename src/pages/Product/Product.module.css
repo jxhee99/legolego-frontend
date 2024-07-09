@@ -4,41 +4,52 @@
   row-gap: 3rem;
   margin-top: 3rem;
 }
-.productText {
+
+.latestUpdate {
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-bottom: 1px solid #bebebe;
+}
+
+.latestUpdate h2 {
+  text-align: center;
+}
+
+.searchField {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+/* .productText {
   position: absolute;
   font-size: 1.3rem;
   text-shadow: 3px;
   bottom: 105px;
   right: 155px;
 }
+
 .productBackground {
   background-image: url('../../assets/images/legoRiver.jpeg');
   background-repeat: no-repeat;
   background-size: 90rem;
-  background-position: center; /* 이미지의 아랫부분을 보여줌 */
+  background-position: center; 
   height: 50vh;
   color: white;
   display: flex;
-  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
-  align-items: flex-end; /* 버튼을 아래로 정렬 */
-  padding: 0; /* 내부 여백 제거 */
-  margin-top: 0; /* 상단 여백 제거 */
+  justify-content: flex-end; 
+  align-items: flex-end; 
+  padding: 0;
+  margin-top: 0;
   position: relative;
   margin-top: 2.5rem;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
   border-radius: 2.5rem;
-  transition: background-size 0.3s ease; /* 크기 변경 시 부드러운 전환 */
-}
-
-.searchInput {
-  position: absolute; /* 절대 위치 지정 */
-  bottom: 45px; /* 아래쪽 여백 50px */
-  right: 150px; /* 오른쪽 여백 100px */
-  font-size: 1rem;
-  padding: 0.8rem 4rem 0.8rem 1.5rem; /* 약간의 내부 여백 */
-  border: none; /* 테두리 제거 */
-  border-radius: 8px; /* 모서리 둥글게 */
-  background-color: rgba(255, 255, 255, 0.8); /* 약간의 투명 배경색 */
-  color: #000; /* 글씨 색상 */
-}
+  transition: background-size 0.3s ease; 
+} */
