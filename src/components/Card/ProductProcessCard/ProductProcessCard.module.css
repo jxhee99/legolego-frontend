@@ -2,6 +2,8 @@
   display: flex;
   background-color: white;
   border-radius: 10px;
+  width:60rem;
+  height:20rem;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -32,28 +34,37 @@
   font-size: 24px;
 }
 
-.category,
-.price,
-.date {
+.price {
+  margin: 1rem 0;
+  font-weight: bold;
+  color: #000;  font-size:1.2rem;
+}
+
+
+.text {
   margin: 5px 0;
   color: #666;
 }
 
-.price {
-  font-weight: bold;
-  color: #000;
+
+/* Progress and button container */
+.progressAndButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 .progressContainer {
   height: 10px;
+  width: 50%; /* 버튼과 공간을 맞추기 위해 너비 조정 */
   background-color: #eee;
   border-radius: 5px;
-  margin: 10px 0;
 }
 
 .progressBar {
   height: 100%;
-  background-color: #ff6b6b;
+  background-color: #FB5607;
   border-radius: 5px;
 }
 
@@ -64,12 +75,28 @@
 }
 
 .button {
-  background-color: #ff6b6b;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
+  margin-left: 1rem; /* progressContainer와 간격 */
 }
+
+.buttonUrgent {
+  background-color: #ff006e; /* 마감 임박 버튼 색상: 빨간색 */
+}
+
+.buttonClosed {
+  background-color: gray; /* 모집마감 버튼 색상: 회색 */
+}
+
+.buttonSuccess {
+  background-color: #3a86ff; /* 모집 성공 버튼 색상: 파란색 */
+}
+
+.buttonOngoing {
+  background-color: #43aa8b; /* 모집중 버튼 색상: 초록색 */
+}
+
