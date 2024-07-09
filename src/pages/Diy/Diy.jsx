@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './Diy.module.css';
 import useFetchData from '../../hooks/useFetchDiyData';
 import DiyCard from '../../components/Diy/DiyCard';
@@ -11,21 +12,22 @@ const Diy = () => {
   const userRole = localStorage.getItem('role');
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
+  const isSearched = query.get('searched');
   const [page, setPage] = useState(initialPage);
 
   const itemsPerPage = 12;
   const endpoint = '/packages';
 
-  const { data, loading, setData, refetch } = useFetchData(endpoint);
+  // Redux 상태에서 searchData 가져오기
+  const searchData = useSelector((state) => state.search.searchData);
+
+  const { data, loading, error, setData } = useFetchData(endpoint);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -36,10 +38,21 @@ const Diy = () => {
     return <p>로딩 중...</p>;
   }
 
+  if (error) {
+    return <p>데이터를 불러오는 중 오류가 발생했습니다.</p>;
+  }
+
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = data.slice(startIndex, endIndex);
+  let currentItems = data.slice(startIndex, endIndex);
+  let totalData = data.length;
+  //검색된 상태일 때 데이터
+  if (isSearched) {
+    currentItems = searchData.slice(startIndex, endIndex);
+    totalData = searchData.length;
+  }
 
+  console.log(searchData);
   return (
     <>
       <Metas title="DIY" />
@@ -82,7 +95,6 @@ const Diy = () => {
       >
         <div className={`layout`}>
           <SearchInput setData={setData} />
-          <button onClick={refetch}>리셋</button>
           <h2>DIY 패키지를 응원해주세요!</h2>
           <div className={styles.diy_cards}>
             {currentItems.map((packages) => (
@@ -99,7 +111,7 @@ const Diy = () => {
           <PaginationComp
             page={page}
             setPage={setPage}
-            totalItems={data.length}
+            totalItems={totalData}
             itemsPerPage={itemsPerPage}
           />
         </div>

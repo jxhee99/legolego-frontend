@@ -1,48 +1,80 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import { OPTIONS } from '../../constans/options';
 import { month } from '../../constans/month';
 import TextField from '@mui/material/TextField';
 import apiClient from '../../api/apiClient';
+import {
+  setSearchData,
+  resetData,
+  setDestination,
+  setMonth,
+} from '../../_slices/searchDiySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const SearchInput = ({ labelName, setData }) => {
-  const [destinationValue, setDestinationValue] = useState(null);
-  const [monthValue, setMonthValue] = useState(null);
+const SearchInput = ({ labelName }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchState = useSelector((state) => state.search); // 전체 search state 가져오기
+
+  const [destinationValue, setDestinationValue] = useState(
+    searchState.destination || null
+  );
+  const [monthValue, setMonthValue] = useState(searchState.month || null);
   const [inputValue, setInputValue] = useState('');
 
   const handleDestinationChange = (event, newValue) => {
     setDestinationValue(newValue);
     console.log(newValue);
   };
+
   const handleMonthValue = (event, newValue) => {
     setMonthValue(newValue);
     console.log(newValue);
   };
+
   const handleSubmit = async () => {
     let destination = '';
-    if (destinationValue != null) {
+    if (destinationValue) {
       destination = destinationValue.slice(5);
     }
     let month = '';
-    if (monthValue != null) {
-      month = parseInt(monthValue.slice(0, -1));
+    if (monthValue) {
+      month = parseInt(monthValue.slice(0, -1), 10); // 문자열을 정수로 변환
+      if (isNaN(month)) {
+        month = ''; // NaN이면 빈 문자열로 처리
+      }
     }
+
     try {
-      // 예시 URL, 실제로 사용할 URL에 맞게 수정해야 합니다.
       const url = `/packages/searched?destination=${destination}&month=${month}`;
       console.log(url);
-      // Axios를 사용하여 GET 요청 보내기
       const response = await apiClient.get(url);
 
-      // 요청 성공 시 처리할 로직
-      console.log(response.data); // 예시: 서버 응답 데이터
-      setData(response.data);
+      console.log(response.data);
+
+      dispatch(setSearchData(response.data));
+      dispatch(setDestination(destinationValue));
+      dispatch(setMonth(monthValue));
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set('searched', 'true');
+      navigate(`${location.pathname}?${searchParams.toString()}`);
     } catch (error) {
-      // 요청 실패 시 처리할 로직
       console.error('Error fetching data: ', error);
     }
   };
+
+  const handleReset = () => {
+    dispatch(resetData());
+    setDestinationValue('');
+    setMonthValue('');
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.delete('searched');
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
+
   return (
     <div>
       <Autocomplete
@@ -55,9 +87,7 @@ const SearchInput = ({ labelName, setData }) => {
         }}
         id="controllable-states-demo"
         options={OPTIONS}
-        sx={{
-          width: 300,
-        }}
+        sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label={labelName} />}
       />
       <Autocomplete
@@ -70,6 +100,7 @@ const SearchInput = ({ labelName, setData }) => {
         renderInput={(params) => <TextField {...params} label={labelName} />}
       />
       <button onClick={handleSubmit}>검색</button>
+      <button onClick={handleReset}>리셋</button>
     </div>
   );
 };
