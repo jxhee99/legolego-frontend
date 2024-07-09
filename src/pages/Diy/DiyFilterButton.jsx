@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setOverLikeData } from '../../_slices/searchDiySlice';
 
-const DiyFilterButton = () => {
+const DiyFilterButton = ({ setPage }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,7 +47,13 @@ const DiyFilterButton = () => {
   return (
     <div className={styles.filter_box}>
       <span>응원 달성</span>
-      <Switch checked={checked} onChange={handleChange} />
+      <Switch
+        checked={checked}
+        onChange={handleChange}
+        onClick={() => {
+          setPage(1);
+        }}
+      />
     </div>
   );
 };

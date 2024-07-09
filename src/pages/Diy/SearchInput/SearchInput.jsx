@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -13,6 +15,18 @@ import {
 import apiClient from '../../../api/apiClient';
 import { month, destination } from '../../../constans/search';
 import styles from './SearchInput.module.css';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#93d1ff',
+    },
+  },
+  typography: {
+    fontFamily: ['SpoqaHanSansNeo-Regular', 'Arial', 'san-serif'].join(','),
+    fontSize: 12,
+  },
+});
 
 const SearchInput = () => {
   const dispatch = useDispatch();
@@ -80,40 +94,43 @@ const SearchInput = () => {
   };
 
   return (
-    <div className={styles.searchBox}>
-      {/* 목적지 입력 필드 */}
-      <Autocomplete
-        disablePortal
-        value={destinationValue}
-        onChange={handleDestinationChange}
-        id="destination-autocomplete"
-        options={destination}
-        sx={{
-          width: 300,
-          '& .MuiInputBase-root': { height: '48px' },
-        }}
-        renderInput={(params) => <TextField {...params} label="목적지" />}
-      />
-      {/* 월 선택 필드 */}
-      <Autocomplete
-        disablePortal
-        value={monthValue}
-        onChange={handleMonthValue}
-        id="month-autocomplete"
-        options={month}
-        sx={{
-          width: 100,
-          '& .MuiInputBase-root': { height: '48px' },
-        }}
-        renderInput={(params) => <TextField {...params} label="월" />}
-      />
-      {/* 검색 버튼 */}
-      <button className={styles.search_button} onClick={handleSubmit}>
-        검색
-      </button>
-      {/* 리셋 아이콘 */}
-      <RestartAltIcon onClick={handleReset} style={{ cursor: 'pointer' }} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={styles.searchBox}>
+        {/* 목적지 입력 필드 */}
+        <Autocomplete
+          disablePortal
+          value={destinationValue}
+          onChange={handleDestinationChange}
+          id="destination-autocomplete"
+          options={destination}
+          sx={{
+            width: 300,
+            '& .MuiInputBase-root': { height: '48px' },
+          }}
+          renderInput={(params) => <TextField {...params} label="목적지" />}
+        />
+        {/* 월 선택 필드 */}
+        <Autocomplete
+          disablePortal
+          value={monthValue}
+          onChange={handleMonthValue}
+          id="month-autocomplete"
+          options={month}
+          sx={{
+            width: 100,
+            '& .MuiInputBase-root': { height: '48px', lineHeight: '48px' },
+            fontFamily: 'typography',
+          }}
+          renderInput={(params) => <TextField {...params} label="월" />}
+        />
+        {/* 검색 버튼 */}
+        <button className={styles.search_button} onClick={handleSubmit}>
+          검색
+        </button>
+        {/* 리셋 아이콘 */}
+        <RestartAltIcon onClick={handleReset} style={{ cursor: 'pointer' }} />
+      </div>
+    </ThemeProvider>
   );
 };
 

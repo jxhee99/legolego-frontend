@@ -18,7 +18,7 @@ const searchDiySlice = createSlice({
       state.searchData = [];
       state.destination = '';
       state.month = '';
-      state.overLikeData = [];
+      // state.overLikeData = [];
     },
     setDestination: (state, action) => {
       state.destination = action.payload;

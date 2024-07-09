@@ -11,8 +11,14 @@ import DiyFilterButton from './DiyFilterButton';
 import { filterItems, sortByPopularity } from '../../utils/filterAndSort';
 
 const Diy = () => {
+  // URL 쿼리 매개변수에서 page, isSearched, isFiltered 가져오기
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const isSearched = query.get('searched');
+  const isFiltered = query.get('filtered');
+
   // 상태 초기화
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initialPage);
   const [isSortedByPopularity, setIsSortedByPopularity] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -23,12 +29,7 @@ const Diy = () => {
   const overLikeData = useSelector((state) => state.search.overLikeData);
   const { data, loading, error, setData } = useFetchData('/packages');
 
-  // URL 쿼리 매개변수에서 isSearched와 isFiltered 가져오기
-  const query = new URLSearchParams(location.search);
-  const isSearched = query.get('searched');
-  const isFiltered = query.get('filtered');
-
-  // 검색 상태와 스크롤 관리
+  //검색 상태와 스크롤 관리
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     if (searchData.length < 1) {
@@ -42,7 +43,7 @@ const Diy = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navigate, searchData.length]);
 
   // 로딩 중 및 오류 처리
   if (loading) {
@@ -102,6 +103,7 @@ const Diy = () => {
   // 버튼 텍스트 및 인기순 정렬 핸들링
   const popularityButtonText = isSortedByPopularity ? '최신순' : '인기순';
   const handleSort = () => {
+    setPage(1);
     setIsSortedByPopularity((prev) => !prev);
   };
 
@@ -155,7 +157,7 @@ const Diy = () => {
           <div className={styles.search_filter}>
             <SearchInput />
             <div className={styles.filter_order}>
-              <DiyFilterButton setData={setData} />
+              <DiyFilterButton setPage={setPage} />
               {/* 정렬 버튼 */}
               <button onClick={handleSort}>{popularityButtonText}</button>
             </div>
