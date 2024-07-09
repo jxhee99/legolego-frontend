@@ -4,7 +4,7 @@ import AirplaneInformation from './AirplaneInformation/AirplaneInformation';
 import Schedule from './ScheduleInformation/ScheduleInformation';
 import PreTripComment from './PreTripComment/PreTripComment';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+  import { useParams } from 'react-router-dom';
 import apiClient from '../../api/apiClient';
 
 const PreTripDetail = () => {
