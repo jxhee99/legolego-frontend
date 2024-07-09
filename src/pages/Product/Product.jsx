@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../../components/Card/ProductCard/ProductCard';
 import Metas from '../../components/common/Metas';
 import apiClient from '../../api/apiClient';
-import SearchField from './SerachField/SearchField';
+import SearchField from './SearchField/SearchField';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ProductProcessCard from '../../components/Card/ProductProcessCard/ProductProcessCard';
@@ -20,7 +20,7 @@ const Product = () => {
 
   const fetchData = async () => {
     try {
-      const response = await apiClient.get(`/products`);
+      const response = await apiClient.get('/products');
       setAllProductData(response.data);
       setDisplayedData(response.data.slice(0, itemsPerPage));
     } catch (error) {
@@ -41,9 +41,12 @@ const Product = () => {
     setDisplayedData(filteredData.slice(startIndex, endIndex));
   }, [itemsPerPage, currentPage, allProductData, searchTerm]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1);
   };
 
   const handlePageChange = (event, value) => {
@@ -65,11 +68,6 @@ const Product = () => {
   return (
     <>
       <Metas title="패키지 상품" />
-      {/* <div className={`${styles.productBackground}`}>
-        <div className={styles.productText}>
-          <p>다른 사람이 만든 패키지 여행을 함께 떠나보세요!</p>
-        </div>
-      </div> */}
       <section className={`${styles.product} layout`}>
         <Slider {...settings}>
           {displayedData.map((productItem) => (
@@ -92,8 +90,6 @@ const Product = () => {
             ))}
           </div>
         </div>
-
-        {/* Pagination */}
         <Stack spacing={2} className={styles.pagination}>
           <Pagination
             count={Math.ceil(
