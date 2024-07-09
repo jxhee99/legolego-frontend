@@ -51,6 +51,12 @@ const DiyDetail = () => {
     return <div>데이터가 없습니다.</div>;
   }
 
+  // 현재 날짜 가져오기
+  const currentDate = new Date();
+
+  // boardingDate와 비교하여 이미 지난 날짜인지 확인
+  const isPastDate = new Date(airline.boardingDate) < currentDate;
+
   return (
     <>
       <Metas title={desc.packageName} />
@@ -84,7 +90,9 @@ const DiyDetail = () => {
                 <VisibilityIcon />
                 <div>{data.viewNum}</div>
               </div>
-              {isWriter ? ( // 작성자일 경우 렌더링
+              {isPastDate ? (
+                <button className={styles.cheer_button}>응원 만료</button>
+              ) : isWriter ? (
                 <button className={styles.cheer_button}>응원 받는 중!</button>
               ) : (
                 <CheerButton
