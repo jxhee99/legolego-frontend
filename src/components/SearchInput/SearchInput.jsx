@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import { OPTIONS } from '../../constans/options';
-import { month } from '../../constans/month';
+import { month, destinaton } from '../../constans/search';
 import TextField from '@mui/material/TextField';
 import apiClient from '../../api/apiClient';
 import {
@@ -19,28 +18,27 @@ const SearchInput = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const isSearched = query.get('searched');
   const searchState = useSelector((state) => state.search); // 전체 search state 가져오기
-
-  const [destinationValue, setDestinationValue] = useState(
-    searchState.destination || null
-  );
-  const [monthValue, setMonthValue] = useState(searchState.month || null);
-  const [inputValue, setInputValue] = useState('');
+  const searchedDestination = isSearched ? searchState.destination : null;
+  const searchedMonth = isSearched ? searchState.month : null;
+  const [destinationValue, setDestinationValue] = useState(searchedDestination);
+  const [monthValue, setMonthValue] = useState(searchedMonth);
+  //const [inputValue, setInputValue] = useState('');
 
   const handleDestinationChange = (event, newValue) => {
     setDestinationValue(newValue);
-    console.log(newValue);
   };
 
   const handleMonthValue = (event, newValue) => {
     setMonthValue(newValue);
-    console.log(newValue);
   };
 
   const handleSubmit = async () => {
     let destination = '';
     if (destinationValue) {
-      destination = destinationValue.slice(5);
+      destination = destinationValue;
     }
     let month = '';
     if (monthValue) {
@@ -81,15 +79,14 @@ const SearchInput = () => {
     <div className={styles.searchBox}>
       <Autocomplete
         disablePortal
-        value={destinationValue || inputValue}
+        value={destinationValue}
         onChange={handleDestinationChange}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-          console.log(inputValue);
-        }}
+        // inputValue={destinationValue}
+        // onInputChange={(event, newInputValue) => {
+        //   setDestinationValue(newInputValue);
+        // }}
         id="combo-box-demo"
-        options={OPTIONS}
+        options={destinaton}
         sx={{
           width: 300,
           '& .MuiInputBase-root': { height: '48px' },

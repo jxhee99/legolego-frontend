@@ -30,7 +30,8 @@
 
 /* 스크롤 후 배경 스타일 */
 .diyBackground.scrolled {
-  background-size: 90rem;
+  /* background-size: 90rem; */
+  background-size: 100%;
   height: 65vh;
   border-radius: 2.5rem;
   margin: 0;
@@ -40,12 +41,22 @@
 }
 
 /* 스크롤된 배경에 적용되는 스타일 */
-.Diy.scrolledBackground {
+/* .Diy.scrolledBackground {
   background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 1),
       rgba(169, 197, 226, 0.3),
       rgba(164, 137, 121, 0.3)
+    ),
+    url('/mnt/data/diyBackground.JPG');
+} */
+
+.Diy.scrolledBackground {
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1),
+      rgba(169, 197, 226, 0.3),
+      rgba(186, 240, 255, 0.3)
     ),
     url('/mnt/data/diyBackground.JPG');
 }
@@ -136,6 +147,12 @@
   gap: 3rem;
 }
 
+/* 검색, 필터 정렬 */
+
+.search_filter {
+  display: flex;
+  align-items: center;
+}
 /* 기타 스타일 */
 .diy_cards {
   margin-top: 1.5rem;
@@ -150,7 +167,7 @@
 .pagination_box {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 10rem;
 }
 
 .diy_cards strong {
