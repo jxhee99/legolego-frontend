@@ -1,4 +1,4 @@
-
+/* 
 .About {
   display: flex;
   flex-direction: column;
@@ -160,4 +160,71 @@
   font-size: 21px;
   font-weight: 500;
   color: #ffffff;
+} */
+.about_container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: center;
 }
+
+.about_header {
+  position: relative;
+  padding: 100px 20px;
+  text-align: center;
+  background-image: url('../../assets/images/about/airport2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; 
+  animation: moveBackground 2s linear forwards; /* 애니메이션 효과 */
+  color: #fff; 
+}
+
+.about_header h1,
+.about_header h2,
+.about_header p {
+  position: relative;
+  z-index: 1;
+  color: #212A3E;
+  /* color: #394867; */
+}
+
+
+.about_header h1 {
+  font-size: 1.5em; 
+}
+
+.about_header h2 {
+  font-size: 6.5em; 
+  margin-bottom: 10px; 
+}
+
+.about_header p {
+  margin-top: 10px; 
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
+.steps_container {
+  display: flex;
+  justify-content: center;
+  margin: 20rem 0;
+  flex-wrap: wrap;
+}
+
+.our_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 50px;
+  background-color: #f0f0f0; /* Background color for the section */
+  background: linear-gradient(#F2F9FB ,#CEEFF6, #F3F5F7);
+  gap: 40px; /* Add gap between items */
+}
+
