@@ -41,8 +41,13 @@
 
 /* 스크롤된 배경에 적용되는 스타일 */
 .Diy.scrolledBackground {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(169, 197, 226, 0.3), rgba(164, 137, 121, 0.3)),
-              url('/mnt/data/diyBackground.JPG');  
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1),
+      rgba(169, 197, 226, 0.3),
+      rgba(164, 137, 121, 0.3)
+    ),
+    url('/mnt/data/diyBackground.JPG');
 }
 
 /* 텍스트 스타일 */
@@ -50,7 +55,7 @@
   position: absolute;
   font-size: 1.6rem;
   text-shadow: 3px;
-  bottom: 225px; 
+  bottom: 225px;
   right: 100px;
 }
 .diyBackground.scrolled p {
@@ -61,7 +66,7 @@
   width: 190px;
   height: 70px;
   border-radius: 12px;
-  background-color: #93d1ff; 
+  background-color: #93d1ff;
   color: #fff; /* 버튼 텍스트 색상을 흰색으로 지정 */
   position: absolute;
   bottom: 140px;
@@ -90,13 +95,14 @@
 }
 
 /* 스크롤 전 및 후 링크 텍스트 색상 흰색으로 지정 */
-.create_button > a, .diyBackground.scrolled .create_button > a {
+.create_button > a,
+.diyBackground.scrolled .create_button > a {
   color: #fff;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
-.make{
-  width:8rem;
+.make {
+  width: 8rem;
 }
 
 /* 좌우 텍스트 정렬 */
@@ -123,12 +129,20 @@
   height: 80%; /* 세로선 높이 */
 }
 
+/* 메인 박스 정렬 */
+.main_box {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 /* 기타 스타일 */
 .diy_cards {
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
+  row-gap: 36px; /* 세로 여백 설정 */
   width: 100%;
   max-width: var(--size-max-width);
 }
@@ -150,7 +164,7 @@
 /* 스크롤 후 링크 텍스트 색상을 흰색으로 지정 */
 .diyBackground.scrolled .create_button .right > a {
   color: #fff;
-  width:10rem;
+  width: 10rem;
   margin-right: 2rem;
   font-size: 1.3rem;
 }

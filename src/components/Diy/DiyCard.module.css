@@ -1,6 +1,6 @@
 .DiyCard {
   padding-bottom: 0.5rem;
-  width:17rem;
+  width: 17rem;
   height: 360px;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,10 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   background-color: white;
+}
 
+.DiyCard:hover {
+  transform: scale(1.02);
 }
 
 .likes {
@@ -35,7 +38,7 @@
   border-radius: 12px 12px 0 0;
 }
 
-.DiyCard .text_box{
+.DiyCard .text_box {
   padding: 0.5rem;
   width: 100%;
   display: flex;
@@ -45,12 +48,12 @@
   text-align: center;
 }
 
-.DiyCard .text_box h4{
+.DiyCard .text_box h4 {
   font-size: 1.1rem;
   font-weight: 700;
 }
 
-.DiyCard .desc{
+.DiyCard .desc {
   width: 100%;
   text-align: center;
   white-space: nowrap;
@@ -60,13 +63,12 @@
   color: rgb(68, 68, 68);
 }
 
-
-.DiyCard .grayDetail{
-color: gray;
-font-size:0.9rem;
-line-height: 1.5; /* 텍스트의 위아래 간격 조정 */
+.DiyCard .grayDetail {
+  color: gray;
+  font-size: 0.9rem;
+  line-height: 1.5; /* 텍스트의 위아래 간격 조정 */
 }
-.DiyCard .user_box{
+.DiyCard .user_box {
   display: flex;
   gap: 0.5rem;
   align-items: center;

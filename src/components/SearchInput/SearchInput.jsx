@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { OPTIONS } from '../../constans/options';
 import { month } from '../../constans/month';
 import TextField from '@mui/material/TextField';
@@ -12,8 +13,9 @@ import {
 } from '../../_slices/searchDiySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import styles from './SearchInput.module.css';
 
-const SearchInput = ({ labelName }) => {
+const SearchInput = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,8 +78,9 @@ const SearchInput = ({ labelName }) => {
   };
 
   return (
-    <div>
+    <div className={styles.searchBox}>
       <Autocomplete
+        disablePortal
         value={destinationValue || inputValue}
         onChange={handleDestinationChange}
         inputValue={inputValue}
@@ -85,10 +88,16 @@ const SearchInput = ({ labelName }) => {
           setInputValue(newInputValue);
           console.log(inputValue);
         }}
-        id="controllable-states-demo"
+        id="combo-box-demo"
         options={OPTIONS}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label={labelName} />}
+        sx={{
+          width: 300,
+          '& .MuiInputBase-root': { height: '48px' },
+        }}
+        ListboxProps={{
+          className: 'myCustomList',
+        }}
+        renderInput={(params) => <TextField {...params} label={'목적지'} />}
       />
       <Autocomplete
         disablePortal
@@ -96,11 +105,16 @@ const SearchInput = ({ labelName }) => {
         onChange={handleMonthValue}
         id="combo-box-demo"
         options={month}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label={labelName} />}
+        sx={{
+          width: 100,
+          '& .MuiInputBase-root': { height: '48px' },
+        }}
+        renderInput={(params) => <TextField {...params} label={'월'} />}
       />
-      <button onClick={handleSubmit}>검색</button>
-      <button onClick={handleReset}>리셋</button>
+      <button className={styles.search_button} onClick={handleSubmit}>
+        검색
+      </button>
+      <RestartAltIcon onClick={handleReset} />
     </div>
   );
 };

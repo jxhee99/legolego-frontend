@@ -93,9 +93,9 @@ const Diy = () => {
       <section
         className={`${styles.Diy} ${isScrolled ? styles.scrolledBackground : ''}`}
       >
-        <div className={`layout`}>
-          <SearchInput setData={setData} />
+        <div className={`layout ${styles.main_box}`}>
           <h2>DIY 패키지를 응원해주세요!</h2>
+          <SearchInput setData={setData} />
           <div className={styles.diy_cards}>
             {currentItems.map((packages) => (
               <div key={packages.packageNum}>
