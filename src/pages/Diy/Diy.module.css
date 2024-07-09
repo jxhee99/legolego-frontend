@@ -148,11 +148,25 @@
 }
 
 /* 검색, 필터 정렬 */
-
 .search_filter {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
+.filter_order {
+  display: flex;
+}
+
+.filter_order > button:hover {
+  color: #1976d2;
+}
+
+.filter_box {
+  display: flex;
+  align-items: center;
+}
+
 /* 기타 스타일 */
 .diy_cards {
   margin-top: 1.5rem;

@@ -3,7 +3,7 @@ export const month = [
   '7월', '8월', '9월', '10월', '11월', '12월'
 ];
 
-export const destinaton = [
+export const destination = [
   '호치민',
   '후쿠오카',
   '오사카',

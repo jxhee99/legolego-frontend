@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './Diy.module.css';
 import Switch from '@mui/material/Switch';
 import apiClient from '../../api/apiClient';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,13 +45,9 @@ const DiyFilterButton = () => {
   }, [checked, dispatch]);
 
   return (
-    <div>
-      <Switch
-        checked={checked}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'controlled' }}
-      />
+    <div className={styles.filter_box}>
       <span>응원 달성</span>
+      <Switch checked={checked} onChange={handleChange} />
     </div>
   );
 };
