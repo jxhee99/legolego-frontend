@@ -1,34 +1,19 @@
 import styles from './ProductDetail.module.css';
 import ProductInformation from './ProductInformation/ProductInformation';
-import AirplaneInfomation from './AirplaneInformation/AirplaneInformation';
+import AirplaneInformation from './AirplaneInformation/AirplaneInformation';
 import ScheduleInformation from './ScheduleInformation/ScheduleInformation';
 import RecommendProduct from './RecommendProduct/RecommendProduct';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Metas from '../../components/common/Metas';
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import ProductMenu from './ProductMenu/ProductMenu';
-import ProductSummary from '../../components/Card/ProductSummary/ProductSummary';
+import { useProductDetail } from '../../hooks/useProduct';
 
 const PackageDetail = () => {
-  const [packageData, setPackageData] = useState({});
-  const [destination, setDestination] = useState();
   const [activeSection, setActiveSection] = useState('airplane-info');
   const { id } = useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/products/${id}`);
-        setPackageData(response.data);
-        setDestination(response.data.airline.destination);
-      } catch (error) {
-        console.error('Error', error);
-      }
-    };
-    fetchData();
-  }, [id]);
+  const { products, error } = useProductDetail(id);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,23 +37,28 @@ const PackageDetail = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!products) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      <Metas title={packageData.productName} />
+      <Metas title={products.productName} />
       <ScrollToTop />
       <div className={`${styles.PackageDetail} layout`}>
-        <ProductInformation
-          {...packageData}
-          detailCourse={packageData.detailCourse}
-        />
+        <ProductInformation {...products} />
         <ProductMenu activeSection={activeSection} />
         <section id="airplane-info" className={`${styles.section}`}>
-          <AirplaneInfomation {...packageData.airline} />
+          <AirplaneInformation {...products.airline} />
         </section>
         <section id="schedule-info" className={`${styles.section}`}>
-          <ScheduleInformation detailCourse={packageData.detailCourse} />
+          <ScheduleInformation detailCourse={products.detailCourse} />
         </section>
         <RecommendProduct />
       </div>

@@ -1,57 +1,51 @@
-import styles from './Product.module.css';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ProductCard from '../../components/Card/ProductCard/ProductCard';
 import Metas from '../../components/common/Metas';
-import apiClient from '../../api/apiClient';
-import SearchField from './SearchField/SearchField';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import ProductProcessCard from '../../components/Card/ProductProcessCard/ProductProcessCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import apiClient from '../../api/apiClient';
+import Search from './Filter/Search';
+import styles from './Product.module.css';
+import FilterButtons from './FilterButtons/FilterButtons';
+import RecruitmentClose from './Filter/RecuritmentClose';
+import RecruitmentConfirmed from './Filter/RecruitmentConfirmed';
+import SortByDeadlineDesc from './Filter/SortByDeadlineDesc';
+import SortByPopular from './Filter/SortByPopular';
+import SortByPriceDesc from './Filter/SortByPriceDesc';
+import SortByPriceAsc from './Filter/SortByPriceAsc';
 
 const Product = () => {
-  const [allProductData, setAllProductData] = useState([]);
-  const [displayedData, setDisplayedData] = useState([]);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const fetchData = async () => {
-    try {
-      const response = await apiClient.get('/products');
-      setAllProductData(response.data);
-      setDisplayedData(response.data.slice(0, itemsPerPage));
-    } catch (error) {
-      console.error('Error', error);
-    }
-  };
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const filter = searchParams.get('filter');
+  const [products, setProducts] = useState([]);
+  const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    const getProducts = async () => {
+      try {
+        const response = await apiClient.get('/products');
+        setProducts(response.data);
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    };
+
+    const getLatestProducts = async () => {
+      try {
+        const response = await apiClient.get('/products/sortByRegDateDesc');
+        setLatestProducts(response.data);
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    };
+
+    getProducts();
+    getLatestProducts();
   }, []);
-
-  useEffect(() => {
-    const filteredData = allProductData.filter((productItem) =>
-      productItem.productName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setDisplayedData(filteredData.slice(startIndex, endIndex));
-  }, [itemsPerPage, currentPage, allProductData, searchTerm]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm]);
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handlePageChange = (event, value) => {
-    setCurrentPage(value);
-  };
 
   const settings = {
     dots: true,
@@ -70,39 +64,33 @@ const Product = () => {
       <Metas title="패키지 상품" />
       <section className={`${styles.product} layout`}>
         <Slider {...settings}>
-          {displayedData.map((productItem) => (
-            <ProductProcessCard key={productItem.productNum} {...productItem} />
+          {products.map((product) => (
+            <ProductProcessCard
+              key={`product-${product.productNum}`}
+              {...product}
+            />
           ))}
         </Slider>
+
         <div className={styles.latestUpdate}>
-          <h2>최신 등록</h2>
-          <div className={styles.product_cards}>
-            {displayedData.map((productItem) => (
-              <ProductCard key={productItem.productNum} {...productItem} />
+          <h3>최신 등록된 패키지</h3>
+          <ul className={styles.product_cards}>
+            {latestProducts.map((product) => (
+              <li key={`product-${product.productNum}`}>
+                <ProductCard {...product} />
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-        <div className={styles.productList}>
-          <SearchField onChange={handleSearch} value={searchTerm} />
-          <div className={styles.product_cards}>
-            {displayedData.map((productItem) => (
-              <ProductCard key={productItem.productNum} {...productItem} />
-            ))}
-          </div>
-        </div>
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(
-              allProductData.filter((productItem) =>
-                productItem.productName
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              ).length / itemsPerPage
-            )}
-            page={currentPage}
-            onChange={handlePageChange}
-          />
-        </Stack>
+
+        <FilterButtons />
+        {filter === 'search' && <Search />}
+        {filter === 'recruitmentClose' && <RecruitmentClose />}
+        {filter === 'sortByDeadlineDesc' && <SortByDeadlineDesc />}
+        {filter === 'recruitconfirmed' && <RecruitmentConfirmed />}
+        {filter === 'sortByPopular' && <SortByPopular />}
+        {filter === 'sortByPriceDesc' && <SortByPriceDesc />}
+        {filter === 'sortByPriceAsc' && <SortByPriceAsc />}
       </section>
     </>
   );

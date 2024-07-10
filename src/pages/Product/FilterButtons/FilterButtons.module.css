@@ -1,0 +1,32 @@
+.FilterButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.FilterButtons button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.FilterButtons button:hover {
+  background-color: #e0e0e0;
+}
+
+.FilterButtons button.active {
+  background-color: #007bff;
+}
+
+.FilterButtons button a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.FilterButtons button.active a {
+  color: white;
+}

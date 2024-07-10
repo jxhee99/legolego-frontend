@@ -18,9 +18,9 @@ const Menu = () => {
         <Link to={ROUTE.HOME.link}>Home</Link>
       </li>
       <li
-        className={`${styles.menu_item} ${location.pathname === ROUTE.PACKAGE.link ? styles.active : ''}`}
+        className={`${styles.menu_item} ${location.pathname === ROUTE.PRODUCT.link ? styles.active : ''}`}
       >
-        <Link to={ROUTE.PACKAGE.link}>패키지상품</Link>
+        <Link to={ROUTE.PRODUCT.link}>패키지상품</Link>
       </li>
       <li
         className={`${styles.menu_item} ${location.pathname === ROUTE.DIY.link ? styles.active : ''}`}

@@ -64,14 +64,14 @@ export const ROUTE = {
     link: '/home',
     element: Home,
   },
-  PACKAGE: {
-    path: '/package-product',
-    link: '/package-product',
+  PRODUCT: {
+    path: '/product',
+    link: '/product',
     element: Product,
   },
-  PACKAGE_DETAIL: {
-    path: '/package-product/:id',
-    link: '/package-product/:id',
+  PRODUCT_DETAIL: {
+    path: '/product/:produnctNum',
+    link: '/product/:produnctNum',
     element: ProductDetail,
   },
   DIY: {
