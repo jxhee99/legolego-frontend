@@ -6,15 +6,28 @@
   font-style: normal;
 }
 
+
 .Comment {
   font-family: 'DungGeunMo';
+}
+
+
+.starText{
+  margin-bottom: 57px;
+}
+
+.slideText{
+  margin-bottom: 54px;
+}
+.polaroid{
+  margin-bottom: 72px;
 }
 
 .commentBackground {
   background-image: url('../../../assets/images/legoHiker.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0px -1300px;
+  background-position: 0px -81.25rem;
   height: 50vh;
   color: white;
   display: flex;
@@ -29,12 +42,12 @@
   position: absolute;
   font-size: 1.3rem;
   text-shadow: 3px;
-  bottom: 80px;
-  left: 520px;
+  bottom: 5rem;
+  left: 32.5rem;
 }
 
 .comment_box {
-  margin-top: 2rem;
+  margin-top: 0rem;
   position: relative;
   display: inline-block;
   padding: 0rem;
@@ -73,7 +86,7 @@
 
 .comment_text {
   font-size: 1rem;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
   color: #333;
 }
 
@@ -112,6 +125,7 @@
   transform: rotateY(180deg);
 }
 .black{
+  /* font-family: 'SpoqaHanSansNeo-Regular'!important; */
   width: 18.75rem;
   height: 18.75rem;
   margin: 1.75rem 1.75rem 0 1.75rem;
@@ -128,13 +142,13 @@
 }
 
 .hover_textTitle {
-  margin: 3rem 0 5px 0;
+  margin: 5rem 1rem 1rem 1rem;
   font-size: 1.5rem;
   text-align: center;
 }
 .hover_textStar{
   text-align: center;
-  margin-bottom:1rem;
+  margin-bottom:1.3rem;
   
 }
 
