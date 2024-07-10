@@ -35,7 +35,9 @@
 
 .list_box table tr:last-child td,
 .list_box table tr:last-child th {
-  border-bottom: none;
+  border: 1px solid #e0e0e0;
+  border-left: none;
+  border-right: none;
 }
 
 .list_box th:not(:nth-child(2)) {
@@ -62,8 +64,8 @@
 .list_box td:last-child a {
   background-color: #fff9d0;
   padding: 0.3rem 1rem;
-  border-radius: 12px;
   color: #3d3d3d;
+  border-radius: 4px;
 }
 
 .list_box td:last-child a:hover {

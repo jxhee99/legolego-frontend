@@ -58,6 +58,30 @@
   background-color: #e0f7fa;
   color: #00796b;
 }
-.LikeDiyPackage p{
+.LikeDiyPackage p {
   color: red;
+}
+
+/*diy-price 필터버튼 */
+.price_list_filter {
+  margin-bottom: 1rem;
+}
+
+/* diy-price 보기, 제안 받기 버튼, 수락 거절 */
+.watch {
+  padding: 0;
+}
+.accept {
+  padding: 0;
+  color: #00796b;
+  background-color: #e0f7fa;
+  padding: 4px 8px;
+}
+
+.accept:hover {
+  transform: scale(1.05);
+}
+
+.suggest_status {
+  padding: 4px 8px;
 }

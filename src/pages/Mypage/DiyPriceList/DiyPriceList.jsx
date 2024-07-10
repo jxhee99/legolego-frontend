@@ -90,12 +90,14 @@ const DiyPriceList = () => {
 
   return (
     <>
-      <ToggleFilter
-        filter={filter}
-        handleChange={handleChange}
-        setFilter={setFilter}
-        buttons={toggleButtons}
-      />
+      <div className={style.price_list_filter}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
       <div className={style.tableContainer}>
         <table className={style.table}>
           <thead>
@@ -121,16 +123,23 @@ const DiyPriceList = () => {
                 <td>{item.partner.companyName}</td>
                 <td>{item.price}</td>
                 <td onClick={() => openModal(item, '제안 상세')}>
-                  <button>보기</button>
+                  <button className={style.watch}>보기</button>
                 </td>
                 <td>
                   {item.isSelected === null && (
-                    <button onClick={() => openModal(item, '제안 받기')}>
+                    <button
+                      onClick={() => openModal(item, '제안 받기')}
+                      className={style.accept}
+                    >
                       받기
                     </button>
                   )}
-                  {item.isSelected === true && <span>수락</span>}
-                  {item.isSelected === false && <span>거절</span>}
+                  {item.isSelected === true && (
+                    <span className={style.suggest_status}>수락</span>
+                  )}
+                  {item.isSelected === false && (
+                    <span className={style.suggest_status}>거절</span>
+                  )}
                 </td>
                 <td>
                   {item.isRegistered && (
