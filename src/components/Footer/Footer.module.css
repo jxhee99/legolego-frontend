@@ -1,0 +1,28 @@
+footer {
+  height: 180px;
+  background-color: rgb(234, 234, 233);
+}
+
+.footer_box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: #727272;
+}
+.footer_box h4 {
+  color: #3b3b3b;
+}
+
+.text_box {
+  display: flex;
+
+  gap: 1rem;
+}
+
+.text_box p {
+  padding-left: 10px;
+  border-left: 1px solid #c7c7c7;
+}

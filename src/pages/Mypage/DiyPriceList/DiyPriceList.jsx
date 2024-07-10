@@ -111,7 +111,7 @@ const DiyPriceList = () => {
               <th>상품등록</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={style.price_tbody}>
             {currentItems.map((item) => (
               <tr key={item.listNum}>
                 <td>{item.diyPackage.packageNum}</td>

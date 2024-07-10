@@ -4,6 +4,7 @@
   flex-basis: 30%;
   gap: 3rem;
   padding: 2rem 1.75rem;
+  min-height: 70vh;
 }
 
 .mypage_wrapper {
@@ -68,6 +69,10 @@
 }
 
 /* diy-price 보기, 제안 받기 버튼, 수락 거절 */
+.price_tbody td {
+  height: 50px;
+}
+
 .watch {
   padding: 0;
 }

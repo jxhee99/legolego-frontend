@@ -4,6 +4,7 @@
 
 .menu {
   padding: 2rem;
+  padding-bottom: 0;
   min-height: 100vh;
   width: 320px;
   border-right: 1px solid #e0e0e0;

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header';
 import HeaderPartner from '../Header/HeaderPartner';
 import HeaderAdmin from '../Header/HeaderAdmin';
+import Footer from '../Footer/Footer';
 
 const Layout = () => {
   const userRole = localStorage.getItem('role');
@@ -20,6 +21,7 @@ const Layout = () => {
     <>
       {renderHeader()}
       <Outlet />
+      <Footer />
     </>
   );
 };
