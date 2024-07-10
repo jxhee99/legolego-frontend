@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import apiClient from '../../api/apiClient';
-import Search from './Filter/Search';
+import Search from './Search';
 import styles from './Product.module.css';
 import FilterButtons from './FilterButtons/FilterButtons';
 import ProductList from './ProductList';

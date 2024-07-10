@@ -4,6 +4,7 @@ import styles from './Product.module.css';
 import ProductCard from '../../components/Card/ProductCard/ProductCard';
 import apiClient from '../../api/apiClient';
 import ProductSkeleton from '../../components/Card/ProductCard/ProductSkeleton';
+import PaginationComp from '../../components/Pagination/PaginationComp';
 
 const ProductList = ({ endpoint }) => {
   const [products, setProducts] = useState([]);
@@ -46,13 +47,22 @@ const ProductList = ({ endpoint }) => {
   }
 
   return (
-    <ul className={styles.product_cards}>
-      {products.map((product) => (
-        <li key={`product-${product.productNum}`}>
-          <ProductCard {...product} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={styles.product_cards}>
+        {products.map((product) => (
+          <li key={`product-${product.productNum}`}>
+            <ProductCard {...product} />
+          </li>
+        ))}
+      </ul>
+      {/* <PaginationComp
+        page={currentPage}
+        setPage={setCurrentPage}
+        totalItems={totalProducts}
+        itemsPerPage={ITEMS_PER_PAGE}
+        filterApplied={currentFilter}
+      /> */}
+    </>
   );
 };
 
