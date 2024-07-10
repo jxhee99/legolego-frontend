@@ -81,7 +81,7 @@ const PartnerPriceList = () => {
 
   return (
     <div className={styles.box}>
-      <h2>가격 제안 목록</h2>
+      <h3>가격 제안 목록</h3>
       {/* 필터 버튼 */}
       <div className={styles.filter_box}>
         <ToggleFilter
@@ -95,7 +95,7 @@ const PartnerPriceList = () => {
         <thead>
           <tr>
             <th>패키지 번호</th>
-            <th>Name</th>
+            <th>패키지 명</th>
             <th>작성자</th>
             <th>가격</th>
             <th>상세</th>

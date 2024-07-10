@@ -70,7 +70,7 @@ const UserReviews = () => {
 
   return (
     <div className={styles.box}>
-      <h2>회원 리뷰 목록</h2>
+      <h3 style={{ marginBottom: '2.5rem' }}>회원 리뷰 목록</h3>
       <ListTable>
         <thead>
           <tr>

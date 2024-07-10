@@ -67,7 +67,7 @@ const MembersList = () => {
 
   return (
     <div className={styles.box}>
-      <h2>회원목록</h2>
+      <h3>회원목록</h3>
       <div className={styles.filter_box}>
         <ToggleFilter
           filter={filter}

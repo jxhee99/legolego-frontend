@@ -7,11 +7,11 @@ import { ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#d79ef3',
+      main: '#d1b10e',
     },
   },
   typography: {
-    fontFamily: ['Magun Gothic', 'Arial', 'san-serif'].join(','),
+    fontFamily: ['SpoqaHanSansNeo-Regular', 'Arial', 'san-serif'].join(','),
     fontSize: 16,
   },
 });
@@ -32,7 +32,15 @@ const ToggleFilter = ({ filter, handleChange, buttons }) => {
             onChange={handleChange}
             sx={{
               height: 36,
-              color: '#000',
+              color: '#3d3d3d',
+              '&.Mui-selected': {
+                color: '#81b7e0',
+                backgroundColor: '#fff',
+                '&:hover': {
+                  color: '#81b7e0',
+                  backgroundColor: '#fff',
+                },
+              },
             }}
           >
             {button.label}

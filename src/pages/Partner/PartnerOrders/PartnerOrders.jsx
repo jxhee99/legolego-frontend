@@ -82,7 +82,7 @@ const PartnerOrders = () => {
         <PartnerOrderDetail orders={selectedOrder} onBack={handleBackToList} />
       ) : (
         <>
-          <h2>여행 상품</h2>
+          <h3>여행 상품</h3>
           <div className={styles.filter_box}>
             <ToggleFilter
               filter={filter}
@@ -125,7 +125,7 @@ const PartnerOrders = () => {
                   </td>
                   <td>
                     {item.recruitmentConfirmed ? (
-                      <span>확정</span>
+                      <span className={styles.confirmed}>확정</span>
                     ) : (
                       <span>모집중</span>
                     )}

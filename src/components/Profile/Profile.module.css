@@ -2,26 +2,24 @@
   flex: 1;
   max-width: 700px;
   height: 50%;
-  /* margin: 2rem 0 0 3rem; */
   margin: 0 auto;
   padding: 20px;
 }
 
-.formContainer h4 {
-  margin-top: 1rem;
+.formContainer h3 {
+  margin: 3.5rem 0;
+  color: #3d3d3d;
 }
 
-.formContainer form{
+.formContainer form {
   margin-top: 1.75rem;
 }
-
 
 .Input {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
-
 
 .Input label {
   margin-bottom: 5px;
@@ -62,7 +60,7 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #93d1ff;
 }
 
 /* 수정모드 일 때 */

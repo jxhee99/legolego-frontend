@@ -1,14 +1,19 @@
 .box {
   width: 100%;
-  margin: 2.5rem 1rem;
+  margin: 4rem 1rem;
 }
 
 .box h2 {
   margin-top: 2rem;
+  color: #636363;
+}
+
+.box h3 {
+  margin-top: 1rem;
+  color: #3d3d3d;
 }
 
 .box .filter_button {
-  margin: 1.5rem 0;
   width: 100px;
   height: 32px;
   border: 1px solid #e0e0e0;
@@ -16,7 +21,7 @@
 }
 
 .filter_box {
-  margin: 1.5rem 0;
+  margin: 2.5rem 0;
 }
 
 .box .back_button {
@@ -25,6 +30,14 @@
   height: 36px;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
+}
+
+/* 확정 상태 */
+.confirmed {
+  background-color: #fff9d0;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  color: #3d3d3d;
 }
 
 /* 확인 모달창 내부 */
