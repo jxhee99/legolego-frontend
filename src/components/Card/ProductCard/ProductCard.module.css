@@ -1,6 +1,32 @@
 .ProductCard {
   width: 21.875rem;
   cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ProductCard.hovered {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heartIcon {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.heartIcon:hover {
+  transform: scale(1.1);
+}
+
+.favorited {
+  color: #ff6b6b;
+}
+
+.likes {
+  cursor: pointer;
 }
 
 .image {
@@ -13,7 +39,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 0.625rem 0;
+  padding: 0.625rem;
 }
 
 .content .content_title {

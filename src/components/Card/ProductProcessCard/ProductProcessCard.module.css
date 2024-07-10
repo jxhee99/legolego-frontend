@@ -2,8 +2,8 @@
   display: flex;
   background-color: white;
   border-radius: 10px;
-  width:60rem;
-  height:20rem;
+  width: 60rem;
+  height: 20rem;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -37,15 +37,14 @@
 .price {
   margin: 1rem 0;
   font-weight: bold;
-  color: #000;  font-size:1.2rem;
+  color: #000;
+  font-size: 1.2rem;
 }
-
 
 .text {
   margin: 5px 0;
   color: #666;
 }
-
 
 /* Progress and button container */
 .progressAndButtonContainer {
@@ -64,7 +63,7 @@
 
 .progressBar {
   height: 100%;
-  background-color: #FB5607;
+  background-color: #fb5607;
   border-radius: 5px;
 }
 
@@ -99,4 +98,3 @@
 .buttonOngoing {
   background-color: #43aa8b; /* 모집중 버튼 색상: 초록색 */
 }
-

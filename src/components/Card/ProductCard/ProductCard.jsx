@@ -1,18 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
-
-const confirmBadge = () => {
-  return (
-    <div>
-      <BookmarkIcon className={styles.bookmarkIcon} />
-      <span>모집확정</span>
-    </div>
-  );
-};
 
 const ProductCard = ({
   productNum,
@@ -23,20 +15,38 @@ const ProductCard = ({
   wishlistCount,
 }) => {
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handlePackageCardClick = () => {
     navigate(`/product/${productNum}`);
   };
 
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation();
+    setIsFavorite(!isFavorite);
+  };
+
   return (
-    <div className={styles.ProductCard} onClick={handlePackageCardClick}>
+    <div
+      className={`${styles.ProductCard} ${isHovered ? styles.hovered : ''}`}
+      onClick={handlePackageCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <img src={productImage} alt={productName} className={styles.image} />
       <div className={styles.content}>
         <div className={styles.content_title}>
           <h3 className={styles.title}>{productName}</h3>
-          <div className={styles.likes}>
+          <div className={styles.likes} onClick={handleFavoriteClick}>
             <span>{wishlistCount}</span>
-            <FavoriteBorderIcon className={styles.heartIcon} />
+            {isFavorite ? (
+              <FavoriteIcon
+                className={`${styles.heartIcon} ${styles.favorited}`}
+              />
+            ) : (
+              <FavoriteBorderIcon className={styles.heartIcon} />
+            )}
           </div>
         </div>
         <div className={styles.content_body}>

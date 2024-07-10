@@ -2,54 +2,53 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }
 
 .latestUpdate {
-  margin: 3rem 0;
+  margin-top: 5rem;
   padding: 3rem 0;
-  border-bottom: 1px solid #bebebe;
 }
 
 .latestUpdate h2 {
   text-align: center;
 }
 
-.searchField {
-  max-width: 500px;
-  margin: 0 auto;
+/* Search */
+.filter {
+  padding: 3rem 0;
 }
 
-.pagination {
-  display: flex;
-  align-items: center;
-  margin-top: 3rem;
-}
-
-/* .productText {
-  position: absolute;
-  font-size: 1.3rem;
-  text-shadow: 3px;
-  bottom: 105px;
-  right: 155px;
-}
-
-.productBackground {
-  background-image: url('../../assets/images/legoRiver.jpeg');
-  background-repeat: no-repeat;
-  background-size: 90rem;
-  background-position: center; 
-  height: 50vh;
-  color: white;
-  display: flex;
-  justify-content: flex-end; 
-  align-items: flex-end; 
-  padding: 0;
-  margin-top: 0;
+.searchBar {
   position: relative;
-  margin-top: 2.5rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  border-radius: 2.5rem;
-  transition: background-size 0.3s ease; 
-} */
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.searchBar input {
+  width: 100%;
+  margin: 1rem;
+  padding: 15px 20px;
+  padding-left: 50px;
+  border: none;
+  background-color: #f0f0f0;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar::before {
+  content: '🔍';
+  padding-left: 0.625rem;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+.searchBar input::placeholder {
+  color: #aaa;
+}

@@ -3,12 +3,15 @@ import styles from './FilterButtons.module.css';
 
 const FilterButtons = () => {
   const location = useLocation();
-  const currentTab = new URLSearchParams(location.search).get('filter');
+  const searchParams = new URLSearchParams(location.search);
+  const currentTab = searchParams.get('filter');
+
+  const isAllActive = location.pathname === '/product' && !currentTab;
 
   return (
     <aside className={styles.FilterButtons}>
-      <button className={currentTab === 'search' ? styles.active : ''}>
-        <Link to="/product?filter=search">전체</Link>
+      <button className={isAllActive ? styles.active : ''}>
+        <Link to="/product">전체</Link>
       </button>
       <button
         className={currentTab === 'recruitmentClose' ? styles.active : ''}
@@ -25,8 +28,8 @@ const FilterButtons = () => {
       >
         <Link to="/product?filter=recruitmentConfirmed">모집확정</Link>
       </button>
-      <button className={currentTab === 'sortByPoplar' ? styles.active : ''}>
-        <Link to="/product?filter=sortByPoplar">인기순</Link>
+      <button className={currentTab === 'sortByPopular' ? styles.active : ''}>
+        <Link to="/product?filter=sortByPopular">인기순</Link>
       </button>
       <button className={currentTab === 'sortByPriceDesc' ? styles.active : ''}>
         <Link to="/product?filter=sortByPriceDesc">가격높은순</Link>

@@ -10,12 +10,7 @@ import apiClient from '../../api/apiClient';
 import Search from './Filter/Search';
 import styles from './Product.module.css';
 import FilterButtons from './FilterButtons/FilterButtons';
-import RecruitmentClose from './Filter/RecuritmentClose';
-import RecruitmentConfirmed from './Filter/RecruitmentConfirmed';
-import SortByDeadlineDesc from './Filter/SortByDeadlineDesc';
-import SortByPopular from './Filter/SortByPopular';
-import SortByPriceDesc from './Filter/SortByPriceDesc';
-import SortByPriceAsc from './Filter/SortByPriceAsc';
+import ProductList from './ProductList';
 
 const Product = () => {
   const location = useLocation();
@@ -82,15 +77,28 @@ const Product = () => {
             ))}
           </ul>
         </div>
-
-        <FilterButtons />
-        {filter === 'search' && <Search />}
-        {filter === 'recruitmentClose' && <RecruitmentClose />}
-        {filter === 'sortByDeadlineDesc' && <SortByDeadlineDesc />}
-        {filter === 'recruitconfirmed' && <RecruitmentConfirmed />}
-        {filter === 'sortByPopular' && <SortByPopular />}
-        {filter === 'sortByPriceDesc' && <SortByPriceDesc />}
-        {filter === 'sortByPriceAsc' && <SortByPriceAsc />}
+        <div className={styles.filter}>
+          <FilterButtons />
+          {filter ? <></> : <Search />}
+          {filter === 'recruitmentClose' && (
+            <ProductList endpoint="/products/recruitmentClose" />
+          )}
+          {filter === 'sortByDeadlineDesc' && (
+            <ProductList endpoint="/products/sortByDeadlineDesc" />
+          )}
+          {filter === 'recruitconfirmed' && (
+            <ProductList endpoint="/products/recruitmentConfirmed" />
+          )}
+          {filter === 'sortByPopular' && (
+            <ProductList endpoint="/products/sortByPopular" />
+          )}
+          {filter === 'sortByPriceDesc' && (
+            <ProductList endpoint="/products/sortByPriceDesc" />
+          )}
+          {filter === 'sortByPriceAsc' && (
+            <ProductList endpoint="/products/sortByPriceAsc" />
+          )}
+        </div>
       </section>
     </>
   );
