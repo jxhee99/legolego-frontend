@@ -76,6 +76,7 @@
   text-shadow: 3px;
   bottom: 225px;
   right: 100px;
+  text-shadow: 1px 1px 5px black;
 }
 .diyBackground.scrolled p {
   opacity: 0; /* 스크롤 후: 텍스트가 숨김 */
@@ -87,6 +88,7 @@
   border-radius: 12px;
   background-color: rgba(147, 209, 255, 0.7);
   color: #fff; /* 버튼 텍스트 색상을 흰색으로 지정 */
+  text-shadow: 1px 1px 5px rgb(41, 41, 41);
   position: absolute;
   bottom: 140px;
   right: 100px;
@@ -104,6 +106,7 @@
 /* 스크롤 후 버튼 스타일 */
 .diyBackground.scrolled .create_button {
   color: #fff; /* 버튼 텍스트 색상을 흰색으로 지정 */
+  text-shadow: 1px 1px 5px rgb(41, 41, 41);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -212,9 +215,9 @@
   margin-bottom: 10rem;
 }
 
-.diy_cards h4 {
+/* .diy_cards h4 {
   color: #676666;
-}
+} */
 
 .diy_cards strong {
   font-size: 1.05em;

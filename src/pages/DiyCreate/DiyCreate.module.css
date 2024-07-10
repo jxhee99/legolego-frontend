@@ -14,6 +14,9 @@
   font-weight: normal;
   font-style: normal;
 }
+.DiyCreate {
+  min-height: 100vh;
+}
 
 .DiyCreate h3 {
   font-family: 'BMHANNAPro';
