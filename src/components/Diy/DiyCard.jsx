@@ -39,17 +39,22 @@ const DiyCard = ({
       </div>
       <div className={styles.grayDetail}>
         <div>
-          여행기간 | {new Date(airline.boardingDate).toLocaleDateString()}~
+          <strong>여행기간 |</strong>
+          {new Date(airline.boardingDate).toLocaleDateString()}~
           {new Date(airline.comingDate).toLocaleDateString()}
         </div>
-
-        <div className={styles.likes}>
-          <ThumbUpIcon fontSize="0.1rem" className={styles.thumb_icon} />
-          <span>{packageLikedNum}</span>
+        <div>
+          <strong>나라 |</strong> {airline.destination}
         </div>
-        <div className={styles.user_box}>
-          <AccountCircleIcon fontSize="1rem" />
-          <div>{user.userNickname}</div>
+        <div className={styles.icon_box}>
+          <div className={styles.user_box}>
+            <AccountCircleIcon fontSize="1rem" />
+            <div>{user.userNickname}</div>
+          </div>
+          <div className={styles.likes}>
+            <ThumbUpIcon fontSize="0.1rem" className={styles.thumb_icon} />
+            <span>{packageLikedNum}</span>
+          </div>
         </div>
       </div>
     </div>

@@ -12,11 +12,15 @@
   border-radius: 12px;
 }
 
+.searchBox .search_button:hover {
+  background-color: #1976d2;
+}
+
 .searchBox ul::-webkit-scrollbar {
   width: 8px;
   background: #f1f1f1;
 }
 
 .searchBox ul::-webkit-scrollbar-thumb {
-  background: #b8b8b8;
+  background: #d2d1d1;
 }

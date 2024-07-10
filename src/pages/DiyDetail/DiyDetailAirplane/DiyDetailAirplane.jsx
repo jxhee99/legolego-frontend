@@ -12,7 +12,7 @@ const FlightCard = ({
   const formattedDate = formatDateTime(date);
   return (
     <div className={styles.AirplaneCard}>
-      <div>항공편: {flightNum}</div>
+      <div>✈️항공편: {flightNum}</div>
       <div>
         {type === 'departure' ? '출발일' : '도착일'}: {formattedDate}
       </div>
@@ -29,7 +29,7 @@ const FlightCard = ({
 const DiyDetailAirplane = ({ airline }) => {
   return (
     <div className={styles.airline_box}>
-      <h3>항공편</h3>
+      <h3>🎫항공편</h3>
       <div className={styles.card_box}>
         <FlightCard
           type="departure"

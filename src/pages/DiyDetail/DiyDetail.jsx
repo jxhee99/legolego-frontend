@@ -62,6 +62,7 @@ const DiyDetail = () => {
       <Metas title={desc.packageName} />
       <div className={styles.DiyDetail}>
         <div>
+          <h3>🛠️DIY 패키지</h3>
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
               <img src={desc.profileImg} alt="썸네일" />

@@ -118,6 +118,9 @@ const Diy = () => {
         {userRole === 'USER' && (
           <button
             className={`${styles.create_button} ${isScrolled ? styles.scrolled : ''}`}
+            onClick={() => {
+              navigate('/diy-create');
+            }}
           >
             {isScrolled ? (
               <>
@@ -152,7 +155,7 @@ const Diy = () => {
         className={`${styles.Diy} ${isScrolled ? styles.scrolledBackground : ''}`}
       >
         <div className={`layout ${styles.main_box}`}>
-          <h2>DIY 패키지를 응원해주세요!</h2>
+          <h2>🎉DIY 패키지를 응원해주세요!🎉</h2>
           {/* 검색과 필터링 */}
           <div className={styles.search_filter}>
             <SearchInput />
