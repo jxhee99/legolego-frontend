@@ -3,6 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+import ToggleFilter from '../../../components/ToggleFilter/ToggleFilter';
+import PaginationComp from '../../../components/Pagination/PaginationComp';
+
 import ListTable from '../../../components/List/ListTable';
 import ConfirmModal from '../../../components/List/Modal/ConfirmModal';
 import useFetchData from '../../../hooks/useFetchDiyData';
@@ -17,26 +20,18 @@ const AdminListDiy = () => {
   // 초기 상태와 변수 설정
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
-  const initialFilter = query.get('filter') === 'true';
+  const initialFilter = query.get('filter') || '';
   const itemsPerPage = 10;
   const endpoint = '/packages';
 
   // 상태 관ž
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [filterApplied, setFilterApplied] = useState(initialFilter);
+  const [filter, setFilter] = useState(initialFilter);
   const [page, setPage] = useState(initialPage);
 
   // 데이터 가져오기 훅
   const { data, loading, refetch } = useFetchData(endpoint);
-
-  // 페이지 및 필터 변경 시 처리
-  useEffect(() => {
-    const newQuery = new URLSearchParams(location.search);
-    newQuery.set('page', page);
-    newQuery.set('filter', filterApplied);
-    navigate({ search: newQuery.toString() });
-  }, [page, filterApplied, navigate, location.search]);
 
   // 로딩 중일 때
   if (loading) {
@@ -44,20 +39,29 @@ const AdminListDiy = () => {
   }
 
   // 필터된 데이터 설정
-  const filteredData = filterApplied
-    ? data.filter((item) => item.packageLikedNum >= 2)
-    : data;
+  let filteredData = [...data];
+  if (filter === 'overliked') {
+    filteredData = data.filter((item) => item.packageLikedNum >= 2);
+  }
 
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = filteredData.slice(startIndex, endIndex);
 
-  // 필터 토글 함수
-  const toggleFilter = () => {
-    setFilterApplied(!filterApplied);
-    setPage(1);
+  // 필터 설정
+  const handleChange = (event, newFilter) => {
+    if (newFilter === filter) {
+      setFilter('');
+      setPage(1);
+    } else {
+      setFilter(newFilter);
+      setPage(1);
+    }
   };
+
+  //필터 토글 버튼
+  const toggleButtons = [{ value: 'overliked', label: '응원달성' }];
 
   // 모달 열기 함수
   const openModal = (item) => {
@@ -92,12 +96,16 @@ const AdminListDiy = () => {
 
   return (
     <div className={styles.box}>
-      <h2>Diy 목록</h2>
-
+      <h3>Diy 목록</h3>
       {/* 필터 버튼 */}
-      <button onClick={toggleFilter} className={styles.filter_button}>
-        {filterApplied ? '전체 보기' : '응원 달성'}
-      </button>
+      <div className={styles.filter_box}>
+        <ToggleFilter
+          filter={filter}
+          handleChange={handleChange}
+          setFilter={setFilter}
+          buttons={toggleButtons}
+        />
+      </div>
 
       {/* 목록 테이블 */}
       <ListTable>
@@ -145,15 +153,15 @@ const AdminListDiy = () => {
           </div>
         )}
       </ConfirmModal>
+      {/* 페이지네이션 */}
       <div className={styles.pagination_box}>
-        {/* 페이지네이션 */}
-        <Stack spacing={2} className={styles.pagination}>
-          <Pagination
-            count={Math.ceil(filteredData.length / itemsPerPage)}
-            page={page}
-            onChange={(_, value) => setPage(value)}
-          />
-        </Stack>
+        <PaginationComp
+          page={page}
+          setPage={setPage}
+          totalItems={data.length}
+          itemsPerPage={itemsPerPage}
+          filterApplied={filter}
+        />
       </div>
     </div>
   );

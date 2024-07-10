@@ -88,7 +88,7 @@ const AdminListDiyPrice = () => {
 
   return (
     <div className={styles.box}>
-      <h2>응원 달성 Diy 목록</h2>
+      <h3>응원 달성 Diy 목록</h3>
       {/* 필터 버튼 */}
       <div className={styles.filter_box}>
         <ToggleFilter

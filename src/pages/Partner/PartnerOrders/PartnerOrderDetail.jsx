@@ -16,7 +16,7 @@ const PartnerOrderDetail = ({ orders, onBack }) => {
 
   return (
     <div className={styles.box}>
-      <h2>주문 내역</h2>
+      <h3>주문 내역</h3>
       <button onClick={onBack} className={styles.back_button}>
         뒤로가기
       </button>

@@ -57,12 +57,12 @@ const PartnerPackageList = () => {
   // 화면 렌더링
   return (
     <div className={styles.box}>
-      <h2 style={{ margin: '2rem 0' }}>Diy 목록</h2>
+      <h3 style={{ marginBottom: '2.5rem' }}>Diy 목록</h3>
       <ListTable>
         <thead>
           <tr>
             <th>패키지 번호</th>
-            <th>이름</th>
+            <th>패키지 명</th>
             <th>작성자</th>
             <th>좋아요 수</th>
             <th>가격 등록</th>

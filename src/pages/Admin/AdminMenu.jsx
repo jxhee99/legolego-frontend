@@ -7,7 +7,7 @@ const AdminMenu = () => {
   const location = useLocation();
   const getLinkStyle = (path) => {
     return location.pathname === path
-      ? { color: '#3a86ff' }
+      ? { color: '#81b7e0' }
       : { color: 'black' };
   };
   return (

@@ -41,7 +41,7 @@ const DiyCreate = () => {
       const timer = setTimeout(() => {
         setShowLegoBox(false);
         setIsAnimated(true);
-      }, 1000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [dispatch]);

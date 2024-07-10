@@ -52,7 +52,7 @@ const PartnerProfile = () => {
 
   return (
     <div className={styles.formContainer}>
-      <h4>프로필 관리</h4>
+      <h3>프로필 관리</h3>
       <form>
         <div className={styles.Input}>
           <label htmlFor="name">이름</label>
@@ -92,7 +92,7 @@ const PartnerProfile = () => {
         )}
       </form>
       <br></br>
-      <h4>비밀번호 변경</h4>
+      <h3>비밀번호 변경</h3>
       <PasswordChange endpoint={'/partner/profile/password'} />
     </div>
   );

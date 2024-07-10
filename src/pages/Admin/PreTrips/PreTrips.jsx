@@ -83,7 +83,7 @@ const PreTrips = () => {
 
   return (
     <div className={styles.box}>
-      <h2>지난 여행 목록</h2>
+      <h3>지난 여행 목록</h3>
       {/* 필터 버튼 */}
       <div className={styles.filter_box}>
         <ToggleFilter

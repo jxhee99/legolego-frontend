@@ -102,7 +102,7 @@ const AdminListProduct = () => {
 
   return (
     <div className={styles.box}>
-      <h2>상품 목록</h2>
+      <h3>상품 목록</h3>
 
       {/* 필터 버튼 */}
       <div className={styles.filter_box}>
@@ -142,7 +142,7 @@ const AdminListProduct = () => {
               {/* formatDateTime 함수 호출 수정 */}
               <td>
                 {item.recruitmentConfirmed ? (
-                  <span>확정</span>
+                  <span className={styles.confirmed}>확정</span>
                 ) : (
                   <span>모집중</span>
                 )}
