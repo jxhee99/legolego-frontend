@@ -70,8 +70,8 @@ export const ROUTE = {
     element: Product,
   },
   PRODUCT_DETAIL: {
-    path: '/product/:produnctNum',
-    link: '/product/:produnctNum',
+    path: '/product/:productNum',
+    link: '/product/:productNum',
     element: ProductDetail,
   },
   DIY: {

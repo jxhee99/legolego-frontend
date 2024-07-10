@@ -12,8 +12,8 @@ import { useProductDetail } from '../../hooks/useProduct';
 
 const PackageDetail = () => {
   const [activeSection, setActiveSection] = useState('airplane-info');
-  const { id } = useParams();
-  const { products, error } = useProductDetail(id);
+  const { productNum } = useParams();
+  const { products, error } = useProductDetail(productNum);
 
   useEffect(() => {
     const handleScroll = () => {

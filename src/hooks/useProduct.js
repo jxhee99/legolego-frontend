@@ -1,76 +1,25 @@
 import { useState, useEffect } from 'react';
 import apiClient from '../api/apiClient';
 
-export const useProducts = (filters) => {
-  const [products, setProducts] = useState([]);
+export const useProductDetail = (productNum) => {
+  const [products, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getProduct = async () => {
       try {
-        let endpoint = '/products';
-        if (filters.type) {
-          switch (filters.type) {
-            case 'recruitmentClose':
-              endpoint += '/recruitmentClose';
-              break;
-            case 'sortByDeadlineDesc':
-              endpoint += '/sortByDeadlineDesc';
-              break;
-            case 'recruitmentConfirmed':
-              endpoint += '/recruitmentConfirmed';
-              break;
-            case 'sortByRegDateDesc':
-              endpoint += '/sortByRegDateDesc';
-              break;
-            case 'sortByPoplar':
-              endpoint += '/sortByPoplar';
-              break;
-            case 'sortByPriceDesc':
-              endpoint += '/sortByPriceDesc';
-              break;
-            case 'sortByPriceAsc':
-              endpoint += '/sortByPriceAsc';
-              break;
-            default:
-              break;
-          }
-        }
-
-        const response = await apiClient.get(endpoint, {
-          params: {
-            ...filters,
-          },
-        });
-
-        setProducts(response.data);
+        const response = await apiClient.get(`/products/${productNum}`);
+        setProduct(response.data);
       } catch (error) {
-        setError(error.message);
+        console.log(`ERROR MESSAGE: ${error}`);
+        setError(error);
       }
     };
 
-    getProducts();
-  }, [filters]);
-
-  return { products, error };
-};
-
-export const useProductDetail = (productNum) => {
-  const [product, setProduct] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    apiClient
-      .get(`/products/${productNum}`)
-      .then((response) => {
-        setProduct(response.data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    getProduct();
   }, [productNum]);
 
-  return { product, error };
+  return { products, error };
 };
 
 export const useSearchProducts = (keyword) => {
