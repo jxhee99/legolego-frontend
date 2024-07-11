@@ -1,0 +1,25 @@
+.HomeNavigation {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    width: 100%;
+    height: 65px;
+    background-color: #3b2222;
+
+    text-align: center;
+  }
+  
+  .HomeNavigation ul {
+    display: flex;
+    list-style: none; /* 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .HomeNavigation li {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 100px; /* 항목 간 간격 조절 */
+    cursor: pointer; /* 마우스 커서 변경 */
+  }
+  

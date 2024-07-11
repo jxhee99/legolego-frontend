@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Home.module.css';
-import axios from 'axios';
 import ProductProcessCard from '../../../components/Card/ProductProcessCard/ProductProcessCard';
+import apiClient from '../../../api/apiClient';
 
 const PackageSection = () => {
   const [packageData, setPackageData] = useState([]);
@@ -10,8 +10,8 @@ const PackageSection = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/products`);
-      console.log(response.data);
+      const response = await apiClient.get(`/products/sortByPoplar`);
+      console.log('popular',response.data);
       setPackageData(response.data);
     } catch (error) {
       console.error('Error', error);
@@ -36,7 +36,7 @@ const PackageSection = () => {
   return (
     <section className={styles.PackageSection}>
       <div className={styles.package_title}>
-        <h2>🚀 레고러들이 선택한 여행에 참여하기</h2>
+        {/* <h2>🚀 레고러들이 선택한 여행에 참여하기</h2> */}
         <button
           className={styles.more_button}
           onClick={() => navigate('/package-product')}
