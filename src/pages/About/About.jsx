@@ -48,7 +48,7 @@
 //             <div className={styles.about_package}>
 //               <div className={styles.about_package_intro}>
 //                 <p>
-//                   빨리 출발하고 싶다면 ! <br/> 
+//                   빨리 출발하고 싶다면 ! <br/>
 //                   패키지 상품을 이용해 당장 떠나보세요
 //                 </p>
 //               </div>
@@ -82,25 +82,32 @@
 
 // export default About;
 
-
 import React from 'react';
 import styles from './About.module.css';
 import Metas from '../../components/common/Metas';
+import { useEffect } from 'react';
 import { SectionsContainer, Section } from 'react-fullpage';
-import Process from '../../components/Process/Process';;
+import Process from '../../components/Process/Process';
 import aboutImg1 from '../../assets/images/about/lego5.jpg';
 import aboutImg2 from '../../assets/images/about/lego6.jpg';
 import aboutImg3 from '../../assets/images/about/lego7.jpg';
 import aboutImg4 from '../../assets/images/airCity.jpeg';
 import HoverCard from '../../components/Card/HoverCard/HoverCard';
+import Footer from '../../components/Footer/Footer';
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   let options = {
-    anchors: ['legolego','introduction','process', 'links'],
+    anchors: ['legolego', 'introduction', 'process', 'links'],
+    lockAnchors: false,
+    animateAnchor: true,
   };
 
   return (
-    <>
+    <div className={styles.About}>
       <Metas title="내가 만드는 패키지 여행" />
       <SectionsContainer {...options} className={styles.About}>
         <Section className={styles.about_top}>
@@ -116,13 +123,23 @@ const About = () => {
             <div className={styles.left}>
               <h2>여행의 새로운 패러다임</h2>
               <div className={styles.intro_list}>
-                <p>기존의 틀에 박힌 패키지 여행이 지겹다면,<br /> 여러분의 일정으로 만들어가는 DIY 패키지 여행 어떠신가요?</p>
-                <p>내가 계획한 일정대로 여행이 진행된다면 얼마나 즐거울까요! <br /> 여러분의 꿈을 레고레고가 실현시켜드립니다. </p>
-                <p>지금 당장 나만의 특별한 여행을 계획하고,<br />  자유와 모험이 가득한 맞춤형 여행을 떠나보세요!</p>
+                <p>
+                  기존의 틀에 박힌 패키지 여행이 지겹다면,
+                  <br /> 여러분의 일정으로 만들어가는 DIY 패키지 여행
+                  어떠신가요?
+                </p>
+                <p>
+                  내가 계획한 일정대로 여행이 진행된다면 얼마나 즐거울까요!
+                  <br /> 여러분의 꿈을 레고레고가 실현시켜드립니다.
+                </p>
+                <p>
+                  지금 당장 나만의 특별한 여행을 계획하고,
+                  <br /> 자유와 모험이 가득한 맞춤형 여행을 떠나보세요!
+                </p>
               </div>
             </div>
             <div className={styles.right}>
-              <img src={aboutImg4}/>          
+              <img src={aboutImg4} />
             </div>
           </div>
         </Section>
@@ -134,38 +151,41 @@ const About = () => {
         </Section>
 
         <Section>
-          <div className={styles.our_container}>
-            <HoverCard
-              imageSrc={aboutImg1}
-              title="Let's Create"
-              overlayText="기존의 패키지가 지겹다면"
-              overlayTitle="패키지 제작"
-              overlayExplain="나만의 DIY 패키지로 떠나기"
-              buttonText="view"
-              link="/diy-create?step=tourist-spote"
-            />
-            <HoverCard
-              imageSrc={aboutImg2}
-              title="Our Package"
-              overlayText="정식 상품이 되어 함께 떠날 수 있어요!"
-              overlayTitle="패키지 구경"
-              overlayExplain="유저가 만든 패키지 보러가기"
-              buttonText="view"
-              link="/diy"
-            />
-            <HoverCard
-              imageSrc={aboutImg3}
-              title="Our Product"
-              overlayText= "레고와 떠나는 여행을 둘러보세요"
-              overlayTitle="정식 상품"
-              overlayExplain="빨리 출발하고 싶다면"
-              buttonText="view"
-              link="/package-product"
-            />
+          <div className={styles.ourAndFooter_container}>
+            <div className={styles.our_container}>
+              <HoverCard
+                imageSrc={aboutImg1}
+                title="Let's Create"
+                overlayText="기존의 패키지가 지겹다면"
+                overlayTitle="패키지 제작"
+                overlayExplain="나만의 DIY 패키지로 떠나기"
+                buttonText="view"
+                link="/diy-create?step=tourist-spote"
+              />
+              <HoverCard
+                imageSrc={aboutImg2}
+                title="Our Package"
+                overlayText="정식 상품이 되어 함께 떠날 수 있어요!"
+                overlayTitle="패키지 구경"
+                overlayExplain="유저가 만든 패키지 보러가기"
+                buttonText="view"
+                link="/diy"
+              />
+              <HoverCard
+                imageSrc={aboutImg3}
+                title="Our Product"
+                overlayText="레고와 떠나는 여행을 둘러보세요"
+                overlayTitle="정식 상품"
+                overlayExplain="빨리 출발하고 싶다면"
+                buttonText="view"
+                link="/package-product"
+              />
+            </div>
+            <Footer />
           </div>
         </Section>
       </SectionsContainer>
-    </>
+    </div>
   );
 };
 

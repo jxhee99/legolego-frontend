@@ -1,47 +1,44 @@
-
 .card {
-    position: relative;
-    /* width: 300px; */
-    width: 20%;
-    margin: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .imageContainer {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  
-  .image {
-    width: 100%;
-    height: 400px;
-    display: block;
-    object-fit:cover ;
+  position: relative;
+  width: 300px;
+  /* width: 20%; */
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
 
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    
-  }
-  
-  .imageContainer:hover .overlay {
-    opacity: 1;
-  }
-  
-  /* .overlayContent {
+.imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image {
+  width: 100%;
+  height: 400px;
+  display: block;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.imageContainer:hover .overlay {
+  opacity: 1;
+}
+
+/* .overlayContent {
     color: white;
     position: absolute;
     top: 50%;
@@ -55,63 +52,64 @@
     margin: 10px 0;
   } */
 
-  .overlayContent {
-    color: white;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .textTop {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
-    transform: translateY(-50%);
-  }
-  
-  .titleMiddle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    margin: 10px 0;
-  }
-  .titleMiddle h2 {
-    font-size: 1.7em;
-  }
-  .titleMiddle p {
-    margin-top: 10px;
-    font-size: 12px;
-  }
+.overlayContent {
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
+.textTop {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+}
 
-  .button {
-    background-color: transparent;
-    border: 3px solid white;
-    border-radius: 10px;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background-color 0.3s, color 0.3s;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.titleMiddle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin: 10px 0;
+}
+.titleMiddle h2 {
+  font-size: 1.7em;
+}
+.titleMiddle p {
+  margin-top: 10px;
+  font-size: 12px;
+}
 
-  .button:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .title {
-    align-items: center;
-    text-align: center;
-    font-size: 1.7em;
-    margin-top: 20px;
-    color: #ffff;
-    text-shadow: 3px 4px 5px #686D76;
-  }
+.button {
+  background-color: transparent;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+.title {
+  align-items: center;
+  text-align: center;
+  font-size: 1.7em;
+  margin-top: 20px;
+  color: #ffff;
+  text-shadow: 3px 4px 5px #686d76;
+}
