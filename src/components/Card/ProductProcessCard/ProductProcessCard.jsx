@@ -42,7 +42,6 @@ const ProductProcessCard = ({
             <button className={`${styles.button} ${styles.buttonClosed}`}>모집마감</button>
           )}
         </div>
-        <p className={styles.detail}>방콕 궁전, 공원 어디든 떠나는 여행(상세설명자리)</p>
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.text}>여행사:{partnerName}</p>
         <p className={styles.text}>여행 기간: </p>

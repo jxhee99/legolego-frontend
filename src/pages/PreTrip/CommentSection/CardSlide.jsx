@@ -1,5 +1,3 @@
-// CardSlide.jsx
-
 import React, { useEffect, useState } from 'react';
 import styles from './CardSlide.module.css';
 import apiClient from '../../../api/apiClient';

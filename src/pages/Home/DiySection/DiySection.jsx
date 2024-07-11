@@ -42,7 +42,7 @@ const DiySection = () => {
   return (
     <section className={styles.DiySection}>
       <div className={styles.diy_title}>
-        <h2>🚀 방금 올라온 DIY 패키지</h2>
+        {/* <h2>🚀 방금 올라온 DIY 패키지</h2> */}
         <button className={styles.more_button} onClick={() => navigate('/diy')}>
           더보러가기
         </button>
