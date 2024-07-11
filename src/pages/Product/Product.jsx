@@ -70,7 +70,7 @@ const Product = () => {
         <div className={styles.latestUpdate}>
           <h3>최신 등록된 패키지</h3>
           <ul className={styles.product_cards}>
-            {latestProducts.map((product) => (
+            {latestProducts.slice(0, 3).map((product) => (
               <li key={`product-${product.productNum}`}>
                 <ProductCard {...product} />
               </li>

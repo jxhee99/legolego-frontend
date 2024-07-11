@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
 }
 
 .FilterButtons button {
