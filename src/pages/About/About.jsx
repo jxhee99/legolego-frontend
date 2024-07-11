@@ -85,7 +85,7 @@
 import React from 'react';
 import styles from './About.module.css';
 import Metas from '../../components/common/Metas';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SectionsContainer, Section } from 'react-fullpage';
 import Process from '../../components/Process/Process';
 import aboutImg1 from '../../assets/images/about/lego5.jpg';
@@ -96,20 +96,34 @@ import HoverCard from '../../components/Card/HoverCard/HoverCard';
 import Footer from '../../components/Footer/Footer';
 
 const About = () => {
+  // 스크롤 위치 초기화
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  //about 페이지 내에서 새로고침 시 스크롤 초기화 후 해당 섹션으로 이동
+  const [initialActiveSection, setInitialActiveSection] = useState(null);
+
+  const onScroll = (p) => {
+    if (initialActiveSection === null) {
+      window.scrollTo(0, 0);
+      setInitialActiveSection(p.activeSection);
+    }
+  };
+
   let options = {
     anchors: ['legolego', 'introduction', 'process', 'links'],
-    lockAnchors: false,
-    animateAnchor: true,
+    scrollCallback: onScroll,
   };
 
   return (
     <div className={styles.About}>
       <Metas title="내가 만드는 패키지 여행" />
-      <SectionsContainer {...options} className={styles.About}>
+      <SectionsContainer
+        {...options}
+        className={styles.About}
+        activeSection={initialActiveSection}
+      >
         <Section className={styles.about_top}>
           <div className={styles.about_header}>
             <h1>세상에 하나뿐인 나만의 패키지 여행</h1>
