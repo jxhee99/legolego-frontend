@@ -109,7 +109,7 @@ const PartnerOrders = () => {
                 <tr key={item.productNum}>
                   <td>{item.productNum}</td>
                   <td>
-                    <Link to={`/package-product/${item.productNum}`}>
+                    <Link to={`/product/${item.productNum}`}>
                       {item.productName}
                     </Link>
                   </td>

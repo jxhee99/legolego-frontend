@@ -139,7 +139,7 @@ const AdminListDiyPrice = () => {
                   </button>
                 )}
                 {item.isRegistered === true && (
-                  <Link to={`/package-product/${item.productNum}`}>완료</Link>
+                  <Link to={`/product/${item.productNum}`}>완료</Link>
                 )}
               </td>
             </tr>
