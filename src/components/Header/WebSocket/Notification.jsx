@@ -141,6 +141,7 @@ import apiClient from '../../../api/apiClient';
 import websocketService from '../../WebSocketService'; // WebSocket 서비스 import
 import styles from './Notification.module.css'; // 스타일 파일을 추가합니다.
 import { AuthContext } from '../../../contexts/AuthContext';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Notification = ({ role }) => {
     const [notifications, setNotifications] = useState([]);
@@ -260,8 +261,8 @@ const Notification = ({ role }) => {
     return (
         <div className={styles.notificationContainer}>
             <button className={styles.notificationButton} onClick={toggleNotifications}>
-                알림
-                {hasNewNotification && <span className={styles.newNotificationDot}></span>} {/* 새로운 알림이 있을 때 빨간 점 표시 */}
+                 알림
+                {hasNewNotification && <span className={styles.newNotificationDot}>❣️</span>} {/* 새로운 알림이 있을 때 빨간 점 표시 */}
             </button>
             {showNotifications && (
                 <div className={styles.notificationDropdown} ref={dropdownRef}>
