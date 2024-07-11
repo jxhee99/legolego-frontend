@@ -6,7 +6,7 @@ const ProfileInformation = () => {
   const [profile, setProfile] = useState({
     userNickname: '',
     userEmail: '',
-    userPhone: ''
+    userPhone: '',
   });
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const ProfileInformation = () => {
 
   const fetchProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Token is not available');
-      }
+      // const token = localStorage.getItem('token');
+      // if (!token) {
+      //   throw new Error('Token is not available');
+      // }
 
       const response = await apiClient.get('/my/profile');
       const data = response.data;
@@ -37,14 +37,14 @@ const ProfileInformation = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Token is not available');
-      }
+      // const token = localStorage.getItem('token');
+      // if (!token) {
+      //   throw new Error('Token is not available');
+      // }
 
       const response = await apiClient.patch('/my/profile', {
         userNickname: profile.userNickname,
-        userPhone: profile.userPhone
+        userPhone: profile.userPhone,
       });
       console.log('Profile updated:', response.data);
       alert('프로필이 성공적으로 업데이트되었습니다.');
@@ -59,7 +59,7 @@ const ProfileInformation = () => {
     const { id, value } = e.target;
     setProfile({
       ...profile,
-      [id]: value
+      [id]: value,
     });
   };
 
@@ -68,37 +68,41 @@ const ProfileInformation = () => {
       <form className={styles.ProfileInformation}>
         <div className={styles.formGroup}>
           <p>Email</p>
-          <input 
-            defaultValue={profile.userEmail} 
-            type="email" 
-            id="userEmail" 
-            className={`${styles.profile_input} ${styles.readOnlyInput}`} 
-            readOnly 
+          <input
+            defaultValue={profile.userEmail}
+            type="email"
+            id="userEmail"
+            className={`${styles.profile_input} ${styles.readOnlyInput}`}
+            readOnly
           />
         </div>
         <div className={styles.formGroup}>
           <p>Nickname</p>
-          <input 
-            value={profile.userNickname} 
-            type="text" 
-            id="userNickname" 
-            className={`${styles.profile_input} ${styles.redText}`} 
-            onChange={handleChange} 
+          <input
+            value={profile.userNickname}
+            type="text"
+            id="userNickname"
+            className={`${styles.profile_input} ${styles.redText}`}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.formGroup}>
           <p>Phone</p>
-          <input 
-            value={profile.userPhone} 
-            type="text" 
-            id="userPhone" 
-            className={`${styles.profile_input} ${styles.redText}`} 
-            onChange={handleChange} 
+          <input
+            value={profile.userPhone}
+            type="text"
+            id="userPhone"
+            className={`${styles.profile_input} ${styles.redText}`}
+            onChange={handleChange}
           />
         </div>
       </form>
-      <button 
-              className={`${styles.profile_edit}`} onClick={handleUpdateProfile}>수정하기</button>
+      <button
+        className={`${styles.profile_edit}`}
+        onClick={handleUpdateProfile}
+      >
+        수정하기
+      </button>
     </div>
   );
 };
