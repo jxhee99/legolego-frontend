@@ -91,11 +91,12 @@ import Process from '../../components/Process/Process';;
 import aboutImg1 from '../../assets/images/about/lego5.jpg';
 import aboutImg2 from '../../assets/images/about/lego6.jpg';
 import aboutImg3 from '../../assets/images/about/lego7.jpg';
+import aboutImg4 from '../../assets/images/airCity.jpeg';
 import HoverCard from '../../components/Card/HoverCard/HoverCard';
 
 const About = () => {
   let options = {
-    anchors: ['legolego','process', 'links'],
+    anchors: ['legolego','introduction','process', 'links'],
   };
 
   return (
@@ -107,18 +108,31 @@ const About = () => {
             <h1>세상에 하나뿐인 나만의 패키지 여행</h1>
             <h2>LEGO LEGO</h2>
             <p>응원을 받아 정식 상품이 되면 함께 떠나보세요</p>
-            {/* <div className={styles.go_picture}>
-              <img src={airportImg} alt='메인 비행기 이미지' />
-            </div> */}
+          </div>
+        </Section>
+
+        <Section className={styles.introduction}>
+          <div className={styles.intro}>
+            <div className={styles.left}>
+              <h2>여행의 새로운 패러다임</h2>
+              <div className={styles.intro_list}>
+                <p>기존의 틀에 박힌 패키지 여행이 지겹다면,<br /> 여러분의 일정으로 만들어가는 DIY 패키지 여행 어떠신가요?</p>
+                <p>내가 계획한 일정대로 여행이 진행된다면 얼마나 즐거울까요! <br /> 여러분의 꿈을 레고레고가 실현시켜드립니다. </p>
+                <p>지금 당장 나만의 특별한 여행을 계획하고,<br />  자유와 모험이 가득한 맞춤형 여행을 떠나보세요!</p>
+              </div>
+            </div>
+            <div className={styles.right}>
+              <img src={aboutImg4}/>          
+            </div>
           </div>
         </Section>
 
         <Section>
           <div className={styles.steps_container}>
-            <Process /> {/* Adding the Process component */}
+            <Process />
           </div>
         </Section>
-        
+
         <Section>
           <div className={styles.our_container}>
             <HoverCard

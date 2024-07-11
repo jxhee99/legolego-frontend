@@ -15,10 +15,10 @@ const ProfileInformation = () => {
 
   const fetchProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Token is not available');
-      }
+      // const token = localStorage.getItem('token');
+      // if (!token) {
+      //   throw new Error('Token is not available');
+      // }
 
       const response = await apiClient.get('/my/profile');
       const data = response.data;
@@ -37,10 +37,10 @@ const ProfileInformation = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('Token is not available');
-      }
+      // const token = localStorage.getItem('token');
+      // if (!token) {
+      //   throw new Error('Token is not available');
+      // }
 
       const response = await apiClient.patch('/my/profile', {
         userNickname: profile.userNickname,
