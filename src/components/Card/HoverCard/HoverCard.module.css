@@ -78,6 +78,9 @@
     text-align: center;
     margin: 10px 0;
   }
+  .titleMiddle h2 {
+    font-size: 1.7em;
+  }
   .titleMiddle p {
     margin-top: 10px;
     font-size: 12px;

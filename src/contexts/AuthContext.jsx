@@ -239,6 +239,8 @@
 // export { AuthContext, AuthProvider };
 
 
+
+
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../api/apiClient';
@@ -308,7 +310,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, role, login, logout, setRedirectPath, userNum }}
+      value={{ isAuthenticated, role, login, logout, setRedirectPath, userNum, accesstoken:localStorage.getItem('accessToken') }}
     >
       {children}
     </AuthContext.Provider>
@@ -316,3 +318,4 @@ const AuthProvider = ({ children }) => {
 };
 
 export { AuthContext, AuthProvider };
+
