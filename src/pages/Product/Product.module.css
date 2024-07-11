@@ -15,40 +15,41 @@
 }
 
 /* Search */
-.filter {
-  padding: 3rem 0;
-}
-
-.searchBar {
-  position: relative;
-  width: 100%;
+.searchContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  padding: 5px 10px;
+  margin: 0 auto;
   max-width: 600px;
-  margin: 20px auto;
 }
 
-.searchBar input {
-  width: 100%;
-  margin: 1rem;
-  padding: 15px 20px;
-  padding-left: 50px;
+.searchIcon {
+  margin-right: 8px;
+  color: #757575;
+}
+
+.searchInput {
   border: none;
-  background-color: #f0f0f0;
-  font-size: 16px;
+  background: transparent;
   outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  padding: 12px 20px;
+  font-size: 1rem;
 }
 
-.searchBar::before {
-  content: '🔍';
-  padding-left: 0.625rem;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #888;
+.productList {
+  margin-top: 20px;
 }
 
-.searchBar input::placeholder {
-  color: #aaa;
+.product_cards {
+  list-style: none;
+  padding: 0;
+}
+
+.noResults {
+  text-align: center;
+  color: #757575;
+  font-size: 14px;
 }

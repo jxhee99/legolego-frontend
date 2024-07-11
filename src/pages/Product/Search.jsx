@@ -5,11 +5,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSearchProducts } from '../../hooks/useProduct';
 import apiClient from '../../api/apiClient';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const { results, error } = useSearchProducts(searchKeyword);
+  const { results, error } = useSearchProducts(keyword);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -21,57 +21,42 @@ const Search = () => {
         console.log(`Error: ${error}`);
       }
     };
-
     fetchProducts();
   }, []);
 
-  const handleSearch = () => {
-    setSearchKeyword(keyword);
-  };
-
-  const handleReset = () => {
-    setKeyword('');
-    setSearchKeyword('');
+  const handleInputChange = (e) => {
+    setKeyword(e.target.value);
   };
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
+  const displayedProducts = keyword ? results : products;
+
   return (
     <>
       <div className={styles.productList}>
-        <div>
+        <div className={styles.searchContainer}>
+          <SearchIcon className={styles.searchIcon} />
           <input
             type="text"
             value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Search for products"
+            onChange={handleInputChange}
+            placeholder="패키지 상품을 검색하세요"
+            className={styles.searchInput}
           />
-          <button onClick={handleSearch}>검색</button>
-          <button onClick={handleReset}>초기화</button>
         </div>
-
-        {searchKeyword ? (
-          results.length > 0 ? (
-            <ul className={styles.product_cards}>
-              {results.map((product) => (
-                <li key={product.productNum}>
-                  <ProductCard {...product} />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className={styles.noResults}>검색 결과가 없습니다.</div>
-          )
-        ) : (
+        {displayedProducts.length > 0 ? (
           <ul className={styles.product_cards}>
-            {products.map((product) => (
+            {displayedProducts.map((product) => (
               <li key={product.productNum}>
                 <ProductCard {...product} />
               </li>
             ))}
           </ul>
+        ) : (
+          <div className={styles.noResults}>검색 결과가 없습니다.</div>
         )}
       </div>
     </>
