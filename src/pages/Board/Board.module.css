@@ -1,24 +1,25 @@
 .board {
   padding: 50px;
   font-family: Arial, sans-serif;
+  min-height: 80vh;
 }
 
-.actions {
+.board h2 {
+  margin-left: 2rem;
+  display: inline-block;
+}
+
+.search_create {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.board h1 {
-  text-align: center;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem 0;
 }
 
 .createPostButton {
-  display: block;
-  margin: 0 0 20px auto;
-  padding: 10px 20px;
-  background-color: #797b7d;
+  height: 36px;
+  background-color: #8338ec;
   color: white;
   border: none;
   border-radius: 4px;
@@ -26,47 +27,10 @@
 }
 
 .createPostButton:hover {
-  background-color: #c9cacb;
+  background-color: #2b124e;
 }
-
-input[type="text"] {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.searchButton {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: none;
-  background-color: #7c7f7c;
-  color: black;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.searchButton:hover {
-  background-color: #9fa29f;
-}
-
-.sortButtons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.sortButtons button {
-  background-color: #989998;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
+.my {
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
 }
 
 .postList {
@@ -120,4 +84,10 @@ input[type="text"] {
 .postItem .postMeta .commentCount,
 .postItem .postMeta .viewCount {
   font-size: 14px;
+}
+
+.pagenation_box {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }
