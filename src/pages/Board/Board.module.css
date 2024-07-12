@@ -1,14 +1,38 @@
 .board {
   padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
   font-family: Arial, sans-serif;
   min-height: 80vh;
 }
 
 .board h2 {
-  margin-left: 2rem;
   display: inline-block;
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
+.board h2:hover {
+  color: #8338ec;
+}
+
+.board h2:nth-child(2) {
+  padding: 0 1rem;
+  border-left: 1px solid #bab8b8;
+}
+
+/* 내 게시글 박스 */
+.my_board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my_board .sort {
+  align-self: end;
+}
+
+/* 검색, 작성 버튼 박스 */
 .search_create {
   display: flex;
   align-items: center;
@@ -28,9 +52,6 @@
 
 .createPostButton:hover {
   background-color: #2b124e;
-}
-.my {
-  display: inline-block;
 }
 
 .postList {

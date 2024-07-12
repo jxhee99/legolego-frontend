@@ -15,6 +15,7 @@ const SortButtons = ({
   selectedCategory,
   onSortChange,
   onCategoryChange,
+  setPage,
 }) => {
   const activeClass = (category) => {
     if (selectedCategory === category) {
@@ -23,10 +24,13 @@ const SortButtons = ({
     return '';
   };
 
-  const handleCategorySelect = (category) => {
+  const handleCategorySelect = async (category) => {
+    await new Promise((resolve) => {
+      setPage(1);
+      resolve();
+    });
     onSortChange('category');
     onCategoryChange(category);
-    // setShowCategories(false);
   };
 
   return (

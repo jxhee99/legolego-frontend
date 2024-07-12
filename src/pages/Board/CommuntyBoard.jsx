@@ -11,7 +11,6 @@ const CommuntyBoard = ({
   setSearchKeyword,
   setSelectedCategory,
   handleCreatePost,
-  sortOrder,
   setAllPosts,
   setPage,
   handleSortChange,
@@ -47,6 +46,7 @@ const CommuntyBoard = ({
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}
           handleSearch={handleSearch}
+          setPage={setPage}
         />
         <button onClick={handleCreatePost} className={styles.createPostButton}>
           작성하기
@@ -58,6 +58,7 @@ const CommuntyBoard = ({
           selectedCategory={selectedCategory}
           onSortChange={handleSortChange}
           onCategoryChange={handleCategoryChange}
+          setPage={setPage}
         />
       </div>
     </>

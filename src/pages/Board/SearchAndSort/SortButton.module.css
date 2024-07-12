@@ -27,3 +27,7 @@
 .sort button:hover {
   color: #8338ec;
 }
+
+.sort button {
+  padding: 0.48rem;
+}

@@ -8,14 +8,18 @@ import styles from './Board.module.css';
 import PaginationComp from '../../components/Pagination/PaginationComp';
 
 const Board = () => {
+  const query = new URLSearchParams(location.search);
+  const initialPage = parseInt(query.get('page')) || 1;
+  const initialFilter = query.get('filter') || '';
+
   const [allPosts, setAllPosts] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [page, setPage] = useState(initialPage);
+  const [sortOrder, setSortOrder] = useState('category');
+  const [selectedCategory, setSelectedCategory] = useState(initialFilter);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [my, setMy] = useState('');
-  const itemsPerPage = 10;
+  const itemsPerPage = 1;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,11 +57,10 @@ const Board = () => {
     }
 
     try {
-      console.log(url);
       const response = await apiClient.get(url);
       setAllPosts(response.data);
-      console.log(response.data);
-      setPage(1);
+      console.log(page);
+      setPage(initialPage);
     } catch (error) {
       console.error('Error fetching posts:', error);
     }
@@ -69,7 +72,11 @@ const Board = () => {
     setPosts(allPosts.slice(startIndex, endIndex));
   };
 
-  const handleSortChange = (order) => {
+  const handleSortChange = async (order) => {
+    await new Promise((resolve) => {
+      setPage(1);
+      resolve();
+    });
     if (order === 'all') {
       setSelectedCategory('');
     }
@@ -80,8 +87,12 @@ const Board = () => {
     navigate('/create-post');
   };
 
-  const handleClickMy = (my) => {
+  const handleClickMy = async (my) => {
     setMy(my);
+    await new Promise((resolve) => {
+      setPage(1);
+      resolve();
+    });
     if (my) {
       setSortOrder('myPosts');
     } else {
@@ -91,7 +102,7 @@ const Board = () => {
 
   return (
     <div className={styles.board}>
-      <h2 onClick={() => handleClickMy('')}>커뮤니티</h2>
+      <h2 onClick={() => handleClickMy('')}>ALL</h2>
       <h2 onClick={() => handleClickMy('my')}>MY</h2>
       {my === 'my' ? (
         <MyBoard
