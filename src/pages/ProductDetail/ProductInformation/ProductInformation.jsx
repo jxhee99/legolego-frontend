@@ -23,6 +23,12 @@ const ProductInformation = ({
   const [isWished, setIsWished] = useState(false);
 
   useEffect(() => {
+    console.log('Product Number:', productNum);
+    if (!productNum) {
+      console.error('Product Number is undefined');
+      return;
+    }
+    
     const fetchWishStatus = async () => {
       try {
         const response = await apiClient.get(
@@ -59,9 +65,9 @@ const ProductInformation = ({
 
   const handleCancelWish = async () => {
     try {
-      const response = await apiClient.delete(
-        `/user/products/${productNum}/wishlist`
-      );
+
+      const response = await apiClient.delete(`/user/products/${productNum}/wishlist`);
+
       if (response.status === 204) {
         setIsWished(false);
       } else {
