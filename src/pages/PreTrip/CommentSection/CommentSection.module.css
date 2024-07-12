@@ -11,16 +11,18 @@
   font-family: 'DungGeunMo';
 }
 
-
 .starText{
   margin-bottom: 57px;
+  font-size: 2.0rem;
 }
 
 .slideText{
   margin-bottom: 54px;
+  font-size: 2.0rem;
 }
 .polaroid{
   margin-bottom: 72px;
+  font-size: 2.0rem;
 }
 
 .commentBackground {
@@ -85,9 +87,23 @@
 }
 
 .comment_text {
+  font-family: 'DungGeunMo';
   font-size: 1rem;
   margin-bottom: 0.25rem;
   color: #333;
+}
+
+.comment_dsn {
+  font-family: 'DungGeunMo';
+  font-size: 1.0rem;
+
+}
+
+
+.comment_date {
+  font-family: 'GmarketSansMedium';
+  font-size: 0.8rem;
+  color: #666;
 }
 
 .comment_details {
@@ -145,16 +161,19 @@
   margin: 5rem 1rem 1rem 1rem;
   font-size: 1.5rem;
   text-align: center;
+  color: rgba(255, 255, 255, 0.892);
 }
 .hover_textStar{
   text-align: center;
   margin-bottom:1.3rem;
+  color: rgba(255, 255, 255, 0.892);
   
 }
 
 .hover_text {
   margin: 0.5rem 1rem 0 1rem;
   text-align: center;
+  color: rgba(255, 255, 255, 0.892);
 
 }
 
@@ -162,5 +181,6 @@
   margin: 0.5rem 1rem 1rem 1rem;
   color: rgb(204, 201, 201);
   font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.892);
 
 }

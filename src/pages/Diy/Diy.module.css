@@ -1,9 +1,15 @@
-@font-face {
+/* @font-face {
   font-family: 'BMHANNAPro';
   src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff')
     format('woff');
   font-weight: normal;
   font-style: normal;
+} */
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+
 }
 
 /* 스크롤 후 큰 글자와 작은 글자 스타일 */
@@ -48,7 +54,7 @@
 }
 
 /* 스크롤된 배경에 적용되는 스타일 */
-/* .Diy.scrolledBackground {
+.Diy.scrolledBackground {
   background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 1),
@@ -56,18 +62,8 @@
       rgba(164, 137, 121, 0.3)
     ),
     url('/mnt/data/diyBackground.JPG');
-} */
-
-.Diy.scrolledBackground {
-  /* background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1),
-      rgba(169, 197, 226, 0.3),
-      rgba(186, 240, 255, 0.3)
-    ),
-    url('/mnt/data/diyBackground.JPG'); */
-  /* background-color: #b3f7fc66; */
 }
+
 
 /* 텍스트 스타일 */
 .diyBackground p {
@@ -172,7 +168,9 @@
 
 .main_box h2 {
   margin-top: 54px;
-  font-family: 'BMHANNAPro';
+  font-family: 'GmarketSansMedium';
+  font-weight: 700px;
+
 }
 
 /* 검색, 필터 정렬 */
@@ -222,7 +220,7 @@
 .diy_cards strong {
   font-size: 1.05em;
   font-weight: bold;
-  color: #1976d2;
+  color: #3A86FF;
   margin-right: 0.1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

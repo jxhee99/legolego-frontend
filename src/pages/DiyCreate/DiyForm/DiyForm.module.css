@@ -77,7 +77,7 @@
 }
 
 .form_box .submit_btn {
-  background-color: #ff0000;
+  background-color: #FE7171;
   color: white;
   padding: 10px 20px;
   cursor: pointer;
@@ -85,5 +85,5 @@
 }
 
 .form_box .submit_btn:hover {
-  background-color: #ff6403;
+  background-color: #ff1306;
 }

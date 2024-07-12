@@ -78,9 +78,9 @@
 .titleMiddle h2 {
   font-size: 1.7em;
 }
-.titleMiddle p {
+.titleMiddle h6 {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .button {

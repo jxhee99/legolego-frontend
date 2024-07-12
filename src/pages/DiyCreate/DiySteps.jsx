@@ -34,7 +34,7 @@ const DiySteps = ({
             to="/diy-create?step=airplane"
             className={isAirplaneLinkActive ? styles.blink : ''}
           >
-            항공편
+            항공기
           </Link>
         </li>
       </div>

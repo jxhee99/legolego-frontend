@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'ONE-Mobile-Title';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+}
+
 .airplane_box {
   display: flex;
   flex-direction: column;
@@ -11,7 +23,7 @@
 }
 
 .airplane_box button:hover {
-  background-color: #033fff;
+  background-color: #3FA2F6;
 }
 
 .Airplane {
@@ -78,7 +90,7 @@
 
 .searched h4 {
   font-size: 1.5rem;
-  font-family: 'yg-jalnan';
+  font-family: 'GmarketSansMedium';
   color: #3e3e3e;
 }
 

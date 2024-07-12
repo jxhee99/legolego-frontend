@@ -53,7 +53,7 @@ const DiyCreate = () => {
         <LegoBox />
       ) : (
         <div className={isAnimated ? styles.diyStepsEnter : ''}>
-          <h3>DIY 레고 만들기</h3>
+          {/* <h3>DIY LEGO CREATE</h3> */}
           <DiySteps
             step={step}
             airline={airline}

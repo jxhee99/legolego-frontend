@@ -32,19 +32,23 @@
   box-sizing: border-box;
   font-size: 1.5rem;
   color: white;
-  text-shadow: 1px 1px 5px black;
+
 }
 
+.move {
+  color: white;
+    text-shadow: 1px 1px 5px black;
+}
 .go_diy {
-  background-image: url('/src/assets/images/legoMountain.jpeg');
+  background-image: url('/src/assets/images/about2.jpg');
 }
 
 .go_price {
-  background-image: url('/src/assets/images/legoRiver.jpeg');
+  background-image: url('/src/assets/images/about3.jpg');
 }
 
 .go_order {
-  background-image: url('/src/assets/images/legoTrip.jpg');
+  background-image: url('/src/assets/images/about4.jpg');
 }
 
 .go_button_box {

@@ -34,8 +34,8 @@ const Comment = ({
         </div>
         <div className={styles.comment_details}>
           <p className={styles.comment_text}>#{productName}</p>
-          <p>{destination.split('/')[0]}</p>
-          <p>{formatDateTime(boardingDate).replace(/\s\d{2}:\d{2}$/, '')} ~ {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}</p>
+          <p className={styles.comment_dsn}>{destination.split('/')[0]}</p>
+          <p className={styles.comment_date}>{formatDateTime(boardingDate).replace(/\s\d{2}:\d{2}$/, '')} ~ {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}</p>
         </div>
       </div>
       <div className={`${styles.card_face} ${styles.back}`}>
