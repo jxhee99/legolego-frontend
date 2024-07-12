@@ -1,9 +1,31 @@
+.board_box {
+  position: relative; /* 가상 요소가 부모 요소에 상대적으로 위치하도록 설정 */
+  z-index: 0; /* 원래 내용이 가상 요소보다 위에 있도록 설정 */
+  padding: 3rem 0;
+  /* background-color: #f1e8fe; */
+}
+
+.board_box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/images/balloon2.jpg');
+  background-size: cover;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: -1;
+}
+
 .board {
   padding: 50px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
   min-height: 80vh;
+  background-color: #fff;
 }
 
 .board h2 {

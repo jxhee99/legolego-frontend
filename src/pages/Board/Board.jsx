@@ -8,6 +8,7 @@ import styles from './Board.module.css';
 import PaginationComp from '../../components/Pagination/PaginationComp';
 
 const Board = () => {
+  const user = localStorage.getItem('role');
   const query = new URLSearchParams(location.search);
   const initialPage = parseInt(query.get('page')) || 1;
   const initialFilter = query.get('filter') || '';
@@ -19,7 +20,7 @@ const Board = () => {
   const [selectedCategory, setSelectedCategory] = useState(initialFilter);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [my, setMy] = useState('');
-  const itemsPerPage = 1;
+  const itemsPerPage = 10;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,31 +32,7 @@ const Board = () => {
   }, [page, allPosts]);
 
   const fetchAllPosts = async () => {
-    let url = '/posts/all';
-
-    if (sortOrder === 'latest') {
-      if (selectedCategory) {
-        const category = transformCategory(selectedCategory);
-        url = `/posts/category/${category}`;
-      } else {
-        url = '/posts/all';
-      }
-    } else if (sortOrder === 'oldest') {
-      if (selectedCategory) {
-        const category = transformCategory(selectedCategory);
-        url = `/posts/category/${category}/oldest`;
-      } else {
-        url = '/posts/oldest';
-      }
-    } else if (sortOrder === 'myPosts') {
-      url = '/posts/my-posts';
-    } else if (sortOrder === 'myComments') {
-      url = '/posts/my-comments';
-    } else if (sortOrder === 'category' && selectedCategory) {
-      const category = transformCategory(selectedCategory);
-      url = `/posts/category/${category}`;
-    }
-
+    const url = getUrl(sortOrder, selectedCategory);
     try {
       const response = await apiClient.get(url);
       setAllPosts(response.data);
@@ -81,6 +58,7 @@ const Board = () => {
       setSelectedCategory('');
     }
     setSortOrder(order);
+    setSearchKeyword('');
   };
 
   const handleCreatePost = () => {
@@ -101,37 +79,51 @@ const Board = () => {
   };
 
   return (
-    <div className={styles.board}>
-      <h2 onClick={() => handleClickMy('')}>ALL</h2>
-      <h2 onClick={() => handleClickMy('my')}>MY</h2>
-      {my === 'my' ? (
-        <MyBoard
-          handleSortChange={handleSortChange}
-          handleCreatePost={handleCreatePost}
-        />
-      ) : (
-        <CommuntyBoard
-          selectedCategory={selectedCategory}
-          searchKeyword={searchKeyword}
-          setSearchKeyword={setSearchKeyword}
-          setSelectedCategory={setSelectedCategory}
-          handleCreatePost={handleCreatePost}
-          sortOrder={sortOrder}
-          setAllPosts={setAllPosts}
-          setPage={setPage}
-          handleSortChange={handleSortChange}
-        />
-      )}
+    <div className={styles.board_box}>
+      <div className={styles.board}>
+        {!user ? (
+          <h2>ALL</h2>
+        ) : (
+          <>
+            <h2 onClick={() => handleClickMy('')}>ALL</h2>
+            <h2 onClick={() => handleClickMy('my')}>MY</h2>
+          </>
+        )}
 
-      <PostList posts={posts} currentPage={page} itemsPerPage={itemsPerPage} />
-      <div className={styles.pagenation_box}>
-        <PaginationComp
-          page={page}
-          setPage={setPage}
-          totalItems={allPosts.length}
+        {my === 'my' ? (
+          <MyBoard
+            handleSortChange={handleSortChange}
+            handleCreatePost={handleCreatePost}
+            sortOrder={sortOrder}
+          />
+        ) : (
+          <CommuntyBoard
+            selectedCategory={selectedCategory}
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}
+            setSelectedCategory={setSelectedCategory}
+            handleCreatePost={handleCreatePost}
+            sortOrder={sortOrder}
+            setAllPosts={setAllPosts}
+            setPage={setPage}
+            handleSortChange={handleSortChange}
+          />
+        )}
+
+        <PostList
+          posts={posts}
+          currentPage={page}
           itemsPerPage={itemsPerPage}
-          filterApplied={sortOrder === 'category' ? selectedCategory : ''}
         />
+        <div className={styles.pagenation_box}>
+          <PaginationComp
+            page={page}
+            setPage={setPage}
+            totalItems={allPosts.length}
+            itemsPerPage={itemsPerPage}
+            filterApplied={sortOrder === 'category' ? selectedCategory : ''}
+          />
+        </div>
       </div>
     </div>
   );
@@ -156,4 +148,33 @@ export const transformCategory = (category) => {
     default:
       return category; // 만약 매칭되는 값이 없으면 원래 값을 반환
   }
+};
+
+const getUrl = (sortOrder, selectedCategory) => {
+  let url = '/posts/all';
+
+  if (sortOrder === 'latest') {
+    if (selectedCategory) {
+      const category = transformCategory(selectedCategory);
+      url = `/posts/category/${category}`;
+    } else {
+      url = '/posts/all';
+    }
+  } else if (sortOrder === 'oldest') {
+    if (selectedCategory) {
+      const category = transformCategory(selectedCategory);
+      url = `/posts/category/${category}/oldest`;
+    } else {
+      url = '/posts/oldest';
+    }
+  } else if (sortOrder === 'myPosts') {
+    url = '/posts/my-posts';
+  } else if (sortOrder === 'myComments') {
+    url = '/posts/my-comments';
+  } else if (sortOrder === 'category' && selectedCategory) {
+    const category = transformCategory(selectedCategory);
+    url = `/posts/category/${category}`;
+  }
+
+  return url;
 };

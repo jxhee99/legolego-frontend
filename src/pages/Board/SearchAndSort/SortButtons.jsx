@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SortButton.module.css';
 
 const categories = [
@@ -13,15 +13,13 @@ const categories = [
 const SortButtons = ({
   type,
   selectedCategory,
+  sortOrder,
   onSortChange,
   onCategoryChange,
   setPage,
 }) => {
   const activeClass = (category) => {
-    if (selectedCategory === category) {
-      return styles.active;
-    }
-    return '';
+    return selectedCategory === category ? styles.active : '';
   };
 
   const handleCategorySelect = async (category) => {
@@ -37,8 +35,20 @@ const SortButtons = ({
     <div className={styles.all_box}>
       {type === 'my' ? (
         <div className={styles.sort}>
-          <button onClick={() => onSortChange('myPosts')}>내 글</button>
-          <button onClick={() => onSortChange('myComments')}>내 댓글</button>
+          <button
+            className={sortOrder === 'myPosts' ? styles.active_my : styles.my}
+            onClick={() => onSortChange('myPosts')}
+          >
+            내 글
+          </button>
+          <button
+            className={
+              sortOrder === 'myComments' ? styles.active_my : styles.my
+            }
+            onClick={() => onSortChange('myComments')}
+          >
+            내 댓글
+          </button>
         </div>
       ) : (
         <>

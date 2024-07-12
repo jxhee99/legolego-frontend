@@ -6,7 +6,11 @@ const MyBoard = ({ handleCreatePost, sortOrder, handleSortChange }) => {
   return (
     <div className={styles.my_board}>
       <div className={styles.sort}>
-        <SortButtons type={'my'} onSortChange={handleSortChange} />
+        <SortButtons
+          type={'my'}
+          onSortChange={handleSortChange}
+          sortOrder={sortOrder}
+        />
       </div>
       <div className={styles.search_create}>
         <button onClick={handleCreatePost} className={styles.createPostButton}>
