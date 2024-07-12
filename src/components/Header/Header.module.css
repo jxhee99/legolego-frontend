@@ -78,3 +78,7 @@
 .SignUp {
   position: absolute;
 }
+
+.SignUp input {
+  padding: 0.75rem 0;
+}
