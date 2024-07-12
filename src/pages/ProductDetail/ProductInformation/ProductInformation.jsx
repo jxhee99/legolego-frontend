@@ -65,7 +65,9 @@ const ProductInformation = ({
 
   const handleCancelWish = async () => {
     try {
+
       const response = await apiClient.delete(`/user/products/${productNum}/wishlist`);
+
       if (response.status === 204) {
         setIsWished(false);
       } else {
@@ -118,7 +120,7 @@ const ProductInformation = ({
         <div className={styles.progressBarContainer}>
           <div
             className={styles.progressBar}
-            style={{ width: `${progressPercentage}%` }}
+            style={{ wproductNumth: `${progressPercentage}%` }}
           ></div>
         </div>
         <div className={styles.actions}>

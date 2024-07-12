@@ -1,8 +1,9 @@
 .productContainer {
   display: flex;
-  max-width: var(--size-maxWidth);
-  padding: 40px 20px;
-  gap: 2.5rem;
+  padding: 3rem 0 3rem 10rem;
+  gap: 3rem;
+  max-width: var(--size-max-width);
+  margin: 0 auto;
 }
 
 .imageSection {

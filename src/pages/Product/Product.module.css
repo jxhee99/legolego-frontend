@@ -6,12 +6,16 @@
 }
 
 .latestUpdate {
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding: 3rem 0;
 }
 
 .latestUpdate h2 {
   text-align: center;
+}
+
+.filter {
+  margin: 2rem 0;
 }
 
 /* Search */

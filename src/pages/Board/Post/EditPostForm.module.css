@@ -1,0 +1,59 @@
+.editPostForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .editPostForm div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .editPostForm input,
+  .editPostForm textarea,
+  .editPostForm select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .editPostForm button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .editPostForm button:hover {
+    background-color: #45a049;
+  }
+  
+  .submitButton {
+    background-color: #4CAF50;
+  }
+  
+  .cancelButton {
+    background-color: #f44336;
+  }
+  
+  .cancelButton:hover {
+    background-color: #e53935;
+  }
+  
+  .editButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #FFA500;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .editButton:hover {
+    background-color: #FF8C00;
+  }

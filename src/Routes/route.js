@@ -53,6 +53,11 @@ import Payment from '../pages/Payment/Payment';
 import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
 
+// 소통게시판
+import Board from '../pages/Board/Board';
+import { element } from 'prop-types';
+import PostDetail from '../pages/Board/Post/PostDetail';
+
 export const ROUTE = {
   ABOUT: {
     path: '/',
@@ -119,6 +124,16 @@ export const ROUTE = {
     link: 'preTrip-detail/:id',
     element: PreTripDetail,
   },
+  BOARD: {
+    path: '/board',
+    link: '/board',
+    element: Board,
+  },
+  POST_DETAIL: {
+    path: '/posts/:postNum',
+    link: '/posts/:postNum',
+    element: PostDetail,
+  }
 };
 
 export const ROUTE_ARR = Object.values(ROUTE);

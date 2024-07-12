@@ -3,7 +3,8 @@ import './FindAccount.module.css';
 import Form from '../../components/Form/Form';
 import InputField from '../../components/Form/InputField';
 import SubmitButton from '../../components/Form/SubmitButton';
-import axios from 'axios';
+import apiClient from '../../api/apiClient';
+import styles from './FindAccount.module.css';
 
 const FindAccount = () => {
   const [formData, setFormData] = useState({ name: '', phone: '' });
@@ -34,7 +35,7 @@ const FindAccount = () => {
 
     try {
       // 먼저 find-user-email 엔드포인트 호출 시도
-      let response = await axios.get('http://localhost:8080/auth/find-user-email', {
+      let response = await apiClient.get('/auth/find-user-email', {
         params: {
           userName: formData.name,
           userPhone: formData.phone,
@@ -45,7 +46,7 @@ const FindAccount = () => {
     } catch (userError) {
       // find-user-email 엔드포인트에서 실패하면 find-partner-email 엔드포인트 호출 시도
       try {
-        const response = await axios.get('http://localhost:8080/auth/find-partner-email', {
+        const response = await apiClient.get('/auth/find-partner-email', {
           params: {
             companyName: formData.name,
             partnerPhone: formData.phone,
@@ -61,33 +62,41 @@ const FindAccount = () => {
   };
 
   return (
-    <div>
-      <h2>아이디 찾기</h2>
-      {message && <p>{message}</p>}
-      <Form
-        onSubmit={handleSubmit}
-        fields={[
-          <InputField
-            key="field-1"
-            type="text"
-            text="이름 또는 회사명을 입력해주세요"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            error={errors.name}
-          />,
-          <InputField
-            key="field-2"
-            type="text"
-            text="전화번호를 입력해주세요"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            error={errors.phone}
-          />,
-        ]}
-        submitButton={<SubmitButton text="아이디 찾기" />}
-      />
+    <div className={styles.FindEmail}>
+      <div className={styles.findEmailContent}>
+        <h2>아이디 찾기</h2>
+        {message && (
+          <p
+            className={`${styles.message} ${message.includes('찾을 수 없습니다') ? styles.error : styles.success}`}
+          >
+            {message}
+          </p>
+        )}
+        <Form
+          onSubmit={handleSubmit}
+          fields={[
+            <InputField
+              key="field-1"
+              type="text"
+              text="이름 또는 회사명"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              error={errors.name}
+            />,
+            <InputField
+              key="field-2"
+              type="tel"
+              text="전화번호"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={errors.phone}
+            />,
+          ]}
+          submitButton={<SubmitButton text="아이디 찾기" />}
+        />
+      </div>
     </div>
   );
 };

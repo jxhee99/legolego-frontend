@@ -57,7 +57,7 @@ const Product = () => {
   return (
     <>
       <Metas title="패키지 상품" />
-      <section className={`${styles.product} layout`}>
+      <section className={`${styles.Product} layout`}>
         <Slider {...settings}>
           {products.map((product) => (
             <ProductProcessCard

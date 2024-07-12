@@ -65,7 +65,7 @@ const ProductList = ({ endpoint }) => {
           </li>
         ))}
       </ul>
-      <Stack spacing={2} alignItems="center">
+      <Stack spacing={2} sx={{ mt: 4 }} alignItems="center">
         <Pagination
           count={Math.ceil(products.length / pageSize)}
           page={page}

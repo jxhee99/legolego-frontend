@@ -20,7 +20,9 @@ const Layout = () => {
   return (
     <>
       {renderHeader()}
-      <Outlet />
+      <div style={{ paddingTop: 100 }}>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
