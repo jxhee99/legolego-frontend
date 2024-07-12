@@ -8,23 +8,36 @@ const ProfileInformation = () => {
     userEmail: '',
     userPhone: '',
   });
+  const [originalProfile, setOriginalProfile] = useState({
+    userNickname: '',
+    userEmail: '',
+    userPhone: '',
+  });
+  const [isModified, setIsModified] = useState(false);
 
   useEffect(() => {
     fetchProfile();
   }, []);
 
+  useEffect(() => {
+    const isProfileModified =
+      profile.userNickname !== originalProfile.userNickname ||
+      profile.userPhone !== originalProfile.userPhone;
+    setIsModified(isProfileModified);
+  }, [profile, originalProfile]);
+
   const fetchProfile = async () => {
     try {
-      // const token = localStorage.getItem('token');
-      // if (!token) {
-      //   throw new Error('Token is not available');
-      // }
-
       const response = await apiClient.get('/my/profile');
       const data = response.data;
       if (data) {
         console.log('Fetched data:', data);
         setProfile({
+          userNickname: data.userNickname || '',
+          userEmail: data.userEmail || '',
+          userPhone: data.userPhone || '',
+        });
+        setOriginalProfile({
           userNickname: data.userNickname || '',
           userEmail: data.userEmail || '',
           userPhone: data.userPhone || '',
@@ -37,11 +50,6 @@ const ProfileInformation = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      // const token = localStorage.getItem('token');
-      // if (!token) {
-      //   throw new Error('Token is not available');
-      // }
-
       const response = await apiClient.patch('/my/profile', {
         userNickname: profile.userNickname,
         userPhone: profile.userPhone,
@@ -98,8 +106,9 @@ const ProfileInformation = () => {
         </div>
       </form>
       <button
-        className={`${styles.profile_edit}`}
+        className={`${styles.profile_edit} ${isModified ? styles.active : styles.inactive}`}
         onClick={handleUpdateProfile}
+        disabled={!isModified}
       >
         수정하기
       </button>

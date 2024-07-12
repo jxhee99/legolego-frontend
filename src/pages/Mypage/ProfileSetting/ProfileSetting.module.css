@@ -36,7 +36,7 @@
 
 .ProfileInformation input {
   padding: 0.5rem;
-  width: 100%;
+  width: 15rem;
   font-size: 0.9rem;
 }
 
@@ -60,3 +60,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-weight: 600;}
 
+/* ProfileSetting.module.css */
+.profile_edit {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background-color: #312d2f3a;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+.profile_edit.active {
+  background-color: blue;
+  cursor: pointer;
+}
+
+.profile_edit.inactive {
+  background-color: grey;
+  cursor: not-allowed;
+}

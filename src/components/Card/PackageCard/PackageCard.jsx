@@ -19,7 +19,7 @@ const PackageCard = ({
 }) => {
   const navigate = useNavigate();
   const handlePackageCard = () => {
-    navigate(`/package-product/${productNum}`);
+    navigate(`/product/${productNum}`);
   };
 
   return (
