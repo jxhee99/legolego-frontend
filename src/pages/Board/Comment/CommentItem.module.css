@@ -1,0 +1,33 @@
+.commentItem {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .commentMeta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  
+  .replyButton {
+    background-color: #7db9ad;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .replyButton:hover {
+    background-color: #416168;
+  }
+  
+  .replyItem {
+    margin-left: 20px;
+    border-left: 3px solid #4CAF50;
+    padding-left: 15px;
+    background-color: #e9f7ef;
+  }

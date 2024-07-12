@@ -1,0 +1,29 @@
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.commentFormTextarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.commentFormButton {
+    align-self: flex-end;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #909390;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.commentFormButton:hover {
+    background-color: #9fa39f;
+}

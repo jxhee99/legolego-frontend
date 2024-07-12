@@ -1,0 +1,123 @@
+.board {
+  padding: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.board h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.createPostButton {
+  display: block;
+  margin: 0 0 20px auto;
+  padding: 10px 20px;
+  background-color: #797b7d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.createPostButton:hover {
+  background-color: #c9cacb;
+}
+
+input[type="text"] {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.searchButton {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #7c7f7c;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.searchButton:hover {
+  background-color: #9fa29f;
+}
+
+.sortButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sortButtons button {
+  background-color: #989998;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.postItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.postItem:hover {
+  background-color: #f1f1f1;
+}
+
+.postItem h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.postItem p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+.postItem .postMeta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.postItem .postMeta div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.postItem .postMeta .icon {
+  font-size: 16px;
+  color: #666;
+}
+
+.postItem .postMeta .commentCount,
+.postItem .postMeta .viewCount {
+  font-size: 14px;
+}

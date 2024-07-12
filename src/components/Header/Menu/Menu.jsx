@@ -32,6 +32,11 @@ const Menu = () => {
       >
         <Link to={ROUTE.PRE_TRIP.link}>지난여행</Link>
       </li>
+      <li
+        className={`${styles.menu_item} ${location.pathname === ROUTE.BOARD.link ? styles.active : ''}`}
+      >
+        <Link to={ROUTE.BOARD.link}>커뮤니티</Link>
+      </li>
     </ul>
   );
 };
