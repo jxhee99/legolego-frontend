@@ -114,7 +114,7 @@ const UserReviews = () => {
                 onClick={(e) =>
                   deleteList(
                     e,
-                    `/api/admin/pre-trip/${selectedItem.boardNum}/delete`,
+                    `/admin/pre-trip/${selectedItem.boardNum}/delete`,
                     refetch,
                     closeModal
                   )

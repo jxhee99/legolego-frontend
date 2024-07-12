@@ -19,17 +19,24 @@ const Product = () => {
   const [productData, setProductData] = useState({
     products: [],
     latestProducts: [],
+    recruitmentCloseProduct: [],
   });
 
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const [productsResponse, latestProductsResponse] = await Promise.all([
+        const [
+          productsResponse,
+          recruitmentCloseProductResponse,
+          latestProductsResponse,
+        ] = await Promise.all([
           apiClient.get('/products'),
+          apiClient.get('/products/recruitmentClose'),
           apiClient.get('/products/sortByRegDateDesc'),
         ]);
         setProductData({
           products: productsResponse.data,
+          recruitmentCloseProduct: recruitmentCloseProductResponse.data,
           latestProducts: latestProductsResponse.data,
         });
       } catch (error) {
@@ -53,21 +60,26 @@ const Product = () => {
   };
 
   const renderProductSlider = useMemo(() => {
-    const { products } = productData;
-    if (products.length === 0) return null;
+    const { recruitmentCloseProduct } = productData;
+    if (recruitmentCloseProduct.length === 0) return null;
 
-    if (products.length === 1) {
-      return <ProductProcessCard {...products[0]} />;
+    if (recruitmentCloseProduct.length === 1) {
+      return <ProductProcessCard {...recruitmentCloseProduct[0]} />;
     }
 
     return (
-      <Slider {...settings}>
-        {products.map((product) => (
-          <ProductProcessCard key={product.productNum} {...product} />
-        ))}
-      </Slider>
+      <>
+        <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>
+          모집임박한 패키지
+        </h2>
+        <Slider {...settings}>
+          {recruitmentCloseProduct.map((product) => (
+            <ProductProcessCard key={product.productNum} {...product} />
+          ))}
+        </Slider>
+      </>
     );
-  }, [productData.products, settings]);
+  }, [productData.recruitmentCloseProduct, settings]);
 
   const renderFilteredContent = () => {
     switch (filter) {
@@ -95,9 +107,9 @@ const Product = () => {
         {renderProductSlider}
 
         <div className={styles.latestUpdate}>
-          <h3>최신 등록된 패키지</h3>
+          <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
-            {productData.latestProducts.slice(0, 3).map((product) => (
+            {productData.latestProducts.slice(0, 7).map((product) => (
               <li key={product.productNum}>
                 <ProductCard {...product} />
               </li>

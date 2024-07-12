@@ -56,7 +56,7 @@ const Search = () => {
             ))}
           </ul>
         ) : (
-          <div className={styles.noResults}>검색 결과가 없습니다.</div>
+          <div className={styles.noProducts}>검색 결과가 없습니다.</div>
         )}
       </div>
     </>
