@@ -1,0 +1,20 @@
+.postDetail {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .postDetail h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .postMeta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .postDetail p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
