@@ -106,6 +106,7 @@ const SearchInput = () => {
           sx={{
             width: 300,
             '& .MuiInputBase-root': { height: '48px' },
+            '& .MuiInputBase-input': { border: 'none' },
           }}
           renderInput={(params) => <TextField {...params} label="목적지" />}
         />
@@ -119,6 +120,7 @@ const SearchInput = () => {
           sx={{
             width: 100,
             '& .MuiInputBase-root': { height: '48px', lineHeight: '48px' },
+            '& .MuiInputBase-input': { border: 'none' },
             fontFamily: 'typography',
           }}
           renderInput={(params) => <TextField {...params} label="월" />}

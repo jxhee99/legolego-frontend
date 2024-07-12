@@ -1,24 +1,71 @@
+.board_box {
+  position: relative; /* 가상 요소가 부모 요소에 상대적으로 위치하도록 설정 */
+  z-index: 0; /* 원래 내용이 가상 요소보다 위에 있도록 설정 */
+  padding: 3rem 0;
+  /* background-color: #f1e8fe; */
+}
+
+.board_box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/src/assets/images/balloon2.jpg');
+  background-size: cover;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: -1;
+}
+
 .board {
   padding: 50px;
-  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+  background-color: #fff;
 }
 
-.actions {
+.board h2 {
+  display: inline-block;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.board h2:hover {
+  color: #8338ec;
+}
+
+.board h2:nth-child(2) {
+  padding: 0 1rem;
+  border-left: 1px solid #bab8b8;
+}
+
+/* 내 게시글 박스 */
+.my_board {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.board h1 {
-  text-align: center;
-  margin-bottom: 20px;
+.my_board .sort {
+  align-self: end;
+}
+
+/* 검색, 작성 버튼 박스 */
+.search_create {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem 0;
 }
 
 .createPostButton {
-  display: block;
-  margin: 0 0 20px auto;
-  padding: 10px 20px;
-  background-color: #797b7d;
+  height: 36px;
+  background-color: #8338ec;
   color: white;
   border: none;
   border-radius: 4px;
@@ -26,47 +73,7 @@
 }
 
 .createPostButton:hover {
-  background-color: #c9cacb;
-}
-
-input[type="text"] {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.searchButton {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: none;
-  background-color: #7c7f7c;
-  color: black;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.searchButton:hover {
-  background-color: #9fa29f;
-}
-
-.sortButtons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.sortButtons button {
-  background-color: #989998;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  background-color: #2b124e;
 }
 
 .postList {
@@ -120,4 +127,10 @@ input[type="text"] {
 .postItem .postMeta .commentCount,
 .postItem .postMeta .viewCount {
   font-size: 14px;
+}
+
+.pagenation_box {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 }

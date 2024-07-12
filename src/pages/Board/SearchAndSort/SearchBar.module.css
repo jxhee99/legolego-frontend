@@ -1,0 +1,24 @@
+.search input[type='text'] {
+  width: 300px;
+  height: 36px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.searchButton {
+  height: 36px;
+  margin-left: 8px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #8338ec;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.searchButton:hover {
+  background-color: #2b124e;
+}

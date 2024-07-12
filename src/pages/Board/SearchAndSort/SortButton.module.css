@@ -1,0 +1,43 @@
+.all_box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.all_box > button {
+  width: 48px;
+  padding: 0;
+  text-align: left;
+}
+
+.category button:hover {
+  color: #8338ec;
+}
+
+.category > button:not(:first-child) {
+  padding: 0.5rem;
+  border-bottom: 2px solid #989595;
+}
+
+.category button.active {
+  color: #8338ec;
+  border-bottom: 2px solid #8338ec;
+}
+
+.sort button:hover {
+  color: #8338ec;
+}
+
+.sort button {
+  padding: 0.48rem;
+}
+/* myboard 적용되는 */
+.my {
+  padding: 0.5rem;
+  border-bottom: 2px solid #989595;
+}
+
+.active_my {
+  padding: 0.5rem;
+  border-bottom: 2px solid #8338ec;
+}
