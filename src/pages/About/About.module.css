@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'SpoqaHanSansNeo-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 .about_container {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -7,7 +16,7 @@
 
 .about_header {
   position: relative;
-  padding: 100px 20px;
+  padding: 70px 20px;
   text-align: center;
   background-image: url('../../assets/images/about/airport2.jpg');
   background-size: cover;
@@ -31,11 +40,13 @@
 }
 
 .about_header h2 {
+  font-family: "SpoqaHanSansNeo-Regular";
   font-size: 6.5em;
   margin-bottom: 10px;
 }
 
 .about_header p {
+  font-family: "SpoqaHanSansNeo-Regular";
   margin-top: 10px;
 }
 
@@ -56,55 +67,6 @@
   z-index: 999;
   height: calc(100vh - 100px);
 }
-
-/* .introduction {
-  width: 700px;
-  margin: 0 auto;
-}
-
-.intro {
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.left {
-  width: 50%;
-  float: left;
-}
-
-.left h2 {
-  margin-bottom: 30px;
-  font-size: 3.5em;
-  padding: 10px;
-}
-.intro_list p {
-  padding: 10px;
-  margin: 15px 0;
-  font-size: 1.5em;
-  line-height: 1.6;
-}
-
-.right {
-  width: 30%;
-  float: right;
-}
-
-.left img {
-  width: 500px;
-  height: 300px;
-
-} */
-
-/* .introduction {
-  height: 600px;
-  width: 700px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .intro {
   /* margin: 10% 15%; */
@@ -130,8 +92,9 @@
 }
 
 .intro_list p {
+  font-family: "SpoqaHanSansNeo-Regular";
   padding: 10px;
-  margin: 8% 0;
+  margin: 5% 0;
   font-size: 1.2em;
   line-height: 1.6;
   word-break: keep-all;

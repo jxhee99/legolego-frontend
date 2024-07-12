@@ -28,7 +28,7 @@
 }
 
 .tag {
-  background-color: #f0f0f0;
+  background-color: #ffbe0b78;
   color: #333;
   padding: 4px 8px;
   border-radius: 4px;
@@ -40,6 +40,7 @@
 .title {
   font-size: 1.5rem;
   margin-bottom: 10px;
+
 }
 
 .stats {
@@ -70,15 +71,15 @@
 
 .fundingAmount,
 .fundingPercentage {
-  color: #4caf50;
+  color: #3A86FF;
 }
 
 .price {
-  color: #f57c00;
+  color: #45474B;
 }
 
 .deadline {
-  color: #e53935;
+  color: #45474B;
 }
 
 .progressBarContainer {
@@ -93,7 +94,7 @@
 
 .progressBar {
   height: 100%;
-  background-color: #4caf50;
+  background-color: #3A86FF;
   transition: width 0.3s ease;
 }
 
@@ -138,7 +139,7 @@
 }
 
 .paymentButton {
-  background-color: #4caf50;
+  background-color: #FE7171;
   color: white;
   border: none;
   padding: 10px 20px;

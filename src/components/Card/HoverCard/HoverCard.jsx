@@ -15,7 +15,7 @@ const HoverCard = ({ imageSrc, title, overlayTitle, overlayText, overlayExplain,
             </div>
             <div className={styles.titleMiddle}>
                 <h2>{overlayTitle}</h2>
-                <p>{overlayExplain}</p>
+                <h6>{overlayExplain}</h6>
             </div>
             <Link to={link}>
             <button className={styles.button}>{buttonText}</button>

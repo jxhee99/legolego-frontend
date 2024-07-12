@@ -6,7 +6,7 @@ const ProcessStep = ({ number, title, description }) => {
     <div className={styles.process_box}>
       <div className={styles.number}>{number}</div>
       <h4>{title}</h4>
-      <p>{description}</p>
+      <p className={styles.description}>{description}</p>
     </div>
   );
 };

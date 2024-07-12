@@ -16,9 +16,9 @@
 .save_draft .save_button {
   width: 80px;
   height: 40px;
-  background-color: #298000;
+  background-color: #758694;
 }
 
 .save_draft .save_button:hover {
-  background-color: #45d303;
+  background-color: #3A86FF;
 }

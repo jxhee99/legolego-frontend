@@ -62,7 +62,7 @@ const DiyDetail = () => {
       <Metas title={desc.packageName} />
       <div className={styles.DiyDetail}>
         <div>
-          <h3>🛠️DIY 패키지</h3>
+          {/* <h3> DIY 패키지</h3> */}
           <div className={styles.thumbnail_cheer_box}>
             <div className={styles.diy_thumbnail}>
               <img src={desc.profileImg} alt="썸네일" />
@@ -78,7 +78,7 @@ const DiyDetail = () => {
                 <span>{writer.userNickname}</span>
                 <AccountCircleIcon />
               </div>
-              <h4>응원하기를 눌러 같이 여행 떠나요!</h4>
+              <p>응원하기를 눌러 같이 여행을 떠나요!</p>
               <p>응원 수 25개 넘으면 정식 상품으로 레고! 레고!</p>
               <div className={styles.lego_img}>
                 <img src="/src/assets/images/lego_yellow.png" />

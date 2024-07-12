@@ -29,7 +29,7 @@ const FlightCard = ({
 const DiyDetailAirplane = ({ airline }) => {
   return (
     <div className={styles.airline_box}>
-      <h3>🎫항공편</h3>
+      <h3>✈️ 항공편</h3>
       <div className={styles.card_box}>
         <FlightCard
           type="departure"

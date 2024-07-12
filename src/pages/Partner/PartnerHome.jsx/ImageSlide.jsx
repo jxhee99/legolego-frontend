@@ -13,7 +13,7 @@ const GoDiyList = () => {
   return (
     <div className={styles.go_diy}>
       <div className={styles.go_button_box} onClick={handleButtonClick}>
-        <p>레고러들이 가고 싶어하는 여행을 확인해 보세요</p>
+        <p className={styles.move}>레고러들이 가고 싶어하는 여행을 확인해 보세요</p>
         <button>→</button>
       </div>
     </div>
@@ -30,7 +30,7 @@ const GoPriceList = () => {
   return (
     <div className={styles.go_price}>
       <div className={styles.go_button_box} onClick={handleButtonClick}>
-        <p>작성자가 제안을 수락하면 정식 상품으로 등록돼요</p>
+        <p className={styles.move}>작성자가 제안을 수락하면 정식 상품으로 등록돼요</p>
         <button>→</button>
       </div>
     </div>
@@ -47,7 +47,7 @@ const GoOrderList = () => {
   return (
     <div className={styles.go_order}>
       <div className={styles.go_button_box} onClick={handleButtonClick}>
-        <p>주문 내역을 확인 해보세요!</p>
+        <p className={styles.move}>주문 내역을 확인 해보세요!</p>
         <button>→</button>
       </div>
     </div>

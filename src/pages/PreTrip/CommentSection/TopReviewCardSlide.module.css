@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .TripCircle {
   display: flex; /* 가로로 배열되도록 설정 */
   flex-wrap: nowrap; /* 요소들이 한 줄에 배치되도록 설정 */
@@ -48,4 +55,9 @@
 .review:hover {
   transform: translateY(-1rem); /* 마우스를 올릴 때 위로 약간 이동하도록 설정 */
   z-index: 1; /* hover 시 다른 요소들 위로 올라오도록 설정 */
+}
+
+.review p {
+  font-family: 'DungGeunMo';
+
 }

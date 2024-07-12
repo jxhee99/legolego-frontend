@@ -7,12 +7,12 @@ import RecommendCard from './RecommendCard';
 
 const RecommendProduct = ({ destination }) => {
   const [data, setData] = useState();
-  const { id } = useParams();
+  const { productNum } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await apiClient.get(
-          `/recommend/${id}?destination=${destination}`
+          `/recommend/${productNum}?destination=${destination}`
         );
         if (response.status === 200) {
           setData(response.data);
@@ -25,7 +25,7 @@ const RecommendProduct = ({ destination }) => {
     };
 
     fetchData();
-  }, [destination, id]);
+  }, [destination, productNum]);
   return (
     destination &&
     data && (
