@@ -19,14 +19,14 @@ const ProductInformation = ({
   necessaryPeople,
 }) => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { productNum } = useParams();
   const [isWished, setIsWished] = useState(false);
 
   useEffect(() => {
     const fetchWishStatus = async () => {
       try {
         const response = await apiClient.get(
-          `/user/products/${id}/wishlist/status`
+          `/user/products/${productNum}/wishlist/status`
         );
         if (response.status === 200) {
           setIsWished(response.data);
@@ -39,12 +39,12 @@ const ProductInformation = ({
     };
 
     fetchWishStatus();
-  }, [id]);
+  }, [productNum]);
 
   const handleWishNum = async () => {
     try {
       const response = await apiClient.post(
-        `/user/products/${id}/wishlist`,
+        `/user/products/${productNum}/wishlist`,
         {}
       );
       if (response.status === 201) {
@@ -59,7 +59,9 @@ const ProductInformation = ({
 
   const handleCancelWish = async () => {
     try {
-      const response = await apiClient.delete(`/user/products/${id}/wishlist`);
+      const response = await apiClient.delete(
+        `/user/products/${productNum}/wishlist`
+      );
       if (response.status === 204) {
         setIsWished(false);
       } else {
@@ -112,7 +114,7 @@ const ProductInformation = ({
         <div className={styles.progressBarContainer}>
           <div
             className={styles.progressBar}
-            style={{ width: `${progressPercentage}%` }}
+            style={{ wproductNumth: `${progressPercentage}%` }}
           ></div>
         </div>
         <div className={styles.actions}>
@@ -139,7 +141,7 @@ const ProductInformation = ({
           ) : (
             <button
               className={styles.paymentButton}
-              onClick={() => navigate(`/order/${id}`)}
+              onClick={() => navigate(`/order/${productNum}`)}
             >
               레고! 결제하기
             </button>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from '../../api/apiClient';
 import InputField from '../../components/Form/InputField';
 import SubmitButton from '../../components/Form/SubmitButton';
 import Form from '../../components/Form/Form';
+import Logo from '../../components/Logo/Logo';
+import styles from './ResetPassword.module.css';
 
 const ResetPassword = () => {
-    console.log('ResetPassword component loaded'); // 로드 확인 로그
+  console.log('ResetPassword component loaded');
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,8 +21,10 @@ const ResetPassword = () => {
   const validateForm = () => {
     const errors = {};
     if (!newPassword) errors.newPassword = '새 비밀번호를 입력해주세요.';
-    if (!confirmPassword) errors.confirmPassword = '비밀번호 확인을 입력해주세요.';
-    if (newPassword !== confirmPassword) errors.confirmPassword = '비밀번호가 일치하지 않습니다.';
+    if (!confirmPassword)
+      errors.confirmPassword = '비밀번호 확인을 입력해주세요.';
+    if (newPassword !== confirmPassword)
+      errors.confirmPassword = '비밀번호가 일치하지 않습니다.';
     return errors;
   };
 
@@ -31,47 +35,57 @@ const ResetPassword = () => {
       setErrors(formErrors);
       return;
     }
-    console.log('Submitting:', { newPassword, token }); // 데이터 확인
+    console.log('Submitting:', { newPassword, token });
 
     try {
-        const response = await axios.post('http://localhost:8080/auth/reset-password', { newPassword, token });
-        setMessage('비밀번호가 성공적으로 재설정되었습니다.');
-        setTimeout(() => navigate('/login'), 2000);
-      } catch (error) {
-        console.error('Error:', error); // 에러 로그 추가
-        setMessage('비밀번호 재설정 중 오류가 발생했습니다.');
-      }
-    
+      const response = await apiClient.post('/auth/reset-password', {
+        newPassword,
+        token,
+      });
+      setMessage('비밀번호가 성공적으로 재설정되었습니다.');
+      setTimeout(() => navigate('/login'), 2000);
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('비밀번호 재설정 중 오류가 발생했습니다.');
+    }
   };
 
   return (
-    <div>
-      <h2>새 비밀번호 설정</h2>
-      {message && <p>{message}</p>}
-      <Form
-        onSubmit={handleSubmit}
-        fields={[
-          <InputField
-            key="field-1"
-            type="password"
-            text="새 비밀번호를 입력해주세요"
-            name="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            error={errors.newPassword}
-          />,
-          <InputField
-            key="field-2"
-            type="password"
-            text="비밀번호 확인을 입력해주세요"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            error={errors.confirmPassword}
-          />,
-        ]}
-        submitButton={<SubmitButton text="비밀번호 재설정" />}
-      />
+    <div className={styles.resetPasswordContainer}>
+      <div className={styles.resetPasswordContent}>
+        <h2>새 비밀번호 설정</h2>
+        {message && (
+          <p
+            className={`${styles.message} ${message.includes('성공') ? styles.successMessage : styles.errorMessage}`}
+          >
+            {message}
+          </p>
+        )}
+        <Form
+          onSubmit={handleSubmit}
+          fields={[
+            <InputField
+              key="field-1"
+              type="password"
+              text="새 비밀번호"
+              name="newPassword"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              error={errors.newPassword}
+            />,
+            <InputField
+              key="field-2"
+              type="password"
+              text="비밀번호 확인"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              error={errors.confirmPassword}
+            />,
+          ]}
+          submitButton={<SubmitButton text="비밀번호 재설정" />}
+        />
+      </div>
     </div>
   );
 };
