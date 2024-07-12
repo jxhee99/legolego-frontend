@@ -11,15 +11,17 @@
   font-weight: 700;
 }
 
-.reviewGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.reviewSlider {
+  margin: 0 -15px;
 }
 
-.reviewCard {
+.reviewSlide {
+  padding: 15px;
+}
+
+/* 단일 리뷰와 슬라이더 내 리뷰에 모두 적용 */
+.reviewSlide > article,
+.reviewSection > div > article {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -27,11 +29,7 @@
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-}
-
-.reviewCard.hovered {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
 .reviewHeader {
@@ -61,6 +59,12 @@
   line-height: 1.6;
 }
 
+/* 단일 리뷰일 때 추가 스타일 */
+.reviewSection > div > article {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .reviewSection {
     padding: 3rem 1rem;
@@ -70,7 +74,8 @@
     font-size: 2rem;
   }
 
-  .reviewGrid {
-    grid-template-columns: 1fr;
+  /* 단일 리뷰일 때 모바일 스타일 */
+  .reviewSection > div > article {
+    max-width: 100%;
   }
 }

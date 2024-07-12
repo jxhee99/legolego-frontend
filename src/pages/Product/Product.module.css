@@ -35,7 +35,7 @@
 }
 
 .searchInput {
-  border: none;
+  border: none !important;
   background: transparent;
   outline: none;
   width: 50%;
