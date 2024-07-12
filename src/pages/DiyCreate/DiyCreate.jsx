@@ -36,6 +36,7 @@ const DiyCreate = () => {
   const [isAnimated, setIsAnimated] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(resetForm());
     if (step === null) {
       const timer = setTimeout(() => {

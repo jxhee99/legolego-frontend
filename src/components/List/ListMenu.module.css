@@ -1,5 +1,6 @@
 .Box {
   display: flex;
+  padding-top: 100px;
 }
 
 .menu {
