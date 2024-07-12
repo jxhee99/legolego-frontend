@@ -6,6 +6,7 @@ import apiClient from '../../api/apiClient';
 import ProductSkeleton from '../../components/Card/ProductCard/ProductSkeleton';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import ProductCard02 from '../../components/Card/ProductCard/ProductCard02';
 
 const ProductList = ({ endpoint }) => {
   const [products, setProducts] = useState([]);
@@ -58,11 +59,35 @@ const ProductList = ({ endpoint }) => {
     return <div className={styles.noProducts}>해당하는 패키지가 없습니다.</div>;
   }
 
+  if (
+    endpoint === '/products/sortByDeadlineDesc' ||
+    endpoint === '/products/sortByPopular'
+  ) {
+    return (
+      <>
+        <ul className={styles.product_cards}>
+          {currentProducts.map((product, index) => (
+            <li key={`productList-${product.productNum}`}>
+              <ProductCard02 key={index} productData={product} />
+            </li>
+          ))}
+        </ul>
+        <Stack spacing={2} sx={{ mt: 4 }} alignItems="center">
+          <Pagination
+            count={Math.ceil(products.length / pageSize)}
+            page={page}
+            onChange={handlePageChange}
+          />
+        </Stack>
+      </>
+    );
+  }
+
   return (
     <>
       <ul className={styles.product_cards}>
         {currentProducts.map((product) => (
-          <li key={`product-${product.productNum}`}>
+          <li key={`productList02-${product.productNum}`}>
             <ProductCard {...product} />
           </li>
         ))}

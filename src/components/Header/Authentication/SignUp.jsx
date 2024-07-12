@@ -214,7 +214,7 @@ const SignUp = ({ onClose }) => {
     const nickname = e.target.value;
     try {
       const response = await apiClient.get(
-        `http://localhost:8080/auth/check-nickname?nickname=${nickname}`
+        `/auth/check-nickname?nickname=${nickname}`
       );
       if (!response.data) {
         setErrors((prev) => ({
@@ -233,9 +233,7 @@ const SignUp = ({ onClose }) => {
   const checkEmail = async (e) => {
     const email = e.target.value;
     try {
-      const response = await apiClient.get(
-        `http://localhost:8080/auth/check-email?email=${email}`
-      );
+      const response = await apiClient.get(`/auth/check-email?email=${email}`);
       if (!response.data) {
         setErrors((prev) => ({
           ...prev,
@@ -258,8 +256,7 @@ const SignUp = ({ onClose }) => {
     }
 
     try {
-      const response = await apiClient.post(
-        'http://localhost:8080/auth/signup?role=USER', formData);
+      const response = await apiClient.post('/auth/signup?role=USER', formData);
 
       console.log('회원가입 성공:', response.data);
       // onClose();
@@ -278,10 +275,19 @@ const SignUp = ({ onClose }) => {
           ) : (
             <Form
               onSubmit={handleSignUp}
-              fields={createInputFields(inputFieldsData, handleChange, checkNickname, checkEmail, errors)}
+              fields={createInputFields(
+                inputFieldsData,
+                handleChange,
+                checkNickname,
+                checkEmail,
+                errors
+              )}
               submitButton={<SubmitButton text="회원가입" />}
               findAccount={
-                <p onClick={() => setShowLogin(true)} style={{ cursor: 'pointer' }}>
+                <p
+                  onClick={() => setShowLogin(true)}
+                  style={{ cursor: 'pointer' }}
+                >
                   이미 회원이신가요? 로그인하기
                 </p>
               }
@@ -298,7 +304,6 @@ const SignUp = ({ onClose }) => {
       {showLogin && <LogIn />}
     </div>
   );
-
 };
 
 export default SignUp;

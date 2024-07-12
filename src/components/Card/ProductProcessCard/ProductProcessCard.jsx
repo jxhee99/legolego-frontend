@@ -3,22 +3,23 @@ import { formatDateTime } from '../../../utils/DateTime';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useNavigate } from 'react-router-dom';
 
-const ProductProcessCard = ({
-  productNum,
-  productName,
-  price,
-  productImage,
-  recruitmentDeadline,
-  necessaryPeople,
-  orderCount,
-  partnerName,
-}) => {
+const ProductProcessCard = ({ productData }) => {
+  const { product, orderCount } = productData;
+  const {
+    productNum,
+    productName,
+    price,
+    productImage,
+    recruitmentDeadline,
+    necessaryPeople,
+    partnerName,
+  } = product;
+
   const navigate = useNavigate();
   const progressPercentage = Math.min(
     (orderCount / necessaryPeople) * 100,
     100
   );
-  console.log(orderCount);
 
   return (
     <div
@@ -30,11 +31,12 @@ const ProductProcessCard = ({
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>{productName}</h2>
-        <p className={styles.category}>{partnerName}partnerName 추가해주세요</p>
+        <p className={styles.category}>{partnerName}</p>
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.deadline}>
-          모집 기간: {formatDateTime(recruitmentDeadline)} ~ 모집기간
-          추가해주세요
+          모집 기간:
+          {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')} ~
+          모집기간 추가해주세요
         </p>
         <div className={styles.progressContainer}>
           <LinearProgress
@@ -43,14 +45,13 @@ const ProductProcessCard = ({
             className={styles.progressBar}
           />
           <p className={styles.progressText}>
-            orderCount 추가해주세요 / necessaryPeople 추가해주세요
+            {orderCount} / {necessaryPeople}명 참여
           </p>
-          {/* <p className={styles.progressText}>
-          orderCount 추가해주세요  {orderCount} / {necessaryPeople}명 참여
-          </p> */}
         </div>
       </div>
-      <span className={styles.badge}>마감 임박!</span>
+      {progressPercentage < 100 && (
+        <span className={styles.badge}>마감 임박!</span>
+      )}
     </div>
   );
 };

@@ -47,24 +47,32 @@ const Product = () => {
     fetchProductData();
   }, [location.search]);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    centerMode: true,
-  };
+  const settings = useMemo(
+    () => ({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: true,
+    }),
+    []
+  );
 
   const renderProductSlider = useMemo(() => {
     const { recruitmentCloseProduct } = productData;
     if (recruitmentCloseProduct.length === 0) return null;
 
     if (recruitmentCloseProduct.length === 1) {
-      return <ProductProcessCard {...recruitmentCloseProduct[0]} />;
+      return (
+        <ProductProcessCard
+          key={recruitmentCloseProduct[0].product.productNum}
+          productData={recruitmentCloseProduct[0]}
+        />
+      );
     }
 
     return (
@@ -74,7 +82,10 @@ const Product = () => {
         </h2>
         <Slider {...settings}>
           {recruitmentCloseProduct.map((product) => (
-            <ProductProcessCard key={product.productNum} {...product} />
+            <ProductProcessCard
+              key={`product-${product.product.productNum}`}
+              productData={product}
+            />
           ))}
         </Slider>
       </>
@@ -110,7 +121,7 @@ const Product = () => {
           <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
             {productData.latestProducts.slice(0, 7).map((product) => (
-              <li key={product.productNum}>
+              <li key={`product-${product.productNum}`}>
                 <ProductCard {...product} />
               </li>
             ))}

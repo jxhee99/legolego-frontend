@@ -5,14 +5,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
 
-const ProductCard = ({
-  productNum,
-  productImage,
-  productName,
-  recruitmentDeadline,
-  price,
-  wishlistCount,
-}) => {
+const ProductCard02 = ({ productData }) => {
+  const { product, orderCount } = productData;
+  const {
+    productNum,
+    productImage,
+    productName,
+    recruitmentDeadline,
+    price,
+    wishlistCount,
+  } = product;
+
+  console.log(product);
+
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -60,4 +65,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default ProductCard02;
