@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProductCard from '../../components/Card/ProductCard/ProductCard';
 import Metas from '../../components/common/Metas';
@@ -16,31 +16,36 @@ const Product = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const filter = searchParams.get('filter');
-  const [products, setProducts] = useState([]);
-  const [latestProducts, setLatestProducts] = useState([]);
+  const [productData, setProductData] = useState({
+    products: [],
+    latestProducts: [],
+    recruitmentCloseProduct: [],
+  });
 
   useEffect(() => {
-    const getProducts = async () => {
+    const fetchProductData = async () => {
       try {
-        const response = await apiClient.get('/products');
-        setProducts(response.data);
+        const [
+          productsResponse,
+          recruitmentCloseProductResponse,
+          latestProductsResponse,
+        ] = await Promise.all([
+          apiClient.get('/products'),
+          apiClient.get('/products/recruitmentClose'),
+          apiClient.get('/products/sortByRegDateDesc'),
+        ]);
+        setProductData({
+          products: productsResponse.data,
+          recruitmentCloseProduct: recruitmentCloseProductResponse.data,
+          latestProducts: latestProductsResponse.data,
+        });
       } catch (error) {
-        console.log(`Error: ${error}`);
+        console.error('Failed to fetch product data:', error);
       }
     };
 
-    const getLatestProducts = async () => {
-      try {
-        const response = await apiClient.get('/products/sortByRegDateDesc');
-        setLatestProducts(response.data);
-      } catch (error) {
-        console.log(`Error: ${error}`);
-      }
-    };
-
-    getProducts();
-    getLatestProducts();
-  }, []);
+    fetchProductData();
+  }, [location.search]);
 
   const settings = {
     dots: true,
@@ -54,24 +59,58 @@ const Product = () => {
     centerMode: true,
   };
 
+  const renderProductSlider = useMemo(() => {
+    const { recruitmentCloseProduct } = productData;
+    if (recruitmentCloseProduct.length === 0) return null;
+
+    if (recruitmentCloseProduct.length === 1) {
+      return <ProductProcessCard {...recruitmentCloseProduct[0]} />;
+    }
+
+    return (
+      <>
+        <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>
+          모집임박한 패키지
+        </h2>
+        <Slider {...settings}>
+          {recruitmentCloseProduct.map((product) => (
+            <ProductProcessCard key={product.productNum} {...product} />
+          ))}
+        </Slider>
+      </>
+    );
+  }, [productData.recruitmentCloseProduct, settings]);
+
+  const renderFilteredContent = () => {
+    switch (filter) {
+      case 'recruitmentClose':
+        return <ProductList endpoint="/products/recruitmentClose" />;
+      case 'sortByDeadlineDesc':
+        return <ProductList endpoint="/products/sortByDeadlineDesc" />;
+      case 'recruitconfirmed':
+        return <ProductList endpoint="/products/recruitmentConfirmed" />;
+      case 'sortByPopular':
+        return <ProductList endpoint="/products/sortByPopular" />;
+      case 'sortByPriceDesc':
+        return <ProductList endpoint="/products/sortByPriceDesc" />;
+      case 'sortByPriceAsc':
+        return <ProductList endpoint="/products/sortByPriceAsc" />;
+      default:
+        return <Search />;
+    }
+  };
+
   return (
     <>
       <Metas title="패키지 상품" />
       <section className={`${styles.Product} layout`}>
-        <Slider {...settings}>
-          {products.map((product) => (
-            <ProductProcessCard
-              key={`product-${product.productNum}`}
-              {...product}
-            />
-          ))}
-        </Slider>
+        {renderProductSlider}
 
         <div className={styles.latestUpdate}>
-          <h3>최신 등록된 패키지</h3>
+          <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
-            {latestProducts.slice(0, 3).map((product) => (
-              <li key={`product-${product.productNum}`}>
+            {productData.latestProducts.slice(0, 7).map((product) => (
+              <li key={product.productNum}>
                 <ProductCard {...product} />
               </li>
             ))}
@@ -79,25 +118,7 @@ const Product = () => {
         </div>
         <div className={styles.filter}>
           <FilterButtons />
-          {filter ? <></> : <Search />}
-          {filter === 'recruitmentClose' && (
-            <ProductList endpoint="/products/recruitmentClose" />
-          )}
-          {filter === 'sortByDeadlineDesc' && (
-            <ProductList endpoint="/products/sortByDeadlineDesc" />
-          )}
-          {filter === 'recruitconfirmed' && (
-            <ProductList endpoint="/products/recruitmentConfirmed" />
-          )}
-          {filter === 'sortByPopular' && (
-            <ProductList endpoint="/products/sortByPopular" />
-          )}
-          {filter === 'sortByPriceDesc' && (
-            <ProductList endpoint="/products/sortByPriceDesc" />
-          )}
-          {filter === 'sortByPriceAsc' && (
-            <ProductList endpoint="/products/sortByPriceAsc" />
-          )}
+          {renderFilteredContent()}
         </div>
       </section>
     </>

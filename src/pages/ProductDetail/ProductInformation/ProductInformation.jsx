@@ -14,28 +14,28 @@ const ProductInformation = ({
   productImage,
   recruitmentDeadline,
   productViewNum,
-  wishlistCount,
+  wishlistCount: initialWishlistCount,
   orderCount,
   necessaryPeople,
 }) => {
   const navigate = useNavigate();
   const { productNum } = useParams();
   const [isWished, setIsWished] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(initialWishlistCount);
 
   useEffect(() => {
-    console.log('Product Number:', productNum);
     if (!productNum) {
       console.error('Product Number is undefined');
       return;
     }
-    
+
     const fetchWishStatus = async () => {
       try {
         const response = await apiClient.get(
           `/user/products/${productNum}/wishlist/status`
         );
         if (response.status === 200) {
-          setIsWished(response.data);
+          setIsWished(response.data.isWished);
         } else {
           console.error('Failed to load wishlist status:', response.status);
         }
@@ -55,6 +55,7 @@ const ProductInformation = ({
       );
       if (response.status === 201) {
         setIsWished(true);
+        setWishlistCount(wishlistCount + 1);
       } else {
         console.error('Failed to add to wishlist:', response.status);
       }
@@ -65,11 +66,12 @@ const ProductInformation = ({
 
   const handleCancelWish = async () => {
     try {
-
-      const response = await apiClient.delete(`/user/products/${productNum}/wishlist`);
-
+      const response = await apiClient.delete(
+        `/user/products/${productNum}/wishlist`
+      );
       if (response.status === 204) {
         setIsWished(false);
+        setWishlistCount(wishlistCount - 1);
       } else {
         console.error('Failed to cancel wishlist:', response.status);
       }
@@ -120,7 +122,7 @@ const ProductInformation = ({
         <div className={styles.progressBarContainer}>
           <div
             className={styles.progressBar}
-            style={{ wproductNumth: `${progressPercentage}%` }}
+            style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
         <div className={styles.actions}>

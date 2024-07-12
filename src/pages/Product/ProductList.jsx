@@ -49,11 +49,13 @@ const ProductList = ({ endpoint }) => {
   }
 
   if (error) {
-    return <div>에러가 발생했습니다: {error}</div>;
+    return (
+      <div className={styles.errorMessage}>에러가 발생했습니다: {error}</div>
+    );
   }
 
   if (products.length === 0) {
-    return <div>해당하는 패키지가 없습니다.</div>;
+    return <div className={styles.noProducts}>해당하는 패키지가 없습니다.</div>;
   }
 
   return (
