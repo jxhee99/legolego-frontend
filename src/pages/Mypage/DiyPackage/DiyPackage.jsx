@@ -12,8 +12,12 @@ const DiyPackage = () => {
     const fetchDiyLists = async () => {
       try {
         const response = await apiClient.get(`/my/packages`); // 엔드포인트를 /my/packages로 수정
-        console.log('Fetched data:', response.data); 
-        setDiyLists(response.data);
+        console.log('Fetched data:', response.data);
+        
+        // 데이터를 역순으로 정렬
+        const sortedData = response.data.sort((a, b) => b.packageNum - a.packageNum);
+
+        setDiyLists(sortedData);
         setLoading(false);
       } catch (error) {
         setError('DIY 패키지를 불러오는 중 오류가 발생했습니다.');
@@ -53,7 +57,7 @@ const DiyPackage = () => {
                   ? '정식상품 등록완료'
                   : diy.isSelected
                   ? '여행사 제안 완료'
-                  : '응원 받는 중'}
+                  : '응원 받는 중 🎈'}
               </span></td>
               <td> <span style={{ fontWeight: 'bold' }}>{diy.packageLikedNum}</span> / 25
               </td>
@@ -68,4 +72,3 @@ const DiyPackage = () => {
 };
 
 export default DiyPackage;
-

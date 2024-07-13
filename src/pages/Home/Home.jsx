@@ -1,7 +1,6 @@
 import Metas from '../../components/common/Metas';
 import CardSlide from '../PreTrip/CommentSection/CardSlide';
 import DiySection from './DiySection/DiySection';
-import HomeNavigation from './HomeNavigation/HomeNavigation';
 import IntroSection from './IntroSection/IntroSection';
 import PackageSection from './PackageSection/PackageSection';
 import ProductCardSection from './ProductCardSection/ProductCardSection';
@@ -12,7 +11,6 @@ const Home = () => {
     <>
       <Metas title="내가 만드는 패키지 여행" />
       <IntroSection />
-      <HomeNavigation />
       <div className={`${styles.Home} layout`}>
       <div>
           <h2>🚀 레고레고만의 특색있는 상품을 만나보세요!</h2>

@@ -1,11 +1,36 @@
-/* IntroSection */
+/* HomeNavigation 스타일 */
+.HomeNavigation {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  width: 100%;
+  height: 65px;
+  /* background-color는 JavaScript에서 설정합니다. */
+  text-align: center;
+}
+
+.HomeNavigation ul {
+  display: flex;
+  list-style: none; /* 리스트 스타일 제거 */
+  padding: 0;
+  margin: 0;
+}
+
+.HomeNavigation li {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0 100px; /* 항목 간 간격 조절 */
+  cursor: pointer; /* 마우스 커서 변경 */
+}
+
+/* IntroSection 스타일 */
 .IntroSection {
   padding: 0 10px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center; /* 필요에 따라 이미지 중심을 맞춤 */
-  height:70vh;
-  color:white;
+  height: 70vh;
+  color: white;
   position: relative;
   display: flex;
   justify-content: center;
@@ -53,18 +78,17 @@
   cursor: pointer;
 }
 
-
-/* PackageSection */
+/* PackageSection 스타일 */
 .PackageSection {
   margin: 3rem auto;
 }
 
-
-.PackageSection h2{
-  margin-left:13%;
+.PackageSection h2 {
+  margin-left: 13%;
 }
+
 .PackageSection .package_section_cards {
-   align-items: center; /* 수직 방향 가운데 정렬 */
+  align-items: center; /* 수직 방향 가운데 정렬 */
   display: flex;
   justify-content: center;
   gap: 1.75rem;
@@ -75,21 +99,20 @@
   position: relative;
 }
 
-/* DiySection */
+/* DiySection 스타일 */
 .DiySection {
   padding: 3.5rem 3rem 3rem;
 }
 
-.DiySection h2{
-  margin-left:13%;
+.DiySection h2 {
+  margin-left: 13%;
 }
+
 .DiySection .diy_section_cards {
   display: flex;
   justify-content: center;
   gap: 1.75rem;
   margin-top: 3rem;
-
-
 }
 
 .DiySection .diy_title {
@@ -101,7 +124,6 @@
   top: 0;
   right: 10px;
   background-color: #fe7171;
-  /* background-color: #cc70f0; */
   border: none;
   color: white;
   padding: 0.75rem 1.5rem;
@@ -109,7 +131,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
-  /* margin: 0.25rem 0.5rem; */
   margin-right: 10%;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -122,68 +143,67 @@
   background-color: #da4242;
 }
 
-.blank{
-  height:4rem;
+.blank {
+  height: 4rem;
 }
 
 :root {
-	--cards: 4;
-	/* --cardHeight: 57vh; */
-	--cardTopPadding: 1.5em;
-	--cardMargin: 4vw;
+  --cards: 4;
+  --cardTopPadding: 1.5em;
+  --cardMargin: 4vw;
 }
 
 .container {
-	width: 90%;
-	margin: 0 auto;
+  width: 90%;
+  margin: 0 auto;
 }
 
 #cards {
-	list-style: none;
-	padding-left: 0;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: repeat(var(--cards), var(--cardHeight));
-	gap: var(--cardMargin);
-	padding-bottom: calc(var(--cards) * var(--cardTopPadding));
-	margin-bottom: var(--cardMargin);
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(var(--cards), var(--cardHeight));
+  gap: var(--cardMargin);
+  padding-bottom: calc(var(--cards) * var(--cardTopPadding));
+  margin-bottom: var(--cardMargin);
 }
 
 #card1 {
-	--index: 1;
+  --index: 1;
 }
+
 #card2 {
-	--index: 2;
+  --index: 2;
 }
+
 #card3 {
-	--index: 3;
+  --index: 3;
 }
+
 #card4 {
-	--index: 4;
+  --index: 4;
 }
 
 .card {
-	position: sticky;
-	top: 3rem;
-	padding-top: calc(var(--index) * var(--cardTopPadding));
+  position: sticky;
+  top: 3rem;
+  padding-top: calc(var(--index) * var(--cardTopPadding));
   background-color: white;
 }
 
-
 .card-body {
-	box-sizing: border-box;
-	/* padding: 30px;  */
-	border-radius: 50px;
+  box-sizing: border-box;
+  border-radius: 50px;
   margin-bottom: 1rem;
-	/* box-shadow: 0 0 5px 0 rgba(94, 91, 91, 0.3);  */
-	height: var(--cardHeight);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: all 0.5s;
+  height: var(--cardHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
 }
 
 .Home h2 {
-	font-size: 2rem;
+  font-size: 2rem;
   margin-bottom: 4.5rem;
 }
