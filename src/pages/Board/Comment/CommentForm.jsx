@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import apiClient from '../../../api/apiClient';
 import styles from './CommentForm.module.css';
 
-const CommentForm = ({ postNum, fetchComments, parentCommentNum }) => {
+const CommentForm = ({ postNum, fetchComments, parentCommentNum, onSubmitSuccess }) => {
   const [newComment, setNewComment] = useState('');
 
   const handleCommentSubmit = async (e) => {
@@ -15,6 +15,7 @@ const CommentForm = ({ postNum, fetchComments, parentCommentNum }) => {
       await apiClient.post(`/posts/${postNum}/comments`, payload);
       setNewComment('');
       fetchComments();
+      if (onSubmitSuccess) onSubmitSuccess();
     } catch (error) {
       console.error('Error posting comment:', error);
     }
@@ -22,6 +23,9 @@ const CommentForm = ({ postNum, fetchComments, parentCommentNum }) => {
 
   return (
     <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+      <button type="submit" className={styles.commentFormButton}>
+        <span className={styles.text}>등록</span>
+      </button>
       <textarea
         className={styles.commentFormTextarea}
         value={newComment}
@@ -29,7 +33,6 @@ const CommentForm = ({ postNum, fetchComments, parentCommentNum }) => {
         placeholder="댓글을 입력하세요"
         required
       />
-      <button type="submit" className={styles.commentFormButton}>댓글 작성</button>
     </form>
   );
 };

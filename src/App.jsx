@@ -32,6 +32,7 @@ import EmailVerification from './components/Header/Authentication/EmailVerificat
 import Board from './pages/Board/Board';
 import PostForm from './pages/Board/Post/PostForm';
 import PostDetail from './pages/Board/Post/PostDetail';
+import EditPostForm from './pages/Board/Post/EditPostForm';
 
 const App = () => {
   const { isAuthenticated, role } = useContext(AuthContext);
@@ -85,6 +86,7 @@ const App = () => {
       <Route path="/board" element={<Board />} />
       <Route path="/create-post" element={<PostForm />} />
       <Route path="/posts/:postNum" element={<PostDetail />} />
+      <Route path="/edit-post/:postNum" element={<EditPostForm />} />
 
       <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
         <Route element={<AdminMenu />}>

@@ -1,20 +1,84 @@
 .postDetail {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .postDetail h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .postMeta {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .postDetail p {
-    font-size: 16px;
-    line-height: 1.5;
-  }
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.postDetailTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  text-align: left;
+  display: block;
+}
+
+.postDetailCategory {
+  display: flex;
+  margin-left: 10px;
+  color: #cd70f5;
+}
+
+.postDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.postDetailLeft {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.postDetailRight {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.postDetailViewIcon,
+.postDetailCommentIcon {
+  vertical-align: middle;
+}
+
+.postDetailContent {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 100px;
+}
+
+.postDetailButtonGroup {
+  display: flex;
+  margin-left: auto;
+}
+
+.postDetailEditButton,
+.postDetailDeleteButton {
+  background: none;
+  color: black;
+  cursor: pointer;
+}
+
+.postDetailEditButton:hover,
+.postDetailDeleteButton:hover {
+  opacity: 0.8;
+}
+
+.postDetailAdminDeleteBtn {
+  display: flex;
+  margin-left: auto;
+}
+
+.postDetailDivider {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
+}

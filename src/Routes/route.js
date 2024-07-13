@@ -53,10 +53,13 @@ import Payment from '../pages/Payment/Payment';
 import PreTripList from '../pages/PreTrip/PreTripList';
 import PreTripDetail from '../pages/PreTripDetail/PreTripDetail';
 
-// 소통게시판
+// 커뮤니티
 import Board from '../pages/Board/Board';
 import { element } from 'prop-types';
 import PostDetail from '../pages/Board/Post/PostDetail';
+import PostForm from '../pages/Board/Post/PostForm';
+import { light } from '@mui/material/styles/createPalette';
+import EditPostForm from '../pages/Board/Post/EditPostForm';
 
 export const ROUTE = {
   ABOUT: {
@@ -133,6 +136,16 @@ export const ROUTE = {
     path: '/posts/:postNum',
     link: '/posts/:postNum',
     element: PostDetail,
+  },
+  POST_FORM: {
+    path: '/create-post',
+    link: '/create-post',
+    element: PostForm,
+  },
+  EDIT_POST_FORM: {
+    path: '/edit-post/:postNum',
+    link: '/edit-post/:postNum',
+    element: EditPostForm,
   }
 };
 

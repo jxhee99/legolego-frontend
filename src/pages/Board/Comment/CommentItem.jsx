@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import apiClient from '../../../api/apiClient';
 import CommentForm from './CommentForm';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './CommentItem.module.css';
 
 const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
@@ -23,7 +25,7 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
 
   const handleEdit = async () => {
     try {
-      await apiClient.patch(`/posts/comments/${comment.commentNum}`, { content: newContent });
+      await apiClient.patch(`/posts/${postNum}/comments/${comment.commentNum}`, { content: newContent });
       setIsEditing(false);
       fetchComments();
     } catch (error) {
@@ -33,46 +35,55 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
 
   const handleDelete = async () => {
     try {
-      await apiClient.delete(`/posts/{postNum}/comments/${comment.commentNum}`);
+      await apiClient.delete(`/posts/${postNum}/comments/${comment.commentNum}`);
       fetchComments();
     } catch (error) {
       console.error('Error deleting comment:', error);
     }
   };
 
+  const handleReplySuccess = () => {
+    setShowReplyForm(false);
+  };
+
   return (
     <div className={`${styles.commentItem} ${isReply ? styles.replyItem : ''}`}>
-      <div className={styles.commentMeta}>
-        <div>{comment.userNickname ? `${comment.userNickname}` : comment.companyName ? `${comment.companyName}` : `${comment.adminName}`}</div>
-        <div>{comment.regDate}</div>
-      </div>
-      {isEditing ? (
-        <>
-          <textarea
-            value={newContent}
-            onChange={(e) => setNewContent(e.target.value)}
-            required
-          />
-          <button onClick={handleEdit}>저장</button>
-          <button onClick={() => setIsEditing(false)}>취소</button>
-        </>
-      ) : (
-        <>
-          <p>{comment.content}</p>
+      <div className={styles.commentHeader}>
+        <div className={styles.commentAuthor}>{comment.userNickname ? `${comment.userNickname}` : comment.companyName ? `${comment.companyName}` : `${comment.adminName}`}</div>
+        <div className={styles.commentActions}>
           {isCommentOwner && (
             <>
-              <button onClick={() => setIsEditing(true)} className={styles.editButton}>수정</button>
-              <button onClick={handleDelete} className={styles.deleteButton}>삭제</button>
+              <EditIcon className={styles.commentItemEditBtn} onClick={() => setIsEditing(true)} />
+              <DeleteIcon className={styles.commentItemDeleteBtn} onClick={handleDelete} />
             </>
           )}
           {isAdmin && !isCommentOwner && (
-            <button onClick={handleDelete} className={styles.deleteButton}>삭제</button>
+            <DeleteIcon className={styles.deleteButton} onClick={handleDelete} />
           )}
-          <button onClick={handleReplyClick} className={styles.replyButton}>답글 달기</button>
-        </>
-      )}
+        </div>
+      </div>
+      <div className={styles.commentContent}>
+        {isEditing ? (
+          <>
+            <textarea
+              className={styles.commentItemTextarea}
+              value={newContent}
+              onChange={(e) => setNewContent(e.target.value)}
+              required
+            />
+            <button onClick={handleEdit} className={styles.commentItemSaveBtn}>저장</button>
+            <button onClick={() => setIsEditing(false)} className={styles.commentItemCancelBtn}>취소</button>
+          </>
+        ) : (
+          <p>{comment.content}</p>
+        )}
+      </div>
+      <div className={styles.commentFooter}>
+        <span className={styles.commentDate}>{comment.regDate}</span>
+        <button onClick={handleReplyClick} className={styles.replyButton}>답글쓰기</button>
+      </div>
       {showReplyForm && (
-        <CommentForm postNum={postNum} parentCommentNum={comment.commentNum} fetchComments={fetchComments} />
+        <CommentForm postNum={postNum} parentCommentNum={comment.commentNum} fetchComments={fetchComments} onSubmitSuccess={handleReplySuccess} />
       )}
       {comment.replies && comment.replies.map(reply => (
         <CommentItem key={reply.commentNum} comment={reply} postNum={postNum} fetchComments={fetchComments} isReply={true} />

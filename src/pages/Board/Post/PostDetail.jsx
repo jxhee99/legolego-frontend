@@ -5,6 +5,10 @@ import CommentForm from '../Comment/CommentForm';
 import CommentList from '../Comment/CommentList';
 import EditPostForm from './EditPostForm';
 import { AuthContext } from '../../../contexts/AuthContext';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import styles from './PostDetail.module.css';
 
 const PostDetail = () => {
@@ -49,15 +53,10 @@ const PostDetail = () => {
 
   if (!post) return <div>Loading...</div>;
 
-  console.log('userNum:', userNum, 'role:', role);
-  console.log('post:', post);
-
   const isOwner =
     (role === 'USER' && post.userNum !== null && post.userNum.toString() === userNum) ||
     (role === 'PARTNER' && post.partnerNum !== null && post.partnerNum.toString() === userNum) ||
     (role === 'ADMIN' && post.adminNum !== null && post.adminNum.toString() === userNum);
-
-  console.log('isOwner:', isOwner);
 
   return (
     <div className={styles.postDetail}>
@@ -65,28 +64,62 @@ const PostDetail = () => {
         <EditPostForm post={post} onUpdate={() => { setEditing(false); fetchPostDetail(); }} />
       ) : (
         <>
-          <h1>{post.title}</h1>
-          <div className={styles.postMeta}>
-            <div>작성자: {post.userNickname ? `${post.userNickname}` : post.companyName ? `${post.companyName}` : `${post.adminName}`}</div>
-            <div>조회수: {post.viewCount}</div>
-            <div>댓글수: {post.commentCount}</div>
+          <div className={styles.postDetailCategory}>
+            <span>{transformCategory(post.category)}</span>
+            {isOwner && (
+                <div className={styles.postDetailButtonGroup}>
+                  <button onClick={() => navigate(`/edit-post/${postNum}`)} className={styles.postDetailEditButton}>                    <EditIcon className={styles.postDetailEditIcon} />
+                  </button>
+                  <button onClick={handleDeletePost} className={styles.postDetailDeleteButton}>
+                    <DeleteIcon className={styles.postDetailDeleteIcon} />
+                  </button>
+                </div>
+              )}
+              {role === 'ADMIN' && !isOwner && (
+              <button onClick={handleDeletePost} className={styles.postDetailAdminDeleteBtn}>
+                <DeleteIcon className={styles.postDetailAdminDeleteBtn} />
+              </button>
+              )}
           </div>
-          <p>{post.content}</p>
-          {isOwner && (
-            <>
-              <button onClick={() => setEditing(true)} className={styles.editButton}>수정</button>
-              <button onClick={handleDeletePost} className={styles.deleteButton}>삭제</button>
-            </>
-          )}
-          {role === 'ADMIN' && !isOwner && (
-            <button onClick={handleDeletePost} className={styles.deleteButton}>삭제</button>
-          )}
+          <h1 className={styles.postDetailTitle}>{post.title}</h1>
+          <div className={styles.postDetails}>
+          <div className={styles.postDetailLeft}>
+            <span>{post.userNickname ? `${post.userNickname}` : post.companyName ? `${post.companyName}` : `${post.adminName}`}</span>
+            <span>{post.regDate}</span>
+          </div>
+          <div className={styles.postDetailRight}>
+            <span><VisibilityIcon className={styles.postDetailViewIcon} /> {post.viewCount}</span>
+            <span><ChatBubbleOutlineIcon className={styles.postDetailCommentIcon} /> {post.commentCount}</span>
+          </div>
+          </div>
+          <div className={styles.postDetailDivider}></div>
+          <p className={styles.postDetailContent}>{post.content}</p>
+          <div className={styles.postDetailDivider}></div>
         </>
       )}
-      <CommentList comments={comments} postNum={postNum} fetchComments={fetchComments} />
       <CommentForm postNum={postNum} fetchComments={fetchComments} />
+      <CommentList comments={comments} postNum={postNum} fetchComments={fetchComments} />
     </div>
   );
 };
 
 export default PostDetail;
+
+const transformCategory = (category) => {
+  switch (category) {
+    case 'RECRUITMENT':
+      return '동행문의';
+    case 'INQUIRY':
+      return '여행문의';
+    case 'TIP':
+      return '여행 팁';
+    case 'ROUTE':
+      return '여행 경로';
+    case 'NOTICE':
+      return '공지사항';
+    case 'EVENT':
+      return '이벤트 & 할인';
+    default:
+      return category; // 만약 매칭되는 값이 없으면 원래 값을 반환
+  }
+};
