@@ -1,6 +1,7 @@
 footer {
   height: 186px;
-  background-color: rgb(234, 234, 233);
+  background-color: #fafafa;
+  border-top: 1px solid #e4e3e3;
 }
 
 .footer_box {
@@ -10,7 +11,6 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  color: #727272;
 }
 .footer_box h4 {
   color: #3b3b3b;
