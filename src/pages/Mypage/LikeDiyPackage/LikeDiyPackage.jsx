@@ -24,7 +24,10 @@ const LikeDiyPackage = () => {
           packageLikedNum: item.packageLikedNum,
         }));
 
-        setPackages(detailedPackages);
+        // 데이터를 역순으로 정렬
+        const sortedPackages = detailedPackages.sort((a, b) => b.packageNum - a.packageNum);
+
+        setPackages(sortedPackages);
         setLoading(false);
       } catch (error) {
         setError('Failed to fetch liked packages.');

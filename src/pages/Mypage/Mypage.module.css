@@ -56,8 +56,9 @@
   display: inline-block;
   padding: 4px 8px;
   border-radius: 4px;
-  background-color: #e0f7fa;
-  color: #00796b;
+  background-color: #5FA8D6;
+  /* background-color: #e0f7fa; */
+  color: white;
 }
 .LikeDiyPackage p {
   color: red;

@@ -41,7 +41,7 @@
 }
 
 .ProfileInformation input.redText {
-  color: rgb(50, 42, 142); /* input 안의 텍스트를 빨간색으로 변경 */
+  color: rgb(46, 37, 143); 
   font-weight: 600;}
 
 .readOnlyInput {
@@ -72,7 +72,7 @@
 }
 
 .profile_edit.active {
-  background-color: blue;
+  background-color: #3A86FF;
   cursor: pointer;
 }
 

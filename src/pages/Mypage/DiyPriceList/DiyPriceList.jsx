@@ -52,6 +52,9 @@ const DiyPriceList = () => {
     filteredData = data.filter((item) => item.isRegistered === true);
   }
 
+  // 데이터를 패키지 번호 기준으로 역순 정렬
+  filteredData.sort((a, b) => b.diyPackage.packageNum - a.diyPackage.packageNum);
+
   // 현재 페이지에 맞는 데이터 계산
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
