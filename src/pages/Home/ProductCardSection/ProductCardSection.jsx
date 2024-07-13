@@ -27,7 +27,9 @@ const ProductCardSection = () => {
 
   useEffect(() => {
     const filteredData = allProductData.filter((productItem) =>
-      productItem.productName.toLowerCase().includes(searchTerm.toLowerCase())
+      // productItem.productName.toLowerCase().includes(searchTerm.toLowerCase())
+      // 추가된 조건: productItem.product.productName이 존재하는지 확인
+      productItem.product.productName && productItem.product.productName.toLowerCase().includes(searchTerm.toLowerCase())
     );
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -51,10 +53,23 @@ const ProductCardSection = () => {
       <Metas title="패키지 상품" />
       <section className={`${styles.product} layout`}>
         {/* <h2>Imminent</h2> */}
-        <div className={styles.product_cards}>
+        {/* <div className={styles.product_cards}>
           {displayedData.map((productItem) => (
             <ProductCard key={productItem.productNum} {...productItem} />
           ))}
+        </div> */}
+         <div className={styles.product_cards}>
+          {displayedData.map((productItem) => {
+            // productItem의 구조 확인
+            if (!productItem || !productItem.product.productNum) {
+              console.error('Invalid product item:', productItem);
+              return null;
+            }
+
+            return (
+              <ProductCard key={productItem.product.productNum} {...productItem.product} />
+            );
+          })}
         </div>
       </section>
     </>

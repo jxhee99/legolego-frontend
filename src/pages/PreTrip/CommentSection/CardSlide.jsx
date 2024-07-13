@@ -28,9 +28,9 @@ const CardSlide = () => {
     fetchData();
   }, []);
 
-  // 데이터 배열을 여러번 반복하게 설정
+  // 데이터 배열을 여러 번 반복하게 설정
   const repeatedData = [...data, ...data, ...data, ...data, ...data];
-
+  
   // 별점 표시 함수
   const renderStars = (rating) => {
     const roundedRating = Math.round(rating);
@@ -62,13 +62,18 @@ const CardSlide = () => {
                 </div>
                 <div className={styles.reviewText}>
                   <p>{renderStars(review.rating)}</p> {/* 별점 표시 */}
-                   <p className={styles.reviewNickname}>{getRandomIcon()} {review.userNickname}님의 후기
-                  <p className={styles.reviewContent}>
-                    {review.content}</p>
-                  <p className={styles.reviewProductName}>{review.productName}</p> {/* 목적지 앞부분만 표시 */}
-                    
-                  <p className={styles.reviewSmallText}>{review.destination.split('/')[0]}</p>
-                  </p>
+                  <div className={styles.reviewNickname}>
+                    {getRandomIcon()} {review.userNickname}님의 후기
+                  </div>
+                  <div className={styles.reviewContent}>
+                    {review.content}
+                  </div>
+                  <div className={styles.reviewProductName}> 
+                    {review.productName} {/* 목적지 앞부분만 표시 */}
+                  </div>
+                  <div className={styles.reviewSmallText}>
+                    {review.destination.split('/')[0]}
+                  </div>
                 </div>
               </div>
             </div>
