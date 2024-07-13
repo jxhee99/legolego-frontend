@@ -8,19 +8,20 @@
 .FilterButtons button {
   padding: 10px 15px;
   border: none;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .FilterButtons button:hover {
-  background-color: #e0e0e0;
+  color: #333;
+  /* background-color: #e0e0e0; */
 }
 
-.FilterButtons button.active {
+/* .FilterButtons button.active {
   background-color: #007bff;
-}
+} */
 
 .FilterButtons button a {
   text-decoration: none;
@@ -29,5 +30,6 @@
 }
 
 .FilterButtons button.active a {
-  color: white;
+  /* color: white; */
+  color: red;
 }

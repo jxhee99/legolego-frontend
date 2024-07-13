@@ -16,13 +16,10 @@
   gap: 4rem;
 }
 
-/* .Schedule button {
+/* /* .Schedule button {
   background-color: #ffdd00;
-}
-
-.Schedule button:hover {
-  background-color: #ff9d00;
 } */
+
 
 .Schedule .course_box {
   display: flex;
