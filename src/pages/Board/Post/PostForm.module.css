@@ -1,50 +1,64 @@
 .postFormContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-  }
-  
-  .postFormContainer h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .formGroup label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .formGroup input,
-  .formGroup textarea,
-  .formGroup select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .formGroup textarea {
-    height: 150px;
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .submitButton:hover {
-    background-color: #218838;
-  }
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.postFormTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.createPost {
+  margin-bottom: 30px;
+}
+
+.createPost label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.createPost input[type="text"],
+.createPost textarea,
+.createPost select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.createPost textarea {
+  height: 200px;
+  resize: none;
+}
+
+.postFormBtn {
+  display: flex;
+  gap: 15px;
+}
+
+.postFormSubmitBtn,
+.postFormCancelBtn {
+  display: inline-block;
+  background: #8338EC;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.postFormSubmitBtn:hover,
+.postFormCancelBtn:hover {
+  background-color: #ab7bef;
+}
