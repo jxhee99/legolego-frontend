@@ -18,6 +18,7 @@ const ProductCard02 = ({ productData }) => {
     recruitmentDeadline,
     price,
     wishlistCount,
+    regDate,
   } = product;
 
   console.log(product);
@@ -60,6 +61,7 @@ const ProductCard02 = ({ productData }) => {
         <div className={styles.content_body}>
           <span>여행기간</span>
           <p className={styles.date}>
+            {formatDateTime(regDate).replace(/\s\d{2}:\d{2}$/, '')}~
             {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
           </p>
         </div>

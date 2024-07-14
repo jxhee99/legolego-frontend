@@ -12,6 +12,7 @@ const ProductCard = ({
   recruitmentDeadline,
   price,
   wishlistCount,
+  regDate,
 }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
@@ -51,7 +52,8 @@ const ProductCard = ({
         <div className={styles.content_body}>
           <span>여행기간</span>
           <p className={styles.date}>
-            {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
+            {formatDateTime(regDate).replace(/\s\d{2}:\d{2}$/, '')}~{' '}
+            {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}{' '}
           </p>
         </div>
         <p className={styles.price}>{price} 원</p>
