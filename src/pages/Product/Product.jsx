@@ -98,7 +98,7 @@ const Product = () => {
         return <ProductList endpoint="/products/recruitmentClose" />;
       case 'sortByDeadlineDesc':
         return <ProductList endpoint="/products/sortByDeadlineDesc" />;
-      case 'recruitconfirmed':
+      case 'recruitmentConfirmed':
         return <ProductList endpoint="/products/recruitmentConfirmed" />;
       case 'sortByPopular':
         return <ProductList endpoint="/products/sortByPopular" />;
