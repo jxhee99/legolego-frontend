@@ -60,7 +60,7 @@ const PackageDetail = () => {
         <section id="schedule-info" className={`${styles.section}`}>
           <ScheduleInformation detailCourse={products.detailCourse} />
         </section>
-        <RecommendProduct />
+        <RecommendProduct destination={products.airline.destination} />
       </div>
     </>
   );

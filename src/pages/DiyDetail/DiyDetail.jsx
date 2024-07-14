@@ -10,6 +10,7 @@ import useFetchData from '../../hooks/useFetchDiyData';
 import Metas from '../../components/common/Metas';
 import WriterControls from './DetailButton/WriterControls';
 import CheerButton from './DetailButton/CheerButton';
+import RecommendProduct from './RecommendProduct/RecommendProduct';
 
 const DiyDetail = () => {
   const { id } = useParams(); // useParams 훅을 사용하여 URL에서 id(packageNum) 값을 가져옴
@@ -23,6 +24,7 @@ const DiyDetail = () => {
   const [likedNum, setLikedNum] = useState();
   const [isLiked, setIsLiked] = useState(false); //응원 여부 상태
   const [isWriter, setIsWriter] = useState(false);
+  const [isEditDeletePossible, setIsEditDeletePossible] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -33,6 +35,7 @@ const DiyDetail = () => {
       setLikedNum(data.likedNum);
       setIsLiked(data.isLiked); // 서버에서 받아온 응원 여부 설정
       setIsWriter(data.isWriter);
+      setIsEditDeletePossible(data.isEditDeletePossible);
     }
   }, [data]);
 
@@ -71,7 +74,13 @@ const DiyDetail = () => {
             <div className={styles.cheer_user_box}>
               <div className={styles.date_edit_box}>
                 <p>{data.regDate}</p>
-                {isWriter && <WriterControls id={id} likedNum={likedNum} />}
+                {isWriter && (
+                  <WriterControls
+                    id={id}
+                    isEditDeletePossible={isEditDeletePossible}
+                    likedNum={likedNum}
+                  />
+                )}
               </div>
               <h2>{desc.packageName}</h2>
               <div className={styles.user}>
@@ -112,6 +121,7 @@ const DiyDetail = () => {
         </div>
         {<DiyDetailAirplane airline={airline} />}
         {<DiyDetailSchedule schedule={schedule} />}
+        {<RecommendProduct destination={airline.destination} />}
       </div>
     </>
   );
