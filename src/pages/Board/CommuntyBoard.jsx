@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Board.module.css';
 import SearchBar from './SearchAndSort/SearchBar';
 import SortButtons from './SearchAndSort/SortButtons';
@@ -15,7 +16,9 @@ const CommuntyBoard = ({
   setPage,
   handleSortChange,
 }) => {
+  const navigate = useNavigate();
   const handleCategoryChange = (category) => {
+    sessionStorage.removeItem('communitySearch');
     setSearchKeyword('');
     setSelectedCategory(category);
   };
@@ -28,11 +31,21 @@ const CommuntyBoard = ({
       const category = transformCategory(selectedCategory);
       url = `/posts/category/${category}/search?keyword=${searchKeyword}`;
     }
-
     try {
       const response = await apiClient.get(url);
       setAllPosts(response.data);
       setPage(1);
+      sessionStorage.setItem(
+        'communitySearch',
+        JSON.stringify({
+          category: transformCategory(selectedCategory),
+          keyWord: searchKeyword,
+        })
+      );
+      // URL에 searched=true 쿼리 파라미터 추가
+      const newQuery = new URLSearchParams(location.search);
+      newQuery.set('searched', 'true');
+      navigate({ search: newQuery.toString() }, { replace: true });
     } catch (error) {
       console.error('Error searching posts:', error);
     }

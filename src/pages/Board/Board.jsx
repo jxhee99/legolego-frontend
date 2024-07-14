@@ -25,18 +25,17 @@ const Board = () => {
 
   useEffect(() => {
     fetchAllPosts();
-  }, [sortOrder, selectedCategory, searchKeyword]);
+  }, [sortOrder, selectedCategory]);
 
   useEffect(() => {
     paginatePosts();
   }, [page, allPosts]);
 
   const fetchAllPosts = async () => {
-    const url = getUrl(sortOrder, selectedCategory);
+    const url = getUrl(sortOrder, selectedCategory, setSearchKeyword);
     try {
       const response = await apiClient.get(url);
       setAllPosts(response.data);
-      console.log(page);
       setPage(initialPage);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -59,6 +58,10 @@ const Board = () => {
     }
     setSortOrder(order);
     setSearchKeyword('');
+    sessionStorage.removeItem('communitySearch');
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.delete('searched');
+    navigate('.', { replace: true });
   };
 
   const handleCreatePost = () => {
@@ -66,6 +69,7 @@ const Board = () => {
   };
 
   const handleClickMy = async (my) => {
+    sessionStorage.removeItem('communitySearch');
     setMy(my);
     await new Promise((resolve) => {
       setPage(1);
@@ -73,6 +77,12 @@ const Board = () => {
     });
     if (my) {
       setSortOrder('myPosts');
+      setSelectedCategory('');
+      setSearchKeyword('');
+      sessionStorage.removeItem('communitySearch');
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.delete('searched');
+      navigate('.', { replace: true });
     } else {
       setSortOrder('all');
     }
@@ -150,30 +160,43 @@ export const transformCategory = (category) => {
   }
 };
 
-const getUrl = (sortOrder, selectedCategory) => {
+const getUrl = (sortOrder, selectedCategory, setSearchKeyword) => {
   let url = '/posts/all';
 
-  if (sortOrder === 'latest') {
-    if (selectedCategory) {
+  const communitySearch = JSON.parse(sessionStorage.getItem('communitySearch'));
+  const searchParams = new URLSearchParams(location.search);
+  const searched = searchParams.get('searched');
+
+  if (communitySearch && searched) {
+    setSearchKeyword(communitySearch.keyWord);
+    if (communitySearch.category) {
+      url = `/posts/category/${communitySearch.category}/search?keyword=${communitySearch.keyWord}`;
+    } else {
+      url = `/posts/search?keyword=${communitySearch.keyWord}`;
+    }
+  } else {
+    if (sortOrder === 'latest') {
+      if (selectedCategory) {
+        const category = transformCategory(selectedCategory);
+        url = `/posts/category/${category}`;
+      } else {
+        url = '/posts/all';
+      }
+    } else if (sortOrder === 'oldest') {
+      if (selectedCategory) {
+        const category = transformCategory(selectedCategory);
+        url = `/posts/category/${category}/oldest`;
+      } else {
+        url = '/posts/oldest';
+      }
+    } else if (sortOrder === 'myPosts') {
+      url = '/posts/my-posts';
+    } else if (sortOrder === 'myComments') {
+      url = '/posts/my-comments';
+    } else if (sortOrder === 'category' && selectedCategory) {
       const category = transformCategory(selectedCategory);
       url = `/posts/category/${category}`;
-    } else {
-      url = '/posts/all';
     }
-  } else if (sortOrder === 'oldest') {
-    if (selectedCategory) {
-      const category = transformCategory(selectedCategory);
-      url = `/posts/category/${category}/oldest`;
-    } else {
-      url = '/posts/oldest';
-    }
-  } else if (sortOrder === 'myPosts') {
-    url = '/posts/my-posts';
-  } else if (sortOrder === 'myComments') {
-    url = '/posts/my-comments';
-  } else if (sortOrder === 'category' && selectedCategory) {
-    const category = transformCategory(selectedCategory);
-    url = `/posts/category/${category}`;
   }
 
   return url;
