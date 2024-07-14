@@ -13,6 +13,7 @@ const ProductProcessCard = ({ productData }) => {
     recruitmentDeadline,
     necessaryPeople,
     partnerName,
+    regDate,
   } = product;
 
   const navigate = useNavigate();
@@ -35,8 +36,8 @@ const ProductProcessCard = ({ productData }) => {
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.deadline}>
           모집 기간:
-          {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')} ~
-          모집기간 추가해주세요
+          {formatDateTime(regDate).replace(/\s\d{2}:\d{2}$/, '')}~
+          {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
         </p>
         <div className={styles.progressContainer}>
           <LinearProgress
