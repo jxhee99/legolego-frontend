@@ -28,7 +28,7 @@ const theme = createTheme({
   },
 });
 
-const SearchInput = () => {
+const SearchInput = ({ setPage }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,6 +71,7 @@ const SearchInput = () => {
       dispatch(setMonth(monthValue));
 
       // URL 파라미터 업데이트 후 페이지 이동
+      setPage(1);
       const searchParams = new URLSearchParams(location.search);
       searchParams.set('searched', 'true');
       navigate(`${location.pathname}?${searchParams.toString()}`);
@@ -88,6 +89,7 @@ const SearchInput = () => {
     setMonthValue('');
 
     // URL 파라미터 제거 후 페이지 이동
+    setPage(1);
     const searchParams = new URLSearchParams(location.search);
     searchParams.delete('searched');
     navigate(`${location.pathname}?${searchParams.toString()}`);

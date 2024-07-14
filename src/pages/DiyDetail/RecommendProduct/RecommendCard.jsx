@@ -13,8 +13,6 @@ const RecommendCard = ({
   recruitmentDeadline,
   productName,
   price,
-  wishlistCount,
-  productViewNum,
 }) => {
   const navigate = useNavigate();
   const handlePackageCard = () => {

@@ -1,15 +1,7 @@
-/* @font-face {
-  font-family: 'BMHANNAPro';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff')
-    format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
-
 @font-face {
   font-family: 'GmarketSansMedium';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
 }
 
 /* 스크롤 후 큰 글자와 작은 글자 스타일 */
@@ -63,7 +55,6 @@
     ),
     url('/mnt/data/diyBackground.JPG');
 }
-
 
 /* 텍스트 스타일 */
 .diyBackground p {
@@ -170,7 +161,6 @@
   margin-top: 54px;
   font-family: 'GmarketSansMedium';
   font-weight: 700px;
-
 }
 
 /* 검색, 필터 정렬 */
@@ -210,7 +200,7 @@
 .pagination_box {
   display: flex;
   justify-content: center;
-  margin-bottom: 10rem;
+  padding-bottom: 3rem;
 }
 
 /* .diy_cards h4 {
@@ -220,7 +210,7 @@
 .diy_cards strong {
   font-size: 1.05em;
   font-weight: bold;
-  color: #3A86FF;
+  color: #3a86ff;
   margin-right: 0.1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

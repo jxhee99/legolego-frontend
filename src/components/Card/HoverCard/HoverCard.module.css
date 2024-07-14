@@ -74,6 +74,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   margin: 10px 0;
+  word-break: keep-all;
 }
 .titleMiddle h2 {
   font-size: 1.7em;

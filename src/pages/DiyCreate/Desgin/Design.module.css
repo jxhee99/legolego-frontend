@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap');
 
-
-
 .bowlby-one-regular {
   font-family: 'Bowlby One', sans-serif;
   font-weight: 400;
@@ -19,7 +17,7 @@
 
 .lego_box img {
   position: absolute;
-  top: -1.5rem;
+  top: -1.7rem;
   width: 30px;
   height: 30px;
 }
@@ -53,7 +51,8 @@
 }
 @font-face {
   font-family: 'Freesentation-9Black';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2')
+    format('woff2');
   font-weight: 900;
   font-style: normal;
 }
@@ -99,5 +98,5 @@
 }
 
 .lego_head > .active {
-  background-color: #3FA2F6;
+  background-color: #3fa2f6;
 }

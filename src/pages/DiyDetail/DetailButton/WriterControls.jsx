@@ -7,7 +7,11 @@ import apiClient from '../../../api/apiClient';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const deleteDetail = async (endpoint, navigate) => {
+const deleteDetail = async (endpoint, navigate, isEditDeletePossible) => {
+  if (!isEditDeletePossible) {
+    window.alert('응원 달성 & 상품 등록된 패키지는 삭제할 수 없습니다.');
+    return;
+  }
   try {
     const response = await apiClient.delete(endpoint);
     if (response.status === 204) {
@@ -23,7 +27,7 @@ const deleteDetail = async (endpoint, navigate) => {
   }
 };
 
-const WriterControls = ({ id, likedNum }) => {
+const WriterControls = ({ id, isEditDeletePossible, likedNum }) => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   // 모달 열기 함수
@@ -46,7 +50,11 @@ const WriterControls = ({ id, likedNum }) => {
   };
 
   const handleDelete = () => {
-    deleteDetail(`/user/packages/${id}`, () => navigate('/diy'));
+    deleteDetail(
+      `/user/packages/${id}`,
+      () => navigate('/diy'),
+      isEditDeletePossible
+    );
   };
 
   return (

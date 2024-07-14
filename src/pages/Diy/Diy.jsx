@@ -158,7 +158,7 @@ const Diy = () => {
           <h2>🎉 DIY 패키지를 응원해주세요!</h2>
           {/* 검색과 필터링 */}
           <div className={styles.search_filter}>
-            <SearchInput />
+            <SearchInput setPage={setPage} />
             <div className={styles.filter_order}>
               <DiyFilterButton setPage={setPage} />
               {/* 정렬 버튼 */}
