@@ -37,6 +37,13 @@ const ProductList = ({ endpoint }) => {
   const startIndex = (page - 1) * pageSize;
   const currentProducts = products.slice(startIndex, startIndex + pageSize);
 
+  // 복합 key 생성 함수
+  const generateKey = (product) => {
+    if (!product) return 'unknown';
+    const productData = product.product || product;
+    return `${productData.productNum || 'unknown'}-${productData.productName || 'unknown'}-${productData.price || 'unknown'}`;
+  };
+
   if (loading) {
     return (
       <ul className={styles.product_cards}>
@@ -66,9 +73,9 @@ const ProductList = ({ endpoint }) => {
     return (
       <>
         <ul className={styles.product_cards}>
-          {currentProducts.map((product, index) => (
-            <li key={`productList-${product.productNum}`}>
-              <ProductCard02 key={index} productData={product} />
+          {currentProducts.map((product) => (
+            <li key={generateKey(product)}>
+              <ProductCard02 productData={product} />
             </li>
           ))}
         </ul>
@@ -87,7 +94,7 @@ const ProductList = ({ endpoint }) => {
     <>
       <ul className={styles.product_cards}>
         {currentProducts.map((product) => (
-          <li key={`productList02-${product.productNum}`}>
+          <li key={generateKey(product)}>
             <ProductCard {...product} />
           </li>
         ))}

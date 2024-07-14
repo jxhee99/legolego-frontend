@@ -69,7 +69,7 @@ const Product = () => {
     if (recruitmentCloseProduct.length === 1) {
       return (
         <ProductProcessCard
-          key={recruitmentCloseProduct[0].product.productNum}
+          key={`process-${recruitmentCloseProduct[0].product.productNum}`}
           productData={recruitmentCloseProduct[0]}
         />
       );
@@ -83,7 +83,7 @@ const Product = () => {
         <Slider {...settings}>
           {recruitmentCloseProduct.map((product) => (
             <ProductProcessCard
-              key={`product-${product.product.productNum}`}
+              key={`process-${product.product.productNum}`}
               productData={product}
             />
           ))}
@@ -121,7 +121,7 @@ const Product = () => {
           <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
             {productData.latestProducts.slice(0, 7).map((product) => (
-              <li key={`product-${product.productNum}`}>
+              <li key={`latest-${product.productNum}`}>
                 <ProductCard {...product} />
               </li>
             ))}

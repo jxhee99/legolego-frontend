@@ -6,15 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
 
 const ProductCard02 = ({ productData }) => {
-
-  // 추가
-  if (!productData || !productData.product) {
+  if (!productData) {
     return <div>Product data is not available</div>;
   }
 
-  const { product, orderCount } = productData;
+  const product = productData.product || productData;
   const {
-    productNum,
+    productNum = 'unknown',
     productImage,
     productName,
     recruitmentDeadline,
