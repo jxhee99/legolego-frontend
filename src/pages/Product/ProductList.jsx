@@ -67,6 +67,7 @@ const ProductList = ({ endpoint }) => {
   }
 
   if (
+    endpoint === '/products/recruitmentClose' ||
     endpoint === '/products/sortByDeadlineDesc' ||
     endpoint === '/products/sortByPopular'
   ) {

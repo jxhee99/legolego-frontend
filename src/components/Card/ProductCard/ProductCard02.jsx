@@ -21,8 +21,6 @@ const ProductCard02 = ({ productData }) => {
     regDate,
   } = product;
 
-  console.log(product);
-
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
