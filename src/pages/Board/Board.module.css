@@ -73,7 +73,7 @@
 }
 
 .createPostButton:hover {
-  background-color: #2b124e;
+  opacity: 0.8;
 }
 
 .postList {
