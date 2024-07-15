@@ -1,11 +1,10 @@
 @font-face {
   font-family: 'SpoqaHanSansNeo-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
-
-
 
 /* Global */
 :root {
@@ -77,5 +76,23 @@ button {
 .layout {
   width: var(--size-max-width);
   margin: 110px auto 0;
-  padding:0 2rem 3rem 2rem;
+  padding: 0 2rem 3rem 2rem;
+}
+
+/* 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 12px; /* 스크롤바 너비 */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* 트랙 배경색 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9d9da; /* 스크롤바 색상 */
+  border-radius: 10px; /* 스크롤바 모서리 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 스크롤바 호버 색상 */
 }
