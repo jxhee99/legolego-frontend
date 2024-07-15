@@ -61,7 +61,7 @@ const Product = () => {
     }),
     []
   );
-
+  console.log(productData.products);
   const renderProductSlider = useMemo(() => {
     const { recruitmentCloseProduct } = productData;
     if (recruitmentCloseProduct.length === 0) return null;
@@ -120,7 +120,7 @@ const Product = () => {
         <div className={styles.latestUpdate}>
           <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
-            {productData.latestProducts.slice(0, 7).map((product) => (
+            {productData.latestProducts.slice(0, 3).map((product) => (
               <li key={`latest-${product.productNum}`}>
                 <ProductCard {...product} />
               </li>

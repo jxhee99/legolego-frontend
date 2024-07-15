@@ -56,7 +56,7 @@ const ProductCard = ({
             {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}{' '}
           </p>
         </div>
-        <p className={styles.price}>{price} 원</p>
+        <p className={styles.price}>{String(price).toLocaleString()} 원</p>
       </div>
     </div>
   );

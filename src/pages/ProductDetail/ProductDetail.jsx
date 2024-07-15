@@ -14,30 +14,7 @@ const PackageDetail = () => {
   const [activeSection, setActiveSection] = useState('airplane-info');
   const { productNum } = useParams();
   const { products, error } = useProductDetail(productNum);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const airplaneInfo = document.getElementById('airplane-info');
-      const scheduleInfo = document.getElementById('schedule-info');
-
-      if (airplaneInfo && scheduleInfo) {
-        const airplaneInfoTop = airplaneInfo.getBoundingClientRect().top;
-        const scheduleInfoTop = scheduleInfo.getBoundingClientRect().top;
-
-        if (airplaneInfoTop < window.innerHeight / 2 && airplaneInfoTop >= 0) {
-          setActiveSection('airplane-info');
-        } else if (
-          scheduleInfoTop < window.innerHeight / 2 &&
-          scheduleInfoTop >= 0
-        ) {
-          setActiveSection('schedule-info');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
+  console.log(products);
 
   if (error) {
     return <div>Error: {error.message}</div>;

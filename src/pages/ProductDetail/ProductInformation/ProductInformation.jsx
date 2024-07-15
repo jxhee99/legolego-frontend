@@ -17,6 +17,7 @@ const ProductInformation = ({
   wishlistCount: initialWishlistCount,
   orderCount,
   necessaryPeople,
+  userNickname,
 }) => {
   const navigate = useNavigate();
   const { productNum } = useParams();
@@ -95,6 +96,12 @@ const ProductInformation = ({
         <h2 className={styles.title}>{productName}</h2>
         <div className={styles.stats}>
           <div className={styles.statItem}>
+            <span className={styles.statLabel}>모집 인원</span>
+            <span className={`${styles.statValue} ${styles.fundingAmount}`}>
+              {necessaryPeople}명
+            </span>
+          </div>
+          <div className={styles.statItem}>
             <span className={styles.statLabel}>참여 인원</span>
             <span className={`${styles.statValue} ${styles.fundingAmount}`}>
               {orderCount}명
@@ -103,7 +110,7 @@ const ProductInformation = ({
           <div className={styles.statItem}>
             <span className={styles.statLabel}>달성률</span>
             <span className={`${styles.statValue} ${styles.fundingPercentage}`}>
-              {progressPercentage}%
+              {progressPercentage.toFixed(1)}%
             </span>
           </div>
           <div className={styles.statItem}>
@@ -116,6 +123,12 @@ const ProductInformation = ({
             <span className={styles.statLabel}>마감일</span>
             <span className={`${styles.statValue} ${styles.deadline}`}>
               {formatDateTime(recruitmentDeadline)}
+            </span>
+          </div>
+          <div className={styles.statItem}>
+            <span className={styles.statLabel}>DIY made by.</span>
+            <span className={`${styles.statValue} ${styles.deadline}`}>
+              {userNickname}
             </span>
           </div>
         </div>
@@ -134,9 +147,10 @@ const ProductInformation = ({
               </button>
             ) : (
               <button className={styles.likeButton} onClick={handleCancelWish}>
-              <FavoriteIcon style={{ color: '#FE7171' }} /> {/* 빨간색 아이콘 */}
-              {wishlistCount}
-            </button>
+                <FavoriteIcon style={{ color: '#FE7171' }} />{' '}
+                {/* 빨간색 아이콘 */}
+                {wishlistCount}
+              </button>
             )}
             <span className={styles.shareButton}>
               <RemoveRedEyeIcon /> {productViewNum}
