@@ -22,6 +22,15 @@ const ProductProcessCard = ({ productData }) => {
     100
   );
 
+  // 문자열을 10글자로 제한하고 나머지는 ...으로 대체하는 함수
+  const truncateString = (str, num) => {
+    if (str.length > num) {
+      return str.slice(0, num) + '···';
+    } else {
+      return str;
+    }
+  };
+
   return (
     <div
       className={styles.card}
@@ -31,7 +40,7 @@ const ProductProcessCard = ({ productData }) => {
         <img src={productImage} alt={productName} />
       </div>
       <div className={styles.content}>
-        <h2 className={styles.title}>{productName}</h2>
+        <h2 className={styles.title}>{truncateString(productName, 13)}</h2> {/* 변경된 부분 */}
         <p className={styles.category}>{partnerName}</p>
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.deadline}>
@@ -51,7 +60,7 @@ const ProductProcessCard = ({ productData }) => {
         </div>
       </div>
       {progressPercentage < 100 && (
-        <span className={styles.badge}>마감 임박!</span>
+        <span className={styles.badge}>모집 임박!</span>
       )}
     </div>
   );

@@ -1,4 +1,6 @@
-/* HomeNavigation 스타일 */
+
+
+/* 나머지 스타일 */
 .HomeNavigation {
   display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
@@ -80,7 +82,7 @@
 
 /* PackageSection 스타일 */
 .PackageSection {
-  margin: 3rem auto;
+  margin: 0rem auto;
 }
 
 .PackageSection h2 {
@@ -101,7 +103,7 @@
 
 /* DiySection 스타일 */
 .DiySection {
-  padding: 3.5rem 3rem 3rem;
+  padding: 0 3rem 3rem;
 }
 
 .DiySection h2 {
@@ -112,17 +114,36 @@
   display: flex;
   justify-content: center;
   gap: 1.75rem;
-  margin-top: 3rem;
 }
 
 .DiySection .diy_title {
   position: relative;
 }
 
+.textButton {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.875rem;
+}
+
+.textButton_main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textButton_text {
+  flex: left;
+}
+
+.textButton_button {
+  flex: right;
+}
+
+.title {
+  flex: 1;
+}
+
 .more_button {
-  position: absolute;
-  top: 0;
-  right: 10px;
   background-color: #fe7171;
   border: none;
   color: white;
@@ -131,9 +152,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
-  margin-right: 10%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   cursor: pointer;
   border-radius: 20px;
   transition: background-color 0.3s ease;
@@ -141,6 +159,26 @@
 
 .more_button:hover {
   background-color: #da4242;
+  transform: scale(1.1);
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .blank {

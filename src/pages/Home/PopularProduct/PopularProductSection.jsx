@@ -1,10 +1,10 @@
-import styles from './ProductCardSection.module.css';
+import styles from './PopularProductSection.module.css';
 import { useState, useEffect } from 'react';
 import ProductCard from '../../../components/Card/ProductCard/ProductCard';
 import Metas from '../../../components/common/Metas';
 import apiClient from '../../../api/apiClient';
 
-const ProductCardSection = () => {
+const PopularProductSection = () => {
   const [allProductData, setAllProductData] = useState([]);
   const [displayedData, setDisplayedData] = useState([]);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -13,7 +13,7 @@ const ProductCardSection = () => {
 
   const fetchData = async () => {
     try {
-      const response = await apiClient.get('/products/recruitmentClose');
+        const response = await apiClient.get(`/products/sortByPopular`);
       setAllProductData(response.data);
       setDisplayedData(response.data.slice(0, itemsPerPage));
     } catch (error) {
@@ -71,4 +71,4 @@ const ProductCardSection = () => {
   );
 };
 
-export default ProductCardSection;
+export default PopularProductSection;
