@@ -4,7 +4,6 @@ export const month = [
 ];
 
 export const destination = [
-  '인천',
   '호치민/호찌민',
   '후쿠오카',
   '오사카/간사이',

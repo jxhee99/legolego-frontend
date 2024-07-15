@@ -13,9 +13,15 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
   const [newContent, setNewContent] = useState(comment.content);
 
   const isCommentOwner =
-    (role === 'USER' && comment.userNum && comment.userNum.toString() === userNum) ||
-    (role === 'PARTNER' && comment.partnerNum && comment.partnerNum.toString() === userNum) ||
-    (role === 'ADMIN' && comment.adminNum && comment.adminNum.toString() === userNum);
+    (role === 'USER' &&
+      comment.userNum &&
+      comment.userNum.toString() === userNum) ||
+    (role === 'PARTNER' &&
+      comment.partnerNum &&
+      comment.partnerNum.toString() === userNum) ||
+    (role === 'ADMIN' &&
+      comment.adminNum &&
+      comment.adminNum.toString() === userNum);
 
   const isAdmin = role === 'ADMIN';
 
@@ -25,7 +31,10 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
 
   const handleEdit = async () => {
     try {
-      await apiClient.patch(`/posts/${postNum}/comments/${comment.commentNum}`, { content: newContent });
+      await apiClient.patch(
+        `/posts/${postNum}/comments/${comment.commentNum}`,
+        { content: newContent }
+      );
       setIsEditing(false);
       fetchComments();
     } catch (error) {
@@ -35,7 +44,9 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
 
   const handleDelete = async () => {
     try {
-      await apiClient.delete(`/posts/${postNum}/comments/${comment.commentNum}`);
+      await apiClient.delete(
+        `/posts/${postNum}/comments/${comment.commentNum}`
+      );
       fetchComments();
     } catch (error) {
       console.error('Error deleting comment:', error);
@@ -49,16 +60,33 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
   return (
     <div className={`${styles.commentItem} ${isReply ? styles.replyItem : ''}`}>
       <div className={styles.commentHeader}>
-        <div className={styles.commentAuthor}>{comment.userNickname ? `${comment.userNickname}` : comment.companyName ? `${comment.companyName}` : `${comment.adminName}`}</div>
+        <div className={styles.commentAuthor}>
+          {comment.userNickname
+            ? `${comment.userNickname}`
+            : comment.companyName
+              ? `${comment.companyName}`
+              : `${comment.adminName}`}
+        </div>
         <div className={styles.commentActions}>
           {isCommentOwner && (
             <>
-              <EditIcon className={styles.commentItemEditBtn} onClick={() => setIsEditing(true)} />
-              <DeleteIcon className={styles.commentItemDeleteBtn} onClick={handleDelete} />
+              <EditIcon
+                className={styles.commentItemEditBtn}
+                onClick={() => setIsEditing(true)}
+                fontSize="small"
+              />
+              <DeleteIcon
+                className={styles.commentItemDeleteBtn}
+                onClick={handleDelete}
+                fontSize="small"
+              />
             </>
           )}
           {isAdmin && !isCommentOwner && (
-            <DeleteIcon className={styles.deleteButton} onClick={handleDelete} />
+            <DeleteIcon
+              className={styles.deleteButton}
+              onClick={handleDelete}
+            />
           )}
         </div>
       </div>
@@ -71,8 +99,15 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
               onChange={(e) => setNewContent(e.target.value)}
               required
             />
-            <button onClick={handleEdit} className={styles.commentItemSaveBtn}>저장</button>
-            <button onClick={() => setIsEditing(false)} className={styles.commentItemCancelBtn}>취소</button>
+            <button onClick={handleEdit} className={styles.commentItemSaveBtn}>
+              저장
+            </button>
+            <button
+              onClick={() => setIsEditing(false)}
+              className={styles.commentItemCancelBtn}
+            >
+              취소
+            </button>
           </>
         ) : (
           <p>{comment.content}</p>
@@ -80,14 +115,28 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
       </div>
       <div className={styles.commentFooter}>
         <span className={styles.commentDate}>{comment.regDate}</span>
-        <button onClick={handleReplyClick} className={styles.replyButton}>답글쓰기</button>
+        <button onClick={handleReplyClick} className={styles.replyButton}>
+          답글쓰기
+        </button>
       </div>
       {showReplyForm && (
-        <CommentForm postNum={postNum} parentCommentNum={comment.commentNum} fetchComments={fetchComments} onSubmitSuccess={handleReplySuccess} />
+        <CommentForm
+          postNum={postNum}
+          parentCommentNum={comment.commentNum}
+          fetchComments={fetchComments}
+          onSubmitSuccess={handleReplySuccess}
+        />
       )}
-      {comment.replies && comment.replies.map(reply => (
-        <CommentItem key={reply.commentNum} comment={reply} postNum={postNum} fetchComments={fetchComments} isReply={true} />
-      ))}
+      {comment.replies &&
+        comment.replies.map((reply) => (
+          <CommentItem
+            key={reply.commentNum}
+            comment={reply}
+            postNum={postNum}
+            fetchComments={fetchComments}
+            isReply={true}
+          />
+        ))}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import MyBoard from './MyBoard';
 import PostList from './Post/PostList';
 import styles from './Board.module.css';
 import PaginationComp from '../../components/Pagination/PaginationComp';
+import Metas from '../../components/common/Metas';
 
 const Board = () => {
   const user = localStorage.getItem('role');
@@ -89,53 +90,56 @@ const Board = () => {
   };
 
   return (
-    <div className={styles.board_box}>
-      <div className={styles.board}>
-        {!user ? (
-          <h2>ALL</h2>
-        ) : (
-          <>
-            <h2 onClick={() => handleClickMy('')}>ALL</h2>
-            <h2 onClick={() => handleClickMy('my')}>MY</h2>
-          </>
-        )}
+    <>
+      <Metas title={'커뮤니티'} />
+      <div className={styles.board_box}>
+        <div className={styles.board}>
+          {!user ? (
+            <h2>ALL</h2>
+          ) : (
+            <>
+              <h2 onClick={() => handleClickMy('')}>ALL</h2>
+              <h2 onClick={() => handleClickMy('my')}>MY</h2>
+            </>
+          )}
 
-        {my === 'my' ? (
-          <MyBoard
-            handleSortChange={handleSortChange}
-            handleCreatePost={handleCreatePost}
-            sortOrder={sortOrder}
-          />
-        ) : (
-          <CommuntyBoard
-            selectedCategory={selectedCategory}
-            searchKeyword={searchKeyword}
-            setSearchKeyword={setSearchKeyword}
-            setSelectedCategory={setSelectedCategory}
-            handleCreatePost={handleCreatePost}
-            sortOrder={sortOrder}
-            setAllPosts={setAllPosts}
-            setPage={setPage}
-            handleSortChange={handleSortChange}
-          />
-        )}
+          {my === 'my' ? (
+            <MyBoard
+              handleSortChange={handleSortChange}
+              handleCreatePost={handleCreatePost}
+              sortOrder={sortOrder}
+            />
+          ) : (
+            <CommuntyBoard
+              selectedCategory={selectedCategory}
+              searchKeyword={searchKeyword}
+              setSearchKeyword={setSearchKeyword}
+              setSelectedCategory={setSelectedCategory}
+              handleCreatePost={handleCreatePost}
+              sortOrder={sortOrder}
+              setAllPosts={setAllPosts}
+              setPage={setPage}
+              handleSortChange={handleSortChange}
+            />
+          )}
 
-        <PostList
-          posts={posts}
-          currentPage={page}
-          itemsPerPage={itemsPerPage}
-        />
-        <div className={styles.pagenation_box}>
-          <PaginationComp
-            page={page}
-            setPage={setPage}
-            totalItems={allPosts.length}
+          <PostList
+            posts={posts}
+            currentPage={page}
             itemsPerPage={itemsPerPage}
-            filterApplied={sortOrder === 'category' ? selectedCategory : ''}
           />
+          <div className={styles.pagenation_box}>
+            <PaginationComp
+              page={page}
+              setPage={setPage}
+              totalItems={allPosts.length}
+              itemsPerPage={itemsPerPage}
+              filterApplied={sortOrder === 'category' ? selectedCategory : ''}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
