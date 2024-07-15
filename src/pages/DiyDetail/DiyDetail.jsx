@@ -10,6 +10,7 @@ import useFetchData from '../../hooks/useFetchDiyData';
 import Metas from '../../components/common/Metas';
 import WriterControls from './DetailButton/WriterControls';
 import CheerButton from './DetailButton/CheerButton';
+import GobackButton from './DetailButton/GobackButton';
 import RecommendProduct from './RecommendProduct/RecommendProduct';
 
 const DiyDetail = () => {
@@ -121,6 +122,7 @@ const DiyDetail = () => {
         </div>
         {<DiyDetailAirplane airline={airline} />}
         {<DiyDetailSchedule schedule={schedule} />}
+        {<GobackButton />}
         {<RecommendProduct destination={airline.destination} />}
       </div>
     </>
