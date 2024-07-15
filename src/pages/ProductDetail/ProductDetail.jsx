@@ -14,7 +14,6 @@ const PackageDetail = () => {
   const [activeSection, setActiveSection] = useState('airplane-info');
   const { productNum } = useParams();
   const { products, error } = useProductDetail(productNum);
-  console.log(products);
 
   if (error) {
     return <div>Error: {error.message}</div>;

@@ -36,7 +36,7 @@ const ProductInformation = ({
           `/user/products/${productNum}/wishlist/status`
         );
         if (response.status === 200) {
-          setIsWished(response.data.isWished);
+          setIsWished(response.data);
         } else {
           console.error('Failed to load wishlist status:', response.status);
         }
