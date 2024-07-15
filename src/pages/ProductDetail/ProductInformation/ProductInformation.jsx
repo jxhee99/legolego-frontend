@@ -147,9 +147,7 @@ const ProductInformation = ({
               </button>
             ) : (
               <button className={styles.likeButton} onClick={handleCancelWish}>
-                <FavoriteIcon style={{ color: '#FE7171' }} />{' '}
-                {/* 빨간색 아이콘 */}
-                {wishlistCount}
+                <FavoriteIcon style={{ color: '#FE7171' }} /> {wishlistCount}
               </button>
             )}
             <span className={styles.shareButton}>
