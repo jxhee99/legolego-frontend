@@ -36,7 +36,7 @@ const ProductInformation = ({
           `/user/products/${productNum}/wishlist/status`
         );
         if (response.status === 200) {
-          setIsWished(response.data.isWished);
+          setIsWished(response.data);
         } else {
           console.error('Failed to load wishlist status:', response.status);
         }
@@ -147,9 +147,7 @@ const ProductInformation = ({
               </button>
             ) : (
               <button className={styles.likeButton} onClick={handleCancelWish}>
-                <FavoriteIcon style={{ color: '#FE7171' }} />{' '}
-                {/* 빨간색 아이콘 */}
-                {wishlistCount}
+                <FavoriteIcon style={{ color: '#FE7171' }} /> {wishlistCount}
               </button>
             )}
             <span className={styles.shareButton}>

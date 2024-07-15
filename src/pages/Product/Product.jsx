@@ -61,7 +61,7 @@ const Product = () => {
     }),
     []
   );
-  console.log(productData.products);
+
   const renderProductSlider = useMemo(() => {
     const { recruitmentCloseProduct } = productData;
     if (recruitmentCloseProduct.length === 0) return null;
