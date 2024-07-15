@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
+import apiClient from '../../../api/apiClient';
 
 const ProductCard02 = ({ productData }) => {
   if (!productData) {
@@ -17,21 +18,75 @@ const ProductCard02 = ({ productData }) => {
     productName,
     recruitmentDeadline,
     price,
-    wishlistCount,
+    wishlistCount: initialWishlistCount,
     regDate,
   } = product;
-
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(initialWishlistCount);
+
+  useEffect(() => {
+    if (!productNum) {
+      console.error('Product Number is undefined');
+      return;
+    }
+
+    const fetchWishStatus = async () => {
+      try {
+        const response = await apiClient.get(
+          `/user/products/${productNum}/wishlist/status`
+        );
+        if (response.status === 200) {
+          setIsFavorite(response.data);
+        } else {
+          console.error('Failed to load wishlist status:', response.status);
+        }
+      } catch (error) {
+        console.error('Error loading wishlist status:', error);
+      }
+    };
+
+    fetchWishStatus();
+  }, [productNum]);
 
   const handlePackageCardClick = () => {
     navigate(`/product/${productNum}`);
   };
 
-  const handleFavoriteClick = (e) => {
+  const handleWishNum = async (e) => {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    try {
+      const response = await apiClient.post(
+        `/user/products/${productNum}/wishlist`,
+        {}
+      );
+      if (response.status === 201) {
+        setIsFavorite(true);
+        setWishlistCount(wishlistCount + 1);
+      } else {
+        console.error('Failed to add to wishlist:', response.status);
+      }
+    } catch (error) {
+      console.error('Error updating wishlist:', error);
+    }
+  };
+
+  const handleCancelWish = async (e) => {
+    e.stopPropagation();
+    try {
+      const response = await apiClient.delete(
+        `/user/products/${productNum}/wishlist`
+      );
+      if (response.status === 204) {
+        setIsFavorite(false);
+        setWishlistCount(wishlistCount - 1);
+      } else {
+        console.error('Failed to cancel wishlist:', response.status);
+      }
+    } catch (error) {
+      console.error('Error canceling wishlist:', error);
+    }
   };
 
   return (
@@ -45,14 +100,19 @@ const ProductCard02 = ({ productData }) => {
       <div className={styles.content}>
         <div className={styles.content_title}>
           <h3 className={styles.title}>{productName}</h3>
-          <div className={styles.likes} onClick={handleFavoriteClick}>
+          <div className={styles.likes}>
             <span>{wishlistCount}</span>
-            {isFavorite ? (
-              <FavoriteIcon
+            {!isFavorite ? (
+              <button
                 className={`${styles.heartIcon} ${styles.favorited}`}
-              />
+                onClick={handleWishNum}
+              >
+                <FavoriteBorderIcon />
+              </button>
             ) : (
-              <FavoriteBorderIcon className={styles.heartIcon} />
+              <button className={styles.heartIcon} onClick={handleCancelWish}>
+                <FavoriteIcon />
+              </button>
             )}
           </div>
         </div>
