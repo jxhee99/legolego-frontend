@@ -1,4 +1,4 @@
-.postFormContainer {
+/* .postFormContainer {
   width: 60%;
   margin: 0 auto;
   padding: 40px;
@@ -26,7 +26,7 @@
   font-weight: bold;
 }
 
-.createPost input[type="text"],
+.createPost input[type='text'],
 .createPost textarea,
 .createPost select {
   width: 100%;
@@ -49,7 +49,73 @@
 .postFormSubmitBtn,
 .postFormCancelBtn {
   display: inline-block;
-  background: #8338EC;
+  background: #8338ec;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.postFormSubmitBtn:hover,
+.postFormCancelBtn:hover {
+  background-color: #ab7bef;
+} */
+
+/* 수정본 */
+.postFormContainer {
+  max-width: 960px;
+  margin: 5rem auto;
+  padding: 40px;
+  background-color: #f8f5fc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.postFormTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.createPost {
+  margin-bottom: 30px;
+}
+
+.createPost label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.createPost input[type='text'],
+.createPost textarea,
+.createPost select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid#ebe9e9;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.createPost textarea {
+  height: 200px;
+  resize: none;
+}
+
+.postFormBtn {
+  display: flex;
+  gap: 15px;
+}
+
+.postFormSubmitBtn,
+.postFormCancelBtn {
+  display: inline-block;
+  background: #8338ec;
   color: white;
   border: none;
   padding: 10px 20px;

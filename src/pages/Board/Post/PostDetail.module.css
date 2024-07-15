@@ -1,4 +1,4 @@
-.postDetail {
+/* .postDetail {
   width: 80%;
   margin: 0 auto;
   margin-top: 20px;
@@ -81,4 +81,88 @@
 .postDetailDivider {
   border-bottom: 1px solid #ccc;
   margin-bottom: 30px;
+} */
+
+/* 수정본 */
+
+.postDetail {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 20px;
+  background-color: #f8f5fc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.postDetailTitle {
+  font-size: 2em;
+  font-weight: bold;
+  padding: 1rem 0;
+  margin-top: 0;
+  text-align: left;
+  display: block;
+  border-bottom: 1px solid #ebe9e9;
+}
+
+.postDetailCategory {
+  display: flex;
+  color: #cd70f5;
+}
+
+.postDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.postDetailLeft {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.postDetailRight {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.postDetailViewIcon,
+.postDetailCommentIcon {
+  vertical-align: middle;
+}
+
+.postDetailContent {
+  font-size: 1.2em;
+  line-height: 1.6;
+  background-color: #fff;
+  padding: 1rem;
+  min-height: 30vh;
+  margin-bottom: 1rem;
+}
+
+.postDetailButtonGroup {
+  display: flex;
+  margin-left: auto;
+}
+
+.postDetailEditButton,
+.postDetailDeleteButton {
+  background: none;
+  color: black;
+  cursor: pointer;
+}
+
+.postDetailEditButton:hover,
+.postDetailDeleteButton:hover {
+  opacity: 0.8;
+}
+
+.postDetailAdminDeleteBtn {
+  display: flex;
+  margin-left: auto;
 }

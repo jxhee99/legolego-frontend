@@ -13,7 +13,10 @@ const SearchBar = ({
         <input
           type="text"
           value={searchKeyword}
-          onChange={(e) => setSearchKeyword(e.target.value)}
+          onChange={(e) => {
+            sessionStorage.removeItem('communitySearch');
+            setSearchKeyword(e.target.value);
+          }}
           placeholder={selectedCategory}
         />
         <button type="submit" className={styles.searchButton}>

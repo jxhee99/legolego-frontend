@@ -1,36 +1,36 @@
 .commentForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
 }
-  
+
 .commentFormTextarea {
-    width: 100%;
-    height: 80px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    resize: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  resize: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-  
+
 .commentFormButton {
-    background: #8338EC;
-    height: 35px;
-    width: 60px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 50px;
-    position: relative;
-    display: inline-block;
-    margin-left: auto;
-    border: none;
-    font: 1.05rem poppins;
-    color: #fff;
+  background: #8338ec;
+  height: 35px;
+  width: 60px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  border: none;
+  font: 1.05rem poppins;
+  color: #fff;
 }
 
 .commentFormButton:hover {
-    background-color: #ab7bef;
+  background-color: #ab7bef;
 }
