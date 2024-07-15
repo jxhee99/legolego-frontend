@@ -57,9 +57,9 @@ const DiyPackage = () => {
                   ? '정식상품 등록완료'
                   : diy.isSelected
                   ? '여행사 제안 완료'
-                  : '응원 받는 중 🎈'}
+                  : '응원 받는 중 📣'}
               </span></td>
-              <td> <span style={{ fontWeight: 'bold' }}>{diy.packageLikedNum}</span> / 25
+              <td> <span style={{ fontWeight: 'bold' }}>{diy.packageLikedNum}</span> 
               </td>
              <td>{new Date(diy.airline.boardingDate).toLocaleDateString()}</td> 
               <td>{new Date(diy.regDate).toLocaleDateString()}</td>

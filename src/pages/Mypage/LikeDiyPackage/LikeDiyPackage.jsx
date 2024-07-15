@@ -59,7 +59,7 @@ const LikeDiyPackage = () => {
               <td><Link to={`/diy/${item.packageNum}`}>{item.packageName}</Link></td>
               <td>{new Date(item.airline.boardingDate).toLocaleDateString()}</td>
               <td>
-              <span style={{ fontWeight: 'bold' }}>{item.packageLikedNum}</span> / 25
+              <span style={{ fontWeight: 'bold' }}>{item.packageLikedNum}</span>
               </td>
             </tr>
           ))}
