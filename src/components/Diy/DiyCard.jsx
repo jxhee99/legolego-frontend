@@ -9,8 +9,14 @@ import Face4Icon from '@mui/icons-material/Face4';
 import Face5Icon from '@mui/icons-material/Face5';
 import Face6Icon from '@mui/icons-material/Face6';
 
-
-const iconComponents = [FaceIcon, Face2Icon, Face3Icon, Face4Icon, Face5Icon, Face6Icon];
+const iconComponents = [
+  FaceIcon,
+  Face2Icon,
+  Face3Icon,
+  Face4Icon,
+  Face5Icon,
+  Face6Icon,
+];
 
 const DiyCard = ({
   packageNum,
@@ -32,12 +38,12 @@ const DiyCard = ({
 
   // boardingDate와 비교하여 이미 지난 날짜인지 확인
   const isPastDate = new Date(airline.boardingDate) < currentDate;
-    // 아이콘 랜덤 선택 함수
-    const getRandomIcon = () => {
-      const randomIndex = Math.floor(Math.random() * iconComponents.length);
-      const ChosenIcon = iconComponents[randomIndex];
-      return <ChosenIcon style={{ fontSize: '0.8rem', color: '#888' }} />;
-    };
+  // 아이콘 랜덤 선택 함수
+  const getRandomIcon = () => {
+    const randomIndex = Math.floor(Math.random() * iconComponents.length);
+    const ChosenIcon = iconComponents[randomIndex];
+    return <ChosenIcon style={{ fontSize: '0.8rem', color: '#888' }} />;
+  };
 
   return (
     <div
@@ -58,12 +64,14 @@ const DiyCard = ({
           {new Date(airline.comingDate).toLocaleDateString()}
         </div>
         <div>
-          <strong>나라 |</strong> {airline.destination}
+          <strong>여행지 |</strong> {airline.destination}
         </div>
         <div className={styles.icon_box}>
           <div className={styles.user_box}>
-
-           <div>        {getRandomIcon()} {user.userNickname}</div>
+            <div>
+              {' '}
+              {getRandomIcon()} {user.userNickname}
+            </div>
           </div>
           <div className={styles.likes}>
             <ThumbUpIcon fontSize="0.1rem" className={styles.thumb_icon} />

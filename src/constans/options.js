@@ -5,7 +5,7 @@ export const OPTIONS = [
   'KIX, 오사카/간사이',
   'HKG, 홍콩',
   'PVG, 상하이/푸동',
-  'BKK, 수완나품',
+  'BKK, 방콕/수완나품',
   'TPE, 타이페이/타오위안',
   'JFK, 뉴욕/존에프케네디',
   'CDG, 파리',
@@ -27,5 +27,8 @@ export const OPTIONS = [
   'YVR, 밴쿠버',
   'MEX, 멕시코시티',
   'CPT, 케이프타운',
-  'MEL, 멜버른'
+  'MEL, 멜버른',
+  'ANC, 알래스카/앵커리지',
+  'CAI, 이집트/카이로',
+  'ACC, 가나/아크라'
 ];

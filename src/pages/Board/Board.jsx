@@ -20,13 +20,14 @@ const Board = () => {
   const [sortOrder, setSortOrder] = useState('category');
   const [selectedCategory, setSelectedCategory] = useState(initialFilter);
   const [searchKeyword, setSearchKeyword] = useState('');
+  const [reset, setReset] = useState(false);
   const [my, setMy] = useState('');
   const itemsPerPage = 10;
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchAllPosts();
-  }, [sortOrder, selectedCategory]);
+  }, [sortOrder, selectedCategory, reset]);
 
   useEffect(() => {
     paginatePosts();
@@ -34,6 +35,7 @@ const Board = () => {
 
   const fetchAllPosts = async () => {
     const url = getUrl(sortOrder, selectedCategory, setSearchKeyword);
+    console.log(url);
     try {
       const response = await apiClient.get(url);
       setAllPosts(response.data);
@@ -52,16 +54,19 @@ const Board = () => {
   const handleSortChange = async (order) => {
     await new Promise((resolve) => {
       setPage(1);
+      setSearchKeyword('');
+      sessionStorage.removeItem('communitySearch');
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.delete('searched');
       resolve();
     });
     if (order === 'all') {
       setSelectedCategory('');
+      //검색상태 초기화를 위한 용
+      setReset(!reset);
     }
     setSortOrder(order);
-    setSearchKeyword('');
-    sessionStorage.removeItem('communitySearch');
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.delete('searched');
+    console.log(order);
     navigate('.', { replace: true });
   };
 
