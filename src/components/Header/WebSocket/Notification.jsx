@@ -139,7 +139,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import apiClient from '../../../api/apiClient';
 import websocketService from '../../WebSocketService'; // WebSocket 서비스 import
-import styles from './Notification.module.css'; // 스타일 파일을 추가합니다.
+import styles from './Notification.module.css'; // 스타일 파일을 추가
 import { AuthContext } from '../../../contexts/AuthContext';
 
 const Notification = ({ role }) => {
@@ -151,19 +151,22 @@ const Notification = ({ role }) => {
   const { userNum, accesstoken } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log('AuthContext values:', { userNum, accesstoken }); // AuthContext 값 로그 출력
-    if (userNum && accesstoken) {
+    console.log('AuthContext values:', { userNum, accesstoken, role }); // AuthContext 값 로그 출력
+    if (userNum && accesstoken && role) {
       // token 조건 추가
       console.log(`Connecting to WebSocket for user ${userNum}`);
       websocketService.connect(userNum, accesstoken, (message) => {
         // token 추가
         console.log('New message: ', message);
-        setNotifications((prevNotifications) => [
-          ...prevNotifications,
-          message,
-        ]);
+        // 필터링 로직 추가
+        if (message.userNum === userNum && message.role === role) {
+            setNotifications((prevNotifications) => [
+              ...prevNotifications,
+              message,
+            ]);
         setHasNewNotification(true); // 새로운 알림이 도착하면 상태를 업데이트
         console.log('setHasNewNotification', true);
+        }
       });
 
       return () => {
