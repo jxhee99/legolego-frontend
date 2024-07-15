@@ -63,11 +63,14 @@
   text-shadow: 3px;
   bottom: 225px;
   right: 100px;
+  color: white;
   text-shadow: 1px 1px 5px black;
 }
 .diyBackground.scrolled p {
-  opacity: 0; /* 스크롤 후: 텍스트가 숨김 */
+  opacity: 0; 
+  text-shadow:none;
 }
+
 /* 버튼 기본 스타일 */
 .create_button {
   width: 190px;

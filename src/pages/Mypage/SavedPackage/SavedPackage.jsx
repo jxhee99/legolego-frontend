@@ -65,7 +65,7 @@ const SavedPackage = () => {
           {savedList.map((item) => (
             <tr key={item.wishlistNum}>
               <td>{item.wishlistNum}</td>
-              <td><Link to={`/package-product/${item.productNum}`}>
+              <td><Link to={`/product/${item.productNum}`}>
                 {item.productName}
               </Link></td>
               <td>{item.productPrice}</td>

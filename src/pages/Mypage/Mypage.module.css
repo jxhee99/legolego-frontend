@@ -56,13 +56,12 @@
   display: inline-block;
   padding: 4px 8px;
   border-radius: 4px;
-  background-color: #5FA8D6;
-  /* background-color: #e0f7fa; */
-  color: white;
+  border: 2px solid #5FA8D6; /* 테두리 추가 */
+  background-color: transparent; /* 배경색 제거 */
+  color: #5FA8D6; /* 텍스트 색상 */
+  font-weight: bold; /* 글자 두껍게 */
 }
-.LikeDiyPackage p {
-  color: red;
-}
+
 
 /*diy-price 필터버튼 */
 .price_list_filter {
