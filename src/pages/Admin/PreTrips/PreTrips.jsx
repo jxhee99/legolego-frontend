@@ -160,7 +160,7 @@ const PreTrips = () => {
         <PaginationComp
           page={page}
           setPage={setPage}
-          totalItems={data.length}
+          totalItems={filteredData.length}
           itemsPerPage={itemsPerPage}
           filterApplied={filter}
         />
