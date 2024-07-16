@@ -55,6 +55,7 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
 
   const handleReplySuccess = () => {
     setShowReplyForm(false);
+    fetchComments();
   };
 
   return (
@@ -110,7 +111,7 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
             </button>
           </>
         ) : (
-          <p>{comment.content}</p>
+          <p>{comment.isDeleted ? "삭제된 댓글입니다." : comment.content}</p>
         )}
       </div>
       <div className={styles.commentFooter}>
@@ -121,22 +122,25 @@ const CommentItem = ({ comment, postNum, fetchComments, isReply = false }) => {
       </div>
       {showReplyForm && (
         <CommentForm
-          postNum={postNum}
           parentCommentNum={comment.commentNum}
+          postNum={postNum}
           fetchComments={fetchComments}
           onSubmitSuccess={handleReplySuccess}
         />
       )}
-      {comment.replies &&
-        comment.replies.map((reply) => (
-          <CommentItem
-            key={reply.commentNum}
-            comment={reply}
-            postNum={postNum}
-            fetchComments={fetchComments}
-            isReply={true}
-          />
-        ))}
+      {comment.replies && comment.replies.length > 0 && (
+        <div className={styles.replies}>
+          {comment.replies.map(reply => (
+            <CommentItem
+              key={reply.commentNum}
+              comment={reply}
+              postNum={postNum}
+              fetchComments={fetchComments}
+              isReply={true}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
