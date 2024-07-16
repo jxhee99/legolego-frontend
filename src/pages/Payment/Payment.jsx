@@ -49,7 +49,7 @@ const PaymentPage = () => {
                           }
                       } else {
                           alert('결제를 실패하였습니다.');
-                          navigate(`/order/${product.productNum}`);
+                          navigate(`/product/${product.productNum}`);
                       }
                   });
               } else {
