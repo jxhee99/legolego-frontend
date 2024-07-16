@@ -68,18 +68,19 @@ const Product = () => {
 
     if (recruitmentCloseProduct.length === 1) {
       return (
-        <ProductProcessCard
-          key={`process-${recruitmentCloseProduct[0].product.productNum}`}
-          productData={recruitmentCloseProduct[0]}
-        />
+        <>
+          <h2 className={styles.closeTitle}>모집 임박 상품</h2>
+          <ProductProcessCard
+            key={`process-${recruitmentCloseProduct[0].product.productNum}`}
+            productData={recruitmentCloseProduct[0]}
+          />
+        </>
       );
     }
 
     return (
       <>
-        <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>
-          모집임박한 패키지
-        </h2>
+        <h2 className={styles.closeTitle}>모집 임박 상품</h2>
         <Slider {...settings}>
           {recruitmentCloseProduct.map((product) => (
             <ProductProcessCard
@@ -120,7 +121,7 @@ const Product = () => {
         <div className={styles.latestUpdate}>
           <h2>최신 등록된 패키지</h2>
           <ul className={styles.product_cards}>
-            {productData.latestProducts.slice(0, 7).map((product) => (
+            {productData.latestProducts.slice(0, 3).map((product) => (
               <li key={`latest-${product.productNum}`}>
                 <ProductCard {...product} />
               </li>

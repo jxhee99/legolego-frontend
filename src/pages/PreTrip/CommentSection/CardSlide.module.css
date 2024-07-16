@@ -22,7 +22,7 @@
   
   @keyframes scroll {
     0% {
-      transform: translateX(0);
+      transform: translateX(00);
     }
     100% {
       transform: translateX(calc(-18.75rem * 6));

@@ -8,7 +8,8 @@
 
 @font-face {
   font-family: 'GmarketSansMedium';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -151,7 +152,7 @@
   height: 30px;
 }
 .DiyDetail .cheer_button {
-  background-color: #3A86FF;
+  background-color: #3a86ff;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -162,7 +163,7 @@
 }
 
 .cheer_button:hover {
-  background-color: #FE7171;
+  background-color: #fe7171;
 }
 
 /* 설명 박스 */
@@ -214,7 +215,7 @@
   top: 10px;
   left: 12px;
   display: inline-block;
-  background-color: #3A86FF;
+  background-color: #3a86ff;
   color: #fff;
   padding: 0.5rem;
   border-radius: 4px;
@@ -236,4 +237,10 @@
 p {
   font-family: 'GmarketSansMedium';
   color: #4d4d4d;
+}
+
+/* 뒤로가기 버튼 */
+.go_back {
+  width: 72px;
+  margin-left: auto;
 }

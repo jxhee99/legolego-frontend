@@ -53,3 +53,8 @@
   margin-top: 3rem;
   text-align: center;
 }
+
+.Modal button:hover {
+  background-color: #5a32a3;
+  color: #fff;
+}

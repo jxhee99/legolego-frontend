@@ -51,6 +51,9 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .content .content_body {
@@ -80,12 +83,7 @@
   color: #666;
 }
 
-.likes span {
-  margin-right: 0.25rem;
-}
-
 .heartIcon {
   color: #ff6b6b;
   font-size: 1rem;
-  margin-right: 0.3125rem;
 }

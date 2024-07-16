@@ -62,8 +62,16 @@ const WriterControls = ({ id, isEditDeletePossible, likedNum }) => {
       <div className={styles.writer_button}>
         {/* <button onClick={handleEdit}>수정</button> */}
         {/* <button onClick={openModal}>삭제</button> */}
-        <EditIcon onClick={handleEdit} className={styles.edit_delete_button} />
-        <DeleteIcon onClick={openModal} className={styles.edit_delete_button} />
+        <EditIcon
+          onClick={handleEdit}
+          className={styles.edit_delete_button}
+          fontSize="small"
+        />
+        <DeleteIcon
+          onClick={openModal}
+          className={styles.edit_delete_button}
+          fontSize="small"
+        />
       </div>
       <ConfirmModal
         isVisible={modalOpen}

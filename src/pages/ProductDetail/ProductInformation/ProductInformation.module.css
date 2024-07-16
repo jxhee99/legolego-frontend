@@ -11,7 +11,8 @@
 
 .imageContainer {
   flex: 1;
-  max-width: 40%;
+  width: 450px;
+  height: 450px;
 }
 
 .image {
@@ -40,7 +41,6 @@
 .title {
   font-size: 1.5rem;
   margin-bottom: 10px;
-
 }
 
 .stats {
@@ -71,15 +71,15 @@
 
 .fundingAmount,
 .fundingPercentage {
-  color: #3A86FF;
+  color: #3a86ff;
 }
 
 .price {
-  color: #45474B;
+  color: #45474b;
 }
 
 .deadline {
-  color: #45474B;
+  color: #45474b;
 }
 
 .progressBarContainer {
@@ -94,7 +94,7 @@
 
 .progressBar {
   height: 100%;
-  background-color: #3A86FF;
+  background-color: #3a86ff;
   transition: width 0.3s ease;
 }
 
@@ -139,7 +139,7 @@
 }
 
 .paymentButton {
-  background-color: #FE7171;
+  background-color: #fe7171;
   color: white;
   border: none;
   padding: 10px 20px;

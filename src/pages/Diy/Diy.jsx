@@ -43,7 +43,7 @@ const Diy = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigate, searchData.length]);
+  }, [navigate]);
 
   // 로딩 중 및 오류 처리
   if (loading) {

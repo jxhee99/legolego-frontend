@@ -91,6 +91,12 @@
   background-color: #fff;
 }
 
+.commentItem form {
+  padding: 1rem 0 0 1rem;
+  /* border-top: 1px solid #f8f5fc; */
+  background-color: #f8f5fc;
+}
+
 .commentItem:not(:first-child) {
   border-top: 1px solid#ebe9e9;
 }
@@ -124,6 +130,10 @@
 
 .commentContent {
   margin-top: 15px;
+}
+
+.commentContent > textarea {
+  width: 99%;
 }
 
 .commentItemTextarea {
@@ -174,4 +184,14 @@
   margin-top: 10px;
   margin-left: 20px;
   padding-left: 15px;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.replyItem::after {
+  content: '└ ';
+  position: absolute;
+  color: #949494;
+  top: 3rem;
+  left: -0.5rem;
 }

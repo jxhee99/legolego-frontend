@@ -56,14 +56,26 @@ const PostDetail = () => {
   if (!post) return <div>Loading...</div>;
 
   const isOwner =
-    (role === 'USER' && post.userNum !== null && post.userNum.toString() === userNum) ||
-    (role === 'PARTNER' && post.partnerNum !== null && post.partnerNum.toString() === userNum) ||
-    (role === 'ADMIN' && post.adminNum !== null && post.adminNum.toString() === userNum);
+    (role === 'USER' &&
+      post.userNum !== null &&
+      post.userNum.toString() === userNum) ||
+    (role === 'PARTNER' &&
+      post.partnerNum !== null &&
+      post.partnerNum.toString() === userNum) ||
+    (role === 'ADMIN' &&
+      post.adminNum !== null &&
+      post.adminNum.toString() === userNum);
 
   return (
     <div className={styles.postDetail}>
       {editing ? (
-        <EditPostForm post={post} onUpdate={() => { setEditing(false); fetchPostDetail(); }} />
+        <EditPostForm
+          post={post}
+          onUpdate={() => {
+            setEditing(false);
+            fetchPostDetail();
+          }}
+        />
       ) : (
         <>
           <div className={styles.postDetailCategory}>
@@ -71,29 +83,43 @@ const PostDetail = () => {
             {isOwner && (
                 <div className={styles.postDetailButtonGroup}>
                   <button onClick={() => navigate(`/edit-post/${postNum}`)} className={styles.postDetailEditButton}>                    
-                    <EditIcon className={styles.postDetailEditIcon} />
+                    <EditIcon className={styles.postDetailEditIcon} fontSize="small" />
                   </button>
                   <button onClick={handleDeletePost} className={styles.postDetailDeleteButton}>
-                    <DeleteIcon className={styles.postDetailDeleteIcon} />
+                    <DeleteIcon className={styles.postDetailDeleteIcon} fontSize="small" />
                   </button>
                 </div>
               )}
               {role === 'ADMIN' && !isOwner && (
               <button onClick={handleDeletePost} className={styles.postDetailAdminDeleteBtn}>
-                <DeleteIcon className={styles.postDetailAdminDeleteBtn} />
+                <DeleteIcon className={styles.postDetailAdminDeleteBtn} fontSize="small" />
               </button>
-              )}
+            )}
           </div>
           <h1 className={styles.postDetailTitle}>{post.title}</h1>
           <div className={styles.postDetails}>
-          <div className={styles.postDetailLeft}>
-            <span>{post.userNickname ? `${post.userNickname}` : post.companyName ? `${post.companyName}` : `${post.adminName}`}</span>
-            <span>{post.regDate}</span>
-          </div>
-          <div className={styles.postDetailRight}>
-            <span><VisibilityIcon className={styles.postDetailViewIcon} /> {post.viewCount}</span>
-            <span><ChatBubbleOutlineIcon className={styles.postDetailCommentIcon} /> {post.commentCount}</span>
-          </div>
+            <div className={styles.postDetailLeft}>
+              <span>
+                {post.userNickname
+                  ? `${post.userNickname}`
+                  : post.companyName
+                    ? `${post.companyName}`
+                    : `${post.adminName}`}
+              </span>
+              <span>{post.regDate}</span>
+            </div>
+            <div className={styles.postDetailRight}>
+              <span>
+                <VisibilityIcon className={styles.postDetailViewIcon} />{' '}
+                {post.viewCount}
+              </span>
+              <span>
+                <ChatBubbleOutlineIcon
+                  className={styles.postDetailCommentIcon}
+                />{' '}
+                {post.commentCount}
+              </span>
+            </div>
           </div>
           <div className={styles.postDetailDivider}></div>
           <p className={styles.postDetailContent}>{post.content}</p>
@@ -101,7 +127,11 @@ const PostDetail = () => {
         </>
       )}
       <CommentForm postNum={postNum} fetchComments={fetchComments} />
-      <CommentList comments={comments} postNum={postNum} fetchComments={fetchComments} />    
+      <CommentList
+        comments={comments}
+        postNum={postNum}
+        fetchComments={fetchComments}
+      />
     </div>
   );
 };

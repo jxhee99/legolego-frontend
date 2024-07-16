@@ -1,56 +1,26 @@
 .product_cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 3rem;
-    margin-top: 3rem;
-  }
-  
-  .latestUpdate {
-    margin: 3rem 0;
-    padding: 3rem 0;
-    border-bottom: 1px solid #bebebe;
-  }
-  
-  .latestUpdate h2 {
-    text-align: center;
-  }
-  
-  .searchField {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .pagination {
-    display: flex;
-    align-items: center;
-    margin-top: 3rem;
-  }
-  
-  /* .productText {
-    position: absolute;
-    font-size: 1.3rem;
-    text-shadow: 3px;
-    bottom: 105px;
-    right: 155px;
-  }
-  
-  .productBackground {
-    background-image: url('../../assets/images/legoRiver.jpeg');
-    background-repeat: no-repeat;
-    background-size: 90rem;
-    background-position: center; 
-    height: 50vh;
-    color: white;
-    display: flex;
-    justify-content: flex-end; 
-    align-items: flex-end; 
-    padding: 0;
-    margin-top: 0;
-    position: relative;
-    margin-top: 2.5rem;
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-    border-radius: 2.5rem;
-    transition: background-size 0.3s ease; 
-  } */
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 3rem;
+}
+
+.latestUpdate {
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-bottom: 1px solid #bebebe;
+}
+
+.latestUpdate h2 {
+  text-align: center;
+}
+
+.searchField {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+}
