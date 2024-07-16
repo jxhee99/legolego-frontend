@@ -28,6 +28,7 @@ const PostDetail = () => {
     try {
       const response = await apiClient.get(`/posts/${postNum}`);
       setPost(response.data);
+      console.log("Post detail fetched:", response.data);
     } catch (error) {
       console.error('Error fetching post detail:', error);
     }
@@ -37,7 +38,8 @@ const PostDetail = () => {
     try {
       const response = await apiClient.get(`/posts/${postNum}/comments`);
       setComments(response.data);
-    } catch (error) {
+      console.log("Comments fetched:", response.data);
+      } catch (error) {
       console.error('Error fetching comments:', error);
     }
   };
@@ -68,7 +70,8 @@ const PostDetail = () => {
             <span>{transformCategory(post.category)}</span>
             {isOwner && (
                 <div className={styles.postDetailButtonGroup}>
-                  <button onClick={() => navigate(`/edit-post/${postNum}`)} className={styles.postDetailEditButton}>                    <EditIcon className={styles.postDetailEditIcon} />
+                  <button onClick={() => navigate(`/edit-post/${postNum}`)} className={styles.postDetailEditButton}>                    
+                    <EditIcon className={styles.postDetailEditIcon} />
                   </button>
                   <button onClick={handleDeletePost} className={styles.postDetailDeleteButton}>
                     <DeleteIcon className={styles.postDetailDeleteIcon} />
@@ -98,7 +101,7 @@ const PostDetail = () => {
         </>
       )}
       <CommentForm postNum={postNum} fetchComments={fetchComments} />
-      <CommentList comments={comments} postNum={postNum} fetchComments={fetchComments} />
+      <CommentList comments={comments} postNum={postNum} fetchComments={fetchComments} />    
     </div>
   );
 };
