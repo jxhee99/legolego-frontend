@@ -178,7 +178,8 @@
 .desc_box pre {
   font-family: 'SpoqaHanSansNeo-Regular', Arial, Helvetica, sans-serif;
   margin: 0;
-  line-height: 1.5rem;
+  line-height: 1.8rem;
+  overflow: auto;
 }
 
 /* 항공권 */
