@@ -1,68 +1,125 @@
+import { useState, useEffect } from 'react';
 import styles from './PackageCard.module.css';
-import PropTypes from 'prop-types';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../../../utils/DateTime';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import noneLego from '../../../assets/images/none.jpg';
+import apiClient from '../../../api/apiClient';
 
-const PackageCard = ({
-  userNickname,
+const ProductCard = ({
   productNum,
   productImage,
-  recruitmentDeadline,
   productName,
   price,
-  wishlistCount,
-  productViewNum,
+  wishlistCount: initialWishlistCount,
+  airline,
 }) => {
   const navigate = useNavigate();
-  const handlePackageCard = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(initialWishlistCount);
+
+  useEffect(() => {
+    if (!productNum) {
+      console.error('Product Number is undefined');
+      return;
+    }
+
+    const fetchWishStatus = async () => {
+      try {
+        const response = await apiClient.get(
+          `/user/products/${productNum}/wishlist/status`
+        );
+        if (response.status === 200) {
+          setIsFavorite(response.data);
+        } else {
+          console.error('Failed to load wishlist status:', response.status);
+        }
+      } catch (error) {
+        console.error('Error loading wishlist status:', error);
+      }
+    };
+
+    fetchWishStatus();
+  }, [productNum]);
+
+  const handlePackageCardClick = () => {
     navigate(`/product/${productNum}`);
   };
 
+  const handleWishNum = async (e) => {
+    e.stopPropagation();
+    try {
+      const response = await apiClient.post(
+        `/user/products/${productNum}/wishlist`,
+        {}
+      );
+      if (response.status === 201) {
+        setIsFavorite(true);
+        setWishlistCount(wishlistCount + 1);
+      } else {
+        console.error('Failed to add to wishlist:', response.status);
+      }
+    } catch (error) {
+      console.error('Error updating wishlist:', error);
+    }
+  };
+
+  const handleCancelWish = async (e) => {
+    e.stopPropagation();
+    try {
+      const response = await apiClient.delete(
+        `/user/products/${productNum}/wishlist`
+      );
+      if (response.status === 204) {
+        setIsFavorite(false);
+        setWishlistCount(wishlistCount - 1);
+      } else {
+        console.error('Failed to cancel wishlist:', response.status);
+      }
+    } catch (error) {
+      console.error('Error canceling wishlist:', error);
+    }
+  };
+
   return (
-    <div className={styles.PackageCard}>
-      <h4 className={styles.user_nickname}>
-       <strong>{userNickname}</strong>님이 만든 패키지 상품
-      </h4>
-      <div className={styles.package_card} onClick={handlePackageCard}>
-        <div className={styles.package_card_thumbnail}>
-          <img src={productImage || noneLego} alt="패키지 썸네일" />
-        </div>
-        <div className={styles.package_card_body}>
-          <h3>{productName}</h3>
-          <span>{price} ₩</span>
-        </div>
-        <div className={styles.package_card_bottom}>
-          <div className={styles.package_card_icon}>
-            <CalendarMonthIcon />
-            <span>
-              ~{' '}
-              {formatDateTime(recruitmentDeadline).replace(
-                /\s\d{2}:\d{2}$/,
-                ''
-              )}
-            </span>
-          </div>
-          <div className={styles.package_card_icon}>
-            <VisibilityIcon />
-            <span>{productViewNum}</span>
-          </div>
-          <div className={styles.package_card_icon}>
-            <CatchingPokemonIcon />
+    <div
+      className={`${styles.ProductCard} ${isHovered ? styles.hovered : ''}`}
+      onClick={handlePackageCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img src={productImage} alt={productName} className={styles.image} />
+      <div className={styles.content}>
+        <div className={styles.content_title}>
+          <h3 className={styles.title}>{productName}</h3>
+          <div className={styles.likes}>
             <span>{wishlistCount}</span>
+            {!isFavorite ? (
+              <button
+                className={`${styles.heartIcon} ${styles.favorited}`}
+                onClick={handleWishNum}
+              >
+                <FavoriteBorderIcon />
+              </button>
+            ) : (
+              <button className={styles.heartIcon} onClick={handleCancelWish}>
+                <FavoriteIcon />
+              </button>
+            )}
           </div>
         </div>
+        <div className={styles.content_body}>
+          <span>여행기간</span>
+          <p className={styles.date}>
+            {formatDateTime(airline.boardingDate).replace(/\s\d{2}:\d{2}$/, '')}
+            ~ {formatDateTime(airline.comingDate).replace(/\s\d{2}:\d{2}$/, '')}
+          </p>
+        </div>
+        <p className={styles.price}>{String(price).toLocaleString()} 원</p>
       </div>
     </div>
   );
 };
 
-PackageCard.propTypes = {
-  productImage: PropTypes.string.isRequired,
-  productName: PropTypes.string.isRequired,
-};
-
-export default PackageCard;
+export default ProductCard;

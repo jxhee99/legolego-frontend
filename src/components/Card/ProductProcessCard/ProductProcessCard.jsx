@@ -10,10 +10,10 @@ const ProductProcessCard = ({ productData }) => {
     productName,
     price,
     productImage,
-    recruitmentDeadline,
     necessaryPeople,
     partnerName,
-    regDate,
+    boardingDate,
+    comingDate,
   } = product;
 
   const navigate = useNavigate();
@@ -40,13 +40,14 @@ const ProductProcessCard = ({ productData }) => {
         <img src={productImage} alt={productName} />
       </div>
       <div className={styles.content}>
-        <h2 className={styles.title}>{truncateString(productName, 13)}</h2> {/* 변경된 부분 */}
+        <h2 className={styles.title}>{truncateString(productName, 13)}</h2>{' '}
+        {/* 변경된 부분 */}
         <p className={styles.category}>{partnerName}</p>
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.deadline}>
           모집 기간:
-          {formatDateTime(regDate).replace(/\s\d{2}:\d{2}$/, '')}~
-          {formatDateTime(recruitmentDeadline).replace(/\s\d{2}:\d{2}$/, '')}
+          {formatDateTime(boardingDate).replace(/\s\d{2}:\d{2}$/, '')}~
+          {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}
         </p>
         <div className={styles.progressContainer}>
           <LinearProgress
@@ -59,9 +60,6 @@ const ProductProcessCard = ({ productData }) => {
           </p>
         </div>
       </div>
-      {progressPercentage < 100 && (
-        <span className={styles.badge}>모집 임박!</span>
-      )}
     </div>
   );
 };

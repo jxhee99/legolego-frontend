@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import styles from './OrderDetail.module.css';
 import PackageCard from '../../components/Card/PackageCard/PackageCard';
@@ -96,11 +95,11 @@ const OrderDetail = () => {
       alert('환불이 완료되었습니다.');
     } catch (error) {
       console.error('환불 처리 중 오류가 발생했습니다.', error);
-      
+
       const currentTimestamp = new Date();
       const recruitmentDeadline = new Date(packageData[0]?.recruitmentDeadline);
-      console.log(recruitmentDeadline, currentTimestamp)
-      
+      console.log(recruitmentDeadline, currentTimestamp);
+
       if (recruitmentDeadline < currentTimestamp) {
         alert('주문 취소 기간이 지났습니다.');
       } else {
@@ -112,7 +111,7 @@ const OrderDetail = () => {
   if (loading) return <div>Loading...</div>; // 로딩 중일 때 표시될 화면
   if (error) return <div>{error}</div>; // 오류 발생 시 표시될 화면
   if (!order) return null; // 주문 정보가 없을 경우
-
+  console.log(packageData);
   // 주문 정보를 출력하는 부분
   return (
     <div className={styles.OrderDetail}>
@@ -135,11 +134,12 @@ const OrderDetail = () => {
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>결제상태</span>
             <span className={styles.OrderDetailValue}>
-            {order.refundStatus
+              {order.refundStatus
                 ? '환불완료'
                 : order.paymentStatus
                   ? '결제완료'
-                  : '결제실패'}</span>
+                  : '결제실패'}
+            </span>
           </div>
           <div className={styles.OrderDetailItem}>
             <span className={styles.OrderDetailLabel}>상품가격</span>
@@ -181,19 +181,22 @@ const OrderDetail = () => {
         <button className={styles.orderDetail_back} onClick={goToOrderList}>
           뒤로가기
         </button>
-<div>
-{order.paymentStatus ? (
-                order.refundStatus ? (
-                  ' '
-                ) : (
-           <button className={styles.orderDetail_refund} onClick={handleRefund}>
-          환불요청
-        </button>
-                )
-              ) : (
-                ' '
-              )}
-</div>
+        <div>
+          {order.paymentStatus ? (
+            order.refundStatus ? (
+              ' '
+            ) : (
+              <button
+                className={styles.orderDetail_refund}
+                onClick={handleRefund}
+              >
+                환불요청
+              </button>
+            )
+          ) : (
+            ' '
+          )}
+        </div>
       </div>
     </div>
   );

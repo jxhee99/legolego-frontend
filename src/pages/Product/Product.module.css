@@ -22,6 +22,11 @@
   margin: 2rem 0;
 }
 
+.closeTitle {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
 /* Search */
 .searchContainer {
   display: flex;

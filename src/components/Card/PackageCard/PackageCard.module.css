@@ -1,67 +1,89 @@
-.PackageCard .user_nickname {
-  width: 328px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.package_card {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 328px;
-  height: 340px;
+.ProductCard {
+  width: 21.875rem;
   cursor: pointer;
-  background-color: white;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.package_card:hover {
+.ProductCard.hovered {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.package_card .package_card_thumbnail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.package_card .package_card_thumbnail img {
+.heartIcon {
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.heartIcon:hover {
+  transform: scale(1.1);
+}
+
+.favorited {
+  color: #ff6b6b;
+}
+
+.likes {
+  cursor: pointer;
+}
+
+.image {
   width: 100%;
-  height: 100%;
+  height: 17.5rem;
   object-fit: cover;
 }
 
-.package_card .package_card_body {
+.content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  margin-top: 0.5rem;
-
-}
-
-.package_card .package_card_bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-}
-
-.package_card .package_card_icon {
-  display: flex;
+  flex-direction: column;
   gap: 0.25rem;
+  padding: 0.625rem;
 }
 
-.package_card.package_card_icon span {
-  line-height: 24px;
+.content .content_title {
+  display: flex;
+  justify-content: space-between;
 }
-.user_nickname strong {
-  font-size: 1.1em;  /* 글자 크기 */
-  font-weight: bold;  /* 글자 굵기 */
-  color: red;  /* 글자 색상 */
-  margin-right: 0.1rem;
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content .content_body {
+  display: flex;
+  align-items: center;
+}
+
+.content .content_body p::before {
+  content: '|';
+  margin: 0 0.25rem;
+}
+
+.date {
+  color: #666;
+  margin: 0.3125rem 0;
+}
+
+.price {
+  font-size: 1.5rem;
+  margin: 0.3125rem 0;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.heartIcon {
+  color: #ff6b6b;
+  font-size: 1rem;
 }
