@@ -39,7 +39,7 @@ const SpecialCard = ({ productData }) => {
         <img src={productImage} alt={productName} />
       </div>
       <div className={styles.content}>
-        <h2 className={styles.title}>{truncateString(productName, 13)}</h2>{' '}
+        <h2 className={styles.title}>{productName}</h2>{' '}
         {/* 변경된 부분 */}
         <p className={styles.category}>{partnerName}</p>
         <p className={styles.price}>{price.toLocaleString()} 원</p>
