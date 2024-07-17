@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Home.module.css';
-import ProductProcessCard from '../../../components/Card/ProductProcessCard/ProductProcessCard';
+import SpecialCard from './SpecialCard';
 import apiClient from '../../../api/apiClient';
 
 const PackageSection = () => {
@@ -12,8 +12,18 @@ const PackageSection = () => {
     const fetchData = async () => {
       try {
         console.log('Fetching data...');
-        const response = await apiClient.get(`/products/sortByPopular`);
-        setPackageData(response.data);
+
+        // 필요한 제품 번호들을 병렬로 API 호출
+        const productNums = [3, 5, 6, 7, 8];
+        const requests = productNums.map(num => apiClient.get(`/products/${num}`));
+        const responses = await Promise.all(requests);
+
+        // API 응답에서 받아온 데이터 확인
+        const filteredData = responses.map(response => response.data);
+        console.log('Filtered data:', filteredData);
+
+        // 필터링된 데이터를 state에 저장
+        setPackageData(filteredData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -29,7 +39,7 @@ const PackageSection = () => {
           {packageData.map((packageItem, index) => (
             <li className={styles.card} key={index} id={`card${index + 1}`}>
               <div className={styles['card-body']}>
-                <ProductProcessCard
+                <SpecialCard
                   key={packageItem.productNum}
                   productData={packageItem}
                 />
