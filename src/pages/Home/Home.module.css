@@ -85,10 +85,6 @@
   margin: 0rem auto;
 }
 
-.PackageSection h2 {
-  margin-left: 13%;
-}
-
 .PackageSection .package_section_cards {
   align-items: center; /* 수직 방향 가운데 정렬 */
   display: flex;
