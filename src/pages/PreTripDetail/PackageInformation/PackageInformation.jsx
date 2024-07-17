@@ -11,6 +11,7 @@ const PackageInformation = ({
   recruitmentDeadline,
   necessaryPeople,
   rating,
+  reviews,
 }) => {
   return (
     <div className={styles.productContainer}>
@@ -28,7 +29,7 @@ const PackageInformation = ({
           <Star className={styles.starIcon} />
           <span className={styles.rating}>{rating}</span>
           {/* TODO 동적으로 데이터 받아오기 */}
-          <span className={styles.reviews}>(32 리뷰)</span>
+          <span className={styles.reviews}>({reviews.length} 리뷰)</span>
         </div>
         <p className={styles.partnerName}>{partnerName}</p>
 
