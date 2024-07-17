@@ -1,4 +1,3 @@
-import styles from './Product.module.css';
 import { useState, useEffect } from 'react';
 import ProductCard from '../../components/Card/ProductCard/ProductCard';
 import 'slick-carousel/slick/slick.css';
@@ -6,11 +5,16 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useSearchProducts } from '../../hooks/useProduct';
 import apiClient from '../../api/apiClient';
 import SearchIcon from '@mui/icons-material/Search';
+import Stack from '@mui/material/Stack';
+import Pagination from '@mui/material/Pagination';
+import styles from './Product.module.css';
 
 const Search = () => {
   const [keyword, setKeyword] = useState('');
   const { results, error } = useSearchProducts(keyword);
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,11 +32,22 @@ const Search = () => {
     setKeyword(e.target.value);
   };
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   const displayedProducts = keyword ? results : products;
+
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = displayedProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <>
@@ -47,9 +62,9 @@ const Search = () => {
             className={styles.searchInput}
           />
         </div>
-        {displayedProducts.length > 0 ? (
+        {currentProducts.length > 0 ? (
           <ul className={styles.product_cards}>
-            {displayedProducts.map((product) => (
+            {currentProducts.map((product) => (
               <li key={product.productNum}>
                 <ProductCard {...product} />
               </li>
@@ -58,6 +73,14 @@ const Search = () => {
         ) : (
           <div className={styles.noProducts}>검색 결과가 없습니다.</div>
         )}
+        <Stack spacing={2} sx={{ mt: 4 }} alignItems="center">
+          <Pagination
+            count={Math.ceil(displayedProducts.length / itemsPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            className={styles.pagination}
+          />
+        </Stack>
       </div>
     </>
   );
