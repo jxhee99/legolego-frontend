@@ -19,7 +19,6 @@
   padding: 15px;
 }
 
-/* 단일 리뷰와 슬라이더 내 리뷰에 모두 적용 */
 .reviewSlide > article,
 .reviewSection > div > article {
   background-color: #ffffff;
@@ -30,6 +29,16 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reviewSlide > article {
+  min-height: 200px;
+  max-height: 200px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .reviewHeader {
@@ -57,9 +66,9 @@
   color: #34495e;
   font-size: 1rem;
   line-height: 1.6;
+  flex: 1;
 }
 
-/* 단일 리뷰일 때 추가 스타일 */
 .reviewSection > div > article {
   max-width: 600px;
   margin: 0 auto;
@@ -74,7 +83,6 @@
     font-size: 2rem;
   }
 
-  /* 단일 리뷰일 때 모바일 스타일 */
   .reviewSection > div > article {
     max-width: 100%;
   }
