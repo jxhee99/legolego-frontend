@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ProductCard.module.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -117,10 +118,20 @@ const ProductCard = ({
             {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}{' '}
           </p>
         </div>
-        <p className={styles.price}>{price.toLocaleString()} 원</p>
+        <p className={styles.price}>{price ? price.toLocaleString() : ''} 원</p>
       </div>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  productNum: PropTypes.number.isRequired,
+  productImage: PropTypes.string,
+  productName: PropTypes.string,
+  price: PropTypes.number,
+  wishlistCount: PropTypes.number,
+  boardingDate: PropTypes.string,
+  comingDate: PropTypes.string,
 };
 
 export default ProductCard;

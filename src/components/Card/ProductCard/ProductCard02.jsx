@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './ProductCard.module.css';
+import PropTypes from 'prop-types';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +25,7 @@ const ProductCard02 = ({ productData }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [wishlistCount, setWishlistCount] = useState(initialWishlistCount);
+  const [wishlistCount, setWishlistCount] = useState(initialWishlistCount || 0);
 
   useEffect(() => {
     if (!productNum) {
@@ -123,10 +124,20 @@ const ProductCard02 = ({ productData }) => {
             {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}
           </p>
         </div>
-        <p className={styles.price}>{price.toLocaleString()} 원</p>
+        <p className={styles.price}>{price ? price.toLocaleString() : ''} 원</p>
       </div>
     </div>
   );
+};
+
+ProductCard02.propTypes = {
+  productNum: PropTypes.number.isRequired,
+  productImage: PropTypes.string,
+  productName: PropTypes.string,
+  price: PropTypes.number,
+  wishlistCount: PropTypes.number,
+  boardingDate: PropTypes.string,
+  comingDate: PropTypes.string,
 };
 
 export default ProductCard02;
