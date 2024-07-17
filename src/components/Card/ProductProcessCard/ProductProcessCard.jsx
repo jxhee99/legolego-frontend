@@ -4,6 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { useNavigate } from 'react-router-dom';
 
 const ProductProcessCard = ({ productData }) => {
+  const { product, orderCount } = productData;
   const {
     productNum,
     productName,
@@ -11,9 +12,9 @@ const ProductProcessCard = ({ productData }) => {
     productImage,
     necessaryPeople,
     partnerName,
-    route,
-    orderCount,
-  } = productData;
+    boardingDate,
+    comingDate,
+  } = product;
 
   const navigate = useNavigate();
   const progressPercentage = Math.min(
@@ -45,8 +46,8 @@ const ProductProcessCard = ({ productData }) => {
         <p className={styles.price}>{price.toLocaleString()} 원</p>
         <p className={styles.deadline}>
           모집 기간:
-          {formatDateTime(route.startDate).replace(/\s\d{2}:\d{2}$/, '')}~
-          {formatDateTime(route.lastDate).replace(/\s\d{2}:\d{2}$/, '')}
+          {formatDateTime(boardingDate).replace(/\s\d{2}:\d{2}$/, '')}~
+          {formatDateTime(comingDate).replace(/\s\d{2}:\d{2}$/, '')}
         </p>
         <div className={styles.progressContainer}>
           <LinearProgress
