@@ -69,7 +69,7 @@ const Product = () => {
     if (recruitmentCloseProduct.length === 1) {
       return (
         <>
-          <h2 className={styles.closeTitle}>모집 임박 상품</h2>
+          <h2 className={styles.closeTitle}>🚨 모집 임박 상품</h2>
           <ProductProcessCard
             key={`process-${recruitmentCloseProduct[0].product.productNum}`}
             productData={recruitmentCloseProduct[0]}
@@ -80,7 +80,7 @@ const Product = () => {
 
     return (
       <>
-        <h2 className={styles.closeTitle}>모집 임박 상품</h2>
+        <h2 className={styles.closeTitle}> 🚨 모집 임박 상품</h2>
         <Slider {...settings}>
           {recruitmentCloseProduct.map((product) => (
             <ProductProcessCard

@@ -143,6 +143,8 @@
   padding: 10px;
   min-height: 30vh;
   margin-bottom: 1rem;
+  font-family: 'SpoqaHanSansNeo-Regular';
+  overflow: auto;
 }
 
 .postDetailButtonGroup {

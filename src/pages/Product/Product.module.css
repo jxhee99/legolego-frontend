@@ -23,8 +23,22 @@
 }
 
 .closeTitle {
+  color: red;
   font-size: 1.75rem;
   margin-bottom: 1.5rem;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Search */

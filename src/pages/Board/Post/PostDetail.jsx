@@ -122,7 +122,7 @@ const PostDetail = () => {
             </div>
           </div>
           <div className={styles.postDetailDivider}></div>
-          <p className={styles.postDetailContent}>{post.content}</p>
+          <pre className={styles.postDetailContent}>{post.content}</pre>
           <div className={styles.postDetailDivider}></div>
         </>
       )}
